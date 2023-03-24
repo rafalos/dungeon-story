@@ -1,0 +1,8 @@
+.bar-outer {
+  width: 400px;
+  border: 1px solid black;
+}
+
+.bar-inner {
+  transition: 0.3s;
+}
