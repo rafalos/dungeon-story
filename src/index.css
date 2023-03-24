@@ -5,3 +5,13 @@
 body {
   background-image: linear-gradient(to right, #868f96 0%, #596164 100%);
 }
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#game-wrapper {
+  margin: 120px 20px;
+}

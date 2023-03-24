@@ -5,9 +5,11 @@ import BattleEntityPanel from './BattleEntityPanel';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import { playerStatusActions } from '../../store';
+import { playerStatusActions } from '../../store/player-status-slice';
 import { randomInRange } from '../../utils/random';
 import BattleSummary from './BattleSummary';
+import { generateNewEquipmentItem } from '../../Logic/Generator/Equipment';
+import { playerInventoryActions } from '../../store/player-inventory-slice';
 
 function BattleFrame({ onLeaveBattle }) {
   const dispatch = useDispatch();
@@ -34,14 +36,21 @@ function BattleFrame({ onLeaveBattle }) {
         enemy.experience.min,
         enemy.experience.max
       );
+      const foundItem = generateNewEquipmentItem();
+      const itemsFound = [{...foundItem}];
       setBattleOver(true);
       setBattleSummary({
-        experienceGained: experienceGained,
-        itemsFound: [],
+        experienceGained,
+        itemsFound,
       });
       dispatch(
         playerStatusActions.addExperience({
           experience: experienceGained,
+        })
+      );
+      dispatch(
+        playerInventoryActions.addMultipleItems({
+          items: itemsFound,
         })
       );
     }
@@ -72,7 +81,6 @@ function BattleFrame({ onLeaveBattle }) {
         />
       ) : (
         <div className={classes['battle-wrapper']}>
-          {battleID}
           <div>
             <BattleEntityPanel entity={player} />
             <button onClick={handleAttack} disabled={enemyTurn}>

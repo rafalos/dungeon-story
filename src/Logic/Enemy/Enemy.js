@@ -8,8 +8,8 @@ class Enemy {
     this.minDamage = 20;
     this.maxDamage = 50;
     this.experience = {
-      min: 10,
-      max: 35,
+      min: 90,
+      max: 155,
     };
   }
 

@@ -5,7 +5,7 @@ import ringIcon1 from '../Resources/Icons/Armors/icon_ring1_2.png';
 export default [
   [
     {
-      itemName: 'Plate helmet',
+      name: 'Plate helmet',
       slot: 'helmet',
       icon: headIcon1,
       metadata: { armor: 52 },
@@ -13,7 +13,7 @@ export default [
   ],
   [
     {
-      itemName: 'Cloth Torso',
+      name: 'Cloth Torso',
       slot: 'torso',
       icon: torsoIcon1,
       metadata: { armor: 101 },
@@ -21,7 +21,7 @@ export default [
   ],
   [
     {
-      itemName: 'Wooden ring',
+      name: 'Wooden ring',
       slot: 'ring1',
       icon: ringIcon1,
       metadata: { fortune: 31 },

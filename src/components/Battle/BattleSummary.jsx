@@ -4,7 +4,8 @@ function BattleSummary({ onLeaveBattle, battleSummary }) {
   return (
     <div>
       Result <button onClick={onLeaveBattle}>Leave</button>
-      {battleSummary.experienceGained}
+      You have gained {battleSummary.experienceGained} experience
+      You have gained {battleSummary.itemsFound.length}
     </div>
   );
 }

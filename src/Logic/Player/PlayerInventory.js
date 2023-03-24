@@ -1,21 +1,10 @@
-import Equipment from '../Generator/Equipment';
+import { generateNewEquipmentItem } from "../Generator/Equipment";
 
 export default class PlayerInventory {
   constructor() {
     this.gold = 0;
     this.slotAmount = 15;
     this.bag = [];
-    this.addItem(new Equipment());
-    this.addItem(new Equipment());
-    this.addItem(new Equipment());
-    this.addItem(new Equipment());
-    this.addItem(new Equipment());
-    this.addItem(new Equipment());
-    this.addItem(new Equipment());
-    this.addItem(new Equipment());
-    this.addItem(new Equipment());
-    this.addItem(new Equipment());
-    this.addItem(new Equipment());
   }
 
   addItem(item) {

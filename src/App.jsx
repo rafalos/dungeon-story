@@ -1,16 +1,16 @@
-import { useSelector } from 'react-redux';
 import Battle from './components/Battle/Battle';
-import ResourceBar from './components/UI/ResourceBar';
+import Header from './components/Layout/Header';
+import Inventory from './components/Inventory/Inventory';
 
 function App() {
-  const player = useSelector((state) => state.player);
-
   return (
     <div className='App'>
-      <h1>{player.name}</h1>
-      <h2>{player.level}</h2>
-      <ResourceBar currentResource={player.experience} maxResource={200} />
-      <Battle />
+      <Header />
+      <div id='game-wrapper'>
+        <Battle />
+        <Inventory />
+      </div>
+      
     </div>
   );
 }

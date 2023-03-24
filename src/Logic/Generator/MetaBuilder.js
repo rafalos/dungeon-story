@@ -1,4 +1,4 @@
-import { randomInRange, randomElementFromArray } from '../../Utils/Random';
+import { randomInRange, randomElementFromArray } from '../../utils/random';
 import affixTable from './AffixTable';
 import ItemClassTypes from './ItemClassTypes';
 

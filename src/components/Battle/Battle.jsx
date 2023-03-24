@@ -1,10 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import BattleFrame from './BattleFrame';
 import BattleSearch from './BattleSearch';
 import { useDispatch } from 'react-redux';
-import { playerStatusActions } from '../../store';
+import { playerStatusActions } from '../../store/player-status-slice';
+import Card from '../UI/Card';
 
 function Battle() {
   const [battleInProgress, setBattleInProgress] = useState(false);
@@ -20,9 +20,9 @@ function Battle() {
   }
 
   return (
-    <div>
+    <Card>
       {battleInProgress ? <BattleFrame onLeaveBattle={handleLeaveBattle}/> : <BattleSearch onEnterBattle={handleEnterBattle}/>}
-    </div>
+    </Card>
   );
 }
 
