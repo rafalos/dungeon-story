@@ -1,24 +1,16 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import Battle from './components/Battle/Battle';
 import ResourceBar from './components/UI/ResourceBar';
-import { playerStatusActions } from './store';
 
 function App() {
-  const dispatch = useDispatch();
   const player = useSelector((state) => state.player);
-
-  const handleTakeDamage = () => {
-    dispatch(
-      playerStatusActions.takeDamage({
-        amount: 10,
-      })
-    );
-  };
 
   return (
     <div className='App'>
-      <ResourceBar currentResource={player.currentHealth} maxResource={player.health} />
       <h1>{player.name}</h1>
-      <button onClick={handleTakeDamage}>Take damage</button>
+      <h2>{player.level}</h2>
+      <ResourceBar currentResource={player.experience} maxResource={200} />
+      <Battle />
     </div>
   );
 }
