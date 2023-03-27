@@ -1,13 +1,18 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { playerEquipmentActions } from '../../store/player-equipment-slice';
 import { playerStatisticActions } from '../../store/player-statistics-slice';
+import { playerInventoryActions } from '../../store/player-inventory-slice';
 import classes from './Item.module.css';
 
 function Item({ item, equipable }) {
   const dispatch = useDispatch();
   const [tooltipVisible, setTooltipVisible] = useState(false);
   let metadataElements = [];
+
+  useEffect(() => {
+    setTooltipVisible(false);
+  }, [item]);
 
   for (const metadata in item?.metadata) {
     metadataElements.push(`${metadata}: ${item.metadata[metadata]}`);
@@ -21,6 +26,20 @@ function Item({ item, equipable }) {
     setTooltipVisible(false);
   };
 
+  const unequipHandler = () => {
+    dispatch(
+      playerEquipmentActions.unequipItem({
+        equipmentSlot: item.equipmentSlot,
+      })
+    );
+
+    dispatch(
+      playerInventoryActions.addSingleItem({
+        item,
+      })
+    );
+  };
+
   const equipHandler = () => {
     if (!equipable) return;
     dispatch(
@@ -29,16 +48,24 @@ function Item({ item, equipable }) {
       })
     );
 
-    dispatch(playerStatisticActions.increaseStat({
-      statistics: item.metadata
-    }))
+    dispatch(
+      playerStatisticActions.increaseStat({
+        statistics: item.metadata,
+      })
+    );
+
+    dispatch(
+      playerInventoryActions.removeItem({
+        id: item.id,
+      })
+    );
   };
 
   return (
     <>
       {item ? (
         <div
-          onClick={equipHandler}
+          onClick={equipable ? equipHandler : unequipHandler}
           onMouseEnter={handleShowTooltip}
           onMouseLeave={handleHideTooltip}
           className={`${classes['inventory-item']} ${

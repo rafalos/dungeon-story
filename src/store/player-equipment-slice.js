@@ -18,7 +18,7 @@ const playerEquipmentSlice = createSlice({
       state[action.payload.item.equipmentSlot] = { ...action.payload.item };
     },
     unequipItem(state, action) {
-      state[action.payload.item.equipmentSlot] = null;
+      state[action.payload.equipmentSlot] = null;
     },
   },
 });

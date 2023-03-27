@@ -14,9 +14,16 @@ const playerInventorySlice = createSlice({
     items: initialItems,
   },
   reducers: {
-    addSingleItem(state, action) {},
+    removeItem(state, action) {
+      const itemIndex = state.items.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      state.items.splice(itemIndex, 1);
+    },
+    addSingleItem(state, action) {
+      state.items.push(action.payload.item)
+    },
     addMultipleItems(state, action) {
-      console.log(action.payload.items);
       state.items = state.items.concat(action.payload.items);
     },
   },
