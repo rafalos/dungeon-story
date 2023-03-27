@@ -21,22 +21,25 @@ const playerStatisticsSlice = createSlice({
   },
   reducers: {
     increaseStat(state, action) {
-      state.attributes[action.payload.statistic] += action.payload.amount;
+      for (const statistic in action.payload.statistics) {
+        const amount = action.payload.statistics[statistic];
+        state.attributes[statistic] += amount;
 
-      switch (action.payload.statistic) {
-        case STATISTICS.STRENGTH:
-          state.minDamage += 1;
-          state.maxDamage += 1;
-          break;
-        case STATISTICS.VITALITY:
-          state.maxHealth += 10;
-          break;
-        case STATISTICS.DEXTERITY:
-          state.dodgeChance += 0.2;
-          break;
-        case STATISTICS.FOTRUNE:
-          state.critChance += 0.2;
-          break;
+        switch (statistic) {
+          case STATISTICS.STRENGTH:
+            state.minDamage += 1 * amount;
+            state.maxDamage += 1 * amount;
+            break;
+          case STATISTICS.VITALITY:
+            state.maxHealth += 10 * amount;
+            break;
+          case STATISTICS.DEXTERITY:
+            state.dodgeChance += 0.2 * amount;
+            break;
+          case STATISTICS.FOTRUNE:
+            state.critChance += 0.2 * amount;
+            break;
+        }
       }
     },
     takeDamage(state, action) {

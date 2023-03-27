@@ -14,8 +14,12 @@ const playerEquipmentSlice = createSlice({
   name: 'player-equipment',
   initialState: initialEquipment,
   reducers: {
-    equipItem(state, action) {},
-    unequipItem(state, action) {},
+    equipItem(state, action) {
+      state[action.payload.item.equipmentSlot] = { ...action.payload.item };
+    },
+    unequipItem(state, action) {
+      state[action.payload.item.equipmentSlot] = null;
+    },
   },
 });
 

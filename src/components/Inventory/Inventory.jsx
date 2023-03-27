@@ -9,7 +9,7 @@ function Inventory() {
   return (
     <Card>
       {inventory.items.map((item) => (
-        <EquipmentItem key={item.id} item={item} />
+        <EquipmentItem key={item.id} item={item} equipable={true}/>
       ))}
     </Card>
   );

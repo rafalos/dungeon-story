@@ -7,7 +7,7 @@ export default {
   ],
   secondary: [
     { stat: 'critChance', range: { min: 3, max: 10 }, label: '{value}% increased critical chance' },
-    { stat: 'blockChance', range: { min: 3, max: 10 }, label: '{value}% increased block chance' },
+    { stat: 'dodgeChance', range: { min: 3, max: 10 }, label: '{value}% increased block chance' },
     { stat: 'fortune', range: { min: 5, max: 50 }, label: '{value}% increased fortune' },
     { stat: 'lifeSteal', range: { min: 5, max: 20 }, label: '{value}% life steal' },
     { stat: 'fireDamage', range: { min: 5, max: 30 }, label: 'Adds {value}% fire damage' },
