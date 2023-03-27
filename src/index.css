@@ -21,3 +21,9 @@ header {
   padding: 10px;
   grid-template-columns: 200px 6fr;
 }
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

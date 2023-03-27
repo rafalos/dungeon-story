@@ -6,7 +6,7 @@ import playerStatisticsSlice from './player-statistics-slice';
 
 const store = configureStore({
   reducer: {
-    player: playerStatusReducer,
+    status: playerStatusReducer,
     inventory: playerInventoryReducer,
     equipment: playerEquipmentReducer,
     statistics: playerStatisticsSlice,

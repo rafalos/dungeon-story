@@ -13,7 +13,7 @@ import { playerInventoryActions } from '../../store/player-inventory-slice';
 
 function BattleFrame({ onLeaveBattle }) {
   const dispatch = useDispatch();
-  const player = useSelector((state) => state.player);
+  const player = useSelector((state) => state.status);
   const [enemy, setEnemy] = useState(initialEnemy);
   const [enemyTurn, setEnemyTurn] = useState(false);
   const [battleID, setBattleID] = useState(null);

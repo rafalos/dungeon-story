@@ -1,10 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
-import LevelBrackets from "../Logic/Resources/LevelBrackets";
+import { createSlice } from '@reduxjs/toolkit';
+import LevelBrackets from '../Logic/Resources/LevelBrackets';
 
 const playerStatusSlice = createSlice({
   name: 'player-status',
   initialState: {
     name: 'Rafal',
+    statPoints: 3,
     maxHealth: 250,
     currentHealth: 210,
     energy: 10,
@@ -14,6 +15,9 @@ const playerStatusSlice = createSlice({
     maxExperience: LevelBrackets[0],
   },
   reducers: {
+    useStatpoint(state) {
+      state.statPoints--;
+    },
     takeDamage(state, action) {
       state.currentHealth = state.currentHealth - action.payload.amount;
     },
@@ -25,6 +29,7 @@ const playerStatusSlice = createSlice({
 
       if (state.experience >= state.maxExperience) {
         state.level++;
+        state.statPoints += 3;
         state.experience = 0;
         state.maxExperience = LevelBrackets[state.level - 1];
       }
