@@ -5,12 +5,13 @@ import Inventory from './components/Inventory/Inventory';
 function App() {
   return (
     <div className='App'>
-      <Header />
+      <div id='sidebar'>
+        <Header />
+      </div>
       <div id='game-wrapper'>
         <Battle />
         <Inventory />
       </div>
-      
     </div>
   );
 }

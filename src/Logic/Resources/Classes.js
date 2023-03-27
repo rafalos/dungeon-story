@@ -1,23 +1,23 @@
 import KnightBasicAttack from './Icons/Skills/35.png';
-import constants from '../../Constants';
+import { CLASSES } from '../../utils/contants';
 
 export default {
   knight: {
-    roleName: constants.classes.WARRIOR_CLASS,
+    roleName: CLASSES.WARRIOR,
     startingStats: {
       strength: 5,
       dexterity: 3,
       intelligence: 3,
       vitality: 5,
-      critChance: 0,
-      blockChance: 5,
+      // critChance: 0,
+      // blockChance: 5,
       fortune: 0,
-      coldDamage: 0,
-      lifeSteal: 0,
-      bloodDamage: 0,
-      lightingDamage: 0,
-      fireDamage: 0,
-      speed: 5,
+      // coldDamage: 0,
+      // lifeSteal: 0,
+      // bloodDamage: 0,
+      // lightingDamage: 0,
+      // fireDamage: 0,
+      // speed: 5,
     },
     startingSkills: [
       {

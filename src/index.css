@@ -1,5 +1,9 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --rarity-rare: yellow;
+  --rarity-legendary: #fda403;
+  --rarity-magic: blue;
+  --rarity-common: grey;
 }
 
 body {
@@ -7,11 +11,13 @@ body {
 }
 
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+
 }
 
-#game-wrapper {
-  margin: 120px 20px;
+#game-wrapper {}
+
+.App {
+  display: grid;
+  padding: 10px;
+  grid-template-columns: 200px 6fr;
 }

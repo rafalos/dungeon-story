@@ -1,0 +1,9 @@
+.battle-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+
+.player, .enemy {
+  width: 100%;
+  padding: 20px;
+}

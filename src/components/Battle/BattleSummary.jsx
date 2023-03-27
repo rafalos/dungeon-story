@@ -1,11 +1,13 @@
 import React from 'react';
+import Item from '../UI/Item';
 
 function BattleSummary({ onLeaveBattle, battleSummary }) {
+  console.log(battleSummary)
   return (
     <div>
       Result <button onClick={onLeaveBattle}>Leave</button>
       You have gained {battleSummary.experienceGained} experience
-      You have gained {battleSummary.itemsFound.length}
+      And you have found: {battleSummary.itemsFound.map(item => <Item item={item}/>)}
     </div>
   );
 }

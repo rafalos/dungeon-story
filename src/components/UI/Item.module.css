@@ -1,0 +1,45 @@
+.inventory-item {
+  display: inline-block;
+  position: relative;
+  padding: 18px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: black;
+  border: 3px solid;
+  margin: 0px 5px;
+  cursor: pointer;
+}
+
+.inventory-item--rare {
+  border-color: var(--rarity-rare);
+}
+.inventory-item--magic {
+  border-color: var(--rarity-magic);
+}
+.inventory-item--common {
+  border-color: var(--rarity-common);
+}
+.inventory-item--legendary {
+  border-color: var(--rarity-legendary);
+}
+
+.tooltip {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  gap: 10px;
+  background-color: black;
+  color: white;
+  padding: 15px;
+  white-space:nowrap;
+  top: 39px;
+  left: -2px;
+}
+
+.metadata-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

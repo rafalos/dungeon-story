@@ -1,6 +1,6 @@
 import React from 'react';
 import initialEnemy from '../../Logic/Enemy/Enemy';
-import classes from './Battle.module.css';
+import classes from './BattleFrame.module.css';
 import BattleEntityPanel from './BattleEntityPanel';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -81,13 +81,13 @@ function BattleFrame({ onLeaveBattle }) {
         />
       ) : (
         <div className={classes['battle-wrapper']}>
-          <div>
+          <div className={classes.player}>
             <BattleEntityPanel entity={player} />
             <button onClick={handleAttack} disabled={enemyTurn}>
               Attack
             </button>
           </div>
-          <div>
+          <div className={classes.enemy}>
             <BattleEntityPanel entity={enemy} />
           </div>
         </div>
