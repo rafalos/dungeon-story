@@ -8,6 +8,10 @@ const playerStatusSlice = createSlice({
     statPoints: 3,
     maxHealth: 250,
     currentHealth: 210,
+    damage: {
+      min: 5,
+      max: 10,
+    },
     energy: 10,
     class: 'Knight',
     level: 1,

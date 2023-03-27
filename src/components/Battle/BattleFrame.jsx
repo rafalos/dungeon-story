@@ -10,6 +10,8 @@ import { randomInRange } from '../../utils/random';
 import BattleSummary from './BattleSummary';
 import { generateNewEquipmentItem } from '../../Logic/Generator/Equipment';
 import { playerInventoryActions } from '../../store/player-inventory-slice';
+import { getBasicDamage } from '../../utils/formulas';
+import BattleLog from './BattleLog';
 
 function BattleFrame({ onLeaveBattle }) {
   const dispatch = useDispatch();
@@ -18,6 +20,7 @@ function BattleFrame({ onLeaveBattle }) {
   const [enemyTurn, setEnemyTurn] = useState(false);
   const [battleID, setBattleID] = useState(null);
   const [battleOver, setBattleOver] = useState(false);
+  const [battleLog, setBattleLog] = useState([]);
   const [battleSummary, setBattleSummary] = useState({
     experienceGained: null,
     itemsFound: [],
@@ -37,7 +40,7 @@ function BattleFrame({ onLeaveBattle }) {
         enemy.experience.max
       );
       const foundItem = generateNewEquipmentItem();
-      const itemsFound = [{...foundItem}];
+      const itemsFound = [{ ...foundItem }];
       setBattleOver(true);
       setBattleSummary({
         experienceGained,
@@ -57,19 +60,29 @@ function BattleFrame({ onLeaveBattle }) {
   }, [player.currentHealth, enemy.currentHealth]);
 
   const handleAttack = () => {
-    const updatedEnemy = { ...enemy, currentHealth: enemy.currentHealth - 10 };
+    const damageAmount = getBasicDamage(
+      player.damage.min,
+      player.damage.max,
+      enemy.defense
+    );
+
+    const updatedEnemy = {
+      ...enemy,
+      currentHealth: enemy.currentHealth - damageAmount,
+    };
 
     setEnemy(updatedEnemy);
+    setBattleLog(log => [...log, `Player hit for ${damageAmount}`]);
     setEnemyTurn((enemyTurn) => !enemyTurn);
 
-    setTimeout(() => {
-      dispatch(
-        playerStatusActions.takeDamage({
-          amount: 80,
-        })
-      );
-      setEnemyTurn((enemyTurn) => !enemyTurn);
-    }, 1000);
+    const enemyDamageAmount = randomInRange(enemy.damage.min, enemy.damage.max);
+    dispatch(
+      playerStatusActions.takeDamage({
+        amount: enemyDamageAmount,
+      })
+    );
+    setBattleLog(log => [...log, `Enemy hit for ${enemyDamageAmount}`]);
+    setEnemyTurn((enemyTurn) => !enemyTurn);
   };
 
   return (
@@ -92,6 +105,7 @@ function BattleFrame({ onLeaveBattle }) {
           </div>
         </div>
       )}
+      <BattleLog log={battleLog} />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 .inventory-item {
   display: inline-block;
   position: relative;
-  padding: 18px;
+  padding: 28px;
   background-repeat: no-repeat;
   background-position: center;
   background-color: black;
@@ -36,6 +36,21 @@
   white-space:nowrap;
   top: 39px;
   left: -2px;
+  z-index: 999;
+  border: 3px solid;
+}
+
+.tooltip--rare {
+  border-color: var(--rarity-rare);
+}
+.tooltip--magic {
+  border-color: var(--rarity-magic);
+}
+.tooltip--common {
+  border-color: var(--rarity-common);
+}
+.tooltip--legendary {
+  border-color: var(--rarity-legendary);
 }
 
 .metadata-list {

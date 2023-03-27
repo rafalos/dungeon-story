@@ -27,13 +27,18 @@ function Item({ item }) {
       style={{ backgroundImage: `url(${item.icon})` }}
     >
       {tooltipVisible && (
-        <div className={classes.tooltip}>
+        <div
+          className={`${classes.tooltip} ${
+            classes[`tooltip--${item.classType}`]
+          }`}
+        >
           <span>{item.name}</span>
           <ul className={classes[`metadata-list`]}>
             {metadataElements.map((metadata) => (
               <li key={metadata}>{metadata}</li>
             ))}
           </ul>
+          {item.classType}
         </div>
       )}
     </div>

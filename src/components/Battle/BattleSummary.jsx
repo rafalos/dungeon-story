@@ -1,8 +1,7 @@
 import React from 'react';
-import Item from '../UI/Item';
+import Item from '../UI/EquipmentItem';
 
 function BattleSummary({ onLeaveBattle, battleSummary }) {
-  console.log(battleSummary)
   return (
     <div>
       Result <button onClick={onLeaveBattle}>Leave</button>

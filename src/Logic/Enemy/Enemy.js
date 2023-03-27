@@ -3,10 +3,13 @@ import { randomInRange } from '../../utils/random';
 class Enemy {
   constructor() {
     this.name = 'Rat';
-    this.maxHealth = 100;
+    this.maxHealth = 50;
     this.currentHealth = this.maxHealth;
-    this.minDamage = 20;
-    this.maxDamage = 50;
+    this.damage = {
+      min: 1,
+      max: 15,
+    };
+    this.defense = 10;
     this.experience = {
       min: 90,
       max: 155,
