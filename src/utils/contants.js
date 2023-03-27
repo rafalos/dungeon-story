@@ -13,3 +13,11 @@ export const EQUIPMENT = {
 export const CLASSES = {
   WARRIOR: 'warrior',
 };
+
+export const STATISTICS = {
+  STRENGTH: 'strength',
+  DEXTERITY: 'dexterity',
+  INTELLIGENCE: 'intelligence',
+  VITALITY: 'vitality',
+  FOTRUNE: 'fortune',
+};

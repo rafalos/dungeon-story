@@ -6,12 +6,15 @@ import { playerStatusActions } from '../../store/player-status-slice';
 
 function Statistics() {
   const dispatch = useDispatch();
-  const playerStatistics = useSelector((state) => state.statistics.attributes);
+  const playerStatistics = useSelector((state) => state.statistics);
   const { statPoints } = useSelector((state) => state.status);
   let statistics = [];
 
-  for (const statisticEntry in playerStatistics) {
-    statistics.push([statisticEntry, playerStatistics[statisticEntry]]);
+  for (const statisticEntry in playerStatistics.attributes) {
+    statistics.push([
+      statisticEntry,
+      playerStatistics.attributes[statisticEntry],
+    ]);
   }
 
   const increaseStatHandler = (statistic) => {
@@ -26,8 +29,16 @@ function Statistics() {
 
   return (
     <Card>
-      {`Stat points: ${statPoints}`}
       <ul>
+        <li>
+          Damage: {playerStatistics.minDamage} - {playerStatistics.maxDamage}
+        </li>
+        <li>Health points: {playerStatistics.maxHealth}</li>
+        <li>Defence: {playerStatistics.defence}</li>
+        <li>Critical chance: {playerStatistics.critChance} %</li>
+        <li>Dodge chance: {playerStatistics.dodgeChance} %</li>
+        <br></br>
+        <li>{`Stat points: ${statPoints}`}</li>
         {statistics.map((statisticEntry) => (
           <li>
             {`${statisticEntry[0]}: ${statisticEntry[1]}`}

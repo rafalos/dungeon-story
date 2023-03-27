@@ -19,7 +19,7 @@ header {
 .App {
   display: grid;
   padding: 10px;
-  grid-template-columns: 200px 6fr;
+  grid-template-columns: 300px 6fr;
 }
 
 ul {

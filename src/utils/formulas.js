@@ -8,6 +8,5 @@ export const getBasicDamage = (enemyDefense) => {
   let damage =
     randomInRange(playerMinAttack, playerMaxAttack) - enemyDefense * 0.2;
   if (damage < 0) return 1;
-  console.log(store.getState());
-  return damage;
+  return Math.floor(damage);
 };
