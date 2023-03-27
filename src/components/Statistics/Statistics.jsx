@@ -6,7 +6,7 @@ import { playerStatusActions } from '../../store/player-status-slice';
 
 function Statistics() {
   const dispatch = useDispatch();
-  const playerStatistics = useSelector((state) => state.statistics);
+  const playerStatistics = useSelector((state) => state.statistics.attributes);
   const { statPoints } = useSelector((state) => state.status);
   let statistics = [];
 

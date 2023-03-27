@@ -3,6 +3,7 @@ import { useState } from 'react';
 import BattleFrame from './BattleFrame';
 import BattleSearch from './BattleSearch';
 import { useDispatch } from 'react-redux';
+import { playerStatisticActions } from '../../store/player-statistics-slice';
 import { playerStatusActions } from '../../store/player-status-slice';
 import Card from '../UI/Card';
 
@@ -16,7 +17,7 @@ function Battle() {
 
   const handleLeaveBattle = () => {
     setBattleInProgress(false)
-    dispatch(playerStatusActions.restorePlayer())
+    dispatch(playerStatisticActions.restorePlayer())
   }
 
   return (

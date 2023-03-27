@@ -1,7 +1,13 @@
 import { randomInRange } from './random';
+import store from '../store/index';
 
-export const getBasicDamage = (minDamage, maxDamage, enemyDefense) => {
-  let damage = randomInRange(minDamage, maxDamage) - enemyDefense * 0.2;
+export const getBasicDamage = (enemyDefense) => {
+  const playerMinAttack = store.getState().statistics.minDamage;
+  const playerMaxAttack = store.getState().statistics.maxDamage;
+
+  let damage =
+    randomInRange(playerMinAttack, playerMaxAttack) - enemyDefense * 0.2;
   if (damage < 0) return 1;
+  console.log(store.getState());
   return damage;
 };

@@ -22,12 +22,6 @@ const playerStatusSlice = createSlice({
     useStatpoint(state) {
       state.statPoints--;
     },
-    takeDamage(state, action) {
-      state.currentHealth = state.currentHealth - action.payload.amount;
-    },
-    restorePlayer(state) {
-      state.currentHealth = state.maxHealth;
-    },
     addExperience(state, action) {
       state.experience += action.payload.experience;
 

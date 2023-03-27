@@ -5,7 +5,8 @@ import BattleEntityPanel from './BattleEntityPanel';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import { playerStatusActions } from '../../store/player-status-slice';
+import { playerStatisticActions } from '../../store/player-statistics-slice.js';
+import { playerStatusActions } from '../../store/player-status-slice.js';
 import { randomInRange } from '../../utils/random';
 import BattleSummary from './BattleSummary';
 import { generateNewEquipmentItem } from '../../Logic/Generator/Equipment';
@@ -15,7 +16,7 @@ import BattleLog from './BattleLog';
 
 function BattleFrame({ onLeaveBattle }) {
   const dispatch = useDispatch();
-  const player = useSelector((state) => state.status);
+  const player = useSelector((state) => state.statistics);
   const [enemy, setEnemy] = useState(initialEnemy);
   const [enemyTurn, setEnemyTurn] = useState(false);
   const [battleID, setBattleID] = useState(null);
@@ -61,8 +62,8 @@ function BattleFrame({ onLeaveBattle }) {
 
   const handleAttack = () => {
     const damageAmount = getBasicDamage(
-      player.damage.min,
-      player.damage.max,
+      player.minDamage,
+      player.maxDamage,
       enemy.defense
     );
 
@@ -77,7 +78,7 @@ function BattleFrame({ onLeaveBattle }) {
 
     const enemyDamageAmount = randomInRange(enemy.damage.min, enemy.damage.max);
     dispatch(
-      playerStatusActions.takeDamage({
+      playerStatisticActions.takeDamage({
         amount: enemyDamageAmount,
       })
     );
