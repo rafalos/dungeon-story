@@ -1,9 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { equipItem, unequipItem } from '../../store/player-equipment-slice';
 import classes from './Item.module.css';
+import equipmentClasses from '../Equipment/Equipment.module.css';
 
-function Item({ item, equipable }) {
+function Item({ item, equipable, slot }) {
   const dispatch = useDispatch();
   const [tooltipVisible, setTooltipVisible] = useState(false);
   let metadataElements = [];
@@ -42,8 +43,9 @@ function Item({ item, equipable }) {
           onMouseEnter={handleShowTooltip}
           onMouseLeave={handleHideTooltip}
           className={`${classes['inventory-item']} ${
-            classes[`inventory-item--${item.classType}`]
-          }`}
+            equipmentClasses[`equipment-item--${item.equipmentSlot}`]
+          } ${classes[`inventory-item--${item.classType}`]}
+          ${`equipment-item--${item.equipmentSlot}`}`}
           style={{ backgroundImage: `url(${item.icon})` }}
         >
           {tooltipVisible && (
@@ -65,7 +67,8 @@ function Item({ item, equipable }) {
       ) : (
         <div
           className={`${classes['inventory-item']}
-        }`}
+          ${equipmentClasses[`equipment-item--${slot}`]}
+        `}
         ></div>
       )}
     </>

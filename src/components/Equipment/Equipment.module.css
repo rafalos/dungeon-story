@@ -1,0 +1,33 @@
+.equipment-container {
+  display: grid;
+  grid-template-rows: repeat(3, 50px);
+  grid-template-columns: repeat(3, 50px);
+  grid-gap: 15px;
+  grid-template-areas:
+    '. head .'
+    'leftHand torso rightHand'
+    '. legs .'
+    'ring1 boots .';
+}
+
+.equipment-item--legs {
+  grid-area: legs;
+}
+.equipment-item--head {
+  grid-area: head;
+}
+.equipment-item--leftHand {
+  grid-area: leftHand;
+}
+.equipment-item--rightHand {
+  grid-area: rightHand;
+}
+.equipment-item--torso {
+  grid-area: torso;
+}
+.equipment-item--boots {
+  grid-area: boots;
+}
+.equipment-item--ring1 {
+  grid-area: ring1;
+}
