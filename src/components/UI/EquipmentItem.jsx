@@ -1,8 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { playerEquipmentActions } from '../../store/player-equipment-slice';
-import { playerStatisticActions } from '../../store/player-statistics-slice';
-import { playerInventoryActions } from '../../store/player-inventory-slice';
+import { equipItem, unequipItem } from '../../store/player-equipment-slice';
 import classes from './Item.module.css';
 
 function Item({ item, equipable }) {
@@ -27,38 +25,13 @@ function Item({ item, equipable }) {
   };
 
   const unequipHandler = () => {
-    dispatch(
-      playerEquipmentActions.unequipItem({
-        equipmentSlot: item.equipmentSlot,
-      })
-    );
-
-    dispatch(
-      playerInventoryActions.addSingleItem({
-        item,
-      })
-    );
+    dispatch(unequipItem(item));
   };
 
   const equipHandler = () => {
     if (!equipable) return;
-    dispatch(
-      playerEquipmentActions.equipItem({
-        item,
-      })
-    );
 
-    dispatch(
-      playerStatisticActions.increaseStat({
-        statistics: item.metadata,
-      })
-    );
-
-    dispatch(
-      playerInventoryActions.removeItem({
-        id: item.id,
-      })
-    );
+    dispatch(equipItem(item));
   };
 
   return (
