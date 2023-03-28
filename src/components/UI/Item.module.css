@@ -34,10 +34,18 @@
   color: white;
   padding: 15px;
   white-space:nowrap;
-  top: 39px;
+  top: 60px;
   left: -2px;
   z-index: 999;
   border: 3px solid;
+}
+
+.amount {
+  color: white;
+  position: absolute;
+  font-weight: bold;
+  right: 0;
+  bottom: 0;
 }
 
 .tooltip--rare {

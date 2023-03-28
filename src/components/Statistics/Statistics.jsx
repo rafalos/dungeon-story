@@ -32,7 +32,7 @@ function Statistics() {
         <li>
           Damage: {playerStatistics.minDamage} - {playerStatistics.maxDamage}
         </li>
-        <li>Health points: {playerStatistics.maxHealth}</li>
+        <li>Health points: {playerStatistics.currentHealth} / {playerStatistics.maxHealth}</li>
         <li>Defense: {playerStatistics.defense}</li>
         <li>Critical chance: {playerStatistics.critChance} %</li>
         <li>Dodge chance: {playerStatistics.dodgeChance} %</li>

@@ -24,3 +24,8 @@ export const STATISTICS = {
     FOTRUNE: 'fortune',
   },
 };
+
+export const ITEM_TYPES = {
+  GEAR: 'gear',
+  POTION: 'potion',
+};
