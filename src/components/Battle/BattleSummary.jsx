@@ -6,7 +6,7 @@ function BattleSummary({ onLeaveBattle, battleSummary }) {
     <div>
       Result <button onClick={onLeaveBattle}>Leave</button>
       You have gained {battleSummary.experienceGained} experience
-      And you have found: {battleSummary.itemsFound.map(item => <Item item={item}/>)}
+      And you have found: {battleSummary.itemsFound.map(item => <Item item={item} equipable={false}/>)}
     </div>
   );
 }

@@ -19,10 +19,8 @@ function Statistics() {
 
   const increaseStatHandler = (statistic) => {
     dispatch(
-      playerStatisticActions.increaseStat({
-        statistics: {
-          [statistic]: 1,
-        },
+      playerStatisticActions.changeStatistic({
+        statistics: [[statistic, 1]],
       })
     );
     dispatch(playerStatusActions.useStatpoint());
