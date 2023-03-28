@@ -1,15 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { playerStatisticActions } from './player-statistics-slice';
 import { playerInventoryActions } from './player-inventory-slice';
+import { EQUIPMENT } from '../utils/contants';
 
 const initialEquipment = {
-  helmet: null,
-  torso: null,
-  legs: null,
-  boots: null,
-  ring1: null,
-  leftHand: null,
-  rightHand: null,
+  [EQUIPMENT.SLOTS.HEAD]: null,
+  [EQUIPMENT.SLOTS.TORSO]: null,
+  [EQUIPMENT.SLOTS.LEGS]: null,
+  [EQUIPMENT.SLOTS.BOOTS]: null,
+  [EQUIPMENT.SLOTS.RING1]: null,
+  [EQUIPMENT.SLOTS.LEFT_HAND]: null,
+  [EQUIPMENT.SLOTS.RIGHT_HAND]: null,
 };
 
 const playerEquipmentSlice = createSlice({
@@ -47,7 +48,7 @@ export const equipItem = (item) => {
   };
 };
 
-export const unequipItem = item => {
+export const unequipItem = (item) => {
   return (dispatch) => {
     dispatch(
       playerEquipmentActions.unwearItem({
@@ -60,8 +61,8 @@ export const unequipItem = item => {
         item,
       })
     );
-  }
-}
+  };
+};
 
 export default playerEquipmentSlice.reducer;
 export const playerEquipmentActions = playerEquipmentSlice.actions;
