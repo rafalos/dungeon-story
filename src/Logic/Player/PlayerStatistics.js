@@ -7,7 +7,7 @@ export default class PlayerStatistics {
     const { startingStats } = chosenClass;
     this.statPoints = 0;
     this.fortune = 0;
-    this.armor = 0;
+    this.defense = 0;
     for (const [key, value] of Object.entries(startingStats)) {
       this[key] = value;
     }

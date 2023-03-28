@@ -6,7 +6,7 @@ export default class PlayerStatus {
   }
 
   recalculateStats(statistics) {
-    this.armor = statistics.armor;
+    this.defense = statistics.defense;
     this.maxHealth = statistics.vitality * 50;
     this.minDamage = statistics.strength * 2;
     this.maxDamage = statistics.strength * 5;

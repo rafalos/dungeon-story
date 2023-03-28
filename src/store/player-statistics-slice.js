@@ -1,6 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { STATISTICS } from '../utils/contants';
 
+const ATTRIBUTES_LIST = [
+  STATISTICS.ATTRIBUTES.DEXTERITY,
+  STATISTICS.ATTRIBUTES.FOTRUNE,
+  STATISTICS.ATTRIBUTES.INTELLIGENCE,
+  STATISTICS.ATTRIBUTES.VITALITY,
+  STATISTICS.ATTRIBUTES.STRENGTH,
+];
+
 const playerStatisticsSlice = createSlice({
   name: 'player-statistics',
   initialState: {
@@ -10,7 +18,7 @@ const playerStatisticsSlice = createSlice({
     currentHealth: 200,
     maxHealth: 200,
     dodgeChance: 5,
-    defence: 0,
+    defense: 0,
     attributes: {
       strength: 5,
       dexterity: 3,
@@ -20,12 +28,17 @@ const playerStatisticsSlice = createSlice({
     },
   },
   reducers: {
-    increaseStat(state, action) {
-      for (const statistic in action.payload.statistics) {
-        const amount = action.payload.statistics[statistic];
-        state.attributes[statistic] += amount;
+    changeStatistic(state, action) {
+      for (const statisticItem of action.payload.statistics) {
+        const [statistic, amount] = statisticItem;
+
+        if (ATTRIBUTES_LIST.includes(statistic)) {
+          state.attributes[statistic] += amount;
+        }
 
         switch (statistic) {
+          case STATISTICS.DEFENSE:
+            state.defense += amount;
           case STATISTICS.STRENGTH:
             state.minDamage += 1 * amount;
             state.maxDamage += 1 * amount;
@@ -42,6 +55,7 @@ const playerStatisticsSlice = createSlice({
         }
       }
     },
+
     takeDamage(state, action) {
       state.currentHealth -= action.payload.amount;
     },

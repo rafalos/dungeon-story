@@ -9,7 +9,7 @@ export default [
       name: 'Plate helmet',
       slot: EQUIPMENT.SLOTS.HEAD,
       icon: headIcon1,
-      metadata: { armor: 52 },
+      metadata: { defense: 52 },
     },
   ],
   [
@@ -17,7 +17,7 @@ export default [
       name: 'Cloth Torso',
       slot: EQUIPMENT.SLOTS.TORSO,
       icon: torsoIcon1,
-      metadata: { armor: 101 },
+      metadata: { defense: 101 },
     },
   ],
   [

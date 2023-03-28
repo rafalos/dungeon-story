@@ -15,9 +15,12 @@ export const CLASSES = {
 };
 
 export const STATISTICS = {
-  STRENGTH: 'strength',
-  DEXTERITY: 'dexterity',
-  INTELLIGENCE: 'intelligence',
-  VITALITY: 'vitality',
-  FOTRUNE: 'fortune',
+  DEFENSE: 'defense',
+  ATTRIBUTES: {
+    STRENGTH: 'strength',
+    DEXTERITY: 'dexterity',
+    INTELLIGENCE: 'intelligence',
+    VITALITY: 'vitality',
+    FOTRUNE: 'fortune',
+  },
 };

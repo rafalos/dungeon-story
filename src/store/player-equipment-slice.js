@@ -27,6 +27,11 @@ const playerEquipmentSlice = createSlice({
 });
 
 export const equipItem = (item) => {
+  let metadata = [];
+  for (const metadataEntry in item.metadata) {
+    metadata.push([metadataEntry, item.metadata[metadataEntry]]);
+  }
+
   return (dispatch) => {
     dispatch(
       playerEquipmentActions.wearItem({
@@ -35,8 +40,8 @@ export const equipItem = (item) => {
     );
 
     dispatch(
-      playerStatisticActions.increaseStat({
-        statistics: item.metadata,
+      playerStatisticActions.changeStatistic({
+        statistics: metadata,
       })
     );
 
@@ -49,10 +54,26 @@ export const equipItem = (item) => {
 };
 
 export const unequipItem = (item) => {
+  let metadata = [];
+  for (const metadataEntry in item.metadata) {
+    metadata.push([metadataEntry, item.metadata[metadataEntry]]);
+  }
+
+  const negativeMetadata = metadata.map((metadataEntry) => [
+    metadataEntry[0],
+    -Math.abs(metadataEntry[1]),
+  ]);
+
   return (dispatch) => {
     dispatch(
       playerEquipmentActions.unwearItem({
         equipmentSlot: item.equipmentSlot,
+      })
+    );
+
+    dispatch(
+      playerStatisticActions.changeStatistic({
+        statistics: negativeMetadata,
       })
     );
 
