@@ -12,8 +12,6 @@ function Equipment() {
     elements.push([equipment, playerEquipment[equipment]]);
   }
 
-  console.log(elements);
-
   return (
     <Card>
       <div className={classes['equipment-container']}>

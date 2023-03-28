@@ -3,6 +3,12 @@ import { generateNewEquipmentItem } from '../Logic/Generator/Equipment';
 const initialItemInstances = [
   generateNewEquipmentItem(),
   generateNewEquipmentItem(),
+  generateNewEquipmentItem(),
+  generateNewEquipmentItem(),
+  generateNewEquipmentItem(),
+  generateNewEquipmentItem(),
+  generateNewEquipmentItem(),
+  generateNewEquipmentItem(),
 ];
 const initialItems = initialItemInstances.map((item) => {
   return { ...item };

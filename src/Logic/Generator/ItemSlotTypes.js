@@ -1,9 +1,54 @@
 import headIcon1 from '../Resources/Icons/Armors/icon_plate_head1.png';
 import torsoIcon1 from '../Resources/Icons/Armors/icon_cloth_chest1.png';
 import ringIcon1 from '../Resources/Icons/Armors/icon_ring1_2.png';
+import longswordIcon1 from '../Resources/Icons/Weapons/icon_sword_long1.png';
+import shortswordIcon1 from '../Resources/Icons/Weapons/icon_sword_short1.png';
+import axeIcon1 from '../Resources/Icons/Weapons/icon_axe1.png';
+import bowIcon1 from '../Resources/Icons/Weapons/icon_Bow1.png';
+
 import { EQUIPMENT } from '../../utils/contants';
 
 export default [
+  [
+    {
+      name: 'Iron longsword',
+      slot: EQUIPMENT.SLOTS.LEFT_HAND,
+      icon: longswordIcon1,
+      metadata: {
+        strength: 30,
+      },
+    },
+  ],
+  [
+    {
+      name: 'Iron shortsword',
+      slot: EQUIPMENT.SLOTS.LEFT_HAND,
+      icon: shortswordIcon1,
+      metadata: {
+        strength: 20,
+      },
+    },
+  ],
+  [
+    {
+      name: 'Iron axe',
+      slot: EQUIPMENT.SLOTS.LEFT_HAND,
+      icon: axeIcon1,
+      metadata: {
+        strength: 27,
+      },
+    },
+  ],
+  [
+    {
+      name: 'Shortbow',
+      slot: EQUIPMENT.SLOTS.LEFT_HAND,
+      icon: bowIcon1,
+      metadata: {
+        dexterity: 21,
+      },
+    },
+  ],
   [
     {
       name: 'Plate helmet',
