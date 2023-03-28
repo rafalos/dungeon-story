@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import Equipment from '../Equipment/Equipment';
 import Statistics from '../Statistics/Statistics';
 import Card from '../UI/Card';
+import Navigation from './Navigation';
 
 function Header() {
   const player = useSelector((state) => state.status);
@@ -18,6 +19,7 @@ function Header() {
           maxResource={player.maxExperience}
         />
       </Card>
+      <Navigation />
       <Equipment />
       <Statistics />
     </header>

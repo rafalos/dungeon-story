@@ -4,11 +4,31 @@ import App from './App';
 import './index.css';
 import store from './store';
 import { Provider } from 'react-redux';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import BattlePage from './pages/BattlePage';
+import InventoryPage from './pages/InventoryPage';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+    children: [
+      {
+        path: '/battle',
+        element: <BattlePage />
+      },
+      {
+        path: '/inventory',
+        element: <InventoryPage />
+      }
+    ]
+  },
+]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <RouterProvider router={router} />
     </Provider>
   </React.StrictMode>
 );

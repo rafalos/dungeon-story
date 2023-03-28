@@ -1,16 +1,14 @@
-import Battle from './components/Battle/Battle';
-import Header from './components/Layout/Header';
-import Inventory from './components/Inventory/Inventory';
+import Sidebar from './components/Layout/Sidebar';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   return (
     <div className='App'>
       <div id='sidebar'>
-        <Header />
+        <Sidebar />
       </div>
       <div id='game-wrapper'>
-        <Battle />
-        <Inventory />
+        <Outlet />
       </div>
     </div>
   );
