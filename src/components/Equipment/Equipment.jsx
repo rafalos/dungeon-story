@@ -1,22 +1,28 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import EquipmentItem from '../UI/EquipmentItem';
+import { useDispatch, useSelector } from 'react-redux';
+import Item from '../UI/Item';
 import Card from '../UI/Card';
 import classes from './Equipment.module.css';
+import { unequipItem } from '../../store/player-equipment-slice';
 
 function Equipment() {
   const playerEquipment = useSelector((state) => state.equipment);
   const elements = [];
+  const dispatch = useDispatch();
 
   for (const equipment in playerEquipment) {
     elements.push([equipment, playerEquipment[equipment]]);
+  }
+
+  const itemClickHandler = (item) => {
+    dispatch(unequipItem(item))
   }
 
   return (
     <Card>
       <div className={classes['equipment-container']}>
         {elements.map((element) => (
-          <EquipmentItem slot={element[0]} item={element[1]} />
+          <Item slot={element[0]} item={element[1]} onItemClicked={itemClickHandler}/>
         ))}
       </div>
     </Card>

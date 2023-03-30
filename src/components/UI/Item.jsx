@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { equipItem, unequipItem } from '../../store/player-equipment-slice';
 import classes from './Item.module.css';
 import equipmentClasses from '../Equipment/Equipment.module.css';
 
-function Item({ item, equipable, slot }) {
-  const dispatch = useDispatch();
+function Item({ item, slot, onItemClicked, stackable }) {
   const [tooltipVisible, setTooltipVisible] = useState(false);
   let metadataElements = [];
 
@@ -17,6 +14,10 @@ function Item({ item, equipable, slot }) {
     metadataElements.push(`${metadata}: ${item.metadata[metadata]}`);
   }
 
+  const clickHandler = () => {
+    onItemClicked(item);
+  };
+
   const handleShowTooltip = () => {
     setTooltipVisible(true);
   };
@@ -25,21 +26,11 @@ function Item({ item, equipable, slot }) {
     setTooltipVisible(false);
   };
 
-  const unequipHandler = () => {
-    dispatch(unequipItem(item));
-  };
-
-  const equipHandler = () => {
-    if (!equipable) return;
-
-    dispatch(equipItem(item));
-  };
-
   return (
     <>
       {item ? (
         <div
-          onClick={equipable ? equipHandler : unequipHandler}
+          onClick={clickHandler}
           onMouseEnter={handleShowTooltip}
           onMouseLeave={handleHideTooltip}
           className={`${classes['inventory-item']} ${
@@ -48,6 +39,7 @@ function Item({ item, equipable, slot }) {
           ${`equipment-item--${item.equipmentSlot}`}`}
           style={{ backgroundImage: `url(${item.icon})` }}
         >
+          {stackable && <div className={classes.amount}>{item.amount}</div>}
           {tooltipVisible && (
             <div
               className={`${classes.tooltip} ${
