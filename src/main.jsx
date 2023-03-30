@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import BattlePage from './pages/BattlePage';
 import InventoryPage from './pages/InventoryPage';
+import ShopPage from './pages/ShopPage';
 
 const router = createBrowserRouter([
   {
@@ -15,13 +16,17 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/battle',
-        element: <BattlePage />
+        element: <BattlePage />,
       },
       {
         path: '/inventory',
-        element: <InventoryPage />
-      }
-    ]
+        element: <InventoryPage />,
+      },
+      {
+        path: '/shop',
+        element: <ShopPage />,
+      },
+    ],
   },
 ]);
 

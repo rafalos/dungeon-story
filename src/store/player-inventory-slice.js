@@ -12,6 +12,7 @@ const initialItemInstances = [
   generateNewEquipmentItem(),
   generateNewHealthPotion(),
 ];
+
 const initialItems = initialItemInstances.map((item) => {
   return { ...item };
 });

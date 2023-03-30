@@ -3,6 +3,7 @@ import playerStatusReducer from './player-status-slice';
 import playerInventoryReducer from './player-inventory-slice';
 import playerEquipmentReducer from './player-equipment-slice';
 import playerStatisticsSlice from './player-statistics-slice';
+import shopSlice from './shop-slice';
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     inventory: playerInventoryReducer,
     equipment: playerEquipmentReducer,
     statistics: playerStatisticsSlice,
+    shop: shopSlice,
   },
 });
 

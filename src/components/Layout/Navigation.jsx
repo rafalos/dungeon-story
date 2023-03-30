@@ -30,6 +30,18 @@ function Navigation() {
         >
           Inventory
         </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            [
+              classes['nav-link'],
+              isActive ? classes['nav-link--active'] : undefined,
+            ].join(' ')
+          }
+          to={`shop`}
+        >
+          Shop
+          
+        </NavLink>
       </nav>
     </Card>
   );
