@@ -29,3 +29,10 @@ export const ITEM_TYPES = {
   GEAR: 'gear',
   POTION: 'potion',
 };
+
+export const TIMERS = {
+  SHOP: {
+    ID: 'shop',
+    AMOUNT: 10,
+  },
+};

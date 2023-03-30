@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import classes from './Item.module.css';
 import equipmentClasses from '../Equipment/Equipment.module.css';
 
-function Item({ item, slot, onItemClicked, stackable }) {
+function Item({ item, slot, onItemClicked, stackable, price }) {
   const [tooltipVisible, setTooltipVisible] = useState(false);
   let metadataElements = [];
 
@@ -52,7 +52,8 @@ function Item({ item, slot, onItemClicked, stackable }) {
                   <li key={metadata}>{metadata}</li>
                 ))}
               </ul>
-              {item.classType}
+              <div>{item.classType}</div>
+              {price && <div>Cost: {price}</div>}
             </div>
           )}
         </div>

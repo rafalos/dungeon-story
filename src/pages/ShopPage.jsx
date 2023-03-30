@@ -1,13 +1,15 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import Card from '../components/UI/Card';
+import ShopTime from '../components/Shop/ShopTime';
+import ShopContent from '../components/Shop/ShopContent';
 
 function ShopPage() {
-  const shop = useSelector((state) => state.shop);
-
-  return <Card>
-    Time to refresh {shop.timeToRefresh}
-  </Card>;
+  return (
+    <Card>
+      <ShopTime />
+      <ShopContent />
+    </Card>
+  );
 }
 
 export default ShopPage;

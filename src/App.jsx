@@ -2,18 +2,19 @@ import Sidebar from './components/Layout/Sidebar';
 import { Outlet } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { shopActions } from './store/shop-slice';
+import { timersActions } from './store/timers-slice';
+import { resetShop } from './store/shop-slice';
 
 function App() {
   const dispatch = useDispatch();
-  const currentShopResetTime = useSelector((state) => state.shop.timeToRefresh);
+  const currentShopResetTime = useSelector((state) => state.timers.shop);
 
   useEffect(() => {
     if (currentShopResetTime <= 0) {
-      dispatch(shopActions.resetShop())
+      dispatch(resetShop());
     } else {
       const interval = setInterval(() => {
-        dispatch(shopActions.deductSecondFromTimer());
+        dispatch(timersActions.deductTimer('shop'));
       }, 1000);
       return () => {
         clearInterval(interval);
