@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Battle from './Events/Battle/Battle';
 import Trap from './Events/Trap/Trap';
 import classes from './ExplorationEvent.module.css';
-import { useGpt } from '../../utils/useGpt';
+import { useGpt } from '../../hooks/useGpt';
 
 function ExplorationEvent({ eventId, onEventProgress, currentPosition }) {
   const [eventInProgress, setEventInProgress] = useState(false);
@@ -37,7 +37,9 @@ function ExplorationEvent({ eventId, onEventProgress, currentPosition }) {
         <div>{entryText}</div>
       )}
       {!eventInProgress && (
-        <button disabled={!entryText} onClick={progressEventHandler}>{entryText ? 'Proceed' : 'Loading'}</button>
+        <button disabled={!entryText} onClick={progressEventHandler}>
+          {entryText ? 'Proceed' : 'Loading'}
+        </button>
       )}
     </div>
   );

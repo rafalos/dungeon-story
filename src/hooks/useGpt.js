@@ -1,9 +1,10 @@
 import { Configuration, OpenAIApi } from 'openai';
 import { useState, useRef, useEffect } from 'react';
+import { GPT } from '../config';
 
 const configuration = new Configuration({
-  organization: 'org-ysF18gtyXMTp4o6jEYPhVv3O',
-  apiKey: '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',
+  organization: GPT.ORGANIZATION_ID,
+  apiKey: GPT.API_KEY,
 });
 
 export const useGpt = (requestString) => {
