@@ -3,20 +3,32 @@ import { generateNewEquipmentItem } from '../Logic/Generator/Equipment';
 import { timersActions } from './timers-slice';
 import { playerStatusActions } from './player-status-slice';
 import { TIMERS } from '../utils/contants';
+import { randomInRange } from '../utils/random';
+import { playerInventoryActions } from './player-inventory-slice';
 
-const initialItem = generateNewEquipmentItem();
+const generateRandomItems = () => {
+  const randomItems = [
+    generateNewEquipmentItem(),
+    generateNewEquipmentItem(),
+    generateNewEquipmentItem(),
+    generateNewEquipmentItem(),
+    generateNewEquipmentItem(),
+  ];
 
-const initialItems = [
-  {
-    item: { ...initialItem },
-    price: 20,
-  },
-];
+  const result = randomItems.map((item) => {
+    return {
+      item: { ...item },
+      price: randomInRange(10, 50),
+    };
+  });
+
+  return result;
+};
 
 const shopSlice = createSlice({
   name: 'shop',
   initialState: {
-    items: [...initialItems],
+    items: generateRandomItems(),
   },
   reducers: {
     removeItem(state, action) {
@@ -27,12 +39,7 @@ const shopSlice = createSlice({
       state.items.splice(itemIndex, 1);
     },
     resetShop(state) {
-      const newItems = [
-        {
-          item: generateNewEquipmentItem(),
-          price: 10,
-        },
-      ];
+      const newItems = generateRandomItems();
 
       state.items = newItems;
     },
@@ -61,6 +68,11 @@ export const buyItem = (item, price) => {
     dispatch(
       shopActions.removeItem({
         itemID: item.id,
+      })
+    );
+    dispatch(
+      playerInventoryActions.addSingleItem({
+        item: { ...item },
       })
     );
   };

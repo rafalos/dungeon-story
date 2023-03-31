@@ -1,0 +1,9 @@
+.equipment-tab {
+  display: flex;
+  max-width: 400px;
+  flex-wrap: wrap;
+  gap: 5px;
+  background-color: #aeaeae;
+  border-radius: 10px;
+  padding: 10px;
+}

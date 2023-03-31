@@ -3,6 +3,7 @@ import Item from '../UI/Item';
 import { ITEM_TYPES } from '../../utils/contants';
 import { useDispatch } from 'react-redux';
 import { equipItem } from '../../store/player-equipment-slice';
+import classes from './InventoryEquipment.module.css'
 
 function Equipment({ inventoryItems }) {
   const dispatch = useDispatch();
@@ -17,14 +18,16 @@ function Equipment({ inventoryItems }) {
   return (
     <div>
       <h2>Equipment</h2>
-      {equipment.map((item) => (
-        <Item
-          key={item.id}
-          item={item}
-          equipable={true}
-          onItemClicked={handleEquip}
-        />
-      ))}
+      <div className={classes['equipment-tab']}>
+        {equipment.map((item) => (
+          <Item
+            key={item.id}
+            item={item}
+            equipable={true}
+            onItemClicked={handleEquip}
+          />
+        ))}
+      </div>
     </div>
   );
 }
