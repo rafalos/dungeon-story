@@ -107,9 +107,9 @@ function BattleFrame({ onLeaveBattle }) {
             </div>
           </div>
         )}
-      </div>
-      <div>
-        <BattleLog log={battleLog} />
+        <div>
+          <BattleLog log={battleLog} />
+        </div>
       </div>
     </div>
   );

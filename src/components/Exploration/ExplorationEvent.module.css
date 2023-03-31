@@ -2,7 +2,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   background-color: #716d6d;
   color: white;
   height: 700px;
+  font-size: 1.3rem;
+  padding: 20px;
 }

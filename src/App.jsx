@@ -1,6 +1,6 @@
 import Sidebar from './components/Layout/Sidebar';
 import { Outlet } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { timersActions } from './store/timers-slice';
 import { resetShop } from './store/shop-slice';

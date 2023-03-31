@@ -3,7 +3,7 @@ import ExplorationTimeline from './ExplorationTimeline';
 import ExplorationEvent from './ExplorationEvent';
 
 function Exploration({ seed, onExplorationFinished }) {
-  const [currentPosition, setCurrentPosition] = useState(0);
+  const [currentPosition, setCurrentPosition] = useState(-1);
 
   useEffect(() => {
     if (currentPosition == seed.length) {
@@ -21,6 +21,7 @@ function Exploration({ seed, onExplorationFinished }) {
       <ExplorationEvent
         eventId={seed[currentPosition]}
         onEventProgress={progressHandler}
+        currentPosition={currentPosition}
       />
     </div>
   );

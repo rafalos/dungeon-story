@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import Battle from './Events/Battle/Battle';
 import Trap from './Events/Trap/Trap';
 import classes from './ExplorationEvent.module.css';
+import { useGpt } from '../../utils/useGpt';
 
-function ExplorationEvent({ eventId, onEventProgress }) {
-  const [eventInProgress, setEventInProgress] = useState(true);
+function ExplorationEvent({ eventId, onEventProgress, currentPosition }) {
+  const [eventInProgress, setEventInProgress] = useState(false);
+  const entryText = useGpt('Give me very short roguelike entry dungeon text');
 
   const currentEvent = () => {
     let cEvent = null;
@@ -31,8 +33,11 @@ function ExplorationEvent({ eventId, onEventProgress }) {
   return (
     <div className={classes['exploration-wrapper']}>
       {eventInProgress && currentEvent()}
+      {!eventInProgress && currentPosition < 0 && entryText && (
+        <div>{entryText}</div>
+      )}
       {!eventInProgress && (
-        <button onClick={progressEventHandler}>Explore further</button>
+        <button disabled={!entryText} onClick={progressEventHandler}>{entryText ? 'Proceed' : 'Loading'}</button>
       )}
     </div>
   );
