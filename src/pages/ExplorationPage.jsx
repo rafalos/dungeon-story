@@ -11,12 +11,22 @@ function ExplorationPage() {
     setExplorationSeed(newExplorationSeed);
   };
 
+  const explorationFinishedHandler = () => {
+    setExplorationSeed(null);
+  };
+
   return (
     <Card>
-      {!explorationSeed && (
+      {!explorationSeed ? (
         <button onClick={handleExplorationStart}>Start new</button>
+      ) : (
+        explorationSeed && (
+          <Exploration
+            seed={explorationSeed}
+            onExplorationFinished={explorationFinishedHandler}
+          />
+        )
       )}
-      {explorationSeed && <Exploration seed={explorationSeed} />}
     </Card>
   );
 }
