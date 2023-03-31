@@ -1,0 +1,16 @@
+.timeline {
+  display: flex;
+  justify-content: center;
+  background-color:cadetblue;
+  padding: 10px;
+}
+
+.timeline-item {
+  background-color: grey;
+  padding: 30px;
+  margin: 10px;
+}
+
+.timeline-item--active {
+  border: 2px solid yellow;
+}

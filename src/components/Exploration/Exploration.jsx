@@ -8,13 +8,12 @@ function Exploration({ seed }) {
   const progressHandler = () => {
     setCurrentPosition((currentPosition) => currentPosition += 1);
   };
-  
+
   return (
     <div>
       <ExplorationTimeline
         seed={seed}
         currentPosition={currentPosition}
-        onPlayerAdvance={setCurrentPosition}
       />
       <ExplorationEvent
         eventId={seed[currentPosition]}

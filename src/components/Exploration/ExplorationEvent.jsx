@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Battle from './Events/Battle/Battle';
+import Trap from './Events/Trap/Trap';
 
 function ExplorationEvent({ eventId, onEventProgress }) {
   const [eventInProgress, setEventInProgress] = useState(true);
@@ -9,6 +10,10 @@ function ExplorationEvent({ eventId, onEventProgress }) {
     switch (eventId) {
       case 1:
         cEvent = <Battle onEventFinished={endEventHandler} />;
+        break;
+      case 2:
+        cEvent = <Trap onEventFinished={endEventHandler} />;
+        break;
     }
     return cEvent;
   };
