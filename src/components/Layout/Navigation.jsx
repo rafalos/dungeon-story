@@ -14,9 +14,9 @@ function Navigation() {
               isActive ? classes['nav-link--active'] : undefined,
             ].join(' ')
           }
-          to={`inventory`}
+          to={`character`}
         >
-          Inventory
+          Character
         </NavLink>
 
         <NavLink

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Battle from './Events/Battle/Battle';
 import Trap from './Events/Trap/Trap';
+import classes from './ExplorationEvent.module.css';
 
 function ExplorationEvent({ eventId, onEventProgress }) {
   const [eventInProgress, setEventInProgress] = useState(true);
@@ -28,7 +29,7 @@ function ExplorationEvent({ eventId, onEventProgress }) {
   };
 
   return (
-    <div>
+    <div className={classes['exploration-wrapper']}>
       {eventInProgress && currentEvent()}
       {!eventInProgress && (
         <button onClick={progressEventHandler}>Explore further</button>

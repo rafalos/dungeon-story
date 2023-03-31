@@ -5,7 +5,7 @@ import './index.css';
 import store from './store';
 import { Provider } from 'react-redux';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import InventoryPage from './pages/InventoryPage';
+import CharacterPage from './pages/CharacterPage';
 import ShopPage from './pages/ShopPage';
 import ExplorationPage from './pages/ExplorationPage';
 
@@ -15,8 +15,8 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: '/inventory',
-        element: <InventoryPage />,
+        path: '/character',
+        element: <CharacterPage />,
       },
       {
         path: '/shop',

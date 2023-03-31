@@ -1,6 +1,5 @@
 .equipment-container {
   display: grid;
-  justify-content: center;
   grid-template-rows: repeat(3, 50px);
   grid-template-columns: repeat(3, 50px);
   grid-gap: 15px;

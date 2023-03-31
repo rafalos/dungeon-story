@@ -11,6 +11,7 @@ const playerStatusSlice = createSlice({
     maxHealth: 250,
     currentHealth: 210,
     energy: 10,
+    gold: 0,
     class: 'Knight',
     level: 1,
     experience: 0,

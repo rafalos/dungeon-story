@@ -20,7 +20,6 @@ const initialItems = initialItemInstances.map((item) => {
 const playerInventorySlice = createSlice({
   name: 'player-inventory',
   initialState: {
-    gold: 300,
     items: initialItems,
   },
   reducers: {

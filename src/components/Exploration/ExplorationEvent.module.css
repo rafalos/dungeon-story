@@ -1,0 +1,8 @@
+.exploration-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #716d6d;
+  color: white;
+  height: 700px;
+}

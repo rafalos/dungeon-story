@@ -1,20 +1,24 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Card from '../UI/Card';
-import goldIcon from '../../Logic/Resources/Icons/gold.png';
-import Equipment from './Equipment';
-import Consumables from './Consumables';
+import InventoryEquipment from './InventoryEquipment';
+import InventoryConsumables from './InventoryConsumables';
+import Equipment from '../Equipment/Equipment';
+import Statistics from '../Statistics/Statistics';
 
 function Inventory() {
   const inventory = useSelector((state) => state.inventory);
 
   return (
-    <Card>
-      <div>
-        <img src={goldIcon} style={{ width: '30px' }} alt='' /> {inventory.gold}
+    <Card style={{ display: 'flex', gap: '10px' }}>
+      <div className='character-details'>
+        <Equipment />
+        <Statistics />
       </div>
-      <Equipment inventoryItems={inventory.items} />
-      <Consumables inventoryItems={inventory.items} />
+      <div className='inventory-details'>
+        <InventoryEquipment inventoryItems={inventory.items} />
+        <InventoryConsumables inventoryItems={inventory.items} />
+      </div>
     </Card>
   );
 }

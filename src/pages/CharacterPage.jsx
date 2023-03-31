@@ -2,7 +2,7 @@ import React from 'react';
 import Inventory from '../components/Inventory/Inventory';
 import Card from '../components/UI/Card';
 
-function InventoryPage() {
+function CharacterPage() {
   return (
     <Card>
       <Inventory />
@@ -10,4 +10,4 @@ function InventoryPage() {
   );
 }
 
-export default InventoryPage;
+export default CharacterPage;
