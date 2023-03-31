@@ -13,7 +13,6 @@ function Battle({ onEventFinished }) {
   const handleLeaveBattle = () => {
     setBattleInProgress(false);
     onEventFinished();
-    dispatch(playerStatisticActions.restorePlayer());
   };
 
   return (
