@@ -1,4 +1,4 @@
-import Sidebar from './components/Layout/Sidebar';
+import Sidebar from './components/Layout/Header';
 import { Outlet } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';

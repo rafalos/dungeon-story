@@ -1,17 +1,17 @@
 import React from 'react';
-import initialEnemy from '../../Logic/Enemy/Enemy';
+import initialEnemy from '../../../../Logic/Enemy/Enemy';
 import classes from './BattleFrame.module.css';
 import BattleEntityPanel from './BattleEntityPanel';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import { playerStatisticActions } from '../../store/player-statistics-slice.js';
-import { playerStatusActions } from '../../store/player-status-slice.js';
-import { randomInRange } from '../../utils/random';
+import { playerStatisticActions } from '../../../../store/player-statistics-slice.js';
+import { playerStatusActions } from '../../../../store/player-status-slice.js';
+import { randomInRange } from '../../../../utils/random';
 import BattleSummary from './BattleSummary';
-import { generateNewEquipmentItem } from '../../Logic/Generator/Equipment';
-import { playerInventoryActions } from '../../store/player-inventory-slice';
-import { getBasicDamage } from '../../utils/formulas';
+import { generateNewEquipmentItem } from '../../../../Logic/Generator/Equipment';
+import { playerInventoryActions } from '../../../../store/player-inventory-slice';
+import { getBasicDamage } from '../../../../utils/formulas';
 import BattleLog from './BattleLog';
 
 function BattleFrame({ onLeaveBattle }) {

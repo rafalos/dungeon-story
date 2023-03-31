@@ -6,7 +6,7 @@ import Statistics from '../Statistics/Statistics';
 import Card from '../UI/Card';
 import Navigation from './Navigation';
 
-function Header() {
+function Sidebar() {
   const player = useSelector((state) => state.status);
 
   return (
@@ -26,4 +26,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default Sidebar;

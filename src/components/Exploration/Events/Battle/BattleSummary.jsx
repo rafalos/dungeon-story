@@ -1,5 +1,5 @@
 import React from 'react';
-import Item from '../UI/Item';
+import Item from '../../../UI/Item';
 
 function BattleSummary({ onLeaveBattle, battleSummary }) {
   return (

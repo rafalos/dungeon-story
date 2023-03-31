@@ -14,22 +14,11 @@ function Navigation() {
               isActive ? classes['nav-link--active'] : undefined,
             ].join(' ')
           }
-          to={`battle`}
-        >
-          Battle
-        </NavLink>
-
-        <NavLink
-          className={({ isActive }) =>
-            [
-              classes['nav-link'],
-              isActive ? classes['nav-link--active'] : undefined,
-            ].join(' ')
-          }
           to={`inventory`}
         >
           Inventory
         </NavLink>
+
         <NavLink
           className={({ isActive }) =>
             [
@@ -40,7 +29,18 @@ function Navigation() {
           to={`shop`}
         >
           Shop
-          
+        </NavLink>
+
+        <NavLink
+          className={({ isActive }) =>
+            [
+              classes['nav-link'],
+              isActive ? classes['nav-link--active'] : undefined,
+            ].join(' ')
+          }
+          to={`exploration`}
+        >
+          Exploration
         </NavLink>
       </nav>
     </Card>

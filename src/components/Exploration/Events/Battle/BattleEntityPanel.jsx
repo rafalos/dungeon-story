@@ -1,5 +1,5 @@
 import React from 'react';
-import ResourceBar from '../UI/ResourceBar';
+import ResourceBar from '../../../UI/ResourceBar';
 
 function BattleEntityPanel({ entity }) {
   return (
