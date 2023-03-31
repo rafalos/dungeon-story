@@ -1,10 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import LevelBrackets from '../Logic/Resources/LevelBrackets';
+import playerIcon from '../Logic/Resources/Icons/Class/Hero.png';
 
 const playerStatusSlice = createSlice({
   name: 'player-status',
   initialState: {
     name: 'Rafal',
+    icon: playerIcon,
     statPoints: 3,
     maxHealth: 250,
     currentHealth: 210,

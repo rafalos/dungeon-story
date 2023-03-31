@@ -73,7 +73,7 @@ function BattleFrame({ onLeaveBattle }) {
     };
 
     setEnemy(updatedEnemy);
-    setBattleLog(log => [...log, `Player hit for ${damageAmount}`]);
+    setBattleLog((log) => [...log, `Player hit for ${damageAmount}`]);
     setEnemyTurn((enemyTurn) => !enemyTurn);
 
     const enemyDamageAmount = randomInRange(enemy.damage.min, enemy.damage.max);
@@ -82,31 +82,35 @@ function BattleFrame({ onLeaveBattle }) {
         amount: enemyDamageAmount,
       })
     );
-    setBattleLog(log => [...log, `Enemy hit for ${enemyDamageAmount}`]);
+    setBattleLog((log) => [...log, `Enemy hit for ${enemyDamageAmount}`]);
     setEnemyTurn((enemyTurn) => !enemyTurn);
   };
 
   return (
-    <div key={battleID}>
-      {battleOver ? (
-        <BattleSummary
-          onLeaveBattle={onLeaveBattle}
-          battleSummary={battleSummary}
-        />
-      ) : (
-        <div className={classes['battle-wrapper']}>
-          <div className={classes.player}>
-            <BattleEntityPanel entity={player} />
-            <button onClick={handleAttack} disabled={enemyTurn}>
-              Attack
-            </button>
+    <div>
+      <div key={battleID}>
+        {battleOver ? (
+          <BattleSummary
+            onLeaveBattle={onLeaveBattle}
+            battleSummary={battleSummary}
+          />
+        ) : (
+          <div className={classes['battle-wrapper']}>
+            <div className={classes.player}>
+              <BattleEntityPanel entity={player} />
+              <button onClick={handleAttack} disabled={enemyTurn}>
+                Attack
+              </button>
+            </div>
+            <div className={classes.enemy}>
+              <BattleEntityPanel entity={enemy} />
+            </div>
           </div>
-          <div className={classes.enemy}>
-            <BattleEntityPanel entity={enemy} />
-          </div>
-        </div>
-      )}
-      <BattleLog log={battleLog} />
+        )}
+      </div>
+      <div>
+        <BattleLog log={battleLog} />
+      </div>
     </div>
   );
 }

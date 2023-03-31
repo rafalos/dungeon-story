@@ -1,9 +1,10 @@
-import Sidebar from './components/Layout/Header';
+import Sidebar from './components/Layout/Sidebar';
 import { Outlet } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { timersActions } from './store/timers-slice';
 import { resetShop } from './store/shop-slice';
+import { TIMERS } from './utils/contants';
 
 function App() {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ function App() {
       dispatch(resetShop());
     } else {
       const interval = setInterval(() => {
-        dispatch(timersActions.deductTimer('shop'));
+        dispatch(timersActions.deductTimer(TIMERS.SHOP.ID));
       }, 1000);
       return () => {
         clearInterval(interval);

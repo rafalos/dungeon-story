@@ -12,7 +12,7 @@ function Sidebar() {
   return (
     <header>
       <Card>
-        <div style={{ fontSize: '2rem' }}>{player.name}</div>
+        <img src={player.icon} style={{width: '140px'}}alt="" />
         <div style={{ fontSize: '2rem' }}>Level: {player.level}</div>
         <ResourceBar
           currentResource={player.experience}

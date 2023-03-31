@@ -1,9 +1,13 @@
 .battle-wrapper {
   display: flex;
   justify-content: space-around;
+  background-color: burlywood;
 }
 
-.player, .enemy {
-  width: 100%;
+.player,
+.enemy {
+  width: 500px;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
 }

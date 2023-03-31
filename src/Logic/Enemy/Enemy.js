@@ -1,10 +1,12 @@
 import { randomInRange } from '../../utils/random';
+import spiderBlackIcon from '../Resources/Icons/Enemies/SpiderBlack.png';
 
 class Enemy {
   constructor() {
     this.name = 'Rat';
     this.currentHealth = 50;
     this.maxHealth = 50;
+    this.icon = spiderBlackIcon;
     this.damage = {
       min: 1,
       max: 15,
