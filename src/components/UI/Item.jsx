@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import classes from './Item.module.css';
 import equipmentClasses from '../Equipment/Equipment.module.css';
 
-function Item({ item, slot, onItemClicked, stackable, price }) {
+function Item({ item, slot, onItemClicked, stackable, price, id }) {
   const [tooltipVisible, setTooltipVisible] = useState(false);
   let metadataElements = [];
 
@@ -15,7 +15,7 @@ function Item({ item, slot, onItemClicked, stackable, price }) {
   }
 
   const clickHandler = () => {
-    onItemClicked(item);
+    onItemClicked(item, price);
   };
 
   const handleShowTooltip = () => {
@@ -30,6 +30,7 @@ function Item({ item, slot, onItemClicked, stackable, price }) {
     <>
       {item ? (
         <div
+          key={id}
           onClick={clickHandler}
           onMouseEnter={handleShowTooltip}
           onMouseLeave={handleHideTooltip}

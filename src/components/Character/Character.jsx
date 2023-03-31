@@ -1,14 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Card from '../UI/Card';
-import InventoryEquipment from './InventoryEquipment';
-import InventoryConsumables from './InventoryConsumables';
 import Equipment from '../Equipment/Equipment';
 import Statistics from '../Statistics/Statistics';
+import Inventory from './Inventory';
 
-function Inventory() {
-  const inventory = useSelector((state) => state.inventory);
-
+function Character() {
   return (
     <Card style={{ display: 'flex', gap: '10px' }}>
       <div className='character-details'>
@@ -16,11 +13,10 @@ function Inventory() {
         <Statistics />
       </div>
       <div className='inventory-details'>
-        <InventoryEquipment inventoryItems={inventory.items} />
-        <InventoryConsumables inventoryItems={inventory.items} />
+        <Inventory />
       </div>
     </Card>
   );
 }
 
-export default Inventory;
+export default Character;

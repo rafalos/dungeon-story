@@ -1,11 +1,11 @@
 import React from 'react';
-import Inventory from '../components/Inventory/Inventory';
+import Character from '../components/Character/Character';
 import Card from '../components/UI/Card';
 
 function CharacterPage() {
   return (
     <Card>
-      <Inventory />
+      <Character />
     </Card>
   );
 }

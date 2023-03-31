@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { generateNewEquipmentItem } from '../Logic/Generator/Equipment';
 import { timersActions } from './timers-slice';
+import { playerStatusActions } from './player-status-slice';
 import { TIMERS } from '../utils/contants';
 
 const initialItem = generateNewEquipmentItem();
@@ -18,6 +19,13 @@ const shopSlice = createSlice({
     items: [...initialItems],
   },
   reducers: {
+    removeItem(state, action) {
+      const itemIndex = state.items.findIndex(
+        (item) => item.id === action.payload.itemId
+      );
+
+      state.items.splice(itemIndex, 1);
+    },
     resetShop(state) {
       const newItems = [
         {
@@ -38,6 +46,21 @@ export const resetShop = () => {
       timersActions.resetTimer({
         timer: TIMERS.SHOP.ID,
         amount: TIMERS.SHOP.AMOUNT,
+      })
+    );
+  };
+};
+
+export const buyItem = (item, price) => {
+  return (dispatch) => {
+    dispatch(
+      playerStatusActions.deductGold({
+        amount: price,
+      })
+    );
+    dispatch(
+      shopActions.removeItem({
+        itemID: item.id,
       })
     );
   };

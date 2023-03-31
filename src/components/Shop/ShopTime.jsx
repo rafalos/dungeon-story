@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 function ShopTime() {
   const shopTimer = useSelector((state) => state.timers.shop);
-  return <div>Time to refresh {shopTimer}</div>;
+  return <h2>Time to refresh {shopTimer}</h2>;
 }
 
 export default ShopTime;

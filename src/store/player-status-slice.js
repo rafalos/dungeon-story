@@ -11,13 +11,16 @@ const playerStatusSlice = createSlice({
     maxHealth: 250,
     currentHealth: 210,
     energy: 10,
-    gold: 0,
+    gold: 300,
     class: 'Knight',
     level: 1,
     experience: 0,
     maxExperience: LevelBrackets[0],
   },
   reducers: {
+    deductGold(state, action) {
+      state.gold -= action.payload.amount;
+    },
     useStatpoint(state) {
       state.statPoints--;
     },
