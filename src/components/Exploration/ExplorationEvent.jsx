@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import Battle from './Events/Battle/Battle';
 import Trap from './Events/Trap/Trap';
 import classes from './ExplorationEvent.module.css';
-import { useGpt } from '../../hooks/useGpt';
+import { useChatGpt } from '../../hooks/useChatGpt';
 
 function ExplorationEvent({ eventId, onEventProgress, currentPosition }) {
   const [eventInProgress, setEventInProgress] = useState(false);
-  const entryText = useGpt('Give me very short roguelike entry dungeon text');
+  const entryText = useChatGpt(
+    'Give me very short roguelike entry dungeon text'
+  );
 
   const currentEvent = () => {
     let cEvent = null;
