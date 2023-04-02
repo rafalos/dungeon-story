@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import Battle from './Events/Battle/Battle';
 import Trap from './Events/Trap/Trap';
 import classes from './ExplorationEvent.module.css';
-import { useChatGpt } from '../../hooks/useChatGpt';
 
-function ExplorationEvent({ eventId, onEventProgress, currentPosition }) {
+function ExplorationEvent({
+  eventId,
+  onEventProgress,
+  currentStory,
+}) {
   const [eventInProgress, setEventInProgress] = useState(false);
-  const entryText = useChatGpt(
-    'Give me very short roguelike entry dungeon text'
-  );
-
   const currentEvent = () => {
     let cEvent = null;
     switch (eventId) {
@@ -35,13 +34,9 @@ function ExplorationEvent({ eventId, onEventProgress, currentPosition }) {
   return (
     <div className={classes['exploration-wrapper']}>
       {eventInProgress && currentEvent()}
-      {!eventInProgress && currentPosition < 0 && entryText && (
-        <div>{entryText}</div>
-      )}
+      {!eventInProgress && currentStory}
       {!eventInProgress && (
-        <button disabled={!entryText} onClick={progressEventHandler}>
-          {entryText ? 'Proceed' : 'Loading'}
-        </button>
+        <button onClick={progressEventHandler}>Proceed</button>
       )}
     </div>
   );

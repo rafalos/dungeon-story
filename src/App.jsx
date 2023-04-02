@@ -5,10 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { timersActions } from './store/timers-slice';
 import { resetShop } from './store/shop-slice';
 import { TIMERS } from './utils/contants';
+import { useImageGpt } from './hooks/useImageGpt';
 
 function App() {
   const dispatch = useDispatch();
   const currentShopResetTime = useSelector((state) => state.timers.shop);
+  // const randomImage = useImageGpt()
 
   useEffect(() => {
     if (currentShopResetTime <= 0) {

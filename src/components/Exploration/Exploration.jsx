@@ -2,8 +2,18 @@ import React, { useEffect, useState } from 'react';
 import ExplorationTimeline from './ExplorationTimeline';
 import ExplorationEvent from './ExplorationEvent';
 
-function Exploration({ seed, onExplorationFinished }) {
+function Exploration({ seed, onExplorationFinished, explorationStory }) {
   const [currentPosition, setCurrentPosition] = useState(-1);
+  const [currentStory, setCurrentStory] = useState('');
+
+  useEffect(() => {
+    console.log(currentPosition)
+    if (currentPosition < 0) {
+      setCurrentStory(explorationStory[0]);
+    } else {
+      setCurrentStory(explorationStory[currentPosition + 1]);
+    }
+  }, [currentPosition]);
 
   useEffect(() => {
     if (currentPosition == seed.length) {
@@ -22,6 +32,7 @@ function Exploration({ seed, onExplorationFinished }) {
         eventId={seed[currentPosition]}
         onEventProgress={progressHandler}
         currentPosition={currentPosition}
+        currentStory={currentStory}
       />
     </div>
   );

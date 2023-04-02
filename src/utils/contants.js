@@ -36,3 +36,12 @@ export const TIMERS = {
     AMOUNT: 10,
   },
 };
+
+export const GPT_STRINGS = {
+  EXPLORATIONS: {
+    ENTRY: 'Give me very short dark fantasy solo roguelike entry dungeon text',
+    BATTLE: 'Give me short continuation of the story after defeating a monster',
+    TRAP: 'Give me short continuation of the story after getting out of the trap',
+    ENDING: 'Give me very short story ending',
+  },
+};
