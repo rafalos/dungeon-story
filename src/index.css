@@ -1,24 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap');
 :root {
-  font-family: 'Press Start 2P', cursive;
-  --rarity-rare: yellow;
-  --rarity-legendary: #fda403;
-  --rarity-magic: blue;
-  --rarity-common: grey;
+  font-family: 'Cinzel Decorative', cursive;
+  --rarity-rare: rgb(160, 160, 7);
+  --rarity-legendary: #a56d05;
+  --rarity-magic: rgb(49, 49, 126);
+  --rarity-common: rgb(110, 110, 110);
 }
 
 body {
-  background-image: linear-gradient(to right, #868f96 0%, #596164 100%);
-}
-
-#game-wrapper {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
 }
 
 .App {
   display: grid;
-  padding: 10px;
   grid-template-columns: 300px 6fr;
-  padding: 1s00px;
 }
 
 ul {
@@ -27,6 +24,28 @@ ul {
   padding: 0;
 }
 
+#sidebar {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #b1b1b1;
+  font-weight: bold;
+}
+
+#game-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('./assets/bg.jpg');
+  background-size: cover;
+}
+
 a {
   text-decoration: none;
+}
+
+a:active, a:hover, a:visited {
+  color: black;
 }

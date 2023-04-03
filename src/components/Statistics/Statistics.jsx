@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Card from '../UI/Card';
 import { playerStatisticActions } from '../../store/player-statistics-slice';
 import { playerStatusActions } from '../../store/player-status-slice';
+import classes from './Statistics.module.css';
 
 function Statistics() {
   const dispatch = useDispatch();
@@ -27,20 +27,23 @@ function Statistics() {
   };
 
   return (
-    <Card>
-      <ul>
+    <>
+      <ul className={classes.statistics}>
         <li>
           Damage: {playerStatistics.minDamage} - {playerStatistics.maxDamage}
         </li>
-        <li>Health points: {playerStatistics.currentHealth} / {playerStatistics.maxHealth}</li>
+        <li>
+          Health points: {playerStatistics.currentHealth} /{' '}
+          {playerStatistics.maxHealth}
+        </li>
         <li>Defense: {playerStatistics.defense}</li>
-        <li>Critical chance: {playerStatistics.critChance} %</li>
-        <li>Dodge chance: {playerStatistics.dodgeChance} %</li>
+        <li>Critical chance: {playerStatistics.critChance.toFixed(1)} %</li>
+        <li>Dodge chance: {playerStatistics.dodgeChance.toFixed(1)} %</li>
         <br></br>
         <li>{`Stat points: ${statPoints}`}</li>
         {statistics.map((statisticEntry) => (
           <li>
-            {`${statisticEntry[0]}: ${statisticEntry[1]}`}
+            {`${statisticEntry[0]}: ${statisticEntry[1]} `}
             {statPoints > 0 && (
               <button onClick={() => increaseStatHandler(statisticEntry[0])}>
                 +
@@ -49,7 +52,7 @@ function Statistics() {
           </li>
         ))}
       </ul>
-    </Card>
+    </>
   );
 }
 

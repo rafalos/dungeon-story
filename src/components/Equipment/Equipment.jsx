@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Item from '../UI/Item';
-import Card from '../UI/Card';
 import classes from './Equipment.module.css';
 import { unequipItem } from '../../store/player-equipment-slice';
 
@@ -19,13 +18,13 @@ function Equipment() {
   }
 
   return (
-    <Card>
+    <>
       <div className={classes['equipment-container']}>
         {elements.map((element) => (
           <Item slot={element[0]} item={element[1]} onItemClicked={itemClickHandler}/>
         ))}
       </div>
-    </Card>
+    </>
   );
 }
 

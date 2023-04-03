@@ -1,11 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import Card from '../UI/Card';
 import classes from './Navigation.module.css';
 
 function Navigation() {
   return (
-    <Card>
+    <>
       <nav className={classes['navigation_list']}>
         <NavLink
           className={({ isActive }) =>
@@ -43,7 +42,7 @@ function Navigation() {
           Exploration
         </NavLink>
       </nav>
-    </Card>
+    </>
   );
 }
 
