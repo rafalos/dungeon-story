@@ -15,6 +15,7 @@ export const useGptStory = (seed) => {
   ]);
 
   useEffect(() => {
+    if (!seed) return;
     if (story.length == seed.length + 2) {
       setIsLoading(false);
       setLoadingProgress(100);
@@ -61,7 +62,7 @@ export const useGptStory = (seed) => {
 
       setStoryPosition((prevPosition) => (prevPosition += 1));
     });
-  }, [currentMessages]);
+  }, [seed, currentMessages]);
 
   return [isLoading, story, loadingProgress];
 };

@@ -29,7 +29,6 @@ const playerStatisticsSlice = createSlice({
   },
   reducers: {
     changeStatistic(state, action) {
-      console.log(action)
       for (const statisticItem of action.payload.statistics) {
         const [statistic, amount] = statisticItem;
 

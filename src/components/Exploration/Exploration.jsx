@@ -21,7 +21,7 @@ function Exploration({ seed, onExplorationFinished, explorationStory }) {
 
   return (
     <div>
-      {currentPosition !== seed.length ? (
+      {currentPosition !== seed.length && seed ? (
         <div>
           {' '}
           <ExplorationTimeline seed={seed} currentPosition={currentPosition} />
@@ -34,7 +34,7 @@ function Exploration({ seed, onExplorationFinished, explorationStory }) {
         </div>
       ) : (
         <ExplorationSummary
-          story={currentStory}
+          ending={currentStory}
           onFinished={onExplorationFinished}
         />
       )}

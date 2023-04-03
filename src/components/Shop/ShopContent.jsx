@@ -12,7 +12,6 @@ function ShopContent() {
 
   const { items } = useSelector((state) => state.shop);
 
-  console.log(items)
   const shopElements = items.map((shopElement) => (
     <Item
       key={shopElement.item.id}

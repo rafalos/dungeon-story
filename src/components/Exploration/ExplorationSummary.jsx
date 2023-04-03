@@ -1,9 +1,9 @@
 import React from 'react';
 
-function ExplorationSummary({ story, onFinished }) {
+function ExplorationSummary({ ending, onFinished }) {
   return (
     <div>
-      <div>{story}</div>
+      <div>{ending}</div>
       <div>
         During your expedition you have gained 5000 total experience and found
         items:
