@@ -1,13 +1,21 @@
 .battle-wrapper {
-  display: flex;
-  justify-content: space-around;
-  background-color: burlywood;
+  border: 1px solid black;
+  padding: 10px;
 }
 
-.player,
-.enemy {
-  width: 500px;
-  padding: 20px;
+.entities-wrapper {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  background-color: rgb(85, 85, 85);
+  padding: 10px;
+}
+
+.log {
+  width: 200px;
+  text-align: center;
+  font-weight: bold;
+  height: 100px;
+  overflow-y: auto;
 }

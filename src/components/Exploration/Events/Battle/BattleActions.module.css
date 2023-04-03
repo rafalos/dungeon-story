@@ -1,0 +1,16 @@
+.actions {
+  display: flex;
+  width: 100%;
+  background-color: #373333;
+}
+
+.action {
+  margin: 5px;
+  padding: 10px;
+  background-color: rgb(112, 112, 112);
+  border: none;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  border: 2px solid grey;
+}

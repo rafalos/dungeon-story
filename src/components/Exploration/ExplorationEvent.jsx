@@ -18,7 +18,7 @@ function ExplorationEvent({
         cEvent = <Battle onEventFinished={endEventHandler} onItemFound={onItemFound} onExperienceGained={onExperienceGained}/>;
         break;
       case 2:
-        cEvent = <Trap onEventFinished={endEventHandler}/>;
+        cEvent = <Battle onEventFinished={endEventHandler} onItemFound={onItemFound} onExperienceGained={onExperienceGained}/>;
         break;
     }
     return cEvent;

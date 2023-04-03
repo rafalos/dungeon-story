@@ -13,12 +13,14 @@ import { generateNewEquipmentItem } from '../../../../Logic/Generator/Equipment'
 import { playerInventoryActions } from '../../../../store/player-inventory-slice';
 import { getBasicDamage } from '../../../../utils/formulas';
 import BattleLog from './BattleLog';
+import InventoryConsumables from '../../../Character/InventoryConsumables';
+import BattleActions from './BattleActions';
 
 function BattleFrame({ onLeaveBattle, onItemFound, onExperienceGained }) {
   const dispatch = useDispatch();
   const player = useSelector((state) => state.statistics);
+  const inventory = useSelector((state) => state.inventory);
   const [enemy, setEnemy] = useState(initialEnemy);
-  const [enemyTurn, setEnemyTurn] = useState(false);
   const [battleID, setBattleID] = useState(null);
   const [battleOver, setBattleOver] = useState(false);
   const [battleLog, setBattleLog] = useState([]);
@@ -104,20 +106,18 @@ function BattleFrame({ onLeaveBattle, onItemFound, onExperienceGained }) {
           />
         ) : (
           <div className={classes['battle-wrapper']}>
-            <div className={classes.player}>
-              <BattleEntityPanel entity={player} />
-              <button onClick={handleAttack} disabled={enemyTurn}>
-                Attack
-              </button>
+            <div className={classes['entities-wrapper']}>
+              {/* <div>
+                <BattleLog log={battleLog} />
+              </div> */}
+              <div className={classes.enemy}>
+                <BattleEntityPanel entity={enemy} />
+              </div>
             </div>
-            <div className={classes.enemy}>
-              <BattleEntityPanel entity={enemy} />
-            </div>
+            <BattleActions onBasicAttack={handleAttack} />
+            <InventoryConsumables inventoryItems={inventory.items} />
           </div>
         )}
-        <div>
-          <BattleLog log={battleLog} />
-        </div>
       </div>
     </div>
   );

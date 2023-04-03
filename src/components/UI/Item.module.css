@@ -4,8 +4,8 @@
   padding: 28px;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: black;
-  border: 3px solid;
+  background-color: rgb(139, 133, 133);
+  border: 4px solid #969494;
   cursor: pointer;
 }
 
@@ -32,7 +32,7 @@
   background-color: black;
   color: white;
   padding: 15px;
-  white-space:nowrap;
+  white-space: nowrap;
   top: 60px;
   left: -2px;
   z-index: 999;

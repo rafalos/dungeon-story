@@ -1,5 +1,5 @@
 import { ITEM_TYPES } from '../../utils/contants';
-import potionIcon from '../Resources/Icons/Potions/potion_1_red.png';
+import potionIcon from '../Resources/Icons/Potions/potion-red.png';
 import { v4 as uuidv4 } from 'uuid';
 
 class HealthPotion {
