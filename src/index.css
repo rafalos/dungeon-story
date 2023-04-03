@@ -1,5 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Press Start 2P', cursive;
   --rarity-rare: yellow;
   --rarity-legendary: #fda403;
   --rarity-magic: blue;
@@ -10,12 +11,14 @@ body {
   background-image: linear-gradient(to right, #868f96 0%, #596164 100%);
 }
 
-#game-wrapper {}
+#game-wrapper {
+}
 
 .App {
   display: grid;
   padding: 10px;
   grid-template-columns: 300px 6fr;
+  padding: 1s00px;
 }
 
 ul {

@@ -40,7 +40,6 @@ function BattleFrame({ onLeaveBattle, onItemFound, onExperienceGained }) {
         enemy.experience.min,
         enemy.experience.max
       );
-      onExperienceGained(experienceGained);
       const foundItem = generateNewEquipmentItem();
       const itemsFound = [{ ...foundItem }];
       setBattleOver(true);
@@ -58,6 +57,8 @@ function BattleFrame({ onLeaveBattle, onItemFound, onExperienceGained }) {
           items: itemsFound,
         })
       );
+      onExperienceGained(experienceGained);
+      onItemFound(itemsFound);
     }
   }, [player.currentHealth, enemy.currentHealth]);
 

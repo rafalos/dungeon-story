@@ -1,9 +1,11 @@
 .bar-outer {
   border: 1px solid black;
   width: 100%;
+  text-align: center;
 }
 
 .bar-inner {
   transition: 0.3s;
-  padding: 5px;
+  padding: 5px 0px;
+  height: 15px;
 }

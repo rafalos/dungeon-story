@@ -3,6 +3,7 @@ import ExplorationTimeline from './ExplorationTimeline';
 import ExplorationEvent from './ExplorationEvent';
 import ExplorationSummary from './ExplorationSummary';
 import { useGptStory } from '../../hooks/useGptStory';
+import ResourceBar from '../UI/ResourceBar';
 
 function Exploration({ seed, onExplorationFinished }) {
   const [isLoading, story, loadingProgress] = useGptStory(seed);
@@ -18,7 +19,8 @@ function Exploration({ seed, onExplorationFinished }) {
   const itemFoundHandler = (items) => {
     console.log(items);
     setItemsFound((prevState) => {
-      return [...prevState, ...item];
+      const newItems = prevState.concat(items);
+      return newItems;
     });
   };
 
@@ -37,7 +39,10 @@ function Exploration({ seed, onExplorationFinished }) {
   return (
     <div>
       {isLoading ? (
-        <div>The story is being generated. Stay tuned! {loadingProgress}%</div>
+        <div>
+          The story is being generated. Stay tuned!
+          <ResourceBar percentage={loadingProgress}/>
+        </div>
       ) : (
         <div>
           {currentPosition !== seed.length && seed ? (
