@@ -74,7 +74,10 @@ function BattleFrame({ onLeaveBattle, onItemFound, onExperienceGained }) {
     };
 
     setEnemy(updatedEnemy);
-    setBattleLog((log) => [...log, `Player hit for ${damageAmount}`]);
+    setBattleLog((log) => [
+      ...log,
+      { id: uuidv4(), entry: `Player hit for ${damageAmount}` },
+    ]);
     setEnemyTurn((enemyTurn) => !enemyTurn);
 
     const enemyDamageAmount = randomInRange(enemy.damage.min, enemy.damage.max);
@@ -83,7 +86,10 @@ function BattleFrame({ onLeaveBattle, onItemFound, onExperienceGained }) {
         amount: enemyDamageAmount,
       })
     );
-    setBattleLog((log) => [...log, `Enemy hit for ${enemyDamageAmount}`]);
+    setBattleLog((log) => [
+      ...log,
+      { id: uuidv4(), entry: `Enemy hit for ${enemyDamageAmount}` },
+    ]);
     setEnemyTurn((enemyTurn) => !enemyTurn);
   };
 

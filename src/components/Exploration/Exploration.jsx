@@ -4,7 +4,7 @@ import ExplorationEvent from './ExplorationEvent';
 import ExplorationSummary from './ExplorationSummary';
 import { useGptStory } from '../../hooks/useGptStory';
 
-function Exploration({ seed, onExplorationFinished, explorationStory }) {
+function Exploration({ seed, onExplorationFinished }) {
   const [isLoading, story, loadingProgress] = useGptStory(seed);
   const [currentPosition, setCurrentPosition] = useState(-1);
   const [currentStory, setCurrentStory] = useState('');
@@ -23,7 +23,6 @@ function Exploration({ seed, onExplorationFinished, explorationStory }) {
   };
 
   useEffect(() => {
-    console.log(story)
     if (currentPosition < 0) {
       setCurrentStory(story[0]);
     } else {
