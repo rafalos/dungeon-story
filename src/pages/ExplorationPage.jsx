@@ -6,7 +6,7 @@ import { useGptStory } from '../hooks/useGptStory';
 
 function ExplorationPage() {
   const [explorationSeed, setExplorationSeed] = useState(generateSeed());
-  const [isLoading, story, loadingProgres] = useGptStory(explorationSeed);
+  const [isLoading, story, loadingProgress] = useGptStory(explorationSeed);
 
   const handleExplorationStart = async () => {
     setExplorationSeed(explorationSeed);
@@ -18,14 +18,22 @@ function ExplorationPage() {
 
   return (
     <Card>
-      {isLoading ? (
-        <div>The story is being generated. Stay tuned! {loadingProgres}%</div>
+      {explorationSeed ? (
+        <div>
+          {isLoading ? (
+            <div>
+              The story is being generated. Stay tuned! {loadingProgress}%
+            </div>
+          ) : (
+            <Exploration
+              explorationStory={story}
+              seed={explorationSeed}
+              onExplorationFinished={explorationFinishedHandler}
+            />
+          )}
+        </div>
       ) : (
-        <Exploration
-          explorationStory={story}
-          seed={explorationSeed}
-          onExplorationFinished={explorationFinishedHandler}
-        />
+        'The story has ended'
       )}
 
       {/* {!explorationSeed ? (

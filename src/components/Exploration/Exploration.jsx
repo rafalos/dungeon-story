@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import ExplorationTimeline from './ExplorationTimeline';
 import ExplorationEvent from './ExplorationEvent';
+import ExplorationSummary from './ExplorationSummary';
 
 function Exploration({ seed, onExplorationFinished, explorationStory }) {
-  console.log(explorationStory)
   const [currentPosition, setCurrentPosition] = useState(-1);
   const [currentStory, setCurrentStory] = useState('');
 
@@ -15,25 +15,29 @@ function Exploration({ seed, onExplorationFinished, explorationStory }) {
     }
   }, [currentPosition]);
 
-  useEffect(() => {
-    if (currentPosition == seed.length) {
-      onExplorationFinished();
-    }
-  }, [currentPosition]);
-
   const progressHandler = () => {
     setCurrentPosition((currentPosition) => (currentPosition += 1));
   };
 
   return (
     <div>
-      <ExplorationTimeline seed={seed} currentPosition={currentPosition} />
-      <ExplorationEvent
-        eventId={seed[currentPosition]}
-        onEventProgress={progressHandler}
-        currentPosition={currentPosition}
-        currentStory={currentStory}
-      />
+      {currentPosition !== seed.length ? (
+        <div>
+          {' '}
+          <ExplorationTimeline seed={seed} currentPosition={currentPosition} />
+          <ExplorationEvent
+            eventId={seed[currentPosition]}
+            onEventProgress={progressHandler}
+            currentPosition={currentPosition}
+            currentStory={currentStory}
+          />
+        </div>
+      ) : (
+        <ExplorationSummary
+          story={currentStory}
+          onFinished={onExplorationFinished}
+        />
+      )}
     </div>
   );
 }

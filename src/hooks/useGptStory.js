@@ -4,7 +4,7 @@ import { GPT_STRINGS } from '../utils/contants';
 
 export const useGptStory = (seed) => {
   const [story, setStory] = useState([]);
-  const [loadingProgres, setLoadingProgress] = useState(0);
+  const [loadingProgress, setLoadingProgress] = useState(0);
   const [storyPosition, setStoryPosition] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [currentMessages, setCurrentMessages] = useState([
@@ -63,5 +63,5 @@ export const useGptStory = (seed) => {
     });
   }, [currentMessages]);
 
-  return [isLoading, story, loadingProgres];
+  return [isLoading, story, loadingProgress];
 };
