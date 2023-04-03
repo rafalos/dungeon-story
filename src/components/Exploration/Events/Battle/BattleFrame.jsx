@@ -1,5 +1,5 @@
 import React from 'react';
-import initialEnemy from '../../../../Logic/Enemy/Enemy';
+import {getRandomEnemy} from '../../../../Logic/Enemy/Enemy';
 import classes from './BattleFrame.module.css';
 import BattleEntityPanel from './BattleEntityPanel';
 import { useEffect, useState } from 'react';
@@ -20,7 +20,8 @@ function BattleFrame({ onLeaveBattle, onItemFound, onExperienceGained }) {
   const dispatch = useDispatch();
   const player = useSelector((state) => state.statistics);
   const inventory = useSelector((state) => state.inventory);
-  const [enemy, setEnemy] = useState(initialEnemy);
+  const [enemyTurn, setEnemyTurn] = useState(false);
+  const [enemy, setEnemy] = useState(getRandomEnemy());
   const [battleID, setBattleID] = useState(null);
   const [battleOver, setBattleOver] = useState(false);
   const [battleLog, setBattleLog] = useState([]);

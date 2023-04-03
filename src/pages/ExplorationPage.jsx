@@ -19,8 +19,7 @@ function ExplorationPage() {
 
   return (
     <Card>
-      <Battle />
-      {/* {!explorationSeed && (
+      {!explorationSeed && (
         <button onClick={handleExplorationStart}>Start new exploration</button>
       )}
       {explorationSeed && (
@@ -28,7 +27,7 @@ function ExplorationPage() {
           seed={explorationSeed}
           onExplorationFinished={explorationFinishedHandler}
         />
-      )} */}
+      )}
     </Card>
   );
 }

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import BattleFrame from './BattleFrame';
 
 function Battle({ onEventFinished, onItemFound, onExperienceGained }) {
-  const [setBattleInProgress] = useState(true);
+  const [battleInProgress, setBattleInProgress] = useState(true);
 
   const handleLeaveBattle = () => {
     setBattleInProgress(false);
