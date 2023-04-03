@@ -2,18 +2,34 @@ import React, { useEffect, useState } from 'react';
 import ExplorationTimeline from './ExplorationTimeline';
 import ExplorationEvent from './ExplorationEvent';
 import ExplorationSummary from './ExplorationSummary';
+import { useGptStory } from '../../hooks/useGptStory';
 
 function Exploration({ seed, onExplorationFinished, explorationStory }) {
+  const [isLoading, story, loadingProgress] = useGptStory(seed);
   const [currentPosition, setCurrentPosition] = useState(-1);
   const [currentStory, setCurrentStory] = useState('');
+  const [experienceGained, setExperienceGained] = useState(0);
+  const [itemsFound, setItemsFound] = useState([]);
+
+  const experienceGainedHandler = (amount) => {
+    setExperienceGained((prevState) => (prevState += amount));
+  };
+
+  const itemFoundHandler = (items) => {
+    console.log(items);
+    setItemsFound((prevState) => {
+      return [...prevState, ...item];
+    });
+  };
 
   useEffect(() => {
+    console.log(story)
     if (currentPosition < 0) {
-      setCurrentStory(explorationStory[0]);
+      setCurrentStory(story[0]);
     } else {
-      setCurrentStory(explorationStory[currentPosition + 1]);
+      setCurrentStory(story[currentPosition + 1]);
     }
-  }, [currentPosition]);
+  }, [currentPosition, story]);
 
   const progressHandler = () => {
     setCurrentPosition((currentPosition) => (currentPosition += 1));
@@ -21,22 +37,34 @@ function Exploration({ seed, onExplorationFinished, explorationStory }) {
 
   return (
     <div>
-      {currentPosition !== seed.length && seed ? (
-        <div>
-          {' '}
-          <ExplorationTimeline seed={seed} currentPosition={currentPosition} />
-          <ExplorationEvent
-            eventId={seed[currentPosition]}
-            onEventProgress={progressHandler}
-            currentPosition={currentPosition}
-            currentStory={currentStory}
-          />
-        </div>
+      {isLoading ? (
+        <div>The story is being generated. Stay tuned! {loadingProgress}%</div>
       ) : (
-        <ExplorationSummary
-          ending={currentStory}
-          onFinished={onExplorationFinished}
-        />
+        <div>
+          {currentPosition !== seed.length && seed ? (
+            <>
+              <ExplorationTimeline
+                seed={seed}
+                currentPosition={currentPosition}
+              />
+              <ExplorationEvent
+                eventId={seed[currentPosition]}
+                onEventProgress={progressHandler}
+                currentPosition={currentPosition}
+                currentStory={currentStory}
+                onItemFound={itemFoundHandler}
+                onExperienceGained={experienceGainedHandler}
+              />
+            </>
+          ) : (
+            <ExplorationSummary
+              ending={currentStory}
+              onFinished={onExplorationFinished}
+              totalExperienceGained={experienceGained}
+              totalItemsFound={itemsFound}
+            />
+          )}
+        </div>
       )}
     </div>
   );

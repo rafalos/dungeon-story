@@ -3,7 +3,7 @@ import { useState } from 'react';
 import BattleFrame from './BattleFrame';
 import Card from '../../../UI/Card';
 
-function Battle({ onEventFinished }) {
+function Battle({ onEventFinished, onItemFound, onExperienceGained }) {
   const [battleInProgress, setBattleInProgress] = useState(true);
 
   const handleLeaveBattle = () => {
@@ -13,7 +13,7 @@ function Battle({ onEventFinished }) {
 
   return (
     <Card>
-      <BattleFrame onLeaveBattle={handleLeaveBattle} />
+      <BattleFrame onLeaveBattle={handleLeaveBattle} onItemFound={onItemFound} onExperienceGained={onExperienceGained}/>
     </Card>
   );
 }

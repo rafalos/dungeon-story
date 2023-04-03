@@ -7,16 +7,18 @@ function ExplorationEvent({
   eventId,
   onEventProgress,
   currentStory,
+  onItemFound,
+  onExperienceGained
 }) {
   const [eventInProgress, setEventInProgress] = useState(false);
   const currentEvent = () => {
     let cEvent = null;
     switch (eventId) {
       case 1:
-        cEvent = <Battle onEventFinished={endEventHandler} />;
+        cEvent = <Battle onEventFinished={endEventHandler} onItemFound={onItemFound} onExperienceGained={onExperienceGained}/>;
         break;
       case 2:
-        cEvent = <Trap onEventFinished={endEventHandler} />;
+        cEvent = <Trap onEventFinished={endEventHandler}/>;
         break;
     }
     return cEvent;

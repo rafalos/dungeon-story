@@ -14,7 +14,7 @@ import { playerInventoryActions } from '../../../../store/player-inventory-slice
 import { getBasicDamage } from '../../../../utils/formulas';
 import BattleLog from './BattleLog';
 
-function BattleFrame({ onLeaveBattle }) {
+function BattleFrame({ onLeaveBattle, onItemFound, onExperienceGained }) {
   const dispatch = useDispatch();
   const player = useSelector((state) => state.statistics);
   const [enemy, setEnemy] = useState(initialEnemy);
@@ -40,6 +40,7 @@ function BattleFrame({ onLeaveBattle }) {
         enemy.experience.min,
         enemy.experience.max
       );
+      onExperienceGained(experienceGained);
       const foundItem = generateNewEquipmentItem();
       const itemsFound = [{ ...foundItem }];
       setBattleOver(true);

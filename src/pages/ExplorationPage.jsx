@@ -6,10 +6,10 @@ import { useGptStory } from '../hooks/useGptStory';
 
 function ExplorationPage() {
   const [explorationSeed, setExplorationSeed] = useState(null);
-  const [isLoading, story, loadingProgress] = useGptStory(explorationSeed);
 
-  const handleExplorationStart = async () => {
-    setExplorationSeed(generateSeed());
+  const handleExplorationStart = () => {
+    const newSeed = generateSeed();
+    setExplorationSeed(newSeed);
   };
 
   const explorationFinishedHandler = () => {
@@ -21,12 +21,8 @@ function ExplorationPage() {
       {!explorationSeed && (
         <button onClick={handleExplorationStart}>Start new exploration</button>
       )}
-      {explorationSeed && isLoading && (
-        <div>The story is being generated. Stay tuned! {loadingProgress}%</div>
-      )}
-      {!isLoading && explorationSeed && (
+      {explorationSeed && (
         <Exploration
-          explorationStory={story}
           seed={explorationSeed}
           onExplorationFinished={explorationFinishedHandler}
         />
