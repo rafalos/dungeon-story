@@ -2,44 +2,14 @@ import React, { useState } from 'react';
 import Card from '../components/UI/Card';
 import Exploration from '../components/Exploration/Exploration';
 import { generateSeed } from '../Logic/Generator/ExplorationSeed';
-import { GPT_STRINGS } from '../utils/contants';
-import GPT from '../initializers/gptInitializer';
+import { useGptStory } from '../hooks/useGptStory';
 
 function ExplorationPage() {
-  const [explorationSeed, setExplorationSeed] = useState(null);
-  const [explorationStory, setExplorationStory] = useState([]);
+  const [explorationSeed, setExplorationSeed] = useState(generateSeed());
+  const [isLoading, story, loadingProgres] = useGptStory(explorationSeed);
 
   const handleExplorationStart = async () => {
-    const newExplorationSeed = generateSeed();
-    const GPTInputSequence = newExplorationSeed.map((eventId) => {
-      let currentString;
-      switch (eventId) {
-        case 1:
-          currentString = GPT_STRINGS.EXPLORATIONS.BATTLE;
-          break;
-        case 2:
-          currentString = GPT_STRINGS.EXPLORATIONS.TRAP;
-          break;
-      }
-      return currentString;
-    });
-
-    GPTInputSequence.unshift(GPT_STRINGS.EXPLORATIONS.ENTRY);
-    GPTInputSequence.push(GPT_STRINGS.EXPLORATIONS.ENDING);
-
-    const gptRes = await GPT.createCompletion({
-      max_tokens: 2048,
-      model: 'text-davinci-003',
-      prompt: GPTInputSequence,
-    });
-
-    const results = gptRes.data.choices.map((choice) =>
-      choice.text.replace(/\n/g, '')
-    );
-
-    setExplorationStory(results);
-
-    setExplorationSeed(newExplorationSeed);
+    setExplorationSeed(explorationSeed);
   };
 
   const explorationFinishedHandler = () => {
@@ -48,15 +18,26 @@ function ExplorationPage() {
 
   return (
     <Card>
-      {!explorationSeed ? (
-        <button onClick={handleExplorationStart}>Start new</button>
+      {isLoading ? (
+        <div>The story is being generated. Stay tuned! {loadingProgres}%</div>
       ) : (
         <Exploration
-          explorationStory={explorationStory}
+          explorationStory={story}
           seed={explorationSeed}
           onExplorationFinished={explorationFinishedHandler}
         />
       )}
+
+      {/* {!explorationSeed ? (
+        <button onClick={handleExplorationStart}>Start new</button>
+      ) : (
+        <Exploration
+          explorationStory={story}
+          isLoading={isLoading}
+          seed={explorationSeed}
+          onExplorationFinished={explorationFinishedHandler}
+        />
+      )} */}
     </Card>
   );
 }

@@ -1,16 +1,14 @@
 import Sidebar from './components/Layout/Sidebar';
 import { Outlet } from 'react-router-dom';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { timersActions } from './store/timers-slice';
 import { resetShop } from './store/shop-slice';
 import { TIMERS } from './utils/contants';
-import { useImageGpt } from './hooks/useImageGpt';
 
 function App() {
   const dispatch = useDispatch();
   const currentShopResetTime = useSelector((state) => state.timers.shop);
-  // const randomImage = useImageGpt()
 
   useEffect(() => {
     if (currentShopResetTime <= 0) {

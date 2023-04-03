@@ -3,11 +3,11 @@ import ExplorationTimeline from './ExplorationTimeline';
 import ExplorationEvent from './ExplorationEvent';
 
 function Exploration({ seed, onExplorationFinished, explorationStory }) {
+  console.log(explorationStory)
   const [currentPosition, setCurrentPosition] = useState(-1);
   const [currentStory, setCurrentStory] = useState('');
 
   useEffect(() => {
-    console.log(currentPosition)
     if (currentPosition < 0) {
       setCurrentStory(explorationStory[0]);
     } else {
