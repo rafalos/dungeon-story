@@ -23,5 +23,5 @@ class Equipment {
 }
 
 export const generateNewEquipmentItem = () => {
-  return new Equipment();
+  return { ...new Equipment() };
 };

@@ -4,6 +4,7 @@ import { generateNewHealthPotion } from '../Logic/Generator/healthPotion';
 import { generateRandomGem } from '../Logic/Generator/gem';
 import { playerStatusActions } from './player-status-slice';
 import { ITEM_TYPES } from '../utils/contants';
+import { isStackable } from '../utils/constrains';
 const initialItemInstances = [
   generateNewEquipmentItem(),
   generateNewEquipmentItem(),
@@ -54,7 +55,20 @@ const playerInventorySlice = createSlice({
       state.items.push(action.payload.item);
     },
     addMultipleItems(state, action) {
-      state.items = state.items.concat(action.payload.items);
+      for (const item of action.payload.items) {
+        if (isStackable(item)) {
+          const existingItem = state.items.findIndex(
+            (playerItem) => playerItem.id === item.id
+          );
+          if (existingItem == -1) {
+            state.items.push(item);
+          } else {
+            state.items[existingItem].amount += 1;
+          }
+        } else {
+          state.items.push(item);
+        }
+      }
     },
   },
 });

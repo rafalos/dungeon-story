@@ -1,5 +1,5 @@
 import React from 'react';
-import {getRandomEnemy} from '../../../../Logic/Enemy/Enemy';
+import { getRandomEnemy } from '../../../../Logic/Enemy/Enemy';
 import classes from './BattleFrame.module.css';
 import BattleEntityPanel from './BattleEntityPanel';
 import { useEffect, useState } from 'react';
@@ -9,12 +9,13 @@ import { playerStatisticActions } from '../../../../store/player-statistics-slic
 import { playerStatusActions } from '../../../../store/player-status-slice.js';
 import { randomInRange } from '../../../../utils/random';
 import BattleSummary from './BattleSummary';
-import { generateNewEquipmentItem } from '../../../../Logic/Generator/Equipment';
+import { LOOT_BRACKERS } from '../../../../Logic/Resources/tables/lootTable';
 import { playerInventoryActions } from '../../../../store/player-inventory-slice';
 import { getBasicDamage } from '../../../../utils/formulas';
 import BattleLog from './BattleLog';
 import InventoryConsumables from '../../../Character/InventoryConsumables';
 import BattleActions from './BattleActions';
+import { generateLoot } from '../../../../Logic/Generator/loot';
 
 function BattleFrame({ onLeaveBattle, onItemFound, onExperienceGained }) {
   const dispatch = useDispatch();
@@ -43,8 +44,8 @@ function BattleFrame({ onLeaveBattle, onItemFound, onExperienceGained }) {
         enemy.experience.min,
         enemy.experience.max
       );
-      const foundItem = generateNewEquipmentItem();
-      const itemsFound = [{ ...foundItem }];
+      const foundItems = generateLoot(LOOT_BRACKERS.MONSTER);
+      const itemsFound = [...foundItems];
       setBattleOver(true);
       setBattleSummary({
         experienceGained,

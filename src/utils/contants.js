@@ -59,12 +59,3 @@ export const GPT_STRINGS = {
     ENDING: 'Give me very short story ending afer leaving the dungeon',
   },
 };
-
-export const RARITY_CHANCES = {
-  EQUIPMENT: [
-    [EQUIPMENT_RARITIES.COMMON, 40],
-    [EQUIPMENT_RARITIES.MAGIC, 35],
-    [EQUIPMENT_RARITIES.RARE, 25],
-    [EQUIPMENT_RARITIES.LEGENDARY, 5],
-  ],
-};

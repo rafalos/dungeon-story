@@ -5,7 +5,7 @@ import {
 } from '../../utils/random';
 import affixTable from '../Resources/tables/affixTable';
 import { EquipmentClassTypes } from './equipmentClassTypes';
-import { RARITY_CHANCES } from '../../utils/contants';
+import { RARITY_CHANCES } from '../Resources/tables/lootTable';
 
 const generateItemRarity = () => {
   return randomWithProbability(RARITY_CHANCES.EQUIPMENT);
