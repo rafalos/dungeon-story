@@ -1,7 +1,10 @@
 import headIcon1 from '../Resources/Icons/Armors/icon_plate_head1.png';
-import torsoIcon1 from '../Resources/Icons/Armors/icon_cloth_chest1.png';
-import ringIcon1 from '../Resources/Icons/Armors/icon_ring1_2.png';
+import torsoIcon1 from '../Resources/Icons/Armors/armor.png';
+import torsoIcon2 from '../Resources/Icons/Armors/armor2.png';
+import torsoIcon3 from '../Resources/Icons/Armors/armor3.png';
+import ringIcon1 from '../Resources/Icons/Armors/ring3.png';
 import ringIcon2 from '../Resources/Icons/Armors/ring.png';
+import ringIcon3 from '../Resources/Icons/Armors/ring2.png';
 import longswordIcon1 from '../Resources/Icons/Weapons/icon_sword_long1.png';
 import shortswordIcon1 from '../Resources/Icons/Weapons/icon_sword_short1.png';
 import axeIcon1 from '../Resources/Icons/Weapons/icon_axe1.png';
@@ -62,8 +65,24 @@ export default [
     {
       name: 'Cloth Torso',
       slot: EQUIPMENT.SLOTS.TORSO,
-      icon: torsoIcon1,
+      icon: torsoIcon3,
+      metadata: { defense: 31 },
+    },
+  ],
+  [
+    {
+      name: 'Golden Plate',
+      slot: EQUIPMENT.SLOTS.TORSO,
+      icon: torsoIcon2,
       metadata: { defense: 101 },
+    },
+  ],
+  [
+    {
+      name: 'Iron Chestplate',
+      slot: EQUIPMENT.SLOTS.TORSO,
+      icon: torsoIcon1,
+      metadata: { defense: 57 },
     },
   ],
   [
