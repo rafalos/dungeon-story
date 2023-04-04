@@ -1,4 +1,4 @@
-import { gemTable } from './gemTable';
+import { gemTable } from '../Resources/tables/gemTable';
 import { randomElementFromArray } from '../../utils/random';
 import { v4 as uuidv4 } from 'uuid';
 

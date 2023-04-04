@@ -14,11 +14,16 @@ export const CLASSES = {
   WARRIOR: 'warrior',
 };
 
-export const ITEM_RARITIES = {
+export const EQUIPMENT_RARITIES = {
   LEGENDARY: 'legendary',
   RARE: 'rare',
   COMMON: 'common',
   MAGIC: 'magic',
+};
+
+export const GEM_RARITIES = {
+  JEWEL: 'jewel',
+  CRYSTAL: 'crystal',
 };
 
 export const STATISTICS = {
@@ -33,7 +38,7 @@ export const STATISTICS = {
 };
 
 export const ITEM_TYPES = {
-  GEAR: 'gear',
+  EQUIPMENT: 'equipment',
   POTION: 'potion',
   GEM: 'gem',
 };
@@ -55,30 +60,11 @@ export const GPT_STRINGS = {
   },
 };
 
-export const DROP_RATES = {
-  EQUIPMENT: {
-    BASE: 50,
-    ROLLS: 2,
-    RARITY: {
-      LEGENDARY: 5,
-      MAGIC: 35,
-      RARE: 20,
-      COMMON: 40,
-    },
-  },
-  GOLD: {
-    ROLLS: 1,
-    BASE: 100,
-  },
-  GEM: {
-    ROLLS: 5,
-    RARITY: {
-      JEWEL: 75,
-      CRYSTAL: 25,
-    },
-  },
-  POTION: {
-    ROLLS: 2,
-    BASE: 50,
-  },
+export const RARITY_CHANCES = {
+  EQUIPMENT: [
+    [EQUIPMENT_RARITIES.COMMON, 40],
+    [EQUIPMENT_RARITIES.MAGIC, 35],
+    [EQUIPMENT_RARITIES.RARE, 25],
+    [EQUIPMENT_RARITIES.LEGENDARY, 5],
+  ],
 };

@@ -1,4 +1,4 @@
-import LevelBrackets from '../Resources/LevelBrackets';
+import LevelBrackets from '../Resources/tables/levelTable';
 
 export default class PlayerExperience {
   constructor(statistics) {

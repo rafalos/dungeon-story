@@ -1,20 +1,16 @@
-import { ITEM_RARITIES } from '../../utils/contants';
+import { EQUIPMENT_RARITIES } from '../../utils/contants';
 
-export default [
-  {
+export const EquipmentClassTypes = {
+  [EQUIPMENT_RARITIES.LEGENDARY]: {
     affixRolls: { min: 5, max: 5 },
-    classType: ITEM_RARITIES.LEGENDARY,
   },
-  {
+  [EQUIPMENT_RARITIES.RARE]: {
     affixRolls: { min: 2, max: 5 },
-    classType: ITEM_RARITIES.RARE,
   },
-  {
+  [EQUIPMENT_RARITIES.MAGIC]: {
     affixRolls: { min: 1, max: 3 },
-    classType: ITEM_RARITIES.MAGIC,
   },
-  {
+  [EQUIPMENT_RARITIES.COMMON]: {
     affixRolls: { min: 0, max: 0 },
-    classType: ITEM_RARITIES.LEGENDARY,
   },
-];
+};

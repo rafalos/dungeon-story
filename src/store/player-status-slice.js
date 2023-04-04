@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import LevelBrackets from '../Logic/Resources/LevelBrackets';
+import LevelBrackets from '../Logic/Resources/tables/levelTable';
 import playerIcon from '../Logic/Resources/Icons/Class/Hero.png';
 
 const playerStatusSlice = createSlice({

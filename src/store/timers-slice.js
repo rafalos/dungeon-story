@@ -12,7 +12,6 @@ const timersSlice = createSlice({
     },
 
     resetTimer(state, action) {
-      console.log(action)
       state[action.payload.timer] = action.payload.amount;
     },
   },

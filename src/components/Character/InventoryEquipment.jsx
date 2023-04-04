@@ -18,7 +18,7 @@ function InventoryEquipment({ inventoryItems, sellMode }) {
   };
 
   const equipment = inventoryItems.filter(
-    (item) => item.type === ITEM_TYPES.GEAR
+    (item) => item.type === ITEM_TYPES.EQUIPMENT
   );
 
   return (

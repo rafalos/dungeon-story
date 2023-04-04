@@ -1,5 +1,5 @@
 import equipmentSlotTypes from './equipmentSlotTypes';
-import MetaBuilder from './MetaBuilder';
+import { generateMetaData } from './MetaBuilder';
 import { v4 as uuidv4 } from 'uuid';
 import { randomElementFromArray } from '../../utils/random';
 import { ITEM_TYPES } from '../../utils/contants';
@@ -9,11 +9,11 @@ class Equipment {
     const base = JSON.parse(
       JSON.stringify(randomElementFromArray(equipmentSlotTypes)[0])
     ); // deep copy of item performed
-    const finalItem = { ...MetaBuilder.generateMetadata(base) };
+    const finalItem = { ...generateMetaData(base) };
     const { name, slot, ...affixes } = finalItem;
     this.name = name;
-    this.type = ITEM_TYPES.GEAR;
-    this.equipmentSlot = slot;
+    this.type = ITEM_TYPES.EQUIPMENT;
+    this.entityType = this.equipmentSlot = slot;
     this.id = uuidv4();
     this.sellPrice = 10;
     for (const [key, value] of Object.entries(affixes)) {

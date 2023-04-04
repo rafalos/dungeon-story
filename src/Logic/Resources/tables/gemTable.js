@@ -1,13 +1,13 @@
-import { ITEM_TYPES } from '../../utils/contants';
-import blueCrystalIcon from '../Resources/Icons/Gems/blue-crystal.png';
-import blueJewelIcon from '../Resources/Icons/Gems/blue-jewel.png';
-import greenCrystalIcon from '../Resources/Icons/Gems/green-crystal.png';
-import greenJewelIcon from '../Resources/Icons/Gems/green-jewel.png';
-import pinkJewelIcon from '../Resources/Icons/Gems/pink-jewel.png';
-import purpleCrystalIcon from '../Resources/Icons/Gems/purple-crystal.png';
-import redCrystalIcon from '../Resources/Icons/Gems/red-crystal.png';
-import redJewel from '../Resources/Icons/Gems/ruby-jewel.png';
-import yellowJewelIcon from '../Resources/Icons/Gems/yellow-jewel.png';
+import { ITEM_TYPES } from '../../../utils/contants';
+import blueCrystalIcon from '../../Resources/Icons/Gems/blue-crystal.png';
+import blueJewelIcon from '../../Resources/Icons/Gems/blue-jewel.png';
+import greenCrystalIcon from '../../Resources/Icons/Gems/green-crystal.png';
+import greenJewelIcon from '../../Resources/Icons/Gems/green-jewel.png';
+import pinkJewelIcon from '../../Resources/Icons/Gems/pink-jewel.png';
+import purpleCrystalIcon from '../../Resources/Icons/Gems/purple-crystal.png';
+import redCrystalIcon from '../../Resources/Icons/Gems/red-crystal.png';
+import redJewel from '../../Resources/Icons/Gems/ruby-jewel.png';
+import yellowJewelIcon from '../../Resources/Icons/Gems/yellow-jewel.png';
 
 export const gemTable = [
   {

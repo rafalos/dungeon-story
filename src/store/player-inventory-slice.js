@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { generateNewEquipmentItem } from '../Logic/Generator/Equipment';
-import { generateNewHealthPotion } from '../Logic/Generator/HealthPotion';
-import { generateRandomGem } from '../Logic/Generator/Gem';
+import { generateNewHealthPotion } from '../Logic/Generator/healthPotion';
+import { generateRandomGem } from '../Logic/Generator/gem';
 import { playerStatusActions } from './player-status-slice';
 import { ITEM_TYPES } from '../utils/contants';
 const initialItemInstances = [
@@ -72,7 +72,7 @@ export const itemSold = (item) => {
           })
         );
         break;
-      case ITEM_TYPES.GEAR:
+      case ITEM_TYPES.EQUIPMENT:
         dispatch(
           playerInventoryActions.removeItem({
             id: item.id,
