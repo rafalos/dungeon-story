@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import InventoryEquipment from './InventoryEquipment';
 import InventoryConsumables from './InventoryConsumables';
+import InventoryGems from './InventoryGems';
 
 function Inventory() {
   const inventory = useSelector((state) => state.inventory);
@@ -10,6 +11,7 @@ function Inventory() {
     <div className='inventory-details'>
       <InventoryEquipment inventoryItems={inventory.items} />
       <InventoryConsumables inventoryItems={inventory.items} />
+      <InventoryGems inventoryItems={inventory.items} />
     </div>
   );
 }

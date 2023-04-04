@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { generateNewEquipmentItem } from '../Logic/Generator/Equipment';
 import { generateNewHealthPotion } from '../Logic/Generator/HealthPotion';
+import { generateRandomGem } from '../Logic/Generator/Gem';
 const initialItemInstances = [
   generateNewEquipmentItem(),
   generateNewEquipmentItem(),
@@ -11,6 +12,11 @@ const initialItemInstances = [
   generateNewEquipmentItem(),
   generateNewEquipmentItem(),
   generateNewHealthPotion(),
+  generateRandomGem(),
+  generateRandomGem(),
+  generateRandomGem(),
+  generateRandomGem(),
+  generateRandomGem(),
 ];
 
 const initialItems = initialItemInstances.map((item) => {

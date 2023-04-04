@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { equipItem } from '../../store/player-equipment-slice';
 import classes from './InventoryEquipment.module.css'
 
-function Equipment({ inventoryItems }) {
+function InventoryEquipment({ inventoryItems }) {
   const dispatch = useDispatch();
   const handleEquip = (item) => {
     dispatch(equipItem(item));
@@ -18,7 +18,7 @@ function Equipment({ inventoryItems }) {
   return (
     <div>
       <h2>Equipment</h2>
-      <div className={classes['equipment-tab']}>
+      <div className={classes['tab']}>
         {equipment.map((item) => (
           <Item
             key={item.id}
@@ -32,4 +32,4 @@ function Equipment({ inventoryItems }) {
   );
 }
 
-export default Equipment;
+export default InventoryEquipment;

@@ -7,7 +7,7 @@ class HealthPotion {
   name = 'Health potion';
   type = ITEM_TYPES.POTION;
   icon = potionIcon;
-  amount = 5;
+  amount = 1;
 }
 
 const genericPotion = new HealthPotion();

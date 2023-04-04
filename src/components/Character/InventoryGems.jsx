@@ -4,10 +4,10 @@ import Item from '../UI/Item';
 import { playerInventoryActions } from '../../store/player-inventory-slice';
 import { useDispatch } from 'react-redux';
 
-function InventoryConsumables({ inventoryItems }) {
+function InventoryGems({ inventoryItems }) {
   const dispatch = useDispatch();
-  const potions = inventoryItems.filter(
-    (item) => item.type === ITEM_TYPES.POTION
+  const gems = inventoryItems.filter(
+    (item) => item.type === ITEM_TYPES.GEM
   );
 
   const itemClickHandler = (item) => {
@@ -20,8 +20,8 @@ function InventoryConsumables({ inventoryItems }) {
 
   return (
     <div>
-      <h2>Potions</h2>
-      {potions.map((item) => (
+      <h2>Gems</h2>
+      {gems.map((item) => (
         <Item
           key={item.id}
           item={item}
@@ -33,4 +33,4 @@ function InventoryConsumables({ inventoryItems }) {
   );
 }
 
-export default InventoryConsumables;
+export default InventoryGems;

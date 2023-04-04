@@ -1,8 +1,10 @@
-.equipment-tab {
+.tab {
   display: flex;
-  max-width: 400px;
+  align-items: flex-start;
+  width: 520px;
+  min-height: 100px;
   flex-wrap: wrap;
-  gap: 5px;
-  background-color: #aeaeae;
+  background-color: #b6b6b6;
   border-radius: 10px;
+  padding: 20px;
 }

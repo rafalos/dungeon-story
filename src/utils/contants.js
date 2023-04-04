@@ -28,6 +28,7 @@ export const STATISTICS = {
 export const ITEM_TYPES = {
   GEAR: 'gear',
   POTION: 'potion',
+  GEM: 'gem',
 };
 
 export const TIMERS = {
@@ -40,7 +41,8 @@ export const TIMERS = {
 export const GPT_STRINGS = {
   EXPLORATIONS: {
     ENTRY: 'Give me very short dark fantasy solo roguelike entry dungeon text',
-    BATTLE: 'Give me very short continuation of the story after defeating a monster',
+    BATTLE:
+      'Give me very short continuation of the story after defeating a monster',
     TRAP: 'Give me very short continuation of the story after getting out of the trap',
     ENDING: 'Give me very short story ending afer leaving the dungeon',
   },

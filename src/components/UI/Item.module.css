@@ -7,6 +7,7 @@
   background-color: rgb(139, 133, 133);
   border: 4px solid #969494;
   cursor: pointer;
+  margin: 5px;
 }
 
 .inventory-item--rare {
@@ -43,7 +44,8 @@
   color: white;
   position: absolute;
   font-weight: bold;
-  right: 0;
+  font-size: 1.2rem;
+  right: 5px;
   bottom: 0;
 }
 
