@@ -18,6 +18,9 @@ const playerStatusSlice = createSlice({
     maxExperience: LevelBrackets[0],
   },
   reducers: {
+    addGold(state, action) {
+      state.gold += action.payload.amount;
+    },
     deductGold(state, action) {
       state.gold -= action.payload.amount;
     },

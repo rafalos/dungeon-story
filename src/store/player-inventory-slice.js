@@ -2,6 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { generateNewEquipmentItem } from '../Logic/Generator/Equipment';
 import { generateNewHealthPotion } from '../Logic/Generator/HealthPotion';
 import { generateRandomGem } from '../Logic/Generator/Gem';
+import { playerStatusActions } from './player-status-slice';
+import { ITEM_TYPES } from '../utils/contants';
 const initialItemInstances = [
   generateNewEquipmentItem(),
   generateNewEquipmentItem(),
@@ -56,6 +58,35 @@ const playerInventorySlice = createSlice({
     },
   },
 });
+
+export const itemSold = (item) => {
+  const { sellPrice } = item;
+
+  return (dispatch) => {
+    switch (item.type) {
+      case ITEM_TYPES.GEM:
+      case ITEM_TYPES.POTION:
+        dispatch(
+          playerInventoryActions.deductStackable({
+            itemID: item.id,
+          })
+        );
+        break;
+      case ITEM_TYPES.GEAR:
+        dispatch(
+          playerInventoryActions.removeItem({
+            id: item.id,
+          })
+        );
+        break;
+    }
+    dispatch(
+      playerStatusActions.addGold({
+        amount: sellPrice,
+      })
+    );
+  };
+};
 
 export default playerInventorySlice.reducer;
 export const playerInventoryActions = playerInventorySlice.actions;

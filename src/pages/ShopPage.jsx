@@ -12,7 +12,7 @@ function ShopPage() {
         <ShopContent />
       </div>
       <div>
-        <Inventory />
+        <Inventory sellMode={true}/>
       </div>
     </Card>
   );

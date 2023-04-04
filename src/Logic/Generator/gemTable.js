@@ -14,72 +14,54 @@ export const gemTable = [
     name: 'Blue crystal',
     type: ITEM_TYPES.GEM,
     icon: blueCrystalIcon,
-    price: {
-      min: 1000,
-    },
+    sellPrice: 1000,
   },
   {
     name: 'Blue Jewel',
     type: ITEM_TYPES.GEM,
     icon: blueJewelIcon,
-    price: {
-      min: 500,
-    },
+    sellPrice: 500,
   },
   {
     name: 'Green crystal',
     type: ITEM_TYPES.GEM,
     icon: greenCrystalIcon,
-    price: {
-      min: 1000,
-    },
+    sellPrice: 1000,
   },
   {
     name: 'Green jewel',
     type: ITEM_TYPES.GEM,
     icon: greenJewelIcon,
-    price: {
-      min: 500,
-    },
+    sellPrice: 500,
   },
   {
     name: 'Pink jewel',
     type: ITEM_TYPES.GEM,
     icon: pinkJewelIcon,
-    price: {
-      min: 500,
-    },
+    sellPrice: 500,
   },
   {
     name: 'Purple crystal',
     type: ITEM_TYPES.GEM,
     icon: purpleCrystalIcon,
-    price: {
-      min: 1000,
-    },
+    sellPrice: 1000,
   },
   {
     name: 'Red crystal',
     type: ITEM_TYPES.GEM,
     icon: redCrystalIcon,
-    price: {
-      min: 1000,
-    },
+    sellPrice: 1000,
   },
   {
     name: 'Red jewel',
     type: ITEM_TYPES.GEM,
     icon: redJewel,
-    price: {
-      min: 500,
-    },
+    sellPrice: 500,
   },
   {
     name: 'Yellow jewel',
     type: ITEM_TYPES.GEM,
     icon: yellowJewelIcon,
-    price: {
-      min: 500,
-    },
+    sellPrice: 500,
   },
 ];

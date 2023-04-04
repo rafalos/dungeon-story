@@ -15,6 +15,7 @@ class Equipment {
     this.type = ITEM_TYPES.GEAR;
     this.equipmentSlot = slot;
     this.id = uuidv4();
+    this.sellPrice = 10;
     for (const [key, value] of Object.entries(affixes)) {
       this[key] = value;
     }

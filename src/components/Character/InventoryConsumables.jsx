@@ -3,12 +3,17 @@ import { ITEM_TYPES } from '../../utils/contants';
 import Item from '../UI/Item';
 import { playerInventoryActions } from '../../store/player-inventory-slice';
 import { useDispatch } from 'react-redux';
+import { itemSold } from '../../store/player-inventory-slice';
 
-function InventoryConsumables({ inventoryItems }) {
+function InventoryConsumables({ inventoryItems, sellMode }) {
   const dispatch = useDispatch();
   const potions = inventoryItems.filter(
     (item) => item.type === ITEM_TYPES.POTION
   );
+
+  const itemSoldHandler = (item) => {
+    dispatch(itemSold(item));
+  };
 
   const itemClickHandler = (item) => {
     dispatch(
@@ -26,7 +31,11 @@ function InventoryConsumables({ inventoryItems }) {
           key={item.id}
           item={item}
           stackable={true}
-          onItemClicked={itemClickHandler}
+          onItemClicked={
+            sellMode
+              ? () => itemSoldHandler(item)
+              : () => itemClickHandler(item)
+          }
         />
       ))}
     </div>

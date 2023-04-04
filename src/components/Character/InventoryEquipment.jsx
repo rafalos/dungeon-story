@@ -3,11 +3,17 @@ import Item from '../UI/Item';
 import { ITEM_TYPES } from '../../utils/contants';
 import { useDispatch } from 'react-redux';
 import { equipItem } from '../../store/player-equipment-slice';
-import classes from './InventoryEquipment.module.css'
+import classes from './InventoryEquipment.module.css';
+import { itemSold } from '../../store/player-inventory-slice';
 
-function InventoryEquipment({ inventoryItems }) {
+function InventoryEquipment({ inventoryItems, sellMode }) {
   const dispatch = useDispatch();
-  const handleEquip = (item) => {
+
+  const itemSoldHandler = (item) => {
+    dispatch(itemSold(item));
+  };
+
+  const itemEquippedHandler = (item) => {
     dispatch(equipItem(item));
   };
 
@@ -24,7 +30,11 @@ function InventoryEquipment({ inventoryItems }) {
             key={item.id}
             item={item}
             equipable={true}
-            onItemClicked={handleEquip}
+            onItemClicked={
+              sellMode
+                ? () => itemSoldHandler(item)
+                : () => itemEquippedHandler(item)
+            }
           />
         ))}
       </div>

@@ -8,6 +8,7 @@ class HealthPotion {
   type = ITEM_TYPES.POTION;
   icon = potionIcon;
   amount = 1;
+  sellPrice = 50;
 }
 
 const genericPotion = new HealthPotion();
