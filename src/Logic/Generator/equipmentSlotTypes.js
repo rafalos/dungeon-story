@@ -5,10 +5,10 @@ import torsoIcon3 from '../Resources/Icons/Armors/armor3.png';
 import ringIcon1 from '../Resources/Icons/Armors/ring3.png';
 import ringIcon2 from '../Resources/Icons/Armors/ring.png';
 import ringIcon3 from '../Resources/Icons/Armors/ring2.png';
-import longswordIcon1 from '../Resources/Icons/Weapons/icon_sword_long1.png';
-import shortswordIcon1 from '../Resources/Icons/Weapons/icon_sword_short1.png';
-import axeIcon1 from '../Resources/Icons/Weapons/icon_axe1.png';
-import bowIcon1 from '../Resources/Icons/Weapons/icon_Bow1.png';
+import longswordIcon1 from '../Resources/Icons/Weapons/sword2.png';
+import shortswordIcon1 from '../Resources/Icons/Weapons/sword3.png';
+import axeIcon1 from '../Resources/Icons/Weapons/axe1.png';
+import bowIcon1 from '../Resources/Icons/Weapons/axe1.png';
 
 import { EQUIPMENT } from '../../utils/contants';
 

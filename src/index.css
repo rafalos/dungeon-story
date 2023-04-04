@@ -4,7 +4,7 @@
   --rarity-rare: rgb(196, 196, 36);
   --rarity-legendary: #d89519;
   --rarity-magic: rgb(73, 73, 184);
-  --rarity-common: rgb(94, 90, 90);
+  --rarity-common: #f5e5e5;
 }
 
 body {
@@ -46,6 +46,8 @@ a {
   text-decoration: none;
 }
 
-a:active, a:hover, a:visited {
+a:active,
+a:hover,
+a:visited {
   color: black;
 }
