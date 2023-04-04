@@ -1,6 +1,7 @@
 import headIcon1 from '../Resources/Icons/Armors/icon_plate_head1.png';
 import torsoIcon1 from '../Resources/Icons/Armors/icon_cloth_chest1.png';
 import ringIcon1 from '../Resources/Icons/Armors/icon_ring1_2.png';
+import ringIcon2 from '../Resources/Icons/Armors/ring.png';
 import longswordIcon1 from '../Resources/Icons/Weapons/icon_sword_long1.png';
 import shortswordIcon1 from '../Resources/Icons/Weapons/icon_sword_short1.png';
 import axeIcon1 from '../Resources/Icons/Weapons/icon_axe1.png';
@@ -67,10 +68,18 @@ export default [
   ],
   [
     {
-      name: 'Wooden ring',
+      name: 'Gold ring',
       slot: EQUIPMENT.SLOTS.RING1,
       icon: ringIcon1,
       metadata: { fortune: 31 },
+    },
+  ],
+  [
+    {
+      name: 'Wooden ring',
+      slot: EQUIPMENT.SLOTS.RING1,
+      icon: ringIcon2,
+      metadata: { fortune: 10 },
     },
   ],
 ];
