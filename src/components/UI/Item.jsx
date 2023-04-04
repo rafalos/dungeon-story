@@ -53,7 +53,7 @@ function Item({ item, slot, onItemClicked, stackable, price, id }) {
                   <li key={metadata}>{metadata}</li>
                 ))}
               </ul>
-              <div>{item.classType}</div>
+              <div>{item.classType} sell: {item.sellPrice}</div>
               {price && <div>Cost: {price}</div>}
             </div>
           )}

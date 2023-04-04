@@ -15,7 +15,7 @@ export default class MetaBuilder {
         randomPrimaryAffix.range.min,
         randomPrimaryAffix.range.max
       );
-      metaItem.itemName = `${randomPrimaryAffix.name} ${metaItem.itemName}`;
+      metaItem.name = `${randomPrimaryAffix.name} ${metaItem.name}`;
     }
     affixRollAmount -= 1;
     for (let i = 0; i <= affixRollAmount; i += 1) {
