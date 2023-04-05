@@ -1,5 +1,5 @@
 import { ITEM_TYPES } from '../../utils/contants';
-import { randomInRange, randomWithProbability } from '../../utils/random';
+import { randomWithProbability } from '../../utils/random';
 import { generateNewEquipmentItem } from './Equipment';
 import { generateRandomGem } from './gem';
 import { generateNewHealthPotion } from './healthPotion';

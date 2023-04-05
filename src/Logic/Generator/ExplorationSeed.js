@@ -1,5 +1,4 @@
-import { EVENTS } from '../../utils/contants';
-import { randomInRange, randomWithProbability } from '../../utils/random';
+import { randomWithProbability } from '../../utils/random';
 import { EVENT_PROBABILITY } from '../Resources/tables/eventTable';
 
 export const generateSeed = () => {
