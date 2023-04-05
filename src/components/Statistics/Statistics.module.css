@@ -1,3 +1,15 @@
 .statistics {
   font-weight: bold;
 }
+
+.statpoints {
+  font-size: 1.5rem;
+}
+
+.statistic {
+  display: flex;
+  gap: 5px;
+  margin: 5px;
+  align-items: center;
+  font-size: 1.3rem;
+}

@@ -17,7 +17,7 @@ function Trap({ onEventFinished }) {
   return (
     <>
       You have fallen into a trap. This results in losing 10% hp!{' '}
-      <button onClick={onEventFinished}>Proceed</button>
+      <button onClick={onEventFinished}>Continue exploration</button>
     </>
   );
 }

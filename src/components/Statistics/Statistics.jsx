@@ -40,15 +40,15 @@ function Statistics() {
         <li>Critical chance: {playerStatistics.critChance.toFixed(1)} %</li>
         <li>Dodge chance: {playerStatistics.dodgeChance.toFixed(1)} %</li>
         <br></br>
-        <li>{`Stat points: ${statPoints}`}</li>
+        <li className={classes.statpoints}>{`Stat points: ${statPoints}`}</li>
         {statistics.map((statisticEntry) => (
-          <li>
-            {`${statisticEntry[0]}: ${statisticEntry[1]} `}
+          <li className={classes.statistic}>
             {statPoints > 0 && (
               <button onClick={() => increaseStatHandler(statisticEntry[0])}>
                 +
               </button>
             )}
+            {`${statisticEntry[0]}: ${statisticEntry[1]} `}
           </li>
         ))}
       </ul>

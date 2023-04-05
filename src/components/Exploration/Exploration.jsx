@@ -5,8 +5,8 @@ import ExplorationSummary from './ExplorationSummary';
 import { useGptStory } from '../../hooks/useGptStory';
 import ResourceBar from '../UI/ResourceBar';
 
-function Exploration({ seed, onExplorationFinished }) {
-  const [isLoading, story, loadingProgress] = useGptStory(seed);
+function Exploration({ seed, onExplorationFinished, gptDriven }) {
+  const [isLoading, story, loadingProgress] = useGptStory(seed, gptDriven);
   const [currentPosition, setCurrentPosition] = useState(-1);
   const [currentStory, setCurrentStory] = useState('');
   const [experienceGained, setExperienceGained] = useState(0);
@@ -43,7 +43,7 @@ function Exploration({ seed, onExplorationFinished }) {
           <ResourceBar percentage={loadingProgress}/>
         </div>
       ) : (
-        <div>
+        <>
           {currentPosition !== seed.length && seed ? (
             <>
               <ExplorationTimeline
@@ -67,7 +67,7 @@ function Exploration({ seed, onExplorationFinished }) {
               totalItemsFound={itemsFound}
             />
           )}
-        </div>
+        </>
       )}
     </div>
   );

@@ -1,0 +1,15 @@
+.new-exploration {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  gap: 50px;
+}
+
+.label {
+  cursor: pointer;
+  font-size: 1.2rem;
+  border: 4px solid black;
+  padding: 50px;
+  font-weight: bold;
+}

@@ -11,12 +11,15 @@ function ExplorationSummary({
   return (
     <div className={classes['summary-wrapper']}>
       <div>{ending}</div>
-      <div>
+      <div className='flex-column-container'>
         During your expedition you have gained {totalExperienceGained} total
         experience and found items:
-        {totalItemsFound.map((item) => (
-          <Item key={item.id} item={item} />
-        ))}
+        <div>
+          {' '}
+          {totalItemsFound.map((item) => (
+            <Item key={item.id} item={item} />
+          ))}
+        </div>
       </div>
       <button onClick={onFinished}>Leave exploration</button>
     </div>

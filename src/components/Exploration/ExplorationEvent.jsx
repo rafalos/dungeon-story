@@ -46,7 +46,7 @@ function ExplorationEvent({
       {eventInProgress && currentEvent()}
       {!eventInProgress && currentStory}
       {!eventInProgress && (
-        <button onClick={progressEventHandler}>Proceed</button>
+        <button onClick={progressEventHandler}>Continue exploration</button>
       )}
     </div>
   );
