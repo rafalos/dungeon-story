@@ -10,7 +10,6 @@ function Sidebar() {
 
   return (
     <>
-      <img src={player.icon} style={{ width: '140px' }} alt='' />
       <div style={{ fontSize: '2rem' }}>Level: {player.level}</div>
       <ResourceBar
         label='Experience'

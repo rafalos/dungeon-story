@@ -17,6 +17,18 @@ function Navigation() {
         >
           Character
         </NavLink>
+        
+        <NavLink
+          className={({ isActive }) =>
+            [
+              classes['nav-link'],
+              isActive ? classes['nav-link--active'] : undefined,
+            ].join(' ')
+          }
+          to={`exploration`}
+        >
+          Exploration
+        </NavLink>
 
         <NavLink
           className={({ isActive }) =>
@@ -28,18 +40,6 @@ function Navigation() {
           to={`shop`}
         >
           Shop
-        </NavLink>
-
-        <NavLink
-          className={({ isActive }) =>
-            [
-              classes['nav-link'],
-              isActive ? classes['nav-link--active'] : undefined,
-            ].join(' ')
-          }
-          to={`exploration`}
-        >
-          Exploration
         </NavLink>
       </nav>
     </>
