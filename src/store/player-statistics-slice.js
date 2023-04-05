@@ -15,8 +15,8 @@ const playerStatisticsSlice = createSlice({
     minDamage: 5,
     critChance: 5,
     maxDamage: 10,
-    currentHealth: 5200,
-    maxHealth: 5200,
+    currentHealth: 500,
+    maxHealth: 500,
     dodgeChance: 5,
     defense: 0,
     attributes: {

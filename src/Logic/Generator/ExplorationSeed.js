@@ -4,7 +4,7 @@ import { EVENT_PROBABILITY } from '../Resources/tables/eventTable';
 
 export const generateSeed = () => {
   const explorationSeed = [];
-  for (let index = 0; index < 2; index++) {
+  for (let index = 0; index < 7; index++) {
     explorationSeed.push(randomWithProbability(EVENT_PROBABILITY));
   }
 

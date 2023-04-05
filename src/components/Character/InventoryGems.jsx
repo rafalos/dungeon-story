@@ -14,11 +14,6 @@ function InventoryGems({ inventoryItems, sellMode }) {
   };
 
   const itemClickHandler = (item) => {
-    dispatch(
-      playerInventoryActions.deductStackable({
-        itemID: item.id,
-      })
-    );
   };
 
   return (

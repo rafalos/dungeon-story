@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import Card from '../components/UI/Card';
 import Exploration from '../components/Exploration/Exploration';
 import { generateSeed } from '../Logic/Generator/ExplorationSeed';
-import { useGptStory } from '../hooks/useGptStory';
-import Battle from '../components/Exploration/Events/Battle/Battle';
 
 function ExplorationPage() {
   const [explorationSeed, setExplorationSeed] = useState(null);

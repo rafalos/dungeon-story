@@ -8,8 +8,6 @@ const playerStatusSlice = createSlice({
     name: 'Rafal',
     icon: playerIcon,
     statPoints: 3,
-    maxHealth: 250,
-    currentHealth: 210,
     energy: 10,
     gold: 300,
     class: 'Knight',
