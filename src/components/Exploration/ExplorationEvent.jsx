@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import Battle from './Events/Battle/Battle';
 import Trap from './Events/Trap/Trap';
+import Treasure from './Events/Treasure/Treasure';
 import classes from './ExplorationEvent.module.css';
+import Well from './Events/Well/Well';
+import { EVENTS } from '../../utils/contants';
 
 function ExplorationEvent({
-  eventId,
+  eventString,
   onEventProgress,
   currentStory,
   onItemFound,
@@ -13,13 +16,18 @@ function ExplorationEvent({
   const [eventInProgress, setEventInProgress] = useState(false);
   const currentEvent = () => {
     let cEvent = null;
-    switch (eventId) {
-      case 1:
+    switch (eventString) {
+      case EVENTS.BATTLE:
         cEvent = <Battle onEventFinished={endEventHandler} onItemFound={onItemFound} onExperienceGained={onExperienceGained}/>;
         break;
-      case 2:
-        cEvent = <Battle onEventFinished={endEventHandler} onItemFound={onItemFound} onExperienceGained={onExperienceGained}/>;
+      case EVENTS.TRAP:
+        cEvent = <Trap onEventFinished={endEventHandler} />;
         break;
+      case EVENTS.WELL:
+        cEvent = <Well onExperienceGained={onExperienceGained} onEventFinished={endEventHandler}/>
+        break;
+      case EVENTS.TREASURE:
+        cEvent = <Treasure onExperienceGained={onExperienceGained} onEventFinished={endEventHandler}/>
     }
     return cEvent;
   };

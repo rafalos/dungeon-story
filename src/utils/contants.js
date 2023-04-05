@@ -46,8 +46,15 @@ export const ITEM_TYPES = {
 export const TIMERS = {
   SHOP: {
     ID: 'shop',
-    AMOUNT: 10,
+    AMOUNT: 555510,
   },
+};
+
+export const EVENTS = {
+  BATTLE: 'battle',
+  TRAP: 'trap',
+  WELL: 'well',
+  TREASURE: 'treasure',
 };
 
 export const GPT_STRINGS = {
@@ -56,6 +63,9 @@ export const GPT_STRINGS = {
     BATTLE:
       'Give me very short continuation of the story after defeating a monster',
     TRAP: 'Give me very short continuation of the story after getting out of the trap',
+    WELL: 'Give me very short continuation of the story after player drunk from mysterious magic well',
+    TREASURE:
+      'Give me very short contination of the story after player found mysterious chest full of treasure',
     ENDING: 'Give me very short story ending afer leaving the dungeon',
   },
 };

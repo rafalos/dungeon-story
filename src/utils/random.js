@@ -6,13 +6,13 @@ export const randomElementFromArray = (arr) =>
 
 export const randomWithProbability = (entityArray) => {
   const randomNumber = randomInRange(0, 100);
-  const percentageChance = 100 - randomNumber;
+  const chancesArray = [];
 
-  const result = entityArray.reduce((acc, current) => {
-    if (current[1] > percentageChance) {
-      return current;
+  for (let i = 0; i < entityArray.length; i++) {
+    for (let j = 0; j < entityArray[i][1]; j++) {
+      chancesArray.push(entityArray[i][0]);
     }
-    return acc;
-  }, entityArray[0]);
-  return result[0];
+  }
+
+  return randomElementFromArray(chancesArray);
 };

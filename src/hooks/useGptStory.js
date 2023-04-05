@@ -15,6 +15,7 @@ export const useGptStory = (seed) => {
   ]);
 
   useEffect(() => {
+    console.log(seed)
     if (!seed) return;
     if (story.length == seed.length + 2) {
       setIsLoading(false);
@@ -34,15 +35,11 @@ export const useGptStory = (seed) => {
 
       if (storyPosition == seed.length) {
         nextMessage = GPT_STRINGS.EXPLORATIONS.ENDING;
+      } else if (storyPosition < seed.length) {
+        nextMessage =
+          GPT_STRINGS.EXPLORATIONS[seed[storyPosition].toUpperCase()];
       } else {
-        switch (seed[storyPosition]) {
-          case 1:
-            nextMessage = GPT_STRINGS.EXPLORATIONS.BATTLE;
-            break;
-          case 2:
-            nextMessage = GPT_STRINGS.EXPLORATIONS.TRAP;
-            break;
-        }
+        nextMessage = null;
       }
 
       setCurrentMessages((prevState) => {

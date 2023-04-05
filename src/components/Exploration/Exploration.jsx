@@ -17,7 +17,6 @@ function Exploration({ seed, onExplorationFinished }) {
   };
 
   const itemFoundHandler = (items) => {
-    console.log(items);
     setItemsFound((prevState) => {
       const newItems = prevState.concat(items);
       return newItems;
@@ -52,7 +51,7 @@ function Exploration({ seed, onExplorationFinished }) {
                 currentPosition={currentPosition}
               />
               <ExplorationEvent
-                eventId={seed[currentPosition]}
+                eventString={seed[currentPosition]}
                 onEventProgress={progressHandler}
                 currentPosition={currentPosition}
                 currentStory={currentStory}
