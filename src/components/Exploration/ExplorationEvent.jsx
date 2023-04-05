@@ -11,23 +11,46 @@ function ExplorationEvent({
   onEventProgress,
   currentStory,
   onItemFound,
-  onExperienceGained
+  onExperienceGained,
+  onPlayerDeath,
 }) {
   const [eventInProgress, setEventInProgress] = useState(false);
   const currentEvent = () => {
     let cEvent = null;
     switch (eventString) {
       case EVENTS.BATTLE:
-        cEvent = <Battle onEventFinished={endEventHandler} onItemFound={onItemFound} onExperienceGained={onExperienceGained}/>;
+        cEvent = (
+          <Battle
+            onEventFinished={endEventHandler}
+            onPlayerDeath={onPlayerDeath}
+            onItemFound={onItemFound}
+            onExperienceGained={onExperienceGained}
+          />
+        );
         break;
       case EVENTS.TRAP:
-        cEvent = <Trap onEventFinished={endEventHandler} />;
+        cEvent = (
+          <Trap
+            onEventFinished={endEventHandler}
+            onPlayerDeath={onPlayerDeath}
+          />
+        );
         break;
       case EVENTS.WELL:
-        cEvent = <Well onExperienceGained={onExperienceGained} onEventFinished={endEventHandler}/>
+        cEvent = (
+          <Well
+            onExperienceGained={onExperienceGained}
+            onEventFinished={endEventHandler}
+          />
+        );
         break;
       case EVENTS.TREASURE:
-        cEvent = <Treasure onExperienceGained={onExperienceGained} onEventFinished={endEventHandler}/>
+        cEvent = (
+          <Treasure
+            onExperienceGained={onExperienceGained}
+            onEventFinished={endEventHandler}
+          />
+        );
     }
     return cEvent;
   };

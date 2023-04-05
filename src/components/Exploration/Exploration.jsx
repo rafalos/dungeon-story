@@ -4,16 +4,26 @@ import ExplorationEvent from './ExplorationEvent';
 import ExplorationSummary from './ExplorationSummary';
 import { useGptStory } from '../../hooks/useGptStory';
 import ResourceBar from '../UI/ResourceBar';
+import { DEFAULT_STRINGS } from '../../utils/contants';
+import { useDispatch } from 'react-redux';
+import { playerStatisticActions } from '../../store/player-statistics-slice';
 
 function Exploration({ seed, onExplorationFinished, gptDriven }) {
+  const [characterDead, setCharacterDead] = useState(false);
   const [isLoading, story, loadingProgress] = useGptStory(seed, gptDriven);
   const [currentPosition, setCurrentPosition] = useState(-1);
   const [currentStory, setCurrentStory] = useState('');
   const [experienceGained, setExperienceGained] = useState(0);
   const [itemsFound, setItemsFound] = useState([]);
+  const dispatch = useDispatch();
 
   const experienceGainedHandler = (amount) => {
     setExperienceGained((prevState) => (prevState += amount));
+  };
+
+  const playerDeadHandler = () => {
+    setCharacterDead(true);
+    dispatch(playerStatisticActions.restorePlayer());
   };
 
   const itemFoundHandler = (items) => {
@@ -36,21 +46,22 @@ function Exploration({ seed, onExplorationFinished, gptDriven }) {
   };
 
   return (
-    <div>
+    <>
       {isLoading ? (
         <div className='flex-column-container'>
           The story is being generated. Stay tuned!
-          <ResourceBar percentage={loadingProgress}/>
+          <ResourceBar percentage={loadingProgress} />
         </div>
       ) : (
-        <>
-          {currentPosition !== seed.length && seed ? (
+        <div>
+          {currentPosition !== seed.length && seed && !characterDead ? (
             <>
               <ExplorationTimeline
                 seed={seed}
                 currentPosition={currentPosition}
               />
               <ExplorationEvent
+                onPlayerDeath={playerDeadHandler}
                 eventString={seed[currentPosition]}
                 onEventProgress={progressHandler}
                 currentPosition={currentPosition}
@@ -61,15 +72,15 @@ function Exploration({ seed, onExplorationFinished, gptDriven }) {
             </>
           ) : (
             <ExplorationSummary
-              ending={currentStory}
+              ending={characterDead ? DEFAULT_STRINGS.DEAD : currentStory}
               onFinished={onExplorationFinished}
               totalExperienceGained={experienceGained}
               totalItemsFound={itemsFound}
             />
           )}
-        </>
+        </div>
       )}
-    </div>
+    </>
   );
 }
 

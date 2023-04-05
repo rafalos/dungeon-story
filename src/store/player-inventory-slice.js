@@ -5,22 +5,7 @@ import { generateRandomGem } from '../Logic/Generator/gem';
 import { playerStatusActions } from './player-status-slice';
 import { ITEM_TYPES } from '../utils/contants';
 import { isStackable } from '../utils/constrains';
-const initialItemInstances = [
-  generateNewEquipmentItem(),
-  generateNewEquipmentItem(),
-  generateNewEquipmentItem(),
-  generateNewEquipmentItem(),
-  generateNewEquipmentItem(),
-  generateNewEquipmentItem(),
-  generateNewEquipmentItem(),
-  generateNewEquipmentItem(),
-  generateNewHealthPotion(),
-  generateRandomGem(),
-  generateRandomGem(),
-  generateRandomGem(),
-  generateRandomGem(),
-  generateRandomGem(),
-];
+const initialItemInstances = [];
 
 const initialItems = initialItemInstances.map((item) => {
   return { ...item };

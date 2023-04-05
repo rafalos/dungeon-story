@@ -57,6 +57,10 @@ export const EVENTS = {
   TREASURE: 'treasure',
 };
 
+export const DEFAULT_STRINGS = {
+  DEAD: 'You barely get out of the dungeon alive'
+}
+
 export const GPT_STRINGS = {
   EXPLORATIONS: {
     ENTRY: 'Give me very short dark fantasy solo roguelike entry dungeon text',

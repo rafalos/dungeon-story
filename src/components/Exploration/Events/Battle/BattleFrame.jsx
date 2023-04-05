@@ -17,7 +17,12 @@ import InventoryConsumables from '../../../Character/InventoryConsumables';
 import BattleActions from './BattleActions';
 import { generateLoot } from '../../../../Logic/Generator/loot';
 
-function BattleFrame({ onLeaveBattle, onItemFound, onExperienceGained }) {
+function BattleFrame({
+  onLeaveBattle,
+  onItemFound,
+  onExperienceGained,
+  onPlayerDeath,
+}) {
   const dispatch = useDispatch();
   const player = useSelector((state) => state.statistics);
   const inventory = useSelector((state) => state.inventory);
@@ -39,7 +44,11 @@ function BattleFrame({ onLeaveBattle, onItemFound, onExperienceGained }) {
   }, []);
 
   useEffect(() => {
-    if (player.currentHealth <= 0 || enemy.currentHealth <= 0) {
+    if (player.currentHealth <= 0) {
+      onPlayerDeath();
+      return;
+    }
+    if (enemy.currentHealth <= 0) {
       const experienceGained = randomInRange(
         enemy.experience.min,
         enemy.experience.max
@@ -99,7 +108,7 @@ function BattleFrame({ onLeaveBattle, onItemFound, onExperienceGained }) {
   };
 
   return (
-    <div>
+    <>
       <div key={battleID}>
         {battleOver ? (
           <BattleSummary
@@ -121,7 +130,7 @@ function BattleFrame({ onLeaveBattle, onItemFound, onExperienceGained }) {
           </div>
         )}
       </div>
-    </div>
+    </>
   );
 }
 
