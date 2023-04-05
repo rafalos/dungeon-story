@@ -2,6 +2,7 @@ import React from 'react';
 import { ITEM_TYPES } from '../../utils/contants';
 import Item from '../UI/Item';
 import { playerInventoryActions } from '../../store/player-inventory-slice';
+import classes from './InventoryEquipment.module.css';
 import { useDispatch } from 'react-redux';
 import { itemSold } from '../../store/player-inventory-slice';
 
@@ -19,6 +20,7 @@ function InventoryGems({ inventoryItems, sellMode }) {
   return (
     <div>
       <h2>Gems</h2>
+      <div className={classes['tab']}>
       {gems.map((item) => (
         <Item
           key={item.id}
@@ -31,6 +33,8 @@ function InventoryGems({ inventoryItems, sellMode }) {
           }
         />
       ))}
+      </div>
+
     </div>
   );
 }

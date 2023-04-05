@@ -4,6 +4,7 @@ import Item from '../UI/Item';
 import { playerInventoryActions } from '../../store/player-inventory-slice';
 import { useDispatch } from 'react-redux';
 import { itemSold } from '../../store/player-inventory-slice';
+import classes from './InventoryEquipment.module.css';
 
 function InventoryConsumables({ inventoryItems, sellMode }) {
   const dispatch = useDispatch();
@@ -26,18 +27,20 @@ function InventoryConsumables({ inventoryItems, sellMode }) {
   return (
     <div>
       <h2>Potions</h2>
-      {potions.map((item) => (
-        <Item
-          key={item.id}
-          item={item}
-          stackable={true}
-          onItemClicked={
-            sellMode
-              ? () => itemSoldHandler(item)
-              : () => itemClickHandler(item)
-          }
-        />
-      ))}
+      <div className={classes['tab']}>
+        {potions.map((item) => (
+          <Item
+            key={item.id}
+            item={item}
+            stackable={true}
+            onItemClicked={
+              sellMode
+                ? () => itemSoldHandler(item)
+                : () => itemClickHandler(item)
+            }
+          />
+        ))}
+      </div>
     </div>
   );
 }

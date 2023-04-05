@@ -38,7 +38,7 @@ function Exploration({ seed, onExplorationFinished, gptDriven }) {
   return (
     <div>
       {isLoading ? (
-        <div>
+        <div className='flex-column-container'>
           The story is being generated. Stay tuned!
           <ResourceBar percentage={loadingProgress}/>
         </div>
