@@ -1,9 +1,8 @@
 import { OpenAIApi, Configuration } from 'openai';
-import { GPT } from '../config';
+import { GPT_API_KEY } from '../utils/config';
 
 const configuration = new Configuration({
-  organization: GPT.ORGANIZATION_ID,
-  apiKey: GPT.API_KEY,
+  apiKey: GPT_API_KEY,
 });
 
 export default new OpenAIApi(configuration);

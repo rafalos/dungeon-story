@@ -2,6 +2,12 @@
 
 Client-sided RPG game (roguelike style) created mainly to train my React and Redux skills
 
+## Hosted version
+
+https://shimmering-horse-fc11d5.netlify.app/
+
+Hosted version contains exposed test API key just for showcase purposes. To run the project properly on your machine use your own OpenAI api key.
+
 ## About
 
 Core dungeon exploration is built on top of chatGPT to generate random story every time you complete a dungeon. By using AI as a story generator i was able to provide unique experience every time you enter a dungeon exploration. For every dungeon entry the random sequence of events is generated. OpenAI adds the next part of the story to each of the event from the sequence. 
@@ -37,3 +43,7 @@ To be implemented:
 - [ ] Logical exploration event (with some sort of puzzle to solve)
 - [ ] Blacksmith
 - [ ] Ability system
+
+## Running project locally
+
+To run project locally just clone the repo and create config.js file in src/utils as follows:
