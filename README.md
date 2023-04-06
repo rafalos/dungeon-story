@@ -36,6 +36,8 @@ Implemented:
 
 To be implemented:
 
+- [ ] Adjust shop refresh time
+- [ ] Fix item overlapping stats after equipping
 - [ ] Character attributes formulas
 - [ ] Gameplay rebalance
 - [ ] Past stories (save, read)
