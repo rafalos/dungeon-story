@@ -46,4 +46,14 @@ To be implemented:
 
 ## Running project locally
 
-To run project locally just clone the repo and create config.js file in src/utils as follows:
+To run project locally just clone the repo and create config.js file in src/utils witn your OpenAI api key as follows:
+
+```
+export const GPT_API_KEY = "YOUR_API_KEY"
+```
+
+Then just run
+
+```
+npm run dev
+```
