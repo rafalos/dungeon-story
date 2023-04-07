@@ -46,7 +46,7 @@ export const ITEM_TYPES = {
 export const TIMERS = {
   SHOP: {
     ID: 'shop',
-    AMOUNT: 555510,
+    AMOUNT: 300,
   },
 };
 

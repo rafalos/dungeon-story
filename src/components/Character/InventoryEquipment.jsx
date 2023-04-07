@@ -16,7 +16,6 @@ function InventoryEquipment({ inventoryItems, sellMode }) {
 
   const itemEquippedHandler = (item) => {
     if (currentEquipment[item.equipmentSlot]) return;
-    console.log(item.equipmentSlot);
 
     dispatch(equipItem(item));
   };
