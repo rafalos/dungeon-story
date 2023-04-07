@@ -4,13 +4,14 @@ import Item from '../UI/Item';
 import { buyItem } from '../../store/shop-slice';
 
 function ShopContent() {
+  const { items } = useSelector((state) => state.shop);
+  const { gold } = useSelector((state) => state.status);
   const dispatch = useDispatch();
 
   const itemBoughtHandler = (item, price) => {
+    if (price > gold) return;
     dispatch(buyItem(item, price));
   };
-
-  const { items } = useSelector((state) => state.shop);
 
   const shopElements = items.map((shopElement) => (
     <Item
