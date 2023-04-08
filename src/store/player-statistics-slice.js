@@ -59,8 +59,17 @@ const playerStatisticsSlice = createSlice({
     takeDamage(state, action) {
       state.currentHealth -= action.payload.amount;
     },
-    restorePlayer(state) {
+    restoreFullHealth(state) {
       state.currentHealth = state.maxHealth;
+    },
+    restoreHealth(state, action) {
+      const { amount } = action.payload;
+
+      if (state.currentHealth + amount > state.maxHealth) {
+        state.currentHealth = state.maxHealth;
+      } else {
+        state.currentHealth += action.payload.amount;
+      }
     },
   },
 });

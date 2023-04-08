@@ -5,6 +5,7 @@ import { generateRandomGem } from '../Logic/Generator/gem';
 import { playerStatusActions } from './player-status-slice';
 import { ITEM_TYPES } from '../utils/contants';
 import { isStackable } from '../utils/constrains';
+import { playerStatisticActions } from './player-statistics-slice';
 const initialItemInstances = [];
 
 const initialItems = initialItemInstances.map((item) => {
@@ -19,7 +20,7 @@ const playerInventorySlice = createSlice({
   reducers: {
     deductStackable(state, action) {
       const existingItem = state.items.find(
-        (item) => item.id === action.payload.itemID
+        (item) => item.id === action.payload.item.id
       );
 
       if (existingItem.amount > 1) {
@@ -57,6 +58,21 @@ const playerInventorySlice = createSlice({
     },
   },
 });
+
+export const potionUsed = (item) => {
+  return (dispatch) => {
+    dispatch(
+      playerInventoryActions.deductStackable({
+        item: item,
+      })
+    );
+    dispatch(
+      playerStatisticActions.restoreHealth({
+        amount: 50,
+      })
+    );
+  };
+};
 
 export const itemSold = (item) => {
   const { sellPrice } = item;

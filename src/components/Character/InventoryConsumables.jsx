@@ -1,7 +1,10 @@
 import React from 'react';
 import { ITEM_TYPES } from '../../utils/contants';
 import Item from '../UI/Item';
-import { playerInventoryActions } from '../../store/player-inventory-slice';
+import {
+  playerInventoryActions,
+  potionUsed,
+} from '../../store/player-inventory-slice';
 import { useDispatch } from 'react-redux';
 import { itemSold } from '../../store/player-inventory-slice';
 import classes from './InventoryEquipment.module.css';
@@ -17,11 +20,7 @@ function InventoryConsumables({ inventoryItems, sellMode }) {
   };
 
   const itemClickHandler = (item) => {
-    dispatch(
-      playerInventoryActions.deductStackable({
-        itemID: item.id,
-      })
-    );
+    dispatch(potionUsed(item));
   };
 
   return (

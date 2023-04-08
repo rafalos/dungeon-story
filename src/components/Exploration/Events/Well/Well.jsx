@@ -13,7 +13,7 @@ function Well({ onEventFinished }) {
         experience: maxExperience,
       })
     );
-    dispatch(playerStatisticActions.restorePlayer());
+    dispatch(playerStatisticActions.restoreFullHealth());
     setDrunkFromWell(true);
   };
 

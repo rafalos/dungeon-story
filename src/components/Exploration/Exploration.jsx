@@ -23,7 +23,7 @@ function Exploration({ seed, onExplorationFinished, gptDriven }) {
 
   const playerDeadHandler = () => {
     setCharacterDead(true);
-    dispatch(playerStatisticActions.restorePlayer());
+    dispatch(playerStatisticActions.restoreFullHealth());
   };
 
   const itemFoundHandler = (items) => {
