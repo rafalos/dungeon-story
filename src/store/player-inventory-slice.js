@@ -20,7 +20,7 @@ const playerInventorySlice = createSlice({
   reducers: {
     deductStackable(state, action) {
       const existingItem = state.items.find(
-        (item) => item.id === action.payload.item.id
+        (item) => item.id === action.payload.id
       );
 
       if (existingItem.amount > 1) {
@@ -63,7 +63,7 @@ export const potionUsed = (item) => {
   return (dispatch) => {
     dispatch(
       playerInventoryActions.deductStackable({
-        item: item,
+        id: item.id,
       })
     );
     dispatch(
@@ -76,14 +76,13 @@ export const potionUsed = (item) => {
 
 export const itemSold = (item) => {
   const { sellPrice } = item;
-
   return (dispatch) => {
     switch (item.type) {
       case ITEM_TYPES.GEM:
       case ITEM_TYPES.POTION:
         dispatch(
           playerInventoryActions.deductStackable({
-            itemID: item.id,
+            id: item.id,
           })
         );
         break;
