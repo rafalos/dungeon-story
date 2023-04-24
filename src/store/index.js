@@ -6,6 +6,7 @@ import playerStatisticsSlice from './player-statistics-slice';
 import shopSlice from './shop-slice';
 import timersSlice from './timers-slice';
 import explorationSlice from './exploration-slice';
+import modalSlice from './modal-slice';
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
     shop: shopSlice,
     timers: timersSlice,
     exploration: explorationSlice,
+    modal: modalSlice,
   },
 });
 

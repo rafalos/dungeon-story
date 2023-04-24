@@ -5,10 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { timersActions } from './store/timers-slice';
 import { resetShop } from './store/shop-slice';
 import { TIMERS } from './utils/contants';
+import Modal from './components/Layout/Modal';
 
 function App() {
   const dispatch = useDispatch();
   const currentShopResetTime = useSelector((state) => state.timers.shop);
+  const modalVisible = useSelector((state) => state.modal.isOpen);
 
   useEffect(() => {
     if (currentShopResetTime <= 0) {
@@ -31,6 +33,7 @@ function App() {
       <div id='game-wrapper'>
         <Outlet />
       </div>
+      {modalVisible && <Modal />}
     </div>
   );
 }
