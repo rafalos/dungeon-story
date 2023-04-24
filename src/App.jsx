@@ -1,6 +1,7 @@
 import Sidebar from './components/Layout/Sidebar';
 import { Outlet } from 'react-router-dom';
 import { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { timersActions } from './store/timers-slice';
 import { resetShop } from './store/shop-slice';
@@ -33,7 +34,8 @@ function App() {
       <div id='game-wrapper'>
         <Outlet />
       </div>
-      {modalVisible && <Modal />}
+      
+      {modalVisible && createPortal(<Modal />, document.body)}
     </div>
   );
 }
