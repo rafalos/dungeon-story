@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import GPT from '../initializers/gptInitializer';
 import { GPT_STRINGS } from '../utils/contants';
+import { timeoutAfterSeconds } from '../utils/async';
 
 export const useGptStory = (seed, gptDriven) => {
   const [story, setStory] = useState([]);
@@ -28,10 +29,13 @@ export const useGptStory = (seed, gptDriven) => {
     }
     if (currentMessages.length % 2 == 0) return;
     setLoadingProgress((story.length / (seed.length + 2)) * 100);
-    GPT.createChatCompletion({
-      model: 'gpt-3.5-turbo',
-      messages: currentMessages,
-    })
+    Promise.race([
+      GPT.createChatCompletion({
+        model: 'gpt-3.5-turbo',
+        messages: currentMessages,
+      }),
+      timeoutAfterSeconds(10),
+    ])
       .then((res) => {
         setCurrentMessages((prevState) => {
           return [...prevState, res.data.choices[0].message];
