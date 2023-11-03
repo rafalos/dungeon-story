@@ -3,15 +3,15 @@ import ExplorationTimeline from './ExplorationTimeline';
 import ExplorationEvent from './ExplorationEvent';
 import ExplorationSummary from './ExplorationSummary';
 import { useGptStory } from '../../hooks/useGptStory';
-import ResourceBar from '../UI/ResourceBar';
 import { DEFAULT_STRINGS } from '../../utils/contants';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { playerStatisticActions } from '../../store/player-statistics-slice';
+import { explorationActions } from '../../store/exploration-slice';
 
 function Exploration({ seed, onExplorationFinished, gptDriven }) {
+  const { currentPosition } = useSelector((state) => state.exploration);
   const [characterDead, setCharacterDead] = useState(false);
-  const [isLoading, story, loadingProgress] = useGptStory(seed, gptDriven);
-  const [currentPosition, setCurrentPosition] = useState(-1);
+  const { isLoading, story, currentChapter } = useGptStory(seed, gptDriven);
   const [currentStory, setCurrentStory] = useState('');
   const [experienceGained, setExperienceGained] = useState(0);
   const [itemsFound, setItemsFound] = useState([]);
@@ -39,10 +39,12 @@ function Exploration({ seed, onExplorationFinished, gptDriven }) {
     } else {
       setCurrentStory(story[currentPosition + 1]);
     }
-  }, [currentPosition, story]);
+
+    console.log(currentPosition);
+  }, [currentPosition]);
 
   const progressHandler = () => {
-    setCurrentPosition((currentPosition) => (currentPosition += 1));
+    dispatch(explorationActions.movePosition());
   };
 
   return (
@@ -50,7 +52,6 @@ function Exploration({ seed, onExplorationFinished, gptDriven }) {
       {isLoading ? (
         <div className='flex-column-container'>
           The story is being generated. Stay tuned!
-          <ResourceBar percentage={loadingProgress} />
         </div>
       ) : (
         <div>
@@ -65,7 +66,7 @@ function Exploration({ seed, onExplorationFinished, gptDriven }) {
                 eventString={seed[currentPosition]}
                 onEventProgress={progressHandler}
                 currentPosition={currentPosition}
-                currentStory={currentStory}
+                currentStory={currentChapter}
                 onItemFound={itemFoundHandler}
                 onExperienceGained={experienceGainedHandler}
               />
