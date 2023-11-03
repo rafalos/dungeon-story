@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import GPT from '../lib/OpenAiApi';
 import { GPT_STRINGS } from '../utils/contants';
-import { timeoutAfterSeconds } from '../utils/async';
 import { useSelector } from 'react-redux';
 
 export const useGptStory = (seed, gptDriven) => {
