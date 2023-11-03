@@ -3,32 +3,23 @@ import classes from './Item.module.css';
 import equipmentClasses from '../Equipment/Equipment.module.css';
 import { useDispatch } from 'react-redux';
 import { playerInventoryActions } from '../../store/player-inventory-slice';
+import { Tooltip } from 'react-tooltip';
 
 function StackableItem({ item }) {
   const dispatch = useDispatch();
-  const [tooltipVisible, setTooltipVisible] = useState(false);
-
-  useEffect(() => {
-    setTooltipVisible(false);
-  }, [item]);
-
-  const handleShowTooltip = () => {
-    setTooltipVisible(true);
-  };
-
-  const handleHideTooltip = () => {
-    setTooltipVisible(false);
-  };
 
   const consumeItemHandler = () => {
-    dispatch(playerInventoryActions.deductStackable({
-      itemID: item.id
-    }))
+    dispatch(
+      playerInventoryActions.deductStackable({
+        itemID: item.id,
+      })
+    );
   };
 
   return (
     <>
       <div
+        data-tooltip-id='item'
         onClick={consumeItemHandler}
         onMouseEnter={handleShowTooltip}
         onMouseLeave={handleHideTooltip}
@@ -39,16 +30,16 @@ function StackableItem({ item }) {
         style={{ backgroundImage: `url(${item.icon})` }}
       >
         <div className={classes.amount}>{item.amount}</div>
-        {tooltipVisible && (
-          <div
-            className={`${classes.tooltip} ${
-              classes[`tooltip--${item.classType}`]
-            }`}
-          >
-            <span>{item.name}</span>
-            {item.classType}
-          </div>
-        )}
+
+        <Tooltip
+          id='item'
+          className={`${classes.tooltip} ${
+            classes[`tooltip--${item.classType}`]
+          }`}
+        >
+          <span>{item.name}</span>
+          {item.classType}
+        </Tooltip>
       </div>
     </>
   );

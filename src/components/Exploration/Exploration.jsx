@@ -11,7 +11,7 @@ import { explorationActions } from '../../store/exploration-slice';
 function Exploration({ seed, onExplorationFinished, gptDriven }) {
   const { currentPosition } = useSelector((state) => state.exploration);
   const [characterDead, setCharacterDead] = useState(false);
-  const { isLoading, story, currentChapter } = useGptStory(seed, gptDriven);
+  const { isLoading: chapterLoading, story, currentChapter } = useGptStory(seed, gptDriven);
   const [currentStory, setCurrentStory] = useState('');
   const [experienceGained, setExperienceGained] = useState(0);
   const [itemsFound, setItemsFound] = useState([]);
@@ -49,38 +49,33 @@ function Exploration({ seed, onExplorationFinished, gptDriven }) {
 
   return (
     <>
-      {isLoading ? (
-        <div className='flex-column-container'>
-          The story is being generated. Stay tuned!
-        </div>
-      ) : (
-        <div>
-          {currentPosition !== seed.length && seed && !characterDead ? (
-            <>
-              <ExplorationTimeline
-                seed={seed}
-                currentPosition={currentPosition}
-              />
-              <ExplorationEvent
-                onPlayerDeath={playerDeadHandler}
-                eventString={seed[currentPosition]}
-                onEventProgress={progressHandler}
-                currentPosition={currentPosition}
-                currentStory={currentChapter}
-                onItemFound={itemFoundHandler}
-                onExperienceGained={experienceGainedHandler}
-              />
-            </>
-          ) : (
-            <ExplorationSummary
-              ending={characterDead ? DEFAULT_STRINGS.DEAD : currentStory}
-              onFinished={onExplorationFinished}
-              totalExperienceGained={experienceGained}
-              totalItemsFound={itemsFound}
+      <div>
+        {currentPosition !== seed.length && seed && !characterDead ? (
+          <>
+            <ExplorationTimeline
+              seed={seed}
+              currentPosition={currentPosition}
             />
-          )}
-        </div>
-      )}
+            <ExplorationEvent
+              onPlayerDeath={playerDeadHandler}
+              eventString={seed[currentPosition]}
+              onEventProgress={progressHandler}
+              currentPosition={currentPosition}
+              currentStory={currentChapter}
+              chapterLoading={chapterLoading}
+              onItemFound={itemFoundHandler}
+              onExperienceGained={experienceGainedHandler}
+            />
+          </>
+        ) : (
+          <ExplorationSummary
+            ending={characterDead ? DEFAULT_STRINGS.DEAD : currentStory}
+            onFinished={onExplorationFinished}
+            totalExperienceGained={experienceGained}
+            totalItemsFound={itemsFound}
+          />
+        )}
+      </div>
     </>
   );
 }

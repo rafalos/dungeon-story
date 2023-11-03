@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
+import 'react-tooltip/dist/react-tooltip.css';
 import store from './store';
 import { Provider as StoreProvider } from 'react-redux';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';

@@ -5,6 +5,7 @@ import Treasure from './Events/Treasure/Treasure';
 import classes from './ExplorationEvent.module.css';
 import Well from './Events/Well/Well';
 import { EVENTS } from '../../utils/contants';
+import Loader from '../UI/Loader';
 
 function ExplorationEvent({
   eventString,
@@ -13,6 +14,7 @@ function ExplorationEvent({
   onItemFound,
   onExperienceGained,
   onPlayerDeath,
+  chapterLoading,
 }) {
   const [eventInProgress, setEventInProgress] = useState(false);
   const currentEvent = () => {
@@ -67,9 +69,12 @@ function ExplorationEvent({
   return (
     <div className={classes['exploration-wrapper']}>
       {eventInProgress && currentEvent()}
-      {!eventInProgress && currentStory}
+      {!eventInProgress && chapterLoading && <Loader />}
+      {!eventInProgress && !chapterLoading && currentStory}
       {!eventInProgress && (
-        <button onClick={progressEventHandler}>Continue exploration</button>
+        <button onClick={progressEventHandler} disabled={chapterLoading}>
+          Continue exploration
+        </button>
       )}
     </div>
   );

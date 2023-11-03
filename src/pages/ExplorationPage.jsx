@@ -4,6 +4,7 @@ import Exploration from '../components/Exploration/Exploration';
 import classes from './ExplorationPage.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { explorationActions } from '../store/exploration-slice';
+import Loader from '../components/UI/Loader';
 
 function ExplorationPage() {
   const { seed, currentPosition } = useSelector((state) => state.exploration);
