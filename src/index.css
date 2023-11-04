@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 :root {
-  font-family: 'Cinzel Decorative', cursive;
+  /* font-family: 'Cinzel Decorative', cursive; */
   --rarity-rare: rgb(196, 196, 36);
   --rarity-legendary: #d89519;
   --rarity-magic: rgb(73, 73, 184);

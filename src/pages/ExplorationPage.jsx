@@ -3,7 +3,10 @@ import Card from '../components/UI/Card';
 import Exploration from '../components/Exploration/Exploration';
 import classes from './ExplorationPage.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { explorationActions } from '../store/exploration-slice';
+import {
+  explorationActions,
+  initializeExploration,
+} from '../store/exploration-slice';
 import Loader from '../components/UI/Loader';
 
 function ExplorationPage() {
@@ -20,7 +23,7 @@ function ExplorationPage() {
   };
 
   const handleExplorationStart = () => {
-    dispatch(explorationActions.initialize());
+    dispatch(initializeExploration());
   };
 
   return (

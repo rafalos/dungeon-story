@@ -8,6 +8,7 @@ function BattleEntityPanel({ entity }) {
       <img className={classes.image} src={entity.icon} alt='' />
       <div>{entity.name}</div>
       <ResourceBar
+        bgColor='bg-red-700'
         currentResource={entity.currentHealth}
         maxResource={entity.maxHealth}
       />

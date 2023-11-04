@@ -12,11 +12,13 @@ function Sidebar() {
     <>
       <div style={{ fontSize: '2rem' }}>Level: {player.level}</div>
       <ResourceBar
+        bgColor='bg-yellow-500'
         label='Experience'
         currentResource={player.experience}
         maxResource={player.maxExperience}
       />
       <ResourceBar
+        bgColor='bg-red-700'
         label='Health'
         currentResource={currentHealth}
         maxResource={maxHealth}
