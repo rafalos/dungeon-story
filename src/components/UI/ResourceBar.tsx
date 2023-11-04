@@ -3,7 +3,7 @@ type Props = {
   maxResource: number;
   percentage: number;
   label: string;
-  bgColor: 'bg-red-700' | 'bg-yellow-500';
+  bgColor: 'bg-red-800' | 'bg-yellow-600';
 };
 
 function ResourceBar({
@@ -11,7 +11,7 @@ function ResourceBar({
   maxResource,
   percentage,
   label,
-  bgColor
+  bgColor,
 }: Props) {
   const factor = !isNaN(percentage)
     ? percentage
@@ -20,8 +20,8 @@ function ResourceBar({
   return (
     <>
       {label && `${label}:`}
-      <div className='border border-solid border-black bg-gray-200 rounded-md w-full h-8 relative'>
-        <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>{`${factor.toFixed(
+      <div className='border-2 border-solid border-black bg-gray-300 rounded-md w-full h-8 relative'>
+        <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-lg text-gray-900'>{`${factor.toFixed(
           1
         )}%`}</div>
         <div

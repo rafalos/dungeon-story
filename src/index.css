@@ -30,6 +30,7 @@ body {
 .App {
   display: grid;
   grid-template-columns: 300px 6fr;
+  height: 100vh;
 }
 
 ul {
@@ -44,22 +45,6 @@ ul {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-}
-
-#sidebar {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  background-color: #b1b1b1;
-  font-weight: bold;
-}
-
-#game-wrapper {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 a {

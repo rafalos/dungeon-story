@@ -3,6 +3,10 @@
   "display": "Vite React",
   "_version": "2.0.0",
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
     "target": "esnext",
     "useDefineForClassFields": true,
     "lib": ["dom", "dom.iterable", "esnext"],

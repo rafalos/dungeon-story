@@ -1,8 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { modalActions } from '../../store/modal-slice';
 import classes from './Modal.module.css';
 import Card from '../UI/Card';
+import { modalActions } from '@/store/modal-slice';
+
 
 function Modal() {
   const dispatch = useDispatch();

@@ -26,15 +26,15 @@ function App() {
     }
   }, [currentShopResetTime]);
 
+
+
   return (
     <div className='App'>
-      <div id='sidebar'>
-        <Sidebar />
-      </div>
-      <div id='game-wrapper'>
+      <Sidebar />
+      <div className='flex justify-center content-center h-full bg-gray-950'>
         <Outlet />
       </div>
-      
+
       {modalVisible && createPortal(<Modal />, document.body)}
     </div>
   );
