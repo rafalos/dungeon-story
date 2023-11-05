@@ -1,5 +1,6 @@
 import React from 'react';
 import Item from '../../../UI/Item';
+import Button from '@/components/UI/Button';
 
 function BattleSummary({ onLeaveBattle, battleSummary }) {
   return (
@@ -11,7 +12,7 @@ function BattleSummary({ onLeaveBattle, battleSummary }) {
           <Item item={item} />
         ))}
       </div>
-      <button onClick={onLeaveBattle}>Leave</button>
+      <Button onClick={onLeaveBattle}>Leave</Button>
     </div>
   );
 }

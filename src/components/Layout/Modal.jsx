@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import classes from './Modal.module.css';
 import Card from '../UI/Card';
 import { modalActions } from '@/store/modal-slice';
+import Button from '../UI/Button';
 
 
 function Modal() {
@@ -20,7 +21,7 @@ function Modal() {
           <div className={classes.inner}>
             <header className={classes.header}>{title}</header>
             <div>{description}</div>
-            <button onClick={modalCloseHandler}>Close</button>
+            <Button onClick={modalCloseHandler}>Close</Button>
           </div>
         </Card>
       </div>

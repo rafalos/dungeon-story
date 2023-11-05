@@ -1,15 +1,16 @@
 import React from 'react';
 import classes from './BattleActions.module.css';
+import Button from '@/components/UI/Button';
 
 function BattleActions({ onBasicAttack }) {
   return (
     <div className={classes.actions}>
-      <button className={classes.action} onClick={onBasicAttack}>
+      <Button onClick={onBasicAttack}>
         A
-      </button>
-      <button className={classes.action} onClick={onBasicAttack}>
+      </Button>
+      <Button onClick={onBasicAttack}>
         S
-      </button>
+      </Button>
     </div>
   );
 }

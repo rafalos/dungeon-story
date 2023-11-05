@@ -8,6 +8,7 @@ import {
   initializeExploration,
 } from '../store/exploration-slice';
 import Loader from '../components/UI/Loader';
+import Button from '@/components/UI/Button';
 
 function ExplorationPage() {
   const { seed, currentPosition } = useSelector((state) => state.exploration);
@@ -44,9 +45,9 @@ function ExplorationPage() {
               checked={gptDriven}
             ></input>
           </label>
-          <button className={classes.btn} onClick={handleExplorationStart}>
+          <Button onClick={handleExplorationStart}>
             Start new exploration
-          </button>
+          </Button>
         </div>
       )}
       {seed && (

@@ -4,7 +4,7 @@ import classes from './Navigation.module.css';
 
 function Navigation() {
   return (
-    <>
+    <div className='bg-zinc-800 text-white'>
       <nav className={classes['navigation_list']}>
         <NavLink
           className={({ isActive }) =>
@@ -42,7 +42,7 @@ function Navigation() {
           Shop
         </NavLink>
       </nav>
-    </>
+    </div>
   );
 }
 

@@ -1,8 +1,9 @@
+import Button from '@/components/UI/Button'
 import React from 'react'
 
 function BattleSearch({onEnterBattle}) {
   return (
-    <div><button onClick={onEnterBattle}>Search for battle</button></div>
+    <div><Button onClick={onEnterBattle}>Search for battle</Button></div>
   )
 }
 

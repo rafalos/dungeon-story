@@ -4,6 +4,7 @@ import { LOOT_BRACKERS } from '../../../../Logic/Resources/tables/lootTable';
 import { useDispatch } from 'react-redux';
 import { playerInventoryActions } from '../../../../store/player-inventory-slice';
 import Item from '../../../UI/Item';
+import Button from '@/components/UI/Button';
 
 function Treasure({ onEventFinished }) {
   const [collected, setCollected] = useState(false);
@@ -32,12 +33,12 @@ function Treasure({ onEventFinished }) {
               <Item key={item.id} item={item} />
             ))}
           </div>
-          <button onClick={onEventFinished}>Continue exploration</button>
+          <Button onClick={onEventFinished}>Continue exploration</Button>
         </div>
       ) : (
         <div className='flex-column-container'>
           You found a treasure chest!
-          <button onClick={chestOpenedHandler}>Open</button>
+          <Button onClick={chestOpenedHandler}>Open</Button>
         </div>
       )}
     </div>

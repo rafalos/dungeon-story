@@ -6,6 +6,7 @@ import classes from './ExplorationEvent.module.css';
 import Well from './Events/Well/Well';
 import { EVENTS } from '../../utils/contants';
 import Loader from '../UI/Loader';
+import Button from '../UI/Button';
 
 function ExplorationEvent({
   eventString,
@@ -72,9 +73,9 @@ function ExplorationEvent({
       {!eventInProgress && chapterLoading && <Loader />}
       {!eventInProgress && !chapterLoading && currentStory}
       {!eventInProgress && (
-        <button onClick={progressEventHandler} disabled={chapterLoading}>
+        <Button onClick={progressEventHandler} disabled={chapterLoading}>
           Continue exploration
-        </button>
+        </Button>
       )}
     </div>
   );

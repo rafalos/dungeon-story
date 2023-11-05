@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { playerStatisticActions } from '../../../../store/player-statistics-slice';
 import { randomInRange } from '../../../../utils/random';
+import Button from '@/components/UI/Button';
 
 function Trap({ onEventFinished }) {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ function Trap({ onEventFinished }) {
   return (
     <>
       You have fallen into a trap. This results in losing 10% hp!{' '}
-      <button onClick={onEventFinished}>Continue exploration</button>
+      <Button onClick={onEventFinished}>Continue exploration</Button>
     </>
   );
 }

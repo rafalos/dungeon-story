@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './ExplorationSummary.module.css';
 import Item from '../UI/Item';
+import Button from '../UI/Button';
 
 function ExplorationSummary({
   ending,
@@ -19,7 +20,7 @@ function ExplorationSummary({
         experience and found:
         <div>{totalItemsFound.length > 0 ? foundItems : 'No items'}</div>
       </div>
-      <button onClick={onFinished}>Leave exploration</button>
+      <Button onClick={onFinished}>Leave exploration</Button>
     </div>
   );
 }

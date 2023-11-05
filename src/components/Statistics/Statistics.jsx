@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { playerStatisticActions } from '../../store/player-statistics-slice';
 import { playerStatusActions } from '../../store/player-status-slice';
 import classes from './Statistics.module.css';
+import Button from '../UI/Button';
 
 function Statistics() {
   const dispatch = useDispatch();
@@ -44,9 +45,9 @@ function Statistics() {
         {statistics.map((statisticEntry) => (
           <li className={classes.statistic}>
             {statPoints > 0 && (
-              <button onClick={() => increaseStatHandler(statisticEntry[0])}>
+              <Button onClick={() => increaseStatHandler(statisticEntry[0])}>
                 +
-              </button>
+              </Button>
             )}
             {`${statisticEntry[0]}: ${statisticEntry[1]} `}
           </li>
