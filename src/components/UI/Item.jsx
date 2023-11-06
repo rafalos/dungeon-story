@@ -32,20 +32,17 @@ function Item({ item, slot, onItemClicked, stackable, price, id }) {
 
           <Tooltip
             id={elementId}
-            className={`${classes.tooltip} ${
-              classes[`tooltip--${item.classType}`]
-            }`}
+            className={`border-4 flex flex-col justify-center items-center z-50`}
           >
-            <span>{item.name}</span>
-            <ul className={classes[`metadata-list`]}>
+            <span className='font-medium text-lg'>{item.name}</span>
+            <ul className='my-2 text-base'>
               {metadataElements.map((metadata) => (
                 <li key={metadata}>{metadata}</li>
               ))}
             </ul>
-            <div>
-              {item.classType} sell: {item.sellPrice}
-            </div>
-            {price && <div>Cost: {price}</div>}
+            <div className=''>{item.classType}</div>
+            {/* <div>Sell price: {item.sellPrice}</div>
+            {price && <div>Cost: {price}</div>} */}
           </Tooltip>
         </div>
       ) : (

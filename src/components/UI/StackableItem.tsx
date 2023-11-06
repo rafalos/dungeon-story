@@ -21,8 +21,6 @@ function StackableItem({ item }) {
       <div
         data-tooltip-id='item'
         onClick={consumeItemHandler}
-        onMouseEnter={handleShowTooltip}
-        onMouseLeave={handleHideTooltip}
         className={`${classes['inventory-item']} ${
           equipmentClasses[`equipment-item--${item.equipmentSlot}`]
         } ${classes[`inventory-item--${item.classType}`]}

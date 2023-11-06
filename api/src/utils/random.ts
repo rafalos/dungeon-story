@@ -7,7 +7,6 @@ export const randomElementFromArray = <T>(arr: T[]) =>
 export const randomWithProbability = <T extends number | string>(
   entityArray: T[][]
 ) => {
-  const randomNumber = randomInRange(0, 100);
   const chancesArray = [];
 
   for (let i = 0; i < entityArray.length; i++) {

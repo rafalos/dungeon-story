@@ -5,10 +5,10 @@
 
 :root {
   /* font-family: 'Cinzel Decorative', cursive; */
-  --rarity-rare: rgb(196, 196, 36);
+  --rarity-rare: rgb(224, 224, 0);
   --rarity-legendary: #d89519;
-  --rarity-magic: rgb(73, 73, 184);
-  --rarity-common: #f5e5e5;
+  --rarity-magic: rgb(58, 58, 235);
+  --rarity-common: #e0e0e0;
 }
 
 body {
@@ -27,7 +27,6 @@ body {
   display: grid;
   grid-template-columns: 350px 6fr;
   height: 100vh;
-  width: 90%;
 }
 
 ul {

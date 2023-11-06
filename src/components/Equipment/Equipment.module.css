@@ -2,7 +2,7 @@
   display: grid;
   grid-template-rows: repeat(3, 50px);
   grid-template-columns: repeat(3, 50px);
-  grid-gap: 15px;
+  grid-gap: 3rem;
   grid-template-areas:
     '. head .'
     'leftHand torso rightHand'
