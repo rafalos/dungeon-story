@@ -6,6 +6,7 @@ import { Request } from 'express';
 import { notFound } from './handlers/notFound';
 import Player from './models/Player';
 import { generateRandomGem } from './logic/generators/gem';
+import { generateRandomEquipment } from './logic/generators/equipment';
 
 export const app = express();
 
@@ -21,8 +22,14 @@ app.get('/api/seed', (_, response) => {
   response.json(newSeed);
 });
 
+app.get('/api/item', (_, response) => {
+  const randomItem = generateRandomEquipment();
+
+  response.json(randomItem)
+});
+
 app.get('/api/character', async (req, res) => {
-  const gem = generateRandomGem();
+  const gem = generateRandomEquipment();
 
   console.log(gem);
 });

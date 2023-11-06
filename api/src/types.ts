@@ -1,9 +1,22 @@
-import { ITEM_TYPES } from './utils/constants';
-
 type ItemType = 'equipment' | 'potion' | 'gem';
+type SlotType = 'head' | 'torso' | 'legs' | 'boots' | 'ring' | 'weapon';
+export type ClassType = 'common' | 'magic' | 'rare' | 'legendary';
 
-type Affix = 'criticalChance' | 'dodgeChance' | 'fortune';
+export type Affix =
+  | 'criticalChance'
+  | 'dexterity'
+  | 'vitality'
+  | 'intelligence'
+  | 'dodgeChance'
+  | 'fortune'
+  | 'strength'
+  | 'defense'
+  | 'fortune';
 
+export interface IShop {
+  items: IEquipment[];
+  lastRefreshed: string;
+}
 export interface IPlayer {
   name: string;
   statPoints: 0;
@@ -14,7 +27,7 @@ export interface IPlayer {
   maxExperience: number;
 }
 
-interface Item {
+interface IItem {
   name: string;
   type: ItemType;
   icon: string;
@@ -23,13 +36,15 @@ interface Item {
 
 type Modifier = [Affix, number];
 
-interface Stackable extends Item {
+interface Stackable extends IItem {
   amount: number;
 }
 
-interface Equipment extends Item {
+export interface IEquipment extends IItem {
   modifiers: Modifier[];
   type: 'equipment';
+  slot: SlotType;
+  classType: ClassType;
 }
 
 export interface Gem extends Stackable {
@@ -39,3 +54,9 @@ export interface Gem extends Stackable {
 interface Potion extends Stackable {
   type: 'potion';
 }
+
+export type EquipmentBase = Omit<
+  IEquipment,
+  'price' | 'sellPrice' | 'type' | 'classType'
+>;
+export type EquipmentWithMetadata = Omit<IEquipment, 'type' | 'sellPrice'>;

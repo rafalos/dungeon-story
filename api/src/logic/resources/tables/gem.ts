@@ -37,7 +37,7 @@ export const jewel: Gem[] = [
     type: 'gem',
     icon: 'test.png',
     sellPrice: 500,
-    amount: 1
+    amount: 1,
   },
 
   {
@@ -45,14 +45,14 @@ export const jewel: Gem[] = [
     type: 'gem',
     icon: 'test.png',
     sellPrice: 500,
-    amount: 1
+    amount: 1,
   },
   {
     name: 'Pink jewel',
     type: 'gem',
     icon: 'test.png',
     sellPrice: 500,
-    amount: 1
+    amount: 1,
   },
 
   {
@@ -60,12 +60,13 @@ export const jewel: Gem[] = [
     type: 'gem',
     icon: 'test.png',
     sellPrice: 500,
-    amount: 1
+    amount: 1,
   },
   {
     name: 'Yellow jewel',
     type: 'gem',
     icon: 'test.png',
     sellPrice: 500,
-    amount: 1
+    amount: 1,
   },
+];
