@@ -12,4 +12,6 @@ export const shopRestock = async () => {
   };
 
   await Shop.findOneAndUpdate({}, update);
+
+  console.log(`Restocked shop with new items ${lastRefreshed}`);
 };

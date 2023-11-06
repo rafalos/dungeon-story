@@ -2,6 +2,7 @@ import { app } from './app';
 import mongoose from 'mongoose';
 import Shop from './models/Shop';
 import { recreateShop } from './utils/recreateShop';
+import { startCronJobs } from './cron';
 const mongoUri = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@cluster0.pfzxkba.mongodb.net/dungeon-story-dev`;
 
 const init = async () => {
@@ -13,6 +14,8 @@ const init = async () => {
   app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`);
   });
+
+  startCronJobs();
 };
 
 init().catch((e) => {
