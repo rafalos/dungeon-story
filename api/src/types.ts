@@ -32,6 +32,7 @@ interface IItem {
   type: ItemType;
   icon: string;
   sellPrice: number;
+  owner: string;
 }
 
 type Modifier = [Affix, number];

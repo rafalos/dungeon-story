@@ -1,13 +1,14 @@
 import { Schema, model } from 'mongoose';
-import { IEquipment, IShop } from '../types';
+import { IEquipment } from '../types';
 
 export const equipmentSchema = new Schema<IEquipment>({
   icon: String,
   modifiers: [Array],
   name: String,
   sellPrice: Number,
-  type: 'equipment',
+  type: String,
   slot: String,
+  owner: String,
 });
 
 export default model<IEquipment>('Equipment', equipmentSchema);

@@ -7,6 +7,8 @@ import { notFound } from './handlers/notFound';
 import Player from './models/Player';
 import { generateRandomGem } from './logic/generators/gem';
 import { generateRandomEquipment } from './logic/generators/equipment';
+import Equipment from './models/Equipment';
+import { shopRestock } from './handlers/shopRestock';
 
 export const app = express();
 
@@ -22,16 +24,18 @@ app.get('/api/seed', (_, response) => {
   response.json(newSeed);
 });
 
-app.get('/api/item', (_, response) => {
+app.get('/api/item', async (_, response) => {
   const randomItem = generateRandomEquipment();
 
-  response.json(randomItem)
+  const dbItem = new Equipment(randomItem);
+
+  await dbItem.save();
+
+  response.json(randomItem);
 });
 
 app.get('/api/character', async (req, res) => {
-  const gem = generateRandomEquipment();
-
-  console.log(gem);
+  await shopRestock();
 });
 
 app.get('/api/getChapter', (_, response) => {});
