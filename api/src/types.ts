@@ -1,3 +1,7 @@
+import { ITEM_TYPES } from './utils/constants';
+
+type ItemType = 'equipment' | 'potion' | 'gem';
+
 type Affix = 'criticalChance' | 'dodgeChance' | 'fortune';
 
 export interface IPlayer {
@@ -12,6 +16,7 @@ export interface IPlayer {
 
 interface Item {
   name: string;
+  type: ItemType;
   icon: string;
   sellPrice: number;
 }
@@ -24,4 +29,13 @@ interface Stackable extends Item {
 
 interface Equipment extends Item {
   modifiers: Modifier[];
+  type: 'equipment';
+}
+
+export interface Gem extends Stackable {
+  type: 'gem';
+}
+
+interface Potion extends Stackable {
+  type: 'potion';
 }

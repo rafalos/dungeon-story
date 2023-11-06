@@ -37,12 +37,6 @@ export const STATISTICS = {
   },
 };
 
-export const ITEM_TYPES = {
-  EQUIPMENT: 'equipment',
-  POTION: 'potion',
-  GEM: 'gem',
-};
-
 export const TIMERS = {
   SHOP: {
     ID: 'shop',
@@ -58,18 +52,20 @@ export const EVENTS = {
 };
 
 export const DEFAULT_STRINGS = {
-  DEAD: 'You barely get out of the dungeon alive'
-}
+  DEAD: 'You barely get out of the dungeon alive',
+};
 
 export const GPT_STRINGS = {
   EXPLORATIONS: {
-    ENTRY: 'Give me very short max 300 characters dark fantasy solo roguelike entry dungeon text',
+    ENTRY:
+      'Give me very short max 300 characters dark fantasy solo roguelike entry dungeon text',
     BATTLE:
       'Give me very short max 300 characters continuation of the story after defeating a monster',
     TRAP: 'Give me very short max 300 characters continuation of the story after getting out of the trap',
     WELL: 'Give me very short max 300 characters continuation of the story after player drunk from mysterious magic well',
     TREASURE:
       'Give me very short max 300 characters contination of the story after player found mysterious chest full of treasure',
-    ENDING: 'Give me very short max 300 characters story ending afer leaving the dungeon',
+    ENDING:
+      'Give me very short max 300 characters story ending afer leaving the dungeon',
   },
 };

@@ -1,5 +1,5 @@
 import { randomWithProbability } from '../../utils/random';
-import { EVENT_PROBABILITY } from '../resources/tables/eventTable';
+import { EVENT_PROBABILITY } from '../resources/tables/event';
 
 export const generateSeed = () => {
   const explorationSeed = [];

@@ -5,6 +5,7 @@ require('dotenv').config();
 import { Request } from 'express';
 import { notFound } from './handlers/notFound';
 import Player from './models/Player';
+import { generateRandomGem } from './logic/generators/gem';
 
 export const app = express();
 
@@ -21,21 +22,9 @@ app.get('/api/seed', (_, response) => {
 });
 
 app.get('/api/character', async (req, res) => {
-  const player = new Player({
-    energy: 3,
-    experience: 0,
-    gold: 100,
-    level: 1,
-    maxExperience: 0,
-    name: 'Rafal',
-    statPoints: 0,
-  });
+  const gem = generateRandomGem();
 
-  await player.save();
-
-  res.json({
-    message: 'Created player',
-  });
+  console.log(gem);
 });
 
 app.get('/api/getChapter', (_, response) => {});
