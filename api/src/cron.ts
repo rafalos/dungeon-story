@@ -4,7 +4,7 @@ import { shopRestock } from './handlers/shopRestock';
 export const startCronJobs = () => {
   console.log('Starting cron scheduler');
 
-  cron.schedule('*/30 * * * *', async () => {
+  cron.schedule('*/5 * * * *', async () => {
     shopRestock();
   });
 };

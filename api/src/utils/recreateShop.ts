@@ -9,7 +9,7 @@ export const recreateShop = async () => {
 
   const newShop = new Shop({
     items: [],
-    lastRefreshed: null,
+    nextRefresh: null,
   });
 
   await newShop.save();

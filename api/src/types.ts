@@ -32,7 +32,6 @@ interface IItem {
   type: ItemType;
   icon: string;
   sellPrice: number;
-  owner: string;
 }
 
 type Modifier = [Affix, number];
@@ -46,6 +45,7 @@ export interface IEquipment extends IItem {
   type: 'equipment';
   slot: SlotType;
   classType: ClassType;
+  owner?: string;
 }
 
 export interface Gem extends Stackable {

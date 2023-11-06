@@ -1,5 +1,4 @@
-import express, { response } from 'express';
-import { generateSeed } from './logic/generators/seed';
+import express from 'express';
 import cors from 'cors';
 require('dotenv').config();
 import { Request } from 'express';

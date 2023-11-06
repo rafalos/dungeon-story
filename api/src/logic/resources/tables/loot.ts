@@ -1,8 +1,4 @@
-import {
-  EQUIPMENT_RARITIES,
-  GEM_RARITIES,
-  ITEM_TYPES,
-} from '../../../utils/constants';
+import { EQUIPMENT_RARITIES, GEM_RARITIES } from '../../../utils/constants';
 
 export const RARITY_CHANCES = {
   EQUIPMENT: [
