@@ -1,8 +1,8 @@
 import express from 'express';
-import { newExploration } from '../controllers/exploration.controllers';
+import { getNewExploration } from '../controllers/exploration.controllers';
 
 const router = express.Router();
 
-router.get('/newSeed', newExploration);
+router.get('/newSeed', getNewExploration);
 
 export default router;

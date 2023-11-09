@@ -2,11 +2,11 @@ import express from 'express';
 import cors from 'cors';
 require('dotenv').config();
 import { Request } from 'express';
-import { notFound } from './handlers/notFound';
 import { generateRandomEquipment } from './logic/generators/equipment';
 import Equipment from './models/Equipment';
 import shopRouter from './routes/shop.routes';
 import explorationRouter from './routes/exploration.routes';
+import { get404 } from './controllers/error.controller';
 
 export const app = express();
 
@@ -25,6 +25,4 @@ app.get('/api/item', async (_, response) => {
 app.use('/api/exploration', explorationRouter);
 app.use('/api/shop', shopRouter);
 
-app.get('/api/getChapter', (_, response) => {});
-
-app.use('*', notFound);
+app.use(get404);
