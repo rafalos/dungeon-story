@@ -5,11 +5,11 @@ import {
 } from '../../utils/random';
 import affixTable from '../resources/tables/affix';
 import { EquipmentClassTypes } from '../resources/equipmentClassTypes';
-import { RARITY_CHANCES } from '../resources/tables/loot';
+import { EQUIPMENT_RARITY_CHANCES } from '../resources/tables/loot';
 import { ClassType, EquipmentBase, EquipmentWithMetadata } from '../../types';
 
 const generateItemRarity = () => {
-  return randomWithProbability(RARITY_CHANCES.EQUIPMENT);
+  return randomWithProbability(EQUIPMENT_RARITY_CHANCES);
 };
 
 export const generateMetaData = (

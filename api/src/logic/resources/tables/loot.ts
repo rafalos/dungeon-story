@@ -1,17 +1,16 @@
-import { EQUIPMENT_RARITIES, GEM_RARITIES } from '../../../utils/constants';
+import { ClassType, GemType } from '../../../types';
 
-export const RARITY_CHANCES = {
-  EQUIPMENT: [
-    [EQUIPMENT_RARITIES.COMMON, 60],
-    [EQUIPMENT_RARITIES.MAGIC, 25],
-    [EQUIPMENT_RARITIES.RARE, 12],
-    [EQUIPMENT_RARITIES.LEGENDARY, 3],
-  ],
-  GEM: [
-    [GEM_RARITIES.JEWEL, 90],
-    [GEM_RARITIES.CRYSTAL, 10],
-  ],
-};
+export const EQUIPMENT_RARITY_CHANCES: [ClassType, number][] = [
+  ['common', 60],
+  ['magic', 25],
+  ['rare', 12],
+  ['legendary', 3],
+];
+
+export const GEM_RARITY_CHANCES: [GemType, number][] = [
+  ['jewel', 90],
+  ['crystal', 10],
+];
 
 export const LOOT_BRACKERS = {
   MONSTER: {

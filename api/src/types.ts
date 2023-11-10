@@ -1,6 +1,7 @@
 import { IEquipment } from './models/Equipment';
 
 type ItemType = 'equipment' | 'potion' | 'gem';
+export type GemType = 'crystal' | 'jewel';
 export type SlotType = 'head' | 'torso' | 'legs' | 'boots' | 'ring' | 'weapon';
 export type ClassType = 'common' | 'magic' | 'rare' | 'legendary';
 export type ExplorationEvent = 'battle' | 'trap' | 'treasure' | 'well';
@@ -21,12 +22,6 @@ export interface IItem {
   type: ItemType;
   icon: string;
   sellPrice: number;
-}
-
-export interface IExploration {
-  seed: ExplorationSeed;
-  currentStage: number;
-  playerID: string;
 }
 
 export interface Story {
