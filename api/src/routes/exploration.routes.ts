@@ -3,6 +3,6 @@ import { getNewExploration } from '../controllers/exploration.controllers';
 
 const router = express.Router();
 
-router.get('/newSeed', getNewExploration);
+router.get('/new', getNewExploration);
 
 export default router;

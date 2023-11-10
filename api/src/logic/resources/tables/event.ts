@@ -1,8 +1,8 @@
-import { EVENTS } from "../../../utils/constants";
+import { ExplorationEvent } from '../../../types';
 
-export const EVENT_PROBABILITY = [
-  [EVENTS.BATTLE, 60],
-  [EVENTS.TRAP, 15],
-  [EVENTS.TREASURE, 15],
-  [EVENTS.WELL, 10],
+export const EVENT_PROBABILITY: [ExplorationEvent, number][] = [
+  ['battle', 60],
+  ['trap', 15],
+  ['treasure', 15],
+  ['well', 10],
 ];

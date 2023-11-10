@@ -1,5 +1,12 @@
 import { Schema, model } from 'mongoose';
-import { IEquipment } from '../types';
+import { ClassType, IItem, Modifier, SlotType } from '../types';
+export interface IEquipment extends IItem {
+  modifiers: Modifier[];
+  type: 'equipment';
+  slot: SlotType;
+  classType: ClassType;
+  owner?: string;
+}
 
 export const equipmentSchema = new Schema<IEquipment>({
   icon: String,

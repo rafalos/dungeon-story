@@ -4,9 +4,7 @@ export const randomInRange = (min: number, max: number) =>
 export const randomElementFromArray = <T>(arr: T[]) =>
   arr[Math.floor(Math.random() * arr.length)];
 
-export const randomWithProbability = <T extends number | string>(
-  entityArray: T[][]
-) => {
+export const randomWithProbability = <T>(entityArray: [T, number][]): T => {
   const chancesArray = [];
 
   for (let i = 0; i < entityArray.length; i++) {

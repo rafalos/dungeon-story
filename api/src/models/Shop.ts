@@ -1,6 +1,10 @@
 import { Schema, model } from 'mongoose';
-import { IShop } from '../types';
-import { equipmentSchema } from './Equipment';
+import { IEquipment, equipmentSchema } from './Equipment';
+
+interface IShop {
+  items: IEquipment[];
+  lastRefreshed: string;
+}
 
 const shopSchema = new Schema<IShop>({
   items: [equipmentSchema],

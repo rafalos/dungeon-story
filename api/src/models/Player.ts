@@ -1,11 +1,19 @@
 import { Schema, model } from 'mongoose';
-import { type IPlayer } from '../types';
+export interface IPlayer {
+  name: string;
+  statPoints: 0;
+  energy: number;
+  gold: number;
+  level: number;
+  experience: number;
+  maxExperience: number;
+}
 
 const playerSchema = new Schema<IPlayer>({
   name: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   energy: {
     type: Number,
