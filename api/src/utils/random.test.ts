@@ -12,8 +12,6 @@ describe('randomInRange', () => {
   it('should return a number', () => {
     const result = randomInRange(5, 10);
 
-    console.log(result);
-
     expect(typeof result).toBe('number');
   });
 });

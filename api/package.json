@@ -28,7 +28,7 @@
   },
   "scripts": {
     "test": "jest",
-    "dev": "concurrently \"npx tsc --watch\" \"NODE_ENV=development nodemon -q dist/index.js\"",
+    "dev": "rm -rf ./dist/ && npx tsc && concurrently \"npx tsc --watch\" \"NODE_ENV=development nodemon -q dist/src/index.js\"",
     "start": "NODE_ENV=production node dist/index.js"
   },
   "keywords": [],

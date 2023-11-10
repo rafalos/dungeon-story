@@ -7,10 +7,16 @@ import Equipment from './models/Equipment';
 import shopRouter from './routes/shop.routes';
 import explorationRouter from './routes/exploration.routes';
 import { get404 } from './controllers/error.controller';
+import restoreEnergy from './handlers/restoreEnergy';
+import Player from './models/Player';
 
 export const app = express();
 
 app.use(cors<Request>());
+
+app.get('/api/tst', async (req, res) => {
+  await restoreEnergy();
+});
 
 app.get('/api/item', async (_, response) => {
   const randomItem = generateRandomEquipment();
