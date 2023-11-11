@@ -15,7 +15,6 @@ function ExplorationEvent({
   onItemFound,
   onExperienceGained,
   onPlayerDeath,
-  chapterLoading,
 }) {
   const [eventInProgress, setEventInProgress] = useState(false);
   const currentEvent = () => {
@@ -70,10 +69,9 @@ function ExplorationEvent({
   return (
     <div className={classes['exploration-wrapper']}>
       {eventInProgress && currentEvent()}
-      {!eventInProgress && chapterLoading && <Loader />}
-      {!eventInProgress && !chapterLoading && currentStory}
+      {!eventInProgress && currentStory}
       {!eventInProgress && (
-        <Button onClick={progressEventHandler} disabled={chapterLoading}>
+        <Button onClick={progressEventHandler}>
           Continue exploration
         </Button>
       )}

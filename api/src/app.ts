@@ -9,6 +9,7 @@ import explorationRouter from './routes/exploration.routes';
 import { get404 } from './controllers/error.controller';
 import restoreEnergy from './handlers/restoreEnergy';
 import Player from './models/Player';
+import { errorHandler } from './middlewares/error';
 
 export const app = express();
 
@@ -32,3 +33,5 @@ app.use('/api/exploration', explorationRouter);
 app.use('/api/shop', shopRouter);
 
 app.use(get404);
+
+app.use(errorHandler);

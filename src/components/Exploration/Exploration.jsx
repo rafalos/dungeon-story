@@ -9,13 +9,14 @@ import { playerStatisticActions } from '../../store/player-statistics-slice';
 import { explorationActions } from '../../store/exploration-slice';
 
 function Exploration({ seed, onExplorationFinished, gptDriven }) {
-  const { currentPosition } = useSelector((state) => state.exploration);
+  const { story, currentPosition } = useSelector((state) => state.exploration);
   const [characterDead, setCharacterDead] = useState(false);
-  const { isLoading: chapterLoading, story, currentChapter } = useGptStory(seed, gptDriven);
   const [currentStory, setCurrentStory] = useState('');
   const [experienceGained, setExperienceGained] = useState(0);
   const [itemsFound, setItemsFound] = useState([]);
   const dispatch = useDispatch();
+
+  const currentChapter =  story[currentPosition]
 
   const experienceGainedHandler = (amount) => {
     setExperienceGained((prevState) => (prevState += amount));
@@ -40,7 +41,6 @@ function Exploration({ seed, onExplorationFinished, gptDriven }) {
       setCurrentStory(story[currentPosition + 1]);
     }
 
-    console.log(currentPosition);
   }, [currentPosition]);
 
   const progressHandler = () => {
@@ -62,7 +62,6 @@ function Exploration({ seed, onExplorationFinished, gptDriven }) {
               onEventProgress={progressHandler}
               currentPosition={currentPosition}
               currentStory={currentChapter}
-              chapterLoading={chapterLoading}
               onItemFound={itemFoundHandler}
               onExperienceGained={experienceGainedHandler}
             />

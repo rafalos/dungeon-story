@@ -15,7 +15,7 @@ export const explorationSchema = new Schema<IExploration>({
   },
   currentStage: {
     type: Number,
-    default: 0,
+    default: -1,
   },
 });
 

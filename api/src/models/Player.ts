@@ -18,6 +18,7 @@ const playerSchema = new Schema<IPlayer>({
   energy: {
     type: Number,
     required: true,
+    default: 3,
   },
   experience: Number,
   gold: Number,

@@ -1,7 +1,12 @@
 import axios from '../lib/axios';
 
-export const getExplorationSeed = async (): Promise<Seed> => {
-  const response = await axios.get('/seed');
+interface ExplorationResponse {
+  seed: Seed;
+  story: string[];
+}
+
+export const getNewExploration = async (): Promise<ExplorationResponse> => {
+  const response = await axios.get('/exploration/new');
 
   return response.data;
 };

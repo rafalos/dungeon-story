@@ -1,16 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getExplorationSeed } from '../services/seed';
+import { getNewExploration } from '../services/seed';
 
 const explorationSlice = createSlice({
   name: 'exploration',
   initialState: {
     seed: null,
     currentPosition: null,
+    story: [],
   },
   reducers: {
     initialize(state, action) {
-      state.seed = action.payload;
+      state.seed = action.payload.seed;
       state.currentPosition = -1;
+      state.story = action.payload.story;
     },
     reset(state) {
       state.seed = null;
@@ -23,15 +25,19 @@ const explorationSlice = createSlice({
 });
 
 export const initializeExploration = () => {
-  let seed;
   return async (dispatch) => {
     try {
-      seed = await getExplorationSeed();
+      const { seed, story } = await getNewExploration();
+      dispatch(
+        explorationActions.initialize({
+          seed,
+          story,
+        })
+      );
     } catch (e) {
       if (e instanceof Error) {
-        seed = ['battle', 'battle', 'well', 'treasure', 'trap'];
+        throw new Error('Something went wrong');
       }
-      dispatch(explorationActions.initialize(seed));
     }
   };
 };

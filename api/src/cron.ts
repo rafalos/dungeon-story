@@ -9,7 +9,7 @@ export const startCronJobs = () => {
     await shopRestock();
   });
 
-  cron.schedule('*/30 * * * *', async () => {
-    await restoreEnergy();
-  });
+  // cron.schedule('*/30 * * * *', async () => {
+  //   await restoreEnergy();
+  // });
 };
