@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@auth0/auth0-react": "^2.2.3",
     "@reduxjs/toolkit": "^1.9.3",
     "axios": "^1.6.0",
     "clsx": "^2.0.0",

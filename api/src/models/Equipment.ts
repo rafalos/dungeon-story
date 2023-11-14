@@ -5,7 +5,7 @@ export interface IEquipment extends IItem {
   type: 'equipment';
   slot: SlotType;
   classType: ClassType;
-  owner: Types.ObjectId | null;
+  owner?: Types.ObjectId | null;
 }
 
 export const equipmentSchema = new Schema<IEquipment>({
@@ -17,7 +17,7 @@ export const equipmentSchema = new Schema<IEquipment>({
   slot: String,
   owner: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Player',
+    ref: 'Character',
   },
 });
 

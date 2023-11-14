@@ -11,6 +11,10 @@
   --rarity-common: #e0e0e0;
 }
 
+#root {
+  height: 100vh;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -26,7 +30,7 @@ body {
 .App {
   display: grid;
   grid-template-columns: 350px 6fr;
-  height: 100vh;
+  height: 100%;
 }
 
 ul {

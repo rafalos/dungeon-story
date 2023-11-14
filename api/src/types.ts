@@ -1,3 +1,4 @@
+import { Request, Response, NextFunction } from 'express';
 import { IEquipment } from './models/Equipment';
 
 type ItemType = 'equipment' | 'potion' | 'gem';
@@ -50,3 +51,7 @@ export type EquipmentBase = Omit<
   'price' | 'sellPrice' | 'type' | 'classType'
 >;
 export type EquipmentWithMetadata = Omit<IEquipment, 'type' | 'sellPrice'>;
+
+export interface IRequestWithAuth extends Request {
+  user: string;
+}

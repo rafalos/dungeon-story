@@ -1,7 +1,7 @@
-import Player from '../models/Player';
+import Character from '../models/Character';
 
 const restoreEnergy = async () => {
-  await Player.updateMany(
+  await Character.updateMany(
     {
       energy: {
         $lt: 3,
@@ -13,7 +13,7 @@ const restoreEnergy = async () => {
       },
     }
   );
-  console.log('Restored energy for players');
+  console.log('Restored energy for characters');
 };
 
 export default restoreEnergy;

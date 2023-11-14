@@ -11,7 +11,7 @@ export const explorationSchema = new Schema<IExploration>({
   seed: [],
   playerID: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Player',
+    ref: 'Character',
   },
   currentStage: {
     type: Number,

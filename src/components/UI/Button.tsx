@@ -1,7 +1,6 @@
 import React from 'react';
 
 type Props = {
-  title: string;
   mode: 'primary' | 'secondary';
   children: string;
 } & React.ComponentPropsWithoutRef<'button'>;

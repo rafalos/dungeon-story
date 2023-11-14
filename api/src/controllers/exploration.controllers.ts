@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { generateSeed } from '../logic/generators/seed';
-import Player from '../models/Player';
+import Character from '../models/Character';
 import Exploration from '../models/Exploration';
 import Story from '../models/Story';
 import { generateChapters } from '../utils/generateChapter';
@@ -10,19 +10,19 @@ export const getNewExploration = async (
   response: Response,
   next: NextFunction
 ) => {
-  const currentPlayer = await Player.findOne({});
+  const currentCharacter = await Character.findOne({});
 
-  if (!currentPlayer) return next('Player not found');
+  if (!currentCharacter) return next('Character not found');
 
-  if (currentPlayer.energy <= 0)
+  if (currentCharacter.energy <= 0)
     return next(
-      `${currentPlayer._id.toString()} has not enough energy to start exploration`
+      `${currentCharacter._id.toString()} has not enough energy to start exploration`
     );
 
   const newSeed = generateSeed();
 
   const exploration = new Exploration({
-    playerID: currentPlayer._id,
+    playerID: currentCharacter._id,
     seed: newSeed,
   });
 
@@ -35,8 +35,8 @@ export const getNewExploration = async (
 
   const fullStory = await generateChapters(newSeed, story._id);
 
-  currentPlayer.energy -= 1;
-  currentPlayer.save();
+  currentCharacter.energy -= 1;
+  currentCharacter.save();
 
   response.json({
     seed: newSeed,

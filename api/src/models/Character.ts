@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-export interface IPlayer {
+export interface ICharacter {
   name: string;
   statPoints: 0;
   energy: number;
@@ -9,19 +9,24 @@ export interface IPlayer {
   maxExperience: number;
 }
 
-const playerSchema = new Schema<IPlayer>({
+const characterSchema = new Schema<ICharacter>({
   name: {
     type: String,
     required: true,
-    unique: true,
   },
   energy: {
     type: Number,
     required: true,
     default: 3,
   },
-  experience: Number,
-  gold: Number,
+  experience: {
+    type: Number,
+    default: 0,
+  },
+  gold: {
+    type: Number,
+    default: 0,
+  },
   level: {
     type: Number,
     default: 1,
@@ -39,4 +44,4 @@ const playerSchema = new Schema<IPlayer>({
   },
 });
 
-export default model<IPlayer>('Player', playerSchema);
+export default model<ICharacter>('Character', characterSchema);
