@@ -1,16 +1,25 @@
 import axios from 'axios';
 
-let token;
+let token: string;
 
-export const setAuthToken = (token: string) => {
-  token = token;
+export const setAuthToken = (newToken: string) => {
+  token = newToken;
 };
+
+export const getToken = () => token;
 
 const instance = axios.create({
   baseURL: 'http://localhost:3001/api/',
-  headers: {
-    common: { Authorization: `Bearer ${token}` },
-  },
 });
+
+instance.interceptors.request.use(
+  (config) => {
+    config.headers['Authorization'] = `Bearer ${getToken()}`;
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 export default instance;

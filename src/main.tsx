@@ -9,17 +9,32 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import CharacterPage from './pages/CharacterPage';
 import ShopPage from './pages/ShopPage';
 import ExplorationPage from './pages/ExplorationPage';
-import LandingPage from './pages/LandingPage';
 import { Auth0Provider } from '@auth0/auth0-react';
+import GamePage from './pages/GamePage.jsx';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
+
+const GameProviders = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <StoreProvider store={store}>{children}</StoreProvider>
+    </QueryClientProvider>
+  );
+};
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <LandingPage />,
+    element: <App />,
   },
   {
     path: '/game',
-    element: <App />,
+    element: (
+      <GameProviders>
+        <GamePage />
+      </GameProviders>
+    ),
     children: [
       {
         path: 'character',
@@ -37,20 +52,16 @@ const router = createBrowserRouter([
   },
 ]);
 
-console.log(`${window.location.origin}/game`);
-
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <Auth0Provider
     domain='dev-qjh67f8mtk02u0ll.us.auth0.com'
     clientId='qkd4eBpYUFZTy0w88iGpBd7HJ5NN91wr'
     authorizationParams={{
-      redirect_uri: window.location.origin,
+      redirect_uri: `${window.location.origin}/game`,
       scope: 'openid profile email',
-      audience: "https://dungeon-story.com/api"
+      audience: 'https://dungeon-story.com/api',
     }}
   >
-    <StoreProvider store={store}>
-      <RouterProvider router={router} />
-    </StoreProvider>
+    <RouterProvider router={router} />
   </Auth0Provider>
 );

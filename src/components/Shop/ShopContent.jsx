@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Item from '../UI/Item';
 import { buyItem } from '../../store/shop-slice';
 
-function ShopContent() {
+function ShopContent(props) {
   const { items } = useSelector((state) => state.shop);
   const { gold } = useSelector((state) => state.status);
   const dispatch = useDispatch();
@@ -13,11 +13,11 @@ function ShopContent() {
     dispatch(buyItem(item, price));
   };
 
-  const shopElements = items.map((shopElement) => (
+  const shopElements = props.items.map((shopElement) => (
     <Item
-      key={shopElement.item.id}
-      id={shopElement.item.id}
-      item={shopElement.item}
+      key={shopElement._id}
+      id={shopElement._id}
+      item={shopElement}
       price={shopElement.price}
       onItemClicked={itemBoughtHandler}
     />

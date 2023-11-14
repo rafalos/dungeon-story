@@ -27,16 +27,22 @@ body {
   );
 }
 
-.App {
+.Game {
   display: grid;
   grid-template-columns: 350px 6fr;
   height: 100%;
 }
 
-ul {
+.App {
+  height: 100%;
+}
+
+ul,
+li {
   list-style: none;
   margin: 0;
   padding: 0;
+  cursor: pointer;
 }
 
 .flex-column-container {

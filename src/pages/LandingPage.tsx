@@ -1,17 +1,11 @@
-import Button from '@/components/UI/Button';
-import LoginButton from '@/components/UI/LoginButton';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import Authentication from '@/components/UI/Authentication';
 
 type Props = {};
 
 const LandingPage = (props: Props) => {
   return (
-    <div className='h-full text-white flex justify-center items-center'>
-      <LoginButton />
-      {/* <Button mode='primary' title='Test'>
-          Play now
-        </Button> */}
+    <div className='h-full w-full text-white flex justify-center items-center'>
+      <Authentication />
     </div>
   );
 };

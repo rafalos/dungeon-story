@@ -8,7 +8,6 @@ import shopRouter from './routes/shop.routes';
 import charactersRouter from './routes/characters.routes';
 import explorationRouter from './routes/exploration.routes';
 import { get404 } from './controllers/error.controller';
-import restoreEnergy from './handlers/restoreEnergy';
 import { errorHandler } from './middlewares/error';
 import { auth } from 'express-oauth2-jwt-bearer';
 import { getUserData } from './middlewares/getUserData';
