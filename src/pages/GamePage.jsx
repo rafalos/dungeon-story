@@ -9,7 +9,7 @@ import { TIMERS } from '@/utils/contants';
 import Modal from '@/components/Layout/Modal';
 import { useAuth0 } from '@auth0/auth0-react';
 import Loader from '@/components/UI/Loader';
-import { getToken, setAuthToken } from '@/lib/axios';
+import { setAuthToken } from '@/lib/axios';
 
 function GamePage() {
   const { isLoading, isAuthenticated, getAccessTokenSilently } = useAuth0();
@@ -42,20 +42,24 @@ function GamePage() {
     }
   }, [currentShopResetTime]);
 
+  // display: grid;
+  // grid-template-columns: 350px 6fr;
+  // height: 100%;
+
   return (
-    <div className='Game'>
+    <>
       {isLoading ? (
         <Loader />
       ) : (
-        <>
+        <main className='grid grid-cols-[350px_6fr] h-full w-full'>
           <Sidebar />
           <div className='flex justify-center content-center h-full bg-gray-950'>
             <Outlet />
           </div>
           {modalVisible && createPortal(<Modal />, document.body)}
-        </>
+        </main>
       )}
-    </div>
+    </>
   );
 }
 

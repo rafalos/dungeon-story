@@ -27,12 +27,6 @@ body {
   );
 }
 
-.Game {
-  display: grid;
-  grid-template-columns: 350px 6fr;
-  height: 100%;
-}
-
 .App {
   height: 100%;
 }

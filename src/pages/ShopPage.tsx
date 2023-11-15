@@ -24,7 +24,7 @@ function ShopPage() {
         >
           <div>
             <ShopTime />
-            <ShopContent items={data?.data.items}/>
+            <ShopContent items={data?.data.items} />
           </div>
           <div>
             <Inventory sellMode={true} />
