@@ -6,6 +6,7 @@ import { useId } from 'react';
 function Item({ item, slot, onItemClicked, stackable, price, id }) {
   const elementId = useId();
   let metadataElements = [];
+  console.log(item);
 
   for (const metadata in item?.metadata) {
     metadataElements.push(`${metadata}: ${item.metadata[metadata]}`);
@@ -36,8 +37,10 @@ function Item({ item, slot, onItemClicked, stackable, price, id }) {
           >
             <span className='font-medium text-lg'>{item.name}</span>
             <ul className='my-2 text-base'>
-              {metadataElements.map((metadata) => (
-                <li key={metadata}>{metadata}</li>
+              {item.modifiers.map((modifier) => (
+                <li key={modifier[0]}>
+                  {modifier[0]}: {modifier[1]}
+                </li>
               ))}
             </ul>
             <div className=''>{item.classType}</div>

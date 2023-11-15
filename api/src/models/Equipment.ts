@@ -15,6 +15,7 @@ export const equipmentSchema = new Schema<IEquipment>({
   sellPrice: Number,
   type: String,
   slot: String,
+  classType: String,
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Character',
