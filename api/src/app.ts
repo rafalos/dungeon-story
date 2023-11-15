@@ -11,7 +11,8 @@ import { get404 } from './controllers/error.controller';
 import { errorHandler } from './middlewares/error';
 import { auth } from 'express-oauth2-jwt-bearer';
 import { getUserData } from './middlewares/getUserData';
-import { uploadFile } from './lib/cloudinary';
+import { deleteUnownedItems } from './handlers/deleteUnownedItems';
+
 export const app = express();
 
 const verifyToken = auth({
@@ -21,21 +22,11 @@ const verifyToken = auth({
 });
 
 app.use(cors<Request>());
-app.get('/api/test', async (req, res) => {
-  await uploadFile()
-})
 app.use(verifyToken);
 app.use(getUserData as RequestHandler);
 
-
 app.get('/api/item', async (_, response) => {
-  const randomItem = generateRandomEquipment();
-
-  const dbItem = new Equipment(randomItem);
-
-  await dbItem.save();
-
-  response.json(randomItem);
+  await deleteUnownedItems();
 });
 
 app.use('/api/characters', charactersRouter);

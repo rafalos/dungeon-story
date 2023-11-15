@@ -6,6 +6,7 @@ export const setAuthToken = (newToken: string) => {
   token = newToken;
 };
 
+
 export const getToken = () => token;
 
 const instance = axios.create({

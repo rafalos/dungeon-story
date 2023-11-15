@@ -6,7 +6,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-export const getIconPath = async (resource) => {
+export const getIconPath = async (resource: string) => {
   try {
     const result = await cloudinary.api.resources({
       type: 'upload',

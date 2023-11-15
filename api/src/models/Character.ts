@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import { Schema, Types, model } from 'mongoose';
 export interface ICharacter {
   name: string;
   statPoints: 0;
@@ -7,6 +7,7 @@ export interface ICharacter {
   level: number;
   experience: number;
   maxExperience: number;
+  inventory: Types.ObjectId;
 }
 
 const characterSchema = new Schema<ICharacter>({
@@ -41,6 +42,10 @@ const characterSchema = new Schema<ICharacter>({
     type: Number,
     default: 0,
     required: true,
+  },
+  inventory: {
+    type: Schema.Types.ObjectId,
+    ref: 'Inventory',
   },
 });
 

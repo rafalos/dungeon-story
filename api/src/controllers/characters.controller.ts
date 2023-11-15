@@ -2,17 +2,19 @@ import { Request, Response } from 'express';
 import User from '../models/User';
 import { Types } from 'mongoose';
 import Character from '../models/Character';
+import Inventory from '../models/Inventory';
 
 const createNewCharacter = async (userId: Types.ObjectId) => {
   const newCharacter = new Character({
     name: 'Test Char',
   });
 
-  await User.findOneAndUpdate(userId, {
-    character: newCharacter._id,
-  });
+  const newInventory = new Inventory();
 
-  await newCharacter.save();
+  newCharacter.inventory = newInventory._id;
+  newInventory.characterID = newCharacter._id;
+
+  await Promise.all([newInventory.save(), newCharacter.save()]);
 
   return newCharacter;
 };
@@ -36,6 +38,8 @@ export const getCharacter = async (req: Request, res: Response) => {
   if (!character) {
     character = await createNewCharacter(user._id);
   }
+
+  user.character = character._id;
 
   await user.save();
   res.json(character);

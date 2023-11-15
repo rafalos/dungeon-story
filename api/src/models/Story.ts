@@ -1,4 +1,4 @@
-import mongoose, { Schema, Types, model } from 'mongoose';
+import { Schema, Types, model } from 'mongoose';
 import { ChatCompletionMessageParam } from 'openai/resources/chat/completions';
 
 export interface IStory {
@@ -9,7 +9,7 @@ export interface IStory {
 
 export const storySchema = new Schema<IStory>({
   exploration: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     Ref: 'Exploration',
   },
   chapters: [String],

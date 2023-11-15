@@ -1,4 +1,4 @@
-import mongoose, { Schema, Types, model } from 'mongoose';
+import { Schema, Types, model } from 'mongoose';
 import { ClassType, IItem, Modifier, SlotType } from '../types';
 export interface IEquipment extends IItem {
   modifiers: Modifier[];
@@ -17,7 +17,7 @@ export const equipmentSchema = new Schema<IEquipment>({
   slot: String,
   classType: String,
   owner: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Types.ObjectId,
     ref: 'Character',
   },
 });
