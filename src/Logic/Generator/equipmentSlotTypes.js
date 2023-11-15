@@ -1,15 +1,3 @@
-import headIcon1 from '../Resources/Icons/Armors/icon_plate_head1.png';
-import torsoIcon1 from '../Resources/Icons/Armors/armor.png';
-import torsoIcon2 from '../Resources/Icons/Armors/armor2.png';
-import torsoIcon3 from '../Resources/Icons/Armors/armor3.png';
-import ringIcon1 from '../Resources/Icons/Armors/ring3.png';
-import ringIcon2 from '../Resources/Icons/Armors/ring.png';
-import ringIcon3 from '../Resources/Icons/Armors/ring2.png';
-import longswordIcon1 from '../Resources/Icons/Weapons/sword2.png';
-import shortswordIcon1 from '../Resources/Icons/Weapons/sword3.png';
-import axeIcon1 from '../Resources/Icons/Weapons/axe1.png';
-import bowIcon1 from '../Resources/Icons/Weapons/axe1.png';
-
 import { EQUIPMENT } from '../../utils/contants';
 
 export default [
@@ -17,7 +5,7 @@ export default [
     {
       name: 'Iron longsword',
       slot: EQUIPMENT.SLOTS.LEFT_HAND,
-      icon: longswordIcon1,
+      icon: 'test',
       metadata: {
         strength: 30,
       },
@@ -27,7 +15,7 @@ export default [
     {
       name: 'Iron shortsword',
       slot: EQUIPMENT.SLOTS.LEFT_HAND,
-      icon: shortswordIcon1,
+      icon: 'test',
       metadata: {
         strength: 20,
       },
@@ -37,7 +25,7 @@ export default [
     {
       name: 'Iron axe',
       slot: EQUIPMENT.SLOTS.LEFT_HAND,
-      icon: axeIcon1,
+      icon: 'test',
       metadata: {
         strength: 27,
       },
@@ -47,7 +35,7 @@ export default [
     {
       name: 'Shortbow',
       slot: EQUIPMENT.SLOTS.LEFT_HAND,
-      icon: bowIcon1,
+      icon: 'test',
       metadata: {
         dexterity: 21,
       },
@@ -57,7 +45,7 @@ export default [
     {
       name: 'Plate helmet',
       slot: EQUIPMENT.SLOTS.HEAD,
-      icon: headIcon1,
+      icon: 'test',
       metadata: { defense: 52 },
     },
   ],
@@ -65,7 +53,7 @@ export default [
     {
       name: 'Cloth Torso',
       slot: EQUIPMENT.SLOTS.TORSO,
-      icon: torsoIcon3,
+      icon: 'test',
       metadata: { defense: 31 },
     },
   ],
@@ -73,7 +61,7 @@ export default [
     {
       name: 'Golden Plate',
       slot: EQUIPMENT.SLOTS.TORSO,
-      icon: torsoIcon2,
+      icon: 'test',
       metadata: { defense: 101 },
     },
   ],
@@ -81,7 +69,7 @@ export default [
     {
       name: 'Iron Chestplate',
       slot: EQUIPMENT.SLOTS.TORSO,
-      icon: torsoIcon1,
+      icon: 'test',
       metadata: { defense: 57 },
     },
   ],
@@ -89,7 +77,7 @@ export default [
     {
       name: 'Gold ring',
       slot: EQUIPMENT.SLOTS.RING1,
-      icon: ringIcon1,
+      icon: 'test',
       metadata: { fortune: 31 },
     },
   ],
@@ -97,7 +85,7 @@ export default [
     {
       name: 'Wooden ring',
       slot: EQUIPMENT.SLOTS.RING1,
-      icon: ringIcon2,
+      icon: 'test',
       metadata: { fortune: 10 },
     },
   ],
