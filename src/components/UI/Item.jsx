@@ -11,8 +11,8 @@ function Item({ item, slot, onItemClicked, stackable, price, id }) {
     metadataElements.push(`${metadata}: ${item.metadata[metadata]}`);
   }
 
-  const clickHandler = () => {
-    onItemClicked(item, price);
+  const clickHandler = (id) => {
+    onItemClicked(id);
   };
 
   return (
@@ -21,7 +21,7 @@ function Item({ item, slot, onItemClicked, stackable, price, id }) {
         <div
           key={id}
           data-tooltip-id={elementId}
-          onClick={clickHandler}
+          onClick={() => clickHandler(id)}
           className={`${classes['inventory-item']} ${
             equipmentClasses[`equipment-item--${item.equipmentSlot}`]
           } ${classes[`inventory-item--${item.classType}`]}
@@ -37,7 +37,7 @@ function Item({ item, slot, onItemClicked, stackable, price, id }) {
             <span className='font-medium text-lg'>{item.name}</span>
             <ul className='my-2 text-base'>
               {item.modifiers.map((modifier) => (
-                <li key={modifier[0]}>
+                <li key={modifier[0] + modifier[1]}>
                   {modifier[0]}: {modifier[1]}
                 </li>
               ))}

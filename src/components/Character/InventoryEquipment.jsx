@@ -30,7 +30,7 @@ function InventoryEquipment({ inventoryItems, sellMode }) {
       <div className={classes['tab']}>
         {equipment.map((item) => (
           <Item
-            key={item.id}
+            key={item._id}
             item={item}
             equipable={true}
             onItemClicked={

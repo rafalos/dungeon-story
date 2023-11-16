@@ -7,7 +7,7 @@ import Modal from '@/components/Layout/Modal';
 import { useAuth0 } from '@auth0/auth0-react';
 import Loader from '@/components/UI/Loader';
 import { setAuthToken } from '@/lib/axios';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { getUser } from '@/services/user';
 
 function GamePage() {
@@ -17,12 +17,14 @@ function GamePage() {
     isAuthenticated,
     getAccessTokenSilently,
   } = useAuth0();
+
   const {
     data: user,
     isLoading: isUserLoading,
     refetch,
-  } = useQuery('character', getUser, {
-    enabled: false,
+  } = useQuery({
+    queryKey: ['user'],
+    queryFn: getUser,
   });
 
   useEffect(() => {

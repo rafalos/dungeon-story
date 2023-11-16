@@ -1,16 +1,16 @@
 import { NextFunction, Request, Response } from 'express';
 import { generateSeed } from '../logic/generators/seed';
-import Character from '../models/Character';
 import Exploration from '../models/Exploration';
 import Story from '../models/Story';
 import { generateChapters } from '../utils/generateChapter';
+import User from '../models/User';
 
 export const getNewExploration = async (
   _: Request,
   response: Response,
   next: NextFunction
 ) => {
-  const currentCharacter = await Character.findOne({});
+  const currentCharacter = await User.findOne({});
 
   if (!currentCharacter) return next('Character not found');
 
