@@ -1,65 +1,59 @@
 import Sidebar from '@/components/Layout/Sidebar';
-import { Outlet, redirect, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { timersActions } from '@/store/timers-slice';
-import { resetShop } from '@/store/shop-slice';
-import { TIMERS } from '@/utils/contants';
+import { useSelector } from 'react-redux';
 import Modal from '@/components/Layout/Modal';
 import { useAuth0 } from '@auth0/auth0-react';
 import Loader from '@/components/UI/Loader';
 import { setAuthToken } from '@/lib/axios';
+import { useQuery } from 'react-query';
+import { getUser } from '@/services/user';
 
 function GamePage() {
-  const { isLoading, isAuthenticated, getAccessTokenSilently } = useAuth0();
   const navigate = useNavigate();
+  const {
+    isLoading: isAuthLoading,
+    isAuthenticated,
+    getAccessTokenSilently,
+  } = useAuth0();
+  const {
+    data: user,
+    isLoading: isUserLoading,
+    refetch,
+  } = useQuery('character', getUser, {
+    enabled: false,
+  });
 
   useEffect(() => {
-    if (!isAuthenticated && !isLoading) {
+    if (!isAuthenticated && !isAuthLoading) {
       navigate('/');
     }
 
     getAccessTokenSilently().then((token) => {
       setAuthToken(token);
+      refetch();
     });
-  }, [isAuthenticated, isLoading]);
+  }, [isAuthenticated, isAuthLoading]);
 
-  const dispatch = useDispatch();
-  const currentShopResetTime = useSelector((state) => state.timers.shop);
   const modalVisible = useSelector((state) => state.modal.isOpen);
 
-  useEffect(() => {
-    if (currentShopResetTime <= 0) {
-      dispatch(resetShop());
-    } else {
-      const interval = setInterval(() => {
-        dispatch(timersActions.deductTimer(TIMERS.SHOP.ID));
-      }, 1000);
-      return () => {
-        clearInterval(interval);
-      };
-    }
-  }, [currentShopResetTime]);
-
-  // display: grid;
-  // grid-template-columns: 350px 6fr;
-  // height: 100%;
+  if (isAuthLoading || isUserLoading || !user) {
+    return <Loader />;
+  }
 
   return (
-    <>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <main className='grid grid-cols-[350px_6fr] h-full w-full'>
-          <Sidebar />
-          <div className='flex justify-center content-center h-full bg-gray-950'>
-            <Outlet />
-          </div>
-          {modalVisible && createPortal(<Modal />, document.body)}
-        </main>
-      )}
-    </>
+    <main className='grid grid-cols-[350px_6fr] h-full w-full'>
+      <Sidebar />
+      <div className='flex justify-center content-center h-full bg-gray-950'>
+        <Outlet
+          context={{
+            user,
+          }}
+        />
+      </div>
+      {modalVisible && createPortal(<Modal />, document.body)}
+    </main>
   );
 }
 

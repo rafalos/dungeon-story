@@ -3,7 +3,7 @@ import Equipment from '../Equipment/Equipment';
 import Statistics from '../Statistics/Statistics';
 import Inventory from './Inventory';
 
-function Character() {
+function Character({ character }) {
   return (
     <div style={{ display: 'flex', gap: '70px' }}>
       <div className='character-details'>
@@ -14,7 +14,7 @@ function Character() {
         <Equipment />
       </div>
       <div className='inventory-details'>
-        <Inventory />
+        <Inventory items={character.inventory.equipment} />
       </div>
     </div>
   );

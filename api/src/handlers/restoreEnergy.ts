@@ -1,7 +1,7 @@
-import Character from '../models/Character';
+import User from '../models/User';
 
 const restoreEnergy = async () => {
-  await Character.updateMany(
+  await User.updateMany(
     {
       energy: {
         $lt: 3,

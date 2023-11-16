@@ -1,8 +1,14 @@
-import mongoose, { Schema, Types, model } from 'mongoose';
+import { Schema, Types, model } from 'mongoose';
 
 export interface IUser {
   email: string;
-  character: Types.ObjectId;
+  statPoints: 0;
+  energy: number;
+  gold: number;
+  level: number;
+  experience: number;
+  maxExperience: number;
+  inventory: Types.ObjectId;
 }
 
 const userSchema = new Schema<IUser>({
@@ -11,9 +17,37 @@ const userSchema = new Schema<IUser>({
     required: true,
     unique: true,
   },
-  character: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Character',
+  energy: {
+    type: Number,
+    required: true,
+    default: 3,
+  },
+  experience: {
+    type: Number,
+    default: 0,
+  },
+  gold: {
+    type: Number,
+    default: 500,
+  },
+  level: {
+    type: Number,
+    default: 1,
+    required: true,
+  },
+  maxExperience: {
+    type: Number,
+    default: 100,
+    required: true,
+  },
+  statPoints: {
+    type: Number,
+    default: 0,
+    required: true,
+  },
+  inventory: {
+    type: Schema.Types.ObjectId,
+    ref: 'Inventory',
   },
 });
 

@@ -18,7 +18,7 @@ export const equipmentSchema = new Schema<IEquipment>({
   classType: String,
   owner: {
     type: Types.ObjectId,
-    ref: 'Character',
+    ref: 'User',
   },
 });
 

@@ -6,8 +6,10 @@ import Inventory from '../components/Character/Inventory';
 import { useQuery } from 'react-query';
 import { getCurrentShop } from '@/services/shop';
 import Loader from '@/components/UI/Loader';
+import { useOutletContext } from 'react-router-dom';
 
 function ShopPage() {
+  const { user } = useOutletContext();
   const { isLoading, data } = useQuery('shop', getCurrentShop);
 
   return (
@@ -27,7 +29,7 @@ function ShopPage() {
             <ShopContent items={data?.data.items} />
           </div>
           <div>
-            <Inventory sellMode={true} />
+            <Inventory items={user.inventory.equipment} sellMode={true} />
           </div>
         </Card>
       )}

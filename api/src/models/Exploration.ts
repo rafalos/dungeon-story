@@ -4,14 +4,14 @@ import { ExplorationSeed } from '../types';
 export interface IExploration {
   seed: ExplorationSeed;
   currentStage: number;
-  playerID: Types.ObjectId;
+  user: Types.ObjectId;
 }
 
 export const explorationSchema = new Schema<IExploration>({
   seed: [],
-  playerID: {
+  user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Character',
+    ref: 'User',
   },
   currentStage: {
     type: Number,

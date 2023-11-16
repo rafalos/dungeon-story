@@ -20,7 +20,7 @@ export const buyItem = async (
 
   if (!currentShop) return next('The shop was not found');
   if (!currentShop.items.includes(new ObjectId(request.params.id)))
-    throw new Error('Selected item is not found in the shop');
+    return next('Selected item is not found in the shop');
 
   const item = await Equipment.findOne(new ObjectId(request.params.id));
 
@@ -30,23 +30,19 @@ export const buyItem = async (
 
   const user = await User.findOne({
     email: currentUser,
-  })
-    .populate('character')
-    .exec();
+  });
 
   if (!user) return next('No user found');
 
-  const characterId = user.character._id;
-
   const inventory = await Inventory.findOne({
-    characterID: characterId,
+    user: user._id,
   });
 
   if (!inventory) return next('No inventory found');
 
   inventory.equipment.push(item._id);
 
-  item.owner = characterId;
+  item.owner = user._id;
 
   const itemIndex = currentShop.items.findIndex(
     (itemId) => itemId.toString() === request.params.id

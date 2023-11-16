@@ -10,7 +10,6 @@ const init = async () => {
   await mongoose.connect(mongoUri);
   console.log('Connected to the database succesfully');
   await recreateShop();
-  await shopRestock();
 
   app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`);

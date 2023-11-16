@@ -6,7 +6,6 @@ import { useId } from 'react';
 function Item({ item, slot, onItemClicked, stackable, price, id }) {
   const elementId = useId();
   let metadataElements = [];
-  console.log(item);
 
   for (const metadata in item?.metadata) {
     metadataElements.push(`${metadata}: ${item.metadata[metadata]}`);

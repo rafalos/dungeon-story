@@ -2,10 +2,8 @@ import express, { RequestHandler } from 'express';
 import cors from 'cors';
 require('dotenv').config();
 import { Request } from 'express';
-import { generateRandomEquipment } from './logic/generators/equipment';
-import Equipment from './models/Equipment';
 import shopRouter from './routes/shop.routes';
-import charactersRouter from './routes/characters.routes';
+import usersRouter from './routes/users.routes';
 import explorationRouter from './routes/exploration.routes';
 import { get404 } from './controllers/error.controller';
 import { errorHandler } from './middlewares/error';
@@ -29,7 +27,7 @@ app.get('/api/item', async (_, response) => {
   await deleteUnownedItems();
 });
 
-app.use('/api/characters', charactersRouter);
+app.use('/api/users', usersRouter);
 app.use('/api/exploration', explorationRouter);
 app.use('/api/shop', shopRouter);
 

@@ -1,14 +1,14 @@
 import { Schema, Types, model } from 'mongoose';
 
 interface IInventory {
-  characterID: Types.ObjectId;
+  user: Types.ObjectId;
   equipment: Types.ObjectId[];
 }
 
 const inventorySchema = new Schema<IInventory>({
-  characterID: {
+  user: {
     type: Schema.Types.ObjectId,
-    ref: 'Player',
+    ref: 'User',
   },
   equipment: [
     {
