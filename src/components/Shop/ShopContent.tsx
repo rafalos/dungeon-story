@@ -1,11 +1,12 @@
 import { buyItem } from '@/services/shop';
 import Item from '../UI/Item';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import Loader from '../UI/Loader';
 
 function ShopContent(props) {
   const queryClient = useQueryClient();
 
-  const mutation = useMutation({
+  const { mutate, status } = useMutation({
     mutationFn: buyItem,
     onSuccess: () => {
       queryClient.refetchQueries({});
@@ -13,7 +14,7 @@ function ShopContent(props) {
   });
 
   const itemBoughtHandler = async (id: string) => {
-    mutation.mutate(id);
+    mutate(id);
   };
 
   const shopElements = props.items.map((shopElement) => (
@@ -27,6 +28,10 @@ function ShopContent(props) {
       onItemClicked={itemBoughtHandler}
     />
   ));
+
+  if (status === 'pending') {
+    return <Loader />;
+  }
 
   return <div>{shopElements}</div>;
 }
