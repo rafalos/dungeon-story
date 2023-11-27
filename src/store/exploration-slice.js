@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getNewExploration } from '../services/seed';
+import { getNewExploration } from '../services/exploration';
 
 const explorationSlice = createSlice({
   name: 'exploration',

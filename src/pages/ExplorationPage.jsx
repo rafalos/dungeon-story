@@ -9,9 +9,16 @@ import {
 } from '../store/exploration-slice';
 import Loader from '../components/UI/Loader';
 import Button from '@/components/UI/Button';
+import { useQuery } from '@tanstack/react-query';
+import { getNewExploration } from '@/services/exploration';
 
 function ExplorationPage() {
-  const { seed, currentPosition } = useSelector((state) => state.exploration);
+  const { data, isLoading, refetch } = useQuery({
+    queryKey: 'exploration',
+    queryFn: getNewExploration,
+    enabled: false,
+  });
+
   const dispatch = useDispatch();
   const [gptDriven, setGptDriven] = useState(true);
 
@@ -29,7 +36,7 @@ function ExplorationPage() {
 
   return (
     <Card>
-      {!seed && (
+      {!data.seed && (
         <div className={classes['new-exploration']}>
           <label htmlFor='gpt-driven' class={classes.label}>
             <span>Enhance your story by Artificial Intelligence?</span>
@@ -45,12 +52,10 @@ function ExplorationPage() {
               checked={gptDriven}
             ></input>
           </label>
-          <Button onClick={handleExplorationStart}>
-            Start new exploration
-          </Button>
+          <Button onClick={refetch}>Start new exploration</Button>
         </div>
       )}
-      {seed && (
+      {data.seed && (
         <Exploration
           gptDriven={gptDriven}
           seed={seed}

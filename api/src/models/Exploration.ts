@@ -4,8 +4,8 @@ import { ExplorationSeed } from '../types';
 export interface IExploration {
   seed: ExplorationSeed;
   currentStage: number;
-  user: Types.ObjectId;
-  storyID: Types.ObjectId;
+  userID: Types.ObjectId;
+  story: Types.ObjectId;
   active: boolean;
 }
 
@@ -15,7 +15,7 @@ export const explorationSchema = new Schema<IExploration>({
     default: true,
   },
   seed: [],
-  user: {
+  userID: {
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
@@ -23,7 +23,7 @@ export const explorationSchema = new Schema<IExploration>({
     type: Number,
     default: -1,
   },
-  storyID: {
+  story: {
     type: Schema.Types.ObjectId,
     ref: 'Story',
   },

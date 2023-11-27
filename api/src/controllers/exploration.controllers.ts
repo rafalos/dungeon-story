@@ -4,6 +4,7 @@ import Exploration from '../models/Exploration';
 import { generateNextChapter, initializeStory } from '../utils/generateChapter';
 import User from '../models/User';
 import { ExplorationEvent } from '../types';
+import { IStory } from '../models/Story';
 
 export const getNextChapter = async (
   req: Request<{
@@ -43,7 +44,7 @@ export const getNextChapter = async (
       exploration.currentStage++;
   }
 
-  const nextChapter = await generateNextChapter(exploration.storyID, event);
+  const nextChapter = await generateNextChapter(exploration.story, event);
 
   await exploration.save();
   res.json({
@@ -51,7 +52,7 @@ export const getNextChapter = async (
   });
 };
 
-export const getNewExploration = async (
+export const getExploration = async (
   _: Request,
   response: Response,
   next: NextFunction
@@ -59,6 +60,28 @@ export const getNewExploration = async (
   const currentCharacter = await User.findOne({});
 
   if (!currentCharacter) return next('Character not found');
+
+  const currentExploration = await Exploration.findOne({
+    $and: [
+      {
+        userID: currentCharacter._id,
+      },
+      { active: true },
+    ],
+  })
+    .populate<{
+      story: IStory;
+    }>('story')
+    .exec();
+
+  if (currentExploration) {
+    return response.json({
+      explorationID: currentExploration._id,
+      seed: currentExploration.seed,
+      location: currentExploration.story.location,
+      position: currentExploration.currentStage,
+    });
+  }
 
   if (currentCharacter.energy <= 0)
     return next(
@@ -68,13 +91,13 @@ export const getNewExploration = async (
   const newSeed = generateSeed();
 
   const exploration = new Exploration({
-    playerID: currentCharacter._id,
+    userID: currentCharacter._id,
     seed: newSeed,
   });
 
   const story = await initializeStory(exploration._id);
 
-  exploration.storyID = story._id;
+  exploration.story = story._id;
 
   await exploration.save();
 
@@ -85,5 +108,6 @@ export const getNewExploration = async (
     explorationID: exploration._id.toString(),
     seed: newSeed,
     location: story.location,
+    position: exploration.currentStage,
   });
 };
