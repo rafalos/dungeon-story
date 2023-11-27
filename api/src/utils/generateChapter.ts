@@ -1,56 +1,62 @@
 import { Types } from 'mongoose';
-import { ExplorationSeed } from '../types';
+import { ExplorationEvent, ExplorationSeed } from '../types';
 import Story from '../models/Story';
 import openAi from '../lib/openAiApi';
-import {
-  ChatCompletionMessage,
-  ChatCompletionMessageParam,
-} from 'openai/resources/chat/completions';
 import { composeMessage } from './gpt';
-import { EXPLORATION_STRINGS } from './constants';
+import { EXPLORATION_STRINGS, GENERATE_NAME_STRING } from './constants';
 
-const generateNextChapter = async (
-  currentMessages: ChatCompletionMessageParam[]
-): Promise<ChatCompletionMessage> => {
+export const generateNextChapter = async (
+  storyID: Types.ObjectId,
+  event: ExplorationEvent
+): Promise<string> => {
+  const story = await Story.findById(storyID);
+
+  if (!story) throw new Error('No story found');
+
+  story.messages.push(
+    composeMessage(
+      'system',
+      EXPLORATION_STRINGS[
+        `${event.toUpperCase()}` as keyof typeof EXPLORATION_STRINGS
+      ].replace('#LOCATION', story.location)
+    )
+  );
+
   const gptResponse = await openAi.chat.completions.create({
-    messages: currentMessages,
+    messages: story.messages,
     model: 'gpt-3.5-turbo',
   });
 
-  return gptResponse.choices[0].message;
-};
+  const message = gptResponse.choices[0].message;
 
-export const generateChapters = async (
-  seed: ExplorationSeed,
-  storyID: Types.ObjectId
-) => {
-  const story = await Story.findById(storyID);
+  if (!message.content) throw new Error('There was an error');
 
-  if (!story) return;
+  story.messages.push(message);
 
-  if (story.messages.length <= 0) {
-    story.messages.push(composeMessage('system', EXPLORATION_STRINGS.ENTRY));
-    const chapter = await generateNextChapter(story.messages);
-
-    story.messages.push(chapter);
-    story.chapters.push(chapter.content as string);
-  }
-
-  for (const event of seed) {
-    story.messages.push(
-      composeMessage(
-        'system',
-        EXPLORATION_STRINGS[
-          `${event.toUpperCase()}` as keyof typeof EXPLORATION_STRINGS
-        ]
-      )
-    );
-
-    const chapter = await generateNextChapter(story.messages);
-    story.messages.push(chapter);
-    story.chapters.push(chapter.content as string);
-  }
+  story.chapters.push(message.content);
 
   await story.save();
-  return story.chapters;
+
+  return message.content;
+};
+
+const getLocationName = async () => {
+  const gptResponse = await openAi.chat.completions.create({
+    messages: [composeMessage('system', GENERATE_NAME_STRING)],
+    model: 'gpt-3.5-turbo',
+  });
+
+  return gptResponse.choices[0].message.content;
+};
+
+export const initializeStory = async (explorationID: Types.ObjectId) => {
+  const story = new Story({
+    exploration: explorationID,
+  });
+
+  story.location = (await getLocationName()) ?? 'Mysterious forest';
+
+  await story.save();
+
+  return story;
 };

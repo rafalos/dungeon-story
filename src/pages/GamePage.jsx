@@ -33,6 +33,9 @@ function GamePage() {
     }
 
     getAccessTokenSilently().then((token) => {
+      console.table({
+        token: token,
+      });
       setAuthToken(token);
       refetch();
     });

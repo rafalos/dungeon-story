@@ -51,19 +51,19 @@ export const EVENTS = {
   TREASURE: 'treasure',
 };
 
-export const DEFAULT_STRINGS = {
-  DEAD: 'You barely get out of the dungeon alive',
-};
+export const GENERATE_NAME_STRING = 'Give me short dark dungeon location name';
 
 export const EXPLORATION_STRINGS = {
   ENTRY:
-    'Give me very short max 300 characters dark fantasy solo roguelike entry dungeon text',
+    'Give me very short max 300 characters dark fantasy solo roguelike entry #LOCATION text',
   BATTLE:
     'Give me very short max 300 characters continuation of the story after defeating a monster',
   TRAP: 'Give me very short max 300 characters continuation of the story after getting out of the trap',
   WELL: 'Give me very short max 300 characters continuation of the story after player drunk from mysterious magic well',
   TREASURE:
-    'Give me very short max 300 characters contination of the story after player found mysterious chest full of treasure',
+    'Give me very short max 300 characters continuation of the story after player found mysterious chest full of treasure',
   ENDING:
-    'Give me very short max 300 characters story ending afer leaving the dungeon',
+    'Give me very short max 300 characters story ending after leaving the dungeon',
+  DEATH:
+    'Give me very short max 300 characters story ending after player has died in the dungeon',
 };

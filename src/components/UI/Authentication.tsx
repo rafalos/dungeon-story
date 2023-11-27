@@ -3,7 +3,7 @@ import Button from './Button';
 import { useNavigate } from 'react-router-dom';
 
 const Authentication = () => {
-  const { isAuthenticated, loginWithRedirect, getAccessTokenSilently } =
+  const { isAuthenticated, loginWithRedirect } =
     useAuth0();
   const navigate = useNavigate();
 

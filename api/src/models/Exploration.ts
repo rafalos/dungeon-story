@@ -5,17 +5,27 @@ export interface IExploration {
   seed: ExplorationSeed;
   currentStage: number;
   user: Types.ObjectId;
+  storyID: Types.ObjectId;
+  active: boolean;
 }
 
 export const explorationSchema = new Schema<IExploration>({
+  active: {
+    type: Boolean,
+    default: true,
+  },
   seed: [],
   user: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'User',
   },
   currentStage: {
     type: Number,
     default: -1,
+  },
+  storyID: {
+    type: Schema.Types.ObjectId,
+    ref: 'Story',
   },
 });
 

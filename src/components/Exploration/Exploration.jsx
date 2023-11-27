@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import ExplorationTimeline from './ExplorationTimeline';
 import ExplorationEvent from './ExplorationEvent';
 import ExplorationSummary from './ExplorationSummary';
-import { useGptStory } from '../../hooks/useGptStory';
 import { DEFAULT_STRINGS } from '../../utils/contants';
 import { useDispatch, useSelector } from 'react-redux';
 import { playerStatisticActions } from '../../store/player-statistics-slice';

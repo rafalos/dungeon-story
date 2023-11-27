@@ -5,7 +5,14 @@ type ItemType = 'equipment' | 'potion' | 'gem';
 export type GemType = 'crystal' | 'jewel';
 export type SlotType = 'head' | 'torso' | 'legs' | 'boots' | 'ring' | 'weapon';
 export type ClassType = 'common' | 'magic' | 'rare' | 'legendary';
-export type ExplorationEvent = 'battle' | 'trap' | 'treasure' | 'well';
+export type ExplorationEvent =
+  | 'battle'
+  | 'trap'
+  | 'treasure'
+  | 'well'
+  | 'death'
+  | 'entry'
+  | 'ending';
 
 export type Affix =
   | 'criticalChance'
