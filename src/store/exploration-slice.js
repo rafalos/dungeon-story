@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getNewExploration } from '../services/exploration';
+import { getExplorations } from '../services/exploration';
 
 const explorationSlice = createSlice({
   name: 'exploration',
@@ -27,7 +27,7 @@ const explorationSlice = createSlice({
 export const initializeExploration = () => {
   return async (dispatch) => {
     try {
-      const { seed, story } = await getNewExploration();
+      const { seed, story } = await getExplorations();
       dispatch(
         explorationActions.initialize({
           seed,

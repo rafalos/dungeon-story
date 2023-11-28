@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import Modal from '@/components/Layout/Modal';
 import { useAuth0 } from '@auth0/auth0-react';
 import Loader from '@/components/UI/Loader';
-import { setAuthToken } from '@/lib/axios';
+import { getAuthToken, setAuthToken } from '@/lib/axios';
 import { useQuery } from '@tanstack/react-query';
 import { getUser } from '@/services/user';
 
@@ -18,13 +18,10 @@ function GamePage() {
     getAccessTokenSilently,
   } = useAuth0();
 
-  const {
-    data: user,
-    isLoading: isUserLoading,
-    refetch,
-  } = useQuery({
+  const { data: user, isLoading: isUserLoading } = useQuery({
     queryKey: ['user'],
     queryFn: getUser,
+    enabled: !!getAuthToken(),
   });
 
   useEffect(() => {
@@ -33,11 +30,7 @@ function GamePage() {
     }
 
     getAccessTokenSilently().then((token) => {
-      console.table({
-        token: token,
-      });
       setAuthToken(token);
-      refetch();
     });
   }, [isAuthenticated, isAuthLoading]);
 

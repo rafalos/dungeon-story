@@ -1,12 +1,18 @@
 import express from 'express';
 import {
+  generateExploration,
+  getCurrentChapter,
+  getExplorations,
   getExploration,
-  getNextChapter,
+  movePosition,
 } from '../controllers/exploration.controllers';
 
 const router = express.Router();
 
-router.get('/new', getExploration);
-router.get('/:id/nextChapter', getNextChapter);
+router.get('/', getExplorations);
+router.get('/:id', getExploration);
+router.post('/', generateExploration);
+router.get('/:id/getChapter', getCurrentChapter);
+router.post('/:id/move', movePosition);
 
 export default router;

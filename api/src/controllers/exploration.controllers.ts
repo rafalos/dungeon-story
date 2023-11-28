@@ -4,9 +4,9 @@ import Exploration from '../models/Exploration';
 import { generateNextChapter, initializeStory } from '../utils/generateChapter';
 import User from '../models/User';
 import { ExplorationEvent } from '../types';
-import { IStory } from '../models/Story';
+import Story, { IStory } from '../models/Story';
 
-export const getNextChapter = async (
+export const getCurrentChapter = async (
   req: Request<{
     id: string;
   }>,
@@ -20,6 +20,18 @@ export const getNextChapter = async (
   if (!exploration) return next('There was an error finding exploration');
   if (!exploration.active) return next('Exploration has ended');
 
+  const currentStory = await Story.findOne({
+    exploration: exploration._id,
+  });
+
+  if (!currentStory) return next('There was an error finding story');
+
+  if (currentStory.chapters.length >= exploration.currentStage + 2) {
+    return res.json({
+      message: currentStory.chapters[currentStory.chapters.length - 1],
+    });
+  }
+
   if (exploration.currentStage > exploration.seed.length - 1) {
     exploration.currentStage = 999;
   }
@@ -29,7 +41,6 @@ export const getNextChapter = async (
   switch (exploration.currentStage) {
     case -1:
       event = 'entry';
-      exploration.currentStage++;
       break;
     case 666:
       event = 'death';
@@ -41,7 +52,6 @@ export const getNextChapter = async (
       break;
     default:
       event = exploration.seed[exploration.currentStage];
-      exploration.currentStage++;
   }
 
   const nextChapter = await generateNextChapter(exploration.story, event);
@@ -52,62 +62,106 @@ export const getNextChapter = async (
   });
 };
 
-export const getExploration = async (
+export const movePosition = async (
+  req: Request<{
+    id: string;
+  }>,
+  res: Response,
+  next: NextFunction
+) => {
+  const explorationID = req.params.id;
+
+  const exploration = await Exploration.findById(explorationID);
+
+  if (!exploration) return next('There was an error finding exploration');
+
+  exploration.currentStage++;
+
+  await exploration.save();
+
+  res.json(exploration);
+};
+
+export const generateExploration = async (
   _: Request,
   response: Response,
   next: NextFunction
 ) => {
-  const currentCharacter = await User.findOne({});
+  const currentUser = await User.findOne({});
+  if (!currentUser) return next('Character not found');
 
-  if (!currentCharacter) return next('Character not found');
-
-  const currentExploration = await Exploration.findOne({
+  const explorations = await Exploration.find({
     $and: [
       {
-        userID: currentCharacter._id,
+        userID: currentUser._id,
       },
       { active: true },
     ],
-  })
-    .populate<{
-      story: IStory;
-    }>('story')
-    .exec();
+  });
 
-  if (currentExploration) {
-    return response.json({
-      explorationID: currentExploration._id,
-      seed: currentExploration.seed,
-      location: currentExploration.story.location,
-      position: currentExploration.currentStage,
-    });
-  }
+  if (explorations.length >= +process.env.ACTIVE_EXPLORATION_LIMIT!)
+    return next('User has reached exploration limit');
 
-  if (currentCharacter.energy <= 0)
+  if (currentUser.energy <= 0)
     return next(
-      `${currentCharacter._id.toString()} has not enough energy to start exploration`
+      `${currentUser._id.toString()} has not enough energy to start exploration`
     );
 
   const newSeed = generateSeed();
 
   const exploration = new Exploration({
-    userID: currentCharacter._id,
+    userID: currentUser._id,
     seed: newSeed,
   });
 
   const story = await initializeStory(exploration._id);
 
   exploration.story = story._id;
+  exploration.name = story.location;
 
   await exploration.save();
 
-  currentCharacter.energy -= 1;
-  currentCharacter.save();
+  currentUser.energy -= 1;
+  currentUser.save();
 
   response.json({
-    explorationID: exploration._id.toString(),
-    seed: newSeed,
-    location: story.location,
-    position: exploration.currentStage,
+    message: `Exploration ${story.location} has been generated`,
   });
+};
+
+export const getExploration = async (
+  request: Request<{
+    id: string;
+  }>,
+  response: Response,
+  next: NextFunction
+) => {
+  const { id } = request.params;
+
+  const exploration = await Exploration.findById(id);
+
+  if (!exploration) return next('Exploration not found');
+
+  response.json(exploration);
+};
+
+export const getExplorations = async (
+  _: Request,
+  response: Response,
+  next: NextFunction
+) => {
+  const currentUser = await User.findOne({});
+
+  if (!currentUser) return next('Character not found');
+
+  const explorations = await Exploration.find({
+    $and: [
+      {
+        userID: currentUser._id,
+      },
+      { active: true },
+    ],
+  });
+
+  response.json(explorations);
 };

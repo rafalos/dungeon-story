@@ -13,6 +13,8 @@ import GamePage from './pages/GamePage.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Authentication from './components/Authentication';
+import Exploration from './components/Exploration/Exploration';
+import Inside from './components/Exploration/Inside';
 
 const queryClient = new QueryClient();
 
@@ -55,6 +57,10 @@ const router = createBrowserRouter([
       {
         path: 'exploration',
         element: <ExplorationPage />,
+      },
+      {
+        path: 'exploration/:id',
+        element: <Exploration />,
       },
     ],
   },
