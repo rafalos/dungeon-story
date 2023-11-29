@@ -1,14 +1,19 @@
-import React from 'react';
-import Character from '../components/Character/Character';
 import Card from '../components/UI/Card';
 import { useOutletContext } from 'react-router-dom';
+import Statistics from '@/components/Statistics/Statistics';
+import Inventory from '@/components/Character/Inventory';
+import Equipment from '@/components/Equipment/Equipment';
 
 function CharacterPage() {
-  const { user } = useOutletContext()
+  const { user } = useOutletContext();
 
   return (
     <Card>
-      <Character character={user} />
+      <div className='flex justify-around w-full gap-4'>
+        <Inventory items={user.inventory.equipment} />
+        <Equipment />
+        <Statistics />
+      </div>
     </Card>
   );
 }

@@ -9,7 +9,7 @@ type Props = {
 function Card({ children, style }: Props) {
   return (
     <div
-      className='text-white flex justify-around w-[100%] p-16'
+      className='text-white flex justify-around w-[100%] p-16 gap-6'
       style={style}
     >
       {children}

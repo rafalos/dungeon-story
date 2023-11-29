@@ -24,7 +24,7 @@ const Container = ({ children, title, icon: Icon, variant }: Props) => {
   };
 
   return (
-    <div className={`rounded w-[510px] flex flex-col text-xl text-black`}>
+    <div className={`rounded w-full flex flex-col text-xl text-black`}>
       <div
         className={`flex items-center justify-between rounded font-bold h-20 ${variants[variant]} bg-gradient-to-l from-customBlack text-white from-15% to-transparent to-100% px-12`}
       >

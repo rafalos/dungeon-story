@@ -3,6 +3,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { GiBlackKnightHelm } from 'react-icons/gi';
 import { GiDungeonGate } from 'react-icons/gi';
 import { GiShop } from 'react-icons/gi';
+import { IoLogOutOutline } from "react-icons/io5";
 
 function Navigation() {
   const { logout } = useAuth0();
@@ -21,7 +22,7 @@ function Navigation() {
   ];
 
   return (
-    <div className='text-customWhite'>
+    <div className='text-customWhite flex flex-col justify-between h-full'>
       <nav className='flex flex-col'>
         {navLinks.map(({ label, to, icon: Icon }) => (
           <NavLink
@@ -37,9 +38,9 @@ function Navigation() {
             {label}
           </NavLink>
         ))}
-
-        <li
-          className='p-4 hover:bg-customWhite hover:bg-opacity-5 transition-colors flex items-center gap-2 text-xl font-medium'
+      </nav>
+      <li
+          className='p-4 hover:bg-customWhite hover:bg-opacity-5 transition-colors flex items-center gap-2 text-2xl font-medium'
           onClick={() =>
             logout({
               logoutParams: {
@@ -48,9 +49,9 @@ function Navigation() {
             })
           }
         >
+          <IoLogOutOutline />
           Logout
         </li>
-      </nav>
     </div>
   );
 }
