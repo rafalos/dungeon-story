@@ -24,9 +24,9 @@ const Container = ({ children, title, icon: Icon, variant }: Props) => {
   };
 
   return (
-    <div className={`rounded w-[590px] flex flex-col text-2xl text-black`}>
+    <div className={`rounded w-[510px] flex flex-col text-xl text-black`}>
       <div
-        className={`flex items-center justify-between rounded font-bold h-24 ${variants[variant]} bg-gradient-to-l from-customBlack text-white from-15% to-transparent to-100% px-12`}
+        className={`flex items-center justify-between rounded font-bold h-20 ${variants[variant]} bg-gradient-to-l from-customBlack text-white from-15% to-transparent to-100% px-12`}
       >
         <div>{title}</div>
         {Icon && (
@@ -35,7 +35,7 @@ const Container = ({ children, title, icon: Icon, variant }: Props) => {
           </div>
         )}
       </div>
-      <div className={`flex-1 flex-wrap p-2 ${variants[variant]} bg-opacity-5`}>
+      <div className={`flex-1 flex-wrap p-4 ${variants[variant]} bg-opacity-10`}>
         {children}
       </div>
     </div>

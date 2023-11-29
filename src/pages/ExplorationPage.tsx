@@ -8,6 +8,8 @@ import {
 } from '@/services/exploration';
 import List from '@/components/Exploration/List';
 import SmallLoader from '@/components/UI/SmallLoader';
+import Container from '@/components/UI/Container';
+import { GiDungeonGate } from 'react-icons/gi';
 
 function ExplorationPage() {
   const queryClient = useQueryClient();
@@ -28,25 +30,22 @@ function ExplorationPage() {
 
   return (
     <Card>
-      <div className={classes['new-exploration']}>
-        <label htmlFor='gpt-driven' className={classes.label}>
-          <span>Your story begins here</span>
-        </label>
-        <Button mode='primary' onClick={() => mutate()}>
-          {status === 'pending' ? <SmallLoader /> : 'Generate new'}
-        </Button>
-        {isLoading ? <SmallLoader /> : <List explorations={explorations} />}
-      </div>
-
-      {/* {data && (
-        <Exploration
-          id={data.explorationID}
-          location={data.location}
-          gptDriven={gptDriven}
-          seed={data.seed}
-          currentPosition={data.position}
-        />
-      )} */}
+      {isLoading ? (
+        <SmallLoader />
+      ) : (
+        <Container
+          title='Current explorations'
+          variant='green'
+          icon={GiDungeonGate}
+        >
+          <>
+            <Button onClick={() => mutate()}>
+              {status === 'pending' ? <SmallLoader /> : 'Search for a new exploration'}
+            </Button>
+          </>
+          <List explorations={explorations} />
+        </Container>
+      )}
     </Card>
   );
 }

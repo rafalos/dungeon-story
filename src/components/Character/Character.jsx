@@ -6,9 +6,9 @@ import Inventory from './Inventory';
 function Character({ character }) {
   return (
     <div className='flex justify-around w-full'>
-      <Statistics />
-      <Equipment />
       <Inventory items={character.inventory.equipment} />
+      <Equipment />
+      <Statistics />
     </div>
   );
 }

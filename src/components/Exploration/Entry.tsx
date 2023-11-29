@@ -9,7 +9,7 @@ type Props = {
 
 const Entry = ({ id, name }: Props) => {
   return (
-    <div className='border-4 border-gray-700 p-6 flex justify-center items-center flex-col gap-2'>
+    <div className='text-customWhite bg-customWhite bg-opacity-5 p-6 flex justify-around items-center gap-2'>
       {name}
       <Link to={`${id}`}>
         <Button mode='primary'>Enter</Button>

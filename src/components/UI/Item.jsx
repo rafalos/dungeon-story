@@ -22,7 +22,7 @@ function Item({ item, slot, onItemClicked, stackable, price, id }) {
           key={id}
           data-tooltip-id={elementId}
           onClick={() => clickHandler(id)}
-          className={`${classes['inventory-item']} ${
+          className={`rounded-md ${classes['inventory-item']} ${
             equipmentClasses[`equipment-item--${item.equipmentSlot}`]
           } ${classes[`inventory-item--${item.classType}`]}
           ${`equipment-item--${item.equipmentSlot}`}`}
