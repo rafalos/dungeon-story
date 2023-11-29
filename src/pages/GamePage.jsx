@@ -9,6 +9,8 @@ import Loader from '@/components/UI/Loader';
 import { getAuthToken, setAuthToken } from '@/lib/axios';
 import { useQuery } from '@tanstack/react-query';
 import { getUser } from '@/services/user';
+import Header from '@/components/Layout/Header/Header';
+import Footer from '@/components/Layout/Footer/Footer';
 
 function GamePage() {
   const navigate = useNavigate();
@@ -41,17 +43,21 @@ function GamePage() {
   }
 
   return (
-    <main className='grid grid-cols-[350px_6fr] h-full w-full'>
-      <Sidebar />
-      <div className='flex justify-center content-center h-full bg-gray-950'>
-        <Outlet
-          context={{
-            user,
-          }}
-        />
-      </div>
-      {modalVisible && createPortal(<Modal />, document.body)}
-    </main>
+    <div className='flex flex-col h-screen'>
+      <Header />
+      <main className='grid grid-cols-[450px_6fr] w-full flex-1'>
+        <Sidebar />
+        <div className='flex justify-center content-center bg-customBlack rounded-md'>
+          <Outlet
+            context={{
+              user,
+            }}
+          />
+        </div>
+        {modalVisible && createPortal(<Modal />, document.body)}
+      </main>
+      <Footer />
+    </div>
   );
 }
 

@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { equipItem } from '../../store/player-equipment-slice';
 import classes from './InventoryEquipment.module.css';
 import { itemSold } from '../../store/player-inventory-slice';
+import Container from '../UI/Container';
+import { GiBackpack } from "react-icons/gi";
 
 function InventoryEquipment({ inventoryItems, sellMode }) {
   const dispatch = useDispatch();
@@ -25,23 +27,20 @@ function InventoryEquipment({ inventoryItems, sellMode }) {
   );
 
   return (
-    <div>
-      <h2>Equipment</h2>
-      <div className={classes['tab']}>
-        {equipment.map((item) => (
-          <Item
-            key={item._id}
-            item={item}
-            equipable={true}
-            onItemClicked={
-              sellMode
-                ? () => itemSoldHandler(item)
-                : () => itemEquippedHandler(item)
-            }
-          />
-        ))}
-      </div>
-    </div>
+    <Container title='Inventory' variant='red' icon={GiBackpack}>
+      {equipment.map((item) => (
+        <Item
+          key={item._id}
+          item={item}
+          equipable={true}
+          onItemClicked={
+            sellMode
+              ? () => itemSoldHandler(item)
+              : () => itemEquippedHandler(item)
+          }
+        />
+      ))}
+    </Container>
   );
 }
 

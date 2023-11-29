@@ -25,7 +25,7 @@ export const getCurrentChapter = async (explorationID: string) => {
 };
 
 export const movePosition = async (explorationID: string) => {
-  const response = await axios.post(`/exploration/${explorationID}/getChapter`);
+  const response = await axios.post(`/exploration/${explorationID}/move`);
 
   return response.data;
 };

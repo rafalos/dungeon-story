@@ -1,21 +1,12 @@
 type Props = {
   currentResource: number;
   maxResource: number;
-  percentage: number;
   label: string;
-  bgColor: 'bg-red-800' | 'bg-yellow-600';
+  bgColor: 'bg-customRed' | 'bg-customYellow';
 };
 
-function ResourceBar({
-  currentResource,
-  maxResource,
-  percentage,
-  label,
-  bgColor,
-}: Props) {
-  const factor = !isNaN(percentage)
-    ? percentage
-    : (currentResource / maxResource) * 100;
+function ResourceBar({ currentResource, maxResource, label, bgColor }: Props) {
+  const factor = (currentResource / maxResource) * 100;
 
   return (
     <>

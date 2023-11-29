@@ -7,13 +7,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { playerStatisticActions } from '../../store/player-statistics-slice';
 import { explorationActions } from '../../store/exploration-slice';
 import Button from '../UI/Button';
-import { getCurrentChapter, getExploration } from '@/services/exploration';
+import {
+  getCurrentChapter,
+  getExploration,
+  movePosition,
+} from '@/services/exploration';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import SmallLoader from '../UI/SmallLoader';
 import Card from '../UI/Card';
+import Loader from '../UI/Loader';
 
 function Exploration() {
+  const queryClient = useQueryClient();
+
   const { id = '' } = useParams<{
     id: string;
   }>();
@@ -30,11 +37,24 @@ function Exploration() {
   const {
     data: chapter,
     isLoading: chapterLoading,
+    isFetching,
     error: chapterError,
   } = useQuery({
     queryKey: ['currentStory', id],
     queryFn: () => getCurrentChapter(id),
     enabled: !!exploration,
+  });
+
+  const { mutate: move } = useMutation({
+    mutationKey: ['movePosition', id],
+    mutationFn: movePosition,
+    onSuccess: () => {
+      queryClient.refetchQueries({
+        predicate: (query) =>
+          query.queryKey[0] === 'exploration' ||
+          query.queryKey[0] === 'currentStory',
+      });
+    },
   });
 
   const [started, setStarted] = useState(false);
@@ -45,6 +65,10 @@ function Exploration() {
 
   const experienceGainedHandler = (amount) => {
     setExperienceGained((prevState) => (prevState += amount));
+  };
+
+  const explorationProgressHandler = () => {
+    move(id);
   };
 
   const playerDeadHandler = () => {
@@ -58,19 +82,7 @@ function Exploration() {
     });
   };
 
-  // useEffect(() => {
-  //   if (currentPosition < 0) {
-  //     setCurrentStory(story[0]);
-  //   } else {
-  //     setCurrentStory(story[currentPosition + 1]);
-  //   }
-  // }, [currentPosition]);
-
-  const enterDungeonHandler = async () => {
-    setStarted(true);
-  };
-
-  if (isLoading && chapterLoading) return <SmallLoader />;
+  if (isLoading || chapterLoading || isFetching) return <Loader />;
   if (error) return 'An error has occurred: ' + error.message;
   if (!exploration || !chapter) return 'Something went wrong';
 
@@ -79,16 +91,17 @@ function Exploration() {
 
   return (
     <Card>
-      <h1>{exploration.currentStage}</h1>
       <div>
         {exploration.currentStage !== 666 && (
           <>
+            <h1>{exploration.currentStage}</h1>
             <h2>{exploration.name}</h2>
             <ExplorationTimeline
               seed={exploration.seed}
               currentPosition={exploration.currentStage}
             />
             <ExplorationEvent
+              onEventProgress={explorationProgressHandler}
               onPlayerDeath={playerDeadHandler}
               eventString={exploration.seed[exploration.currentStage]}
               currentPosition={exploration.currentStage}

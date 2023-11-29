@@ -1,52 +1,45 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
-import classes from './Navigation.module.css';
 import { useAuth0 } from '@auth0/auth0-react';
+import { GiBlackKnightHelm } from 'react-icons/gi';
+import { GiDungeonGate } from 'react-icons/gi';
+import { GiShop } from 'react-icons/gi';
 
 function Navigation() {
   const { logout } = useAuth0();
+  const navLinks = [
+    {
+      label: 'Character',
+      to: 'character',
+      icon: GiBlackKnightHelm,
+    },
+    { label: 'Exploration', to: 'exploration', icon: GiDungeonGate },
+    {
+      label: 'Shop',
+      to: 'shop',
+      icon: GiShop,
+    },
+  ];
 
   return (
-    <div className='bg-zinc-800 text-white'>
-      <nav className={classes['navigation_list']}>
-        <NavLink
-          className={({ isActive }) =>
-            [
-              classes['nav-link'],
-              isActive ? classes['nav-link--active'] : undefined,
-            ].join(' ')
-          }
-          to={`character`}
-        >
-          Character
-        </NavLink>
-
-        <NavLink
-          className={({ isActive }) =>
-            [
-              classes['nav-link'],
-              isActive ? classes['nav-link--active'] : undefined,
-            ].join(' ')
-          }
-          to={`exploration`}
-        >
-          Exploration
-        </NavLink>
-
-        <NavLink
-          className={({ isActive }) =>
-            [
-              classes['nav-link'],
-              isActive ? classes['nav-link--active'] : undefined,
-            ].join(' ')
-          }
-          to={`shop`}
-        >
-          Shop
-        </NavLink>
+    <div className='text-customWhite'>
+      <nav className='flex flex-col'>
+        {navLinks.map(({ label, to, icon: Icon }) => (
+          <NavLink
+            className={({ isActive }) =>
+              [
+                'p-4 hover:bg-customWhite hover:bg-opacity-5 transition-colors flex items-center gap-2 text-xl font-medium',
+                isActive ? 'bg-customWhite bg-opacity-10' : undefined,
+              ].join(' ')
+            }
+            to={to}
+          >
+            <Icon />
+            {label}
+          </NavLink>
+        ))}
 
         <li
-          className={classes['nav-link']}
+          className='p-4 hover:bg-customWhite hover:bg-opacity-5 transition-colors flex items-center gap-2 text-xl font-medium'
           onClick={() =>
             logout({
               logoutParams: {

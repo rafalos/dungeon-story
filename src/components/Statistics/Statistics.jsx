@@ -4,6 +4,9 @@ import { playerStatisticActions } from '../../store/player-statistics-slice';
 import { playerStatusActions } from '../../store/player-status-slice';
 import classes from './Statistics.module.css';
 import Button from '../UI/Button';
+import Container from '../UI/Container';
+import { ImStatsBars2 } from "react-icons/im";
+
 
 function Statistics() {
   const dispatch = useDispatch();
@@ -28,8 +31,8 @@ function Statistics() {
   };
 
   return (
-    <>
-      <ul className={classes.statistics}>
+    <Container title='Statistics' variant='green' icon={ImStatsBars2}>
+      <ul className='text-white'>
         <li>
           Damage: {playerStatistics.minDamage} - {playerStatistics.maxDamage}
         </li>
@@ -53,7 +56,7 @@ function Statistics() {
           </li>
         ))}
       </ul>
-    </>
+    </Container>
   );
 }
 

@@ -11,20 +11,11 @@
   --rarity-common: #e0e0e0;
 }
 
-#root {
-  height: 100vh;
-}
-
 body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  background: rgb(97, 42, 42);
-  background: linear-gradient(
-    353deg,
-    rgba(97, 42, 42, 1) 0%,
-    rgba(0, 0, 0, 1) 45%
-  );
+  @apply bg-backgroundBlack
 }
 
 .App {
