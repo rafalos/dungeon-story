@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -15,7 +15,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  @apply bg-backgroundBlack
+  @apply bg-landingBg
 }
 
 .App {
@@ -28,16 +28,4 @@ li {
   margin: 0;
   padding: 0;
   cursor: pointer;
-}
-
-.flex-column-container {
-  gap: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-a {
-  text-decoration: none;
 }

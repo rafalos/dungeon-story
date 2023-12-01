@@ -39,20 +39,19 @@ function Exploration() {
     isLoading: chapterLoading,
     isFetching,
     error: chapterError,
+    refetch: refetchStory,
   } = useQuery({
     queryKey: ['currentStory', id],
     queryFn: () => getCurrentChapter(id),
     enabled: !!exploration,
   });
 
-  const { mutate: move } = useMutation({
+  const { mutate: move, status } = useMutation({
     mutationKey: ['movePosition', id],
     mutationFn: movePosition,
-    onSuccess: () => {
+    onSettled: () => {
       queryClient.refetchQueries({
-        predicate: (query) =>
-          query.queryKey[0] === 'exploration' ||
-          query.queryKey[0] === 'currentStory',
+        predicate: (query) => query.queryKey[0] === 'exploration',
       });
     },
   });
@@ -86,13 +85,14 @@ function Exploration() {
   if (error) return 'An error has occurred: ' + error.message;
   if (!exploration || !chapter) return 'Something went wrong';
 
+  console.log(exploration.currentStage)
   console.log(exploration);
   console.log(chapter);
 
   return (
     <Card>
       <div>
-        {exploration.currentStage !== 666 && (
+        {exploration.currentStage < exploration.seed.length ? (
           <>
             <h1>{exploration.currentStage}</h1>
             <h2>{exploration.name}</h2>
@@ -101,6 +101,7 @@ function Exploration() {
               currentPosition={exploration.currentStage}
             />
             <ExplorationEvent
+              fetchNextStory={refetchStory}
               onEventProgress={explorationProgressHandler}
               onPlayerDeath={playerDeadHandler}
               eventString={exploration.seed[exploration.currentStage]}
@@ -110,14 +111,13 @@ function Exploration() {
               currentStory={chapter.message}
             />
           </>
+        ) : (
+          <ExplorationSummary
+            ending={chapter.message}
+            totalExperienceGained={experienceGained}
+            totalItemsFound={itemsFound}
+          />
         )}
-
-        {/* <ExplorationSummary
-          ending={characterDead ? DEFAULT_STRINGS.DEAD : currentStory}
-          onFinished={onExplorationFinished}
-          totalExperienceGained={experienceGained}
-          totalItemsFound={itemsFound}
-        /> */}
       </div>
     </Card>
   );

@@ -10,16 +10,22 @@ import List from '@/components/Exploration/List';
 import SmallLoader from '@/components/UI/SmallLoader';
 import Container from '@/components/UI/Container';
 import { GiDungeonGate } from 'react-icons/gi';
+import { useNotification } from '@/store/notification-context';
 
 function ExplorationPage() {
+  const { setNotification } = useNotification();
   const queryClient = useQueryClient();
 
-  const { mutate, status } = useMutation({
+  const { mutate, status, error } = useMutation({
     mutationFn: generateNewExploration,
     onSuccess: () => {
       queryClient.refetchQueries({
         queryKey: ['explorations'],
       });
+    },
+    onError: (error) => {
+      console.log(error)
+      setNotification(error.response.data)
     },
   });
 
@@ -40,7 +46,11 @@ function ExplorationPage() {
         >
           <>
             <Button onClick={() => mutate()}>
-              {status === 'pending' ? <SmallLoader /> : 'Search for a new exploration'}
+              {status === 'pending' ? (
+                <SmallLoader />
+              ) : (
+                'Search for a new exploration'
+              )}
             </Button>
           </>
           <List explorations={explorations} />

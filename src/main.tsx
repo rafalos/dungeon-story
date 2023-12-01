@@ -13,18 +13,20 @@ import GamePage from './pages/GamePage.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Authentication from './components/Authentication';
+import NotificationsProvider from './store/notification-context';
 import Exploration from './components/Exploration/Exploration';
-import Inside from './components/Exploration/Inside';
 
 const queryClient = new QueryClient();
 
 const GameProviders = ({ children }: { children: React.ReactNode }) => {
   return (
     <Authentication>
-      <QueryClientProvider client={queryClient}>
-        <StoreProvider store={store}>{children}</StoreProvider>
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
+      <NotificationsProvider>
+        <QueryClientProvider client={queryClient}>
+          <StoreProvider store={store}>{children}</StoreProvider>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
+      </NotificationsProvider>
     </Authentication>
   );
 };

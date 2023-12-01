@@ -3,7 +3,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { GiBlackKnightHelm } from 'react-icons/gi';
 import { GiDungeonGate } from 'react-icons/gi';
 import { GiShop } from 'react-icons/gi';
-import { IoLogOutOutline } from "react-icons/io5";
+import { IoLogOutOutline } from 'react-icons/io5';
 
 function Navigation() {
   const { logout } = useAuth0();
@@ -40,18 +40,18 @@ function Navigation() {
         ))}
       </nav>
       <li
-          className='p-4 hover:bg-customWhite hover:bg-opacity-5 transition-colors flex items-center gap-2 text-2xl font-medium'
-          onClick={() =>
-            logout({
-              logoutParams: {
-                returnTo: window.location.origin,
-              },
-            })
-          }
-        >
-          <IoLogOutOutline />
-          Logout
-        </li>
+        className='p-4 hover:bg-customWhite hover:bg-opacity-5 transition-colors flex items-center gap-2 text-2xl font-medium'
+        onClick={() =>
+          logout({
+            logoutParams: {
+              returnTo: window.location.origin,
+            },
+          })
+        }
+      >
+        <IoLogOutOutline />
+        Logout
+      </li>
     </div>
   );
 }

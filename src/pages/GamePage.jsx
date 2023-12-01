@@ -11,8 +11,11 @@ import { useQuery } from '@tanstack/react-query';
 import { getUser } from '@/services/user';
 import Header from '@/components/Layout/Header/Header';
 import Footer from '@/components/Layout/Footer/Footer';
+import { useNotification } from '@/store/notification-context';
+import Notification from '@/components/UI/Notification';
 
 function GamePage() {
+  const { message } = useNotification();
   const navigate = useNavigate();
   const {
     isLoading: isAuthLoading,
@@ -57,6 +60,7 @@ function GamePage() {
         {modalVisible && createPortal(<Modal />, document.body)}
       </main>
       <Footer />
+      {message && <Notification />}
     </div>
   );
 }

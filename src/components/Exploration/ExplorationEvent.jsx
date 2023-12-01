@@ -9,6 +9,7 @@ import Loader from '../UI/Loader';
 import Button from '../UI/Button';
 
 function ExplorationEvent({
+  fetchNextStory,
   eventString,
   onEventProgress,
   currentStory,
@@ -17,6 +18,8 @@ function ExplorationEvent({
   onPlayerDeath,
 }) {
   const [eventInProgress, setEventInProgress] = useState(false);
+  console.log(`############## ${eventString}`)
+
   const currentEvent = () => {
     let cEvent = null;
     switch (eventString) {
@@ -62,7 +65,8 @@ function ExplorationEvent({
     setEventInProgress(true);
   };
 
-  const endEventHandler = () => {
+  const endEventHandler = async () => {
+    await fetchNextStory();
     setEventInProgress(false);
   };
 
@@ -71,9 +75,7 @@ function ExplorationEvent({
       {eventInProgress && currentEvent()}
       {!eventInProgress && currentStory}
       {!eventInProgress && (
-        <Button onClick={progressEventHandler}>
-          Continue exploration
-        </Button>
+        <Button onClick={progressEventHandler}>Continue exploration</Button>
       )}
     </div>
   );

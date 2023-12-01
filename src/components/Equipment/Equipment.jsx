@@ -4,8 +4,7 @@ import Item from '../UI/Item';
 import classes from './Equipment.module.css';
 import { unequipItem } from '../../store/player-equipment-slice';
 import Container from '../UI/Container';
-import { GiShardSword } from "react-icons/gi";
-
+import { GiShardSword } from 'react-icons/gi';
 
 function Equipment() {
   const playerEquipment = useSelector((state) => state.equipment);
@@ -17,14 +16,18 @@ function Equipment() {
   }
 
   const itemClickHandler = (item) => {
-    dispatch(unequipItem(item))
-  }
+    dispatch(unequipItem(item));
+  };
 
   return (
     <Container title='Equipment' variant='yellow' icon={GiShardSword}>
       <div className={classes['equipment-container']}>
         {elements.map((element) => (
-          <Item slot={element[0]} item={element[1]} onItemClicked={itemClickHandler}/>
+          <Item
+            slot={element[0]}
+            item={element[1]}
+            onItemClicked={itemClickHandler}
+          />
         ))}
       </div>
     </Container>
