@@ -1,5 +1,5 @@
 import React from 'react';
-import Authentication from '../UI/Authentication';
+import Authentication from './Authentication';
 import { GiHamburgerMenu } from 'react-icons/gi';
 
 type Props = {};
@@ -13,9 +13,16 @@ const Navbar = (props: Props) => {
       <div className='text-[16px] md:text-2xl'>Dungeon Story</div>
       <nav>
         <ul className='hidden md:flex gap-8 text-lg'>
-          <li>About</li>
-          <li>Features</li>
-          <li>Test</li>
+          <a href='#about'>
+            <li>About</li>
+          </a>
+          <a href='#features'>
+            <li>Features</li>
+          </a>
+
+          <a href='#journey'>
+            <li>Journey</li>
+          </a>
         </ul>
       </nav>
       <Authentication />

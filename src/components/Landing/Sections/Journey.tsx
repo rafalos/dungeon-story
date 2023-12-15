@@ -2,7 +2,7 @@ import SectionHeader from '../SectionHeader';
 
 const Journey = () => {
   return (
-    <section className='flex flex-col gap-8 items-center text-landingWhite py-12 px-4'>
+    <section id='journey' className='flex flex-col gap-8 items-center text-landingWhite py-12 px-4'>
       <div className='text-center'>
         <h2 className='text-2xl mb-4'>lorem ipsum</h2>
         <p className='mb-4'>
@@ -15,7 +15,7 @@ const Journey = () => {
           <img src='/potion.png' alt='' />
         </div>
       </div>
-      <img src="/skull.png" alt="" />
+      <img src="/skull.png" alt="" className='opacity-40'/>
       <p className='text-left w-[70%] text-2xl self-start'>
         Lorem ipsum dolor sit amet consectetur.
       </p>

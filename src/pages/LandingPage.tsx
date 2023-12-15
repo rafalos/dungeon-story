@@ -10,7 +10,7 @@ type Props = {};
 const LandingPage = (props: Props) => {
   return (
     <div className='flex w-full justify-center bg-landingBg font-poppins'>
-      <div className='flex flex-col max-w-[1920px]'>
+      <div className='flex flex-col w-full'>
         <Navbar />
         <main className='flex-1'>
           <Hero />

@@ -11,11 +11,15 @@
   --rarity-common: #e0e0e0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  @apply bg-landingBg
+  @apply bg-landingBg;
 }
 
 .App {
