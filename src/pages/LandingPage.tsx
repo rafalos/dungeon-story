@@ -5,9 +5,7 @@ import Journey from '@/components/Landing/Sections/Journey';
 import Hero from '@/components/Landing/Sections/Hero';
 import Footer from '@/components/Landing/Footer';
 
-type Props = {};
-
-const LandingPage = (props: Props) => (
+const LandingPage = () => (
   <div className="flex w-full justify-center bg-landingBg font-poppins">
     <div className="flex w-full flex-col">
       <Navbar />

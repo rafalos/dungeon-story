@@ -1,6 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
-import LandingButton from './LandingButton';
+import Button from '../UI/Button';
 
 const Authentication = () => {
   const { isAuthenticated, loginWithRedirect } = useAuth0();
@@ -14,7 +14,9 @@ const Authentication = () => {
 
   return (
     <>
-      <LandingButton onClick={handleAuthenticate}>Play now</LandingButton>
+      <Button variant="landing" onClick={handleAuthenticate}>
+        Play now
+      </Button>
     </>
   );
 };

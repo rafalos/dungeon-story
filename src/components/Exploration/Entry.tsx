@@ -12,7 +12,7 @@ const Entry = ({ id, name }: Props) => {
     <div className="flex items-center justify-around gap-2 bg-customWhite bg-opacity-5 p-6 text-customWhite">
       {name}
       <Link to={`${id}`}>
-        <Button mode="primary">Enter</Button>
+        <Button variant='game'>Enter</Button>
       </Link>
     </div>
   );

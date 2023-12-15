@@ -1,5 +1,5 @@
 import React from 'react';
-import LandingButton from '../LandingButton';
+import Button from '@/components/UI/Button';
 
 type Props = {};
 
@@ -18,7 +18,7 @@ const Hero = (props: Props) => {
             Craft Your <span className="font-bold">Tale</span>
           </h2>
         </div>
-        <LandingButton>Read more</LandingButton>
+        <Button variant='landing'>Read more</Button>
       </div>
     </section>
   );
