@@ -5,8 +5,7 @@ import { playerStatusActions } from '../../store/player-status-slice';
 import classes from './Statistics.module.css';
 import Button from '../UI/Button';
 import Container from '../UI/Container';
-import { ImStatsBars2 } from "react-icons/im";
-
+import { ImStatsBars2 } from 'react-icons/im';
 
 function Statistics() {
   const dispatch = useDispatch();
