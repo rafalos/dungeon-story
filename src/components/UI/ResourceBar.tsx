@@ -11,12 +11,12 @@ function ResourceBar({ currentResource, maxResource, label, bgColor }: Props) {
   return (
     <>
       {label && `${label}:`}
-      <div className='border-2 border-solid border-black bg-gray-300 w-full h-8 relative'>
-        <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-lg text-gray-900'>{`${factor.toFixed(
+      <div className="relative h-8 w-full border-2 border-solid border-black bg-gray-300">
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-lg text-gray-900">{`${factor.toFixed(
           1
         )}%`}</div>
         <div
-          className={`py-1 transition-all h-full ${bgColor}`}
+          className={`h-full py-1 transition-all ${bgColor}`}
           style={{
             width: `${factor}%`,
           }}

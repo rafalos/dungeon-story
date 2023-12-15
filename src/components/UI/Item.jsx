@@ -32,17 +32,17 @@ function Item({ item, slot, onItemClicked, stackable, price, id }) {
 
           <Tooltip
             id={elementId}
-            className={`border-4 flex flex-col justify-center items-center z-50`}
+            className={`z-50 flex flex-col items-center justify-center border-4`}
           >
-            <span className='font-medium text-lg'>{item.name}</span>
-            <ul className='my-2 text-base'>
+            <span className="text-lg font-medium">{item.name}</span>
+            <ul className="my-2 text-base">
               {item.modifiers.map((modifier) => (
                 <li key={modifier[0] + modifier[1]}>
                   {modifier[0]}: {modifier[1]}
                 </li>
               ))}
             </ul>
-            <div className=''>{item.classType}</div>
+            <div className="">{item.classType}</div>
             {/* <div>Sell price: {item.sellPrice}</div>
             {price && <div>Cost: {price}</div>} */}
           </Tooltip>

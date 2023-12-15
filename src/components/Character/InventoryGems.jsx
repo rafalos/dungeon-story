@@ -14,27 +14,25 @@ function InventoryGems({ inventoryItems, sellMode }) {
     dispatch(itemSold(item));
   };
 
-  const itemClickHandler = (item) => {
-  };
+  const itemClickHandler = (item) => {};
 
   return (
     <div>
       <h2>Gems</h2>
       <div className={classes['tab']}>
-      {gems.map((item) => (
-        <Item
-          key={item.id}
-          item={item}
-          stackable={true}
-          onItemClicked={
-            sellMode
-              ? () => itemSoldHandler(item)
-              : () => itemClickHandler(item)
-          }
-        />
-      ))}
+        {gems.map((item) => (
+          <Item
+            key={item.id}
+            item={item}
+            stackable={true}
+            onItemClicked={
+              sellMode
+                ? () => itemSoldHandler(item)
+                : () => itemClickHandler(item)
+            }
+          />
+        ))}
       </div>
-
     </div>
   );
 }

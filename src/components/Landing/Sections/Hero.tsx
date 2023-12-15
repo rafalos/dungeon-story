@@ -5,17 +5,17 @@ type Props = {};
 
 const Hero = (props: Props) => {
   return (
-    <section className='flex flex-col justify-center items-center h-[calc(100vh-64px)] text-landingWhite bg-hero bg-cover bg-right-top md:bg-center md:relative'>
-      <div className='flex flex-col gap-12 items-center p-14 md:absolute md:left-[10%]'>
+    <section className="flex h-[calc(100vh-64px)] flex-col items-center justify-center bg-hero bg-cover bg-right-top text-landingWhite md:relative md:bg-center">
+      <div className="flex flex-col items-center gap-12 p-14 md:absolute md:left-[10%]">
         <div>
-          <h1 className='text-3xl md:text-7xl mb-7 relative -left-1 font-bold'>
+          <h1 className="relative -left-1 mb-7 text-3xl font-bold md:text-7xl">
             Dungeon Story
           </h1>
-          <h2 className='text-2xl md:text-[2rem] letter leading-10'>
-            Conquer The <span className='font-bold'>Depths</span>
+          <h2 className="letter text-2xl leading-10 md:text-[2rem]">
+            Conquer The <span className="font-bold">Depths</span>
             <br></br>
             Enter The Unknown <br></br>
-            Craft Your <span className='font-bold'>Tale</span>
+            Craft Your <span className="font-bold">Tale</span>
           </h2>
         </div>
         <LandingButton>Read more</LandingButton>

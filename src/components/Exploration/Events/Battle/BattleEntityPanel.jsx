@@ -5,10 +5,10 @@ import classes from './BattleEntity.module.css';
 function BattleEntityPanel({ entity }) {
   return (
     <div className={classes.entity}>
-      <img className={classes.image} src={entity.icon} alt='' />
+      <img className={classes.image} src={entity.icon} alt="" />
       <div>{entity.name}</div>
       <ResourceBar
-        bgColor='bg-red-800'
+        bgColor="bg-red-800"
         currentResource={entity.currentHealth}
         maxResource={entity.maxHealth}
       />

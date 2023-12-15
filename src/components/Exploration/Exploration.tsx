@@ -85,7 +85,7 @@ function Exploration() {
   if (error) return 'An error has occurred: ' + error.message;
   if (!exploration || !chapter) return 'Something went wrong';
 
-  console.log(exploration.currentStage)
+  console.log(exploration.currentStage);
   console.log(exploration);
   console.log(chapter);
 

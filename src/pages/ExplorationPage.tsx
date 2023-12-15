@@ -24,8 +24,8 @@ function ExplorationPage() {
       });
     },
     onError: (error) => {
-      console.log(error)
-      setNotification(error.response.data)
+      console.log(error);
+      setNotification(error.response.data);
     },
   });
 
@@ -40,8 +40,8 @@ function ExplorationPage() {
         <SmallLoader />
       ) : (
         <Container
-          title='Current explorations'
-          variant='green'
+          title="Current explorations"
+          variant="green"
           icon={GiDungeonGate}
         >
           <>

@@ -5,7 +5,6 @@ import Card from '../UI/Card';
 import { modalActions } from '@/store/modal-slice';
 import Button from '../UI/Button';
 
-
 function Modal() {
   const dispatch = useDispatch();
   const { description, title } = useSelector((state) => state.modal);

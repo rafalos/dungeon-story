@@ -1,13 +1,13 @@
-import React from 'react'
+import React from 'react';
 
-type Props = {}
+type Props = {};
 
 const Footer = (props: Props) => {
   return (
-    <header className='flex text-customWhite h-20 items-center justify-between text-lg font-bold p-4 border-customWhite border-t border-opacity-10'>
+    <header className="flex h-20 items-center justify-between border-t border-customWhite border-opacity-10 p-4 text-lg font-bold text-customWhite">
       <div>All rights reserved</div>
     </header>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

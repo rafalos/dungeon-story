@@ -6,21 +6,21 @@ type Props = {};
 
 const Navbar = (props: Props) => {
   return (
-    <header className='text-[#fff8f0] flex h-16 justify-between items-center w-full gap-4 p-4'>
-      <div className='md:hidden text-3xl cursor-pointer'>
+    <header className="flex h-16 w-full items-center justify-between gap-4 p-4 text-[#fff8f0]">
+      <div className="cursor-pointer text-3xl md:hidden">
         <GiHamburgerMenu />
       </div>
-      <div className='text-[16px] md:text-2xl'>Dungeon Story</div>
+      <div className="text-[16px] md:text-2xl">Dungeon Story</div>
       <nav>
-        <ul className='hidden md:flex gap-8 text-lg'>
-          <a href='#about'>
+        <ul className="hidden gap-8 text-lg md:flex">
+          <a href="#about">
             <li>About</li>
           </a>
-          <a href='#features'>
+          <a href="#features">
             <li>Features</li>
           </a>
 
-          <a href='#journey'>
+          <a href="#journey">
             <li>Journey</li>
           </a>
         </ul>

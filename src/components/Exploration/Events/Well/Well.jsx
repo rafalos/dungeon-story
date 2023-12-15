@@ -21,12 +21,12 @@ function Well({ onEventFinished }) {
   return (
     <div>
       {drunkFromWell ? (
-        <div className='flex-column-container'>
+        <div className="flex-column-container">
           You feel refreshed and gained knowledge after you drunk from well
           <Button onClick={onEventFinished}>Continue exploration</Button>
         </div>
       ) : (
-        <div className='flex-column-container'>
+        <div className="flex-column-container">
           You have found a mysterious well
           <Button onClick={drinkHandler}>Drink</Button>
         </div>

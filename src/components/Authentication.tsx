@@ -8,8 +8,8 @@ type Props = {
 const Authentication = ({ children }: Props) => {
   return (
     <Auth0Provider
-      domain='dev-4rfnuvnatksv3pik.eu.auth0.com'
-      clientId='DqNQFBpog3Tt1buZZAkPdKAdFZZwym7g'
+      domain="dev-4rfnuvnatksv3pik.eu.auth0.com"
+      clientId="DqNQFBpog3Tt1buZZAkPdKAdFZZwym7g"
       authorizationParams={{
         redirect_uri: `${window.location.origin}/game`,
         scope: 'openid profile email',

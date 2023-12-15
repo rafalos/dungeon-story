@@ -7,18 +7,18 @@ const Status = () => {
   const player = useSelector((state) => state.status);
   const { currentHealth, maxHealth } = useSelector((state) => state.statistics);
   return (
-    <div className='p-4 rounded-md flex flex-col gap-2'>
-      <div className='text-3xl'>Level: {player.level}</div>
+    <div className="flex flex-col gap-2 rounded-md p-4">
+      <div className="text-3xl">Level: {player.level}</div>
 
       <ResourceBar
-        bgColor='bg-customYellow'
-        label='Experience'
+        bgColor="bg-customYellow"
+        label="Experience"
         currentResource={player.experience}
         maxResource={player.maxExperience}
       />
       <ResourceBar
-        bgColor='bg-customRed'
-        label='Health'
+        bgColor="bg-customRed"
+        label="Health"
         currentResource={currentHealth}
         maxResource={maxHealth}
       />

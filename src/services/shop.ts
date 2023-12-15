@@ -5,6 +5,6 @@ export const getCurrentShop = async () => {
 };
 
 export const buyItem = (id: string) => {
-  console.log('buying')
+  console.log('buying');
   return axios.post(`/shop/buy/${id}`);
 };

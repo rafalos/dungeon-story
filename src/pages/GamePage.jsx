@@ -46,11 +46,11 @@ function GamePage() {
   }
 
   return (
-    <div className='flex flex-col h-screen'>
+    <div className="flex h-screen flex-col">
       <Header />
-      <main className='grid grid-cols-[450px_6fr] w-full flex-1'>
+      <main className="grid w-full flex-1 grid-cols-[450px_6fr]">
         <Sidebar />
-        <div className='flex justify-center content-center bg-customBlack rounded-md'>
+        <div className="flex content-center justify-center rounded-md bg-customBlack">
           <Outlet
             context={{
               user,

@@ -1,4 +1,4 @@
-import { generateNewEquipmentItem } from "../Generator/Equipment";
+import { generateNewEquipmentItem } from '../Generator/Equipment';
 
 export default class PlayerInventory {
   constructor() {

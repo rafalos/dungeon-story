@@ -1,11 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-type Props = {}
+type Props = {};
 
 const Inside = (props: Props) => {
-  return (
-    <div>Inside</div>
-  )
-}
+  return <div>Inside</div>;
+};
 
-export default Inside
+export default Inside;

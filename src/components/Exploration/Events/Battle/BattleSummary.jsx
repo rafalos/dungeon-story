@@ -4,7 +4,7 @@ import Button from '@/components/UI/Button';
 
 function BattleSummary({ onLeaveBattle, battleSummary }) {
   return (
-    <div className='flex-column-container'>
+    <div className="flex-column-container">
       <div>You have gained {battleSummary.experienceGained} experience</div>
       <div>You have found following items: </div>
       <div>

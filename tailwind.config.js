@@ -5,7 +5,7 @@ export default {
     extend: {
       backgroundImage: {
         hero: "url('/bg.png')",
-        dragon: "url(/dragon.png)"
+        dragon: 'url(/dragon.png)',
       },
       colors: {
         lightBrown: '#A78A7F',

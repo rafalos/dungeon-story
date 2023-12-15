@@ -18,7 +18,7 @@ function ExplorationEvent({
   onPlayerDeath,
 }) {
   const [eventInProgress, setEventInProgress] = useState(false);
-  console.log(`############## ${eventString}`)
+  console.log(`############## ${eventString}`);
 
   const currentEvent = () => {
     let cEvent = null;

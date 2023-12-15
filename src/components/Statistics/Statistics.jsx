@@ -30,8 +30,8 @@ function Statistics() {
   };
 
   return (
-    <Container title='Statistics' variant='green' icon={ImStatsBars2}>
-      <ul className='text-white'>
+    <Container title="Statistics" variant="green" icon={ImStatsBars2}>
+      <ul className="text-white">
         <li>
           Damage: {playerStatistics.minDamage} - {playerStatistics.maxDamage}
         </li>

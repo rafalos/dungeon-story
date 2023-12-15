@@ -19,7 +19,7 @@ export default class Player {
     this.equipment = new PlayerEquipment(
       this.inventory,
       this.statistics,
-      this.playerStance,
+      this.playerStance
     );
     this.skills = new PlayerSkills(role);
   }

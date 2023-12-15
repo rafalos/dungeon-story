@@ -22,13 +22,13 @@ function Navigation() {
   ];
 
   return (
-    <div className='text-customWhite flex flex-col justify-between h-full'>
-      <nav className='flex flex-col'>
+    <div className="flex h-full flex-col justify-between text-customWhite">
+      <nav className="flex flex-col">
         {navLinks.map(({ label, to, icon: Icon }) => (
           <NavLink
             className={({ isActive }) =>
               [
-                'p-4 hover:bg-customWhite hover:bg-opacity-5 transition-colors flex items-center gap-2 text-xl font-medium',
+                'flex items-center gap-2 p-4 text-xl font-medium transition-colors hover:bg-customWhite hover:bg-opacity-5',
                 isActive ? 'bg-customWhite bg-opacity-10' : undefined,
               ].join(' ')
             }
@@ -40,7 +40,7 @@ function Navigation() {
         ))}
       </nav>
       <li
-        className='p-4 hover:bg-customWhite hover:bg-opacity-5 transition-colors flex items-center gap-2 text-2xl font-medium'
+        className="flex items-center gap-2 p-4 text-2xl font-medium transition-colors hover:bg-customWhite hover:bg-opacity-5"
         onClick={() =>
           logout({
             logoutParams: {

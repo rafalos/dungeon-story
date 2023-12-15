@@ -19,7 +19,7 @@ function StackableItem({ item }) {
   return (
     <>
       <div
-        data-tooltip-id='item'
+        data-tooltip-id="item"
         onClick={consumeItemHandler}
         className={`${classes['inventory-item']} ${
           equipmentClasses[`equipment-item--${item.equipmentSlot}`]
@@ -30,7 +30,7 @@ function StackableItem({ item }) {
         <div className={classes.amount}>{item.amount}</div>
 
         <Tooltip
-          id='item'
+          id="item"
           className={`${classes.tooltip} ${
             classes[`tooltip--${item.classType}`]
           }`}

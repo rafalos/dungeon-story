@@ -9,10 +9,10 @@ type Props = {
 
 const Entry = ({ id, name }: Props) => {
   return (
-    <div className='text-customWhite bg-customWhite bg-opacity-5 p-6 flex justify-around items-center gap-2'>
+    <div className="flex items-center justify-around gap-2 bg-customWhite bg-opacity-5 p-6 text-customWhite">
       {name}
       <Link to={`${id}`}>
-        <Button mode='primary'>Enter</Button>
+        <Button mode="primary">Enter</Button>
       </Link>
     </div>
   );

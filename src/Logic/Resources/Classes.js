@@ -30,10 +30,6 @@ export default {
       },
     ],
   },
-  wizard: {
-
-  },
-  ranger: {
-
-  },
+  wizard: {},
+  ranger: {},
 };

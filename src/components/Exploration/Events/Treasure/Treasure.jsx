@@ -26,7 +26,7 @@ function Treasure({ onEventFinished }) {
   return (
     <div>
       {collected ? (
-        <div className='flex-column-container'>
+        <div className="flex-column-container">
           You have found items:
           <div>
             {foundItems.map((item) => (
@@ -36,7 +36,7 @@ function Treasure({ onEventFinished }) {
           <Button onClick={onEventFinished}>Continue exploration</Button>
         </div>
       ) : (
-        <div className='flex-column-container'>
+        <div className="flex-column-container">
           You found a treasure chest!
           <Button onClick={chestOpenedHandler}>Open</Button>
         </div>

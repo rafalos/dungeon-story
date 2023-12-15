@@ -9,7 +9,7 @@ function CharacterPage() {
 
   return (
     <Card>
-      <div className='flex justify-around w-full gap-4'>
+      <div className="flex w-full justify-around gap-4">
         <Inventory items={user.inventory.equipment} />
         <Equipment />
         <Statistics />

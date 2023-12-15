@@ -26,10 +26,10 @@ const Notification = () => {
   }, []);
 
   return (
-    <div className='flex flex-col justify-around items-center absolute right-0 m-4 z-50 bg-customWhite text-customBlack w-64 h-32 border rounded-md text-md animate-appear'>
-      <div className='w-full p-4'>{message}</div>
+    <div className="text-md absolute right-0 z-50 m-4 flex h-32 w-64 animate-appear flex-col items-center justify-around rounded-md border bg-customWhite text-customBlack">
+      <div className="w-full p-4">{message}</div>
       <progress
-        className='h-2 w-full'
+        className="h-2 w-full"
         max={timingSeconds * 1000}
         value={count}
       ></progress>
