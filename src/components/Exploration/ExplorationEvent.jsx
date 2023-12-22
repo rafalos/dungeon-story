@@ -11,6 +11,8 @@ import Button from '../UI/Button';
 function ExplorationEvent({
   fetchNextStory,
   eventString,
+  eventCount,
+  currentPosition,
   onEventProgress,
   currentStory,
   onItemFound,
@@ -18,7 +20,7 @@ function ExplorationEvent({
   onPlayerDeath,
 }) {
   const [eventInProgress, setEventInProgress] = useState(false);
-  console.log(`############## ${eventString}`);
+  const explorationFinished = currentPosition === eventCount - 1;
 
   const currentEvent = () => {
     let cEvent = null;
@@ -60,8 +62,8 @@ function ExplorationEvent({
     return cEvent;
   };
 
-  const progressEventHandler = () => {
-    onEventProgress();
+  const progressEventHandler = async () => {
+    await onEventProgress();
     setEventInProgress(true);
   };
 
@@ -70,12 +72,24 @@ function ExplorationEvent({
     setEventInProgress(false);
   };
 
+  const finishedExplorationHandler = async () => {
+    await onEventProgress();
+    await fetchNextStory();
+  };
+
   return (
     <div className={classes['exploration-wrapper']}>
       {eventInProgress && currentEvent()}
-      {!eventInProgress && currentStory}
       {!eventInProgress && (
-        <Button onClick={progressEventHandler}>Continue exploration</Button>
+        <div className="flex flex-col items-center justify-center">
+          <p>{currentStory}</p>
+          {!explorationFinished && (
+            <Button onClick={progressEventHandler}>Continue exploration</Button>
+          )}
+          {explorationFinished && (
+            <Button onClick={finishedExplorationHandler}>Leave</Button>
+          )}
+        </div>
       )}
     </div>
   );

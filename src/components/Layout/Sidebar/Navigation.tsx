@@ -26,6 +26,7 @@ function Navigation() {
       <nav className="flex flex-col">
         {navLinks.map(({ label, to, icon: Icon }) => (
           <NavLink
+            key={to}
             className={({ isActive }) =>
               [
                 'flex items-center gap-2 p-4 text-xl font-medium transition-colors hover:bg-customWhite hover:bg-opacity-5',

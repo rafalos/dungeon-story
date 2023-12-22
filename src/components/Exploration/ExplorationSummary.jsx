@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './ExplorationSummary.module.css';
 import Item from '../UI/Item';
 import Button from '../UI/Button';
+import { Link } from 'react-router-dom';
 
 function ExplorationSummary({
   ending,
@@ -20,7 +21,9 @@ function ExplorationSummary({
         experience and found:
         <div>{totalItemsFound.length > 0 ? foundItems : 'No items'}</div>
       </div>
-      <Button onClick={onFinished}>Leave exploration</Button>
+      <Link to="..">
+        <Button>Leave exploration</Button>
+      </Link>
     </div>
   );
 }

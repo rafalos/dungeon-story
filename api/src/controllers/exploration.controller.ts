@@ -32,7 +32,7 @@ export const getCurrentChapter = async (
     });
   }
 
-  if (exploration.currentStage >= exploration.seed.length - 1) {
+  if (exploration.currentStage > exploration.seed.length - 1) {
     exploration.currentStage = 999;
   }
 

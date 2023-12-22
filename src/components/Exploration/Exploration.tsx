@@ -46,7 +46,7 @@ function Exploration() {
     enabled: !!exploration,
   });
 
-  const { mutate: move, status } = useMutation({
+  const { mutateAsync: move } = useMutation({
     mutationKey: ['movePosition', id],
     mutationFn: movePosition,
     onSettled: () => {
@@ -56,8 +56,6 @@ function Exploration() {
     },
   });
 
-  const [started, setStarted] = useState(false);
-  const [currentStory, setCurrentStory] = useState('');
   const [experienceGained, setExperienceGained] = useState(0);
   const [itemsFound, setItemsFound] = useState([]);
   const dispatch = useDispatch();
@@ -66,8 +64,8 @@ function Exploration() {
     setExperienceGained((prevState) => (prevState += amount));
   };
 
-  const explorationProgressHandler = () => {
-    move(id);
+  const explorationProgressHandler = async () => {
+    await move(id);
   };
 
   const playerDeadHandler = () => {
@@ -85,14 +83,10 @@ function Exploration() {
   if (error) return 'An error has occurred: ' + error.message;
   if (!exploration || !chapter) return 'Something went wrong';
 
-  console.log(exploration.currentStage);
-  console.log(exploration);
-  console.log(chapter);
-
   return (
     <Card>
       <div>
-        {exploration.currentStage < exploration.seed.length ? (
+        {exploration.currentStage <= exploration.seed.length - 1 ? (
           <>
             <h1>{exploration.currentStage}</h1>
             <h2>{exploration.name}</h2>
@@ -102,6 +96,7 @@ function Exploration() {
             />
             <ExplorationEvent
               fetchNextStory={refetchStory}
+              eventCount={exploration.seed.length}
               onEventProgress={explorationProgressHandler}
               onPlayerDeath={playerDeadHandler}
               eventString={exploration.seed[exploration.currentStage]}
