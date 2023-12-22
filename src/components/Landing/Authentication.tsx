@@ -13,11 +13,9 @@ const Authentication = () => {
   };
 
   return (
-    <>
-      <Button variant="landing" onClick={handleAuthenticate}>
-        Play now
-      </Button>
-    </>
+    <Button variant="landing" onClick={handleAuthenticate}>
+      Play now
+    </Button>
   );
 };
 

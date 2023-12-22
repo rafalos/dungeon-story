@@ -7,11 +7,10 @@ const Journey = () => {
       className="flex flex-col items-center gap-8 px-4 py-12 text-landingWhite"
     >
       <div className="text-center">
-        <h2 className="mb-4 text-2xl">lorem ipsum</h2>
-        <p className="mb-4">
-          lorem ipsum dolor Ridiculus mattis morbi lacus fringilla eget eget
-          tristique massa.{' '}
-        </p>
+        <h2 className="mb-4 text-2xl">
+          Every story is your own unknown journey
+        </h2>
+        <p className="mb-4">Craft your own story, every chapter is unique</p>
         <div className="flex items-center justify-center gap-4">
           <img src="/helmet.png" alt="" />
           <img src="/bow.png" alt="" />
@@ -20,12 +19,9 @@ const Journey = () => {
       </div>
       <img src="/skull.png" alt="" className="opacity-40" />
       <p className="w-[70%] self-start text-left text-2xl">
-        Lorem ipsum dolor sit amet consectetur.
+        Are you ready to face the unknown?
       </p>
-      <p className="text-right text-xl">
-        Lorem ipsum dolor sit amet consectetur. Ultrices ultrices lectus
-        volutpat in orci facilisis nulla iaculis habitant.{' '}
-      </p>
+      <p className="text-right text-xl">Your journey starts here.</p>
     </section>
   );
 };

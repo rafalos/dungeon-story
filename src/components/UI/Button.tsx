@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { VariantProps, cva } from 'class-variance-authority';
+import { twMerge } from 'tailwind-merge';
 
 type Props = React.ComponentPropsWithoutRef<'button'> &
   VariantProps<typeof buttonVariants>;
@@ -29,15 +30,23 @@ const buttonVariants = cva(['flex', 'justify-center', 'items-center'], {
   },
 });
 
-const Button = ({ variant, className, ...props }: Props) => {
-  return (
-    <button
-      className={buttonVariants({
-        variant,
-      })}
-      {...props}
-    />
-  );
-};
+const Button = forwardRef<HTMLButtonElement, Props>(
+  ({ variant, className, ...props }, ref) => {
+    return (
+      <button
+        ref={ref}
+        className={twMerge(
+          buttonVariants({
+            variant,
+          }),
+          className
+        )}
+        {...props}
+      />
+    );
+  }
+);
+
+Button.displayName = 'Button';
 
 export default Button;

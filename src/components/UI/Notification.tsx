@@ -1,7 +1,5 @@
 import { useNotification } from '@/store/notification-context';
-import React, { useContext, useEffect, useState } from 'react';
-
-type Props = {};
+import { useEffect, useState } from 'react';
 
 const timingSeconds = 4;
 
@@ -26,7 +24,7 @@ const Notification = () => {
   }, []);
 
   return (
-    <div className="text-md absolute right-0 z-50 m-4 flex h-32 w-64 animate-appear flex-col items-center justify-around rounded-md border bg-customWhite text-customBlack">
+    <div className="text-md animate-moveAppear absolute right-0 z-50 m-4 flex h-32 w-64 flex-col items-center justify-around rounded-md border bg-customWhite text-customBlack">
       <div className="w-full p-4">{message}</div>
       <progress
         className="h-2 w-full"

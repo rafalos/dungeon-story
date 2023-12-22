@@ -5,7 +5,7 @@ import {
   getExplorations,
   getExploration,
   movePosition,
-} from '../controllers/exploration.controllers';
+} from '../controllers/exploration.controller';
 
 const router = express.Router();
 

@@ -26,8 +26,8 @@ export const useNotification = () => {
 const NotificationsProvider = ({ children }: NotificationsProviderProps) => {
   const [message, setMessage] = useState<string | null>(null);
 
-  const setNotification = (message: string | null) => {
-    setMessage(message);
+  const setNotification = (notificationMessage: string | null) => {
+    setMessage(notificationMessage);
   };
 
   return (

@@ -15,10 +15,8 @@ const About = () => {
             <img src="/img1.jpeg" alt="" />
           </figure>
           <p className="p-8 text-left text-sm md:p-0 md:text-lg">
-            Lorem ipsum dolor sit amet consectetur. Ridiculus mattis morbi lacus
-            fringilla eget eget tristique massa. Suspendisse consectetur non
-            urna fames tincidunt ut. . Ridiculus mattis morbi lacus fringilla
-            eget eget tristique massa.
+            In this gripping dark, traverse treacherous corridors, face
+            unspeakable horrors, and unravel the mysteries that lie within.
           </p>
         </div>
         <Separator />
@@ -27,17 +25,13 @@ const About = () => {
             <img src="/img2.jpeg" alt="" />
           </figure>
           <p className="p-8 text-left text-sm md:p-0 md:text-lg">
-            Lorem ipsum dolor sit amet consectetur. Ridiculus mattis morbi lacus
-            fringilla eget eget tristique massa. Suspendisse consectetur non
-            urna fames tincidunt ut. Ridiculus mattis morbi lacus fringilla eget
-            eget tristique massa.
+            Descend into the abyssal depths of an unforgiving dungeon, where
+            shadows dance in eternal darkness and every step could be your last
           </p>
         </div>
       </div>
-      <p className="p-8 text-center text-sm md:text-lg">
-        Lorem ipsum dolor sit amet consectetur. Ridiculus mattis morbi lacus
-        fringilla eget eget tristique massa. Suspendisse consectetur non urna
-        fames tincidunt ut.
+      <p className="p-8 text-center text-2xl italic md:text-4xl">
+        Are you prepared to face the darkness?
       </p>
     </section>
   );
