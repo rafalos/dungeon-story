@@ -6,16 +6,26 @@ export interface IStory {
   exploration: Types.ObjectId;
   chapters: string[];
   messages: ChatCompletionMessageParam[];
+  published: boolean;
 }
 
-export const storySchema = new Schema<IStory>({
-  location: String,
-  exploration: {
-    type: Schema.Types.ObjectId,
-    Ref: 'Exploration',
+export const storySchema = new Schema<IStory>(
+  {
+    location: String,
+    exploration: {
+      type: Schema.Types.ObjectId,
+      Ref: 'Exploration',
+    },
+    chapters: [String],
+    messages: [],
+    published: {
+      type: Boolean,
+      default: false,
+    },
   },
-  chapters: [String],
-  messages: [],
-});
+  {
+    timestamps: true,
+  }
+);
 
 export default model<IStory>('Story', storySchema);

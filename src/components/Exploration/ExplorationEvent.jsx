@@ -7,6 +7,7 @@ import Well from './Events/Well/Well';
 import { EVENTS } from '../../utils/contants';
 import Loader from '../UI/Loader';
 import Button from '../UI/Button';
+import Typer from '../UI/Typer';
 
 function ExplorationEvent({
   fetchNextStory,
@@ -78,17 +79,25 @@ function ExplorationEvent({
   };
 
   return (
-    <div className={classes['exploration-wrapper']}>
-      {eventInProgress && currentEvent()}
+    <div className="flex w-[1000px] flex-col items-center gap-8">
+      {eventInProgress && (
+        <div className=" flex flex-col gap-4 text-lg">{currentEvent()}</div>
+      )}
       {!eventInProgress && (
-        <div className="flex flex-col items-center justify-center">
-          <p>{currentStory}</p>
-          {!explorationFinished && (
-            <Button onClick={progressEventHandler}>Continue exploration</Button>
-          )}
-          {explorationFinished && (
-            <Button onClick={finishedExplorationHandler}>Leave</Button>
-          )}
+        <div className='flex w-full flex-col bg-transparent'>
+          <div className=" p-4 text-2xl font-thin italic">
+            <Typer delay={20} text={currentStory} />
+          </div>
+          <div className='w-full flex justify-center'>
+            {!explorationFinished && (
+              <Button onClick={progressEventHandler}>
+                Continue exploration
+              </Button>
+            )}
+            {explorationFinished && (
+              <Button onClick={finishedExplorationHandler}>Leave</Button>
+            )}
+          </div>
         </div>
       )}
     </div>

@@ -5,6 +5,7 @@ import { Request } from 'express';
 import shopRouter from './routes/shop.routes';
 import usersRouter from './routes/users.routes';
 import explorationRouter from './routes/exploration.routes';
+import storiesRouter from './routes/stories.routes';
 import { get404 } from './controllers/error.controller';
 import { errorHandler } from './middlewares/error';
 import { auth } from 'express-oauth2-jwt-bearer';
@@ -30,6 +31,7 @@ app.get('/api/item', async (_, response) => {
 app.use('/api/users', usersRouter);
 app.use('/api/exploration', explorationRouter);
 app.use('/api/shop', shopRouter);
+app.use('/api/stories', storiesRouter);
 
 app.use(get404);
 app.use(errorHandler);

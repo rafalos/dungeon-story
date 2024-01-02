@@ -88,9 +88,8 @@ function Exploration() {
       <div>
         {exploration.currentStage <= exploration.seed.length - 1 ? (
           <>
-            <h1>{exploration.currentStage}</h1>
-            <h2>{exploration.name}</h2>
             <ExplorationTimeline
+              name={exploration.name}
               seed={exploration.seed}
               currentPosition={exploration.currentStage}
             />
