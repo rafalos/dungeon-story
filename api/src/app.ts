@@ -11,6 +11,7 @@ import { errorHandler } from './middlewares/error';
 import { auth } from 'express-oauth2-jwt-bearer';
 import { getUserData } from './middlewares/getUserData';
 import { deleteUnownedItems } from './handlers/deleteUnownedItems';
+import openAi from './lib/openAiApi';
 
 export const app = express();
 
@@ -21,6 +22,14 @@ const verifyToken = auth({
 });
 
 app.use(cors<Request>());
+app.get('/api/test', async (req, res) => {
+  const response = await openAi.images.generate({
+    prompt: 'give me image for dark fantasy Haunted Forest',
+    size: '512x512',
+  });
+
+  console.log(response);
+});
 app.use(verifyToken);
 app.use(getUserData as RequestHandler);
 

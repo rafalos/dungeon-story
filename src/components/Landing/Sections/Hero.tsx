@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '@/components/UI/Button';
+import Typer from '@/components/UI/Typer';
 
 const Hero = () => {
   return (
@@ -11,7 +12,7 @@ const Hero = () => {
       />
       <img
         src="/jewel-part2.png"
-        className="animate-float2 absolute  top-[60px] z-40 w-28 origin-top"
+        className="absolute top-[60px]  z-40 w-28 origin-top animate-float2"
         alt=""
       />
       <div className="flex flex-col items-center gap-12 p-14 md:absolute md:left-[10%]">
@@ -20,7 +21,7 @@ const Hero = () => {
             Dungeon Story
           </h1>
           <h2 className="letter text-2xl leading-10 md:text-[2rem]">
-            Conquer The <span className="font-bold">Depths</span>
+            <Typer delay={100} text="Conquer The Depths" />
             <br></br>
             Enter The Unknown <br></br>
             Craft Your <span className="font-bold">Tale</span>

@@ -3,6 +3,7 @@ import classes from './ExplorationSummary.module.css';
 import Item from '../UI/Item';
 import Button from '../UI/Button';
 import { Link } from 'react-router-dom';
+import Typer from '../UI/Typer';
 
 function ExplorationSummary({
   ending,
@@ -15,7 +16,10 @@ function ExplorationSummary({
   ));
   return (
     <div className={classes['summary-wrapper']}>
-      <div>{ending}</div>
+      <div className='italic'>
+      <Typer text={ending} delay={100}/>
+
+      </div>
       <div className="flex-column-container">
         During your expedition you have gained {totalExperienceGained} total
         experience and found:

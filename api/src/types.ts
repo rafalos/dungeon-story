@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request } from 'express';
 import { IEquipment } from './models/Equipment';
 
 type ItemType = 'equipment' | 'potion' | 'gem';
