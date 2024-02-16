@@ -21,7 +21,7 @@ const Hero = () => {
             Dungeon Story
           </h1>
           <h2 className="letter text-2xl leading-10 md:text-[2rem]">
-            <Typer delay={100} text="Conquer The Depths" />
+            <Typer delay={100} text="Conquer The Depths" startDelay={3} />
             <br></br>
             Enter The Unknown <br></br>
             Craft Your <span className="font-bold">Tale</span>

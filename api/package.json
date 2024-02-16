@@ -32,9 +32,10 @@
     "typescript": "^5.2.2"
   },
   "scripts": {
+    "build:ui": "rm -rf ./src/public && cd .. && rm -rf ./dist && npm run build && cp -r ./dist ./api/dist/public",
     "test": "NODE_ENV=test jest",
     "tsc": "tsc",
-    "build": "rm -rf ./dist && npm run tsc",
+    "build": "rm -rf ./dist && npm run tsc && npm run build:ui",
     "dev": "NODE_ENV=development ts-node-dev src/index.ts NODE_ENV=development",
     "start": "NODE_ENV=production node dist/index.js"
   },
