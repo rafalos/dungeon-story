@@ -1,11 +1,10 @@
-export const randomInRange = (min, max) =>
+export const randomInRange = (min: number, max: number) =>
   Math.floor(Math.random() * (max - min) + min);
 
-export const randomElementFromArray = (arr) =>
+export const randomElementFromArray = <T>(arr: T[]) =>
   arr[Math.floor(Math.random() * arr.length)];
 
-export const randomWithProbability = (entityArray) => {
-  const randomNumber = randomInRange(0, 100);
+export const randomWithProbability = (entityArray: Array<[string, number]>) => {
   const chancesArray = [];
 
   for (let i = 0; i < entityArray.length; i++) {

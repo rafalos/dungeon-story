@@ -1,10 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { generateNewEquipmentItem } from '../Logic/Generator/Equipment';
-import { generateNewHealthPotion } from '../Logic/Generator/healthPotion';
-import { generateRandomGem } from '../Logic/Generator/gem';
 import { playerStatusActions } from './player-status-slice';
 import { ITEM_TYPES } from '../utils/contants';
-import { isStackable } from '../utils/constrains';
+import { isStackable } from '../utils/constraints';
 import { playerStatisticActions } from './player-statistics-slice';
 const initialItemInstances = [];
 
