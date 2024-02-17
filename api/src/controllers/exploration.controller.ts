@@ -13,7 +13,7 @@ export const getCurrentChapter = async (
   res: Response,
   next: NextFunction
 ) => {
-  const id = req.params.id;
+  const { id } = req.params;
 
   const exploration = await Exploration.findById(id);
 
