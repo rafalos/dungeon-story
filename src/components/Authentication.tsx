@@ -8,6 +8,7 @@ type Props = {
 const Authentication = ({ children }: Props) => {
   return (
     <Auth0Provider
+      cacheLocation="localstorage"
       domain="dev-4rfnuvnatksv3pik.eu.auth0.com"
       clientId="DqNQFBpog3Tt1buZZAkPdKAdFZZwym7g"
       authorizationParams={{

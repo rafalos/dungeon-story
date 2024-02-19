@@ -40,11 +40,6 @@ const userSchema = new Schema<IUser>({
     default: 100,
     required: true,
   },
-  statPoints: {
-    type: Number,
-    default: 0,
-    required: true,
-  },
   inventory: {
     type: Schema.Types.ObjectId,
     ref: 'Inventory',

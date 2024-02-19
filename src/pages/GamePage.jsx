@@ -30,7 +30,7 @@ function GamePage() {
   });
 
   useEffect(() => {
-    if (!isAuthenticated && !isAuthLoading) {
+    if (!isAuthLoading && !isAuthenticated) {
       navigate('/');
     }
 
@@ -39,9 +39,7 @@ function GamePage() {
     });
   }, [isAuthenticated, isAuthLoading]);
 
-  const modalVisible = useSelector((state) => state.modal.isOpen);
-
-  if (isAuthLoading || isUserLoading || !user) {
+  if (isUserLoading || isAuthLoading) {
     return <Loader />;
   }
 
@@ -57,7 +55,6 @@ function GamePage() {
             }}
           />
         </div>
-        {modalVisible && createPortal(<Modal />, document.body)}
       </main>
       <Footer />
       {message && <Notification />}

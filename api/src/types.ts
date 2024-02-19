@@ -58,7 +58,3 @@ export type EquipmentBase = Omit<
   'price' | 'sellPrice' | 'type' | 'classType'
 >;
 export type EquipmentWithMetadata = Omit<IEquipment, 'type' | 'sellPrice'>;
-
-export interface IRequestWithAuth extends Request {
-  user: string;
-}

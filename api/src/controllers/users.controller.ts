@@ -24,7 +24,9 @@ export const getUser = async (
 ) => {
   const userEmail = req.auth?.payload.user_email;
   if (typeof userEmail !== 'string' || !userEmail)
-    return next('Malformed or missing user information');
+    return res
+      .status(400)
+      .json({ message: 'Malformed or missing user information' });
 
   let user;
 

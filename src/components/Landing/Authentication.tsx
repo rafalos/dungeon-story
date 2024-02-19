@@ -1,14 +1,10 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import { useNavigate } from 'react-router-dom';
 import Button from '../UI/Button';
 
 const Authentication = () => {
-  const { isAuthenticated, loginWithRedirect } = useAuth0();
-  const navigate = useNavigate();
+  const { loginWithRedirect } = useAuth0();
 
   const handleAuthenticate = async () => {
-    if (isAuthenticated) return navigate('/game');
-
     await loginWithRedirect();
   };
 
