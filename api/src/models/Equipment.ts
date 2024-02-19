@@ -6,6 +6,7 @@ export const equipmentSchema = new Schema<Equipment>({
   modifiers: [Array],
   name: String,
   sellPrice: Number,
+  buyPrice: Number,
   type: String,
   slot: String,
   classType: String,

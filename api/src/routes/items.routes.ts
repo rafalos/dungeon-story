@@ -1,8 +1,10 @@
-import { Request, Response, Router, response } from 'express';
+import { Router } from 'express';
 import { checkOwnership } from '../middlewares/checkOwnership';
-import { sellItem } from '../controllers/items.controller';
+import { buyItem, sellItem } from '../controllers/items.controller';
 import Equipment from '../models/Equipment';
 import { generateRandomEquipment } from '../logic/generators/equipment';
+import { shopRestock } from '../handlers/shopRestock';
+import Inventory from '../models/Inventory';
 
 declare module 'express-serve-static-core' {
   export interface Request {
@@ -12,12 +14,24 @@ declare module 'express-serve-static-core' {
 
 const router = Router();
 
-router.get('/generate', (request, response) => {
-  const newItem = generateRandomEquipment();
+router.get('/generate', async (request, response) => {
+  shopRestock();
+  const newItem = new Equipment(generateRandomEquipment());
 
+  const inv = await Inventory.findOne({
+    user: request.user._id,
+  });
+
+  if (!inv) return;
+
+  inv.equipment.push(newItem._id);
+  newItem.owner = request.user._id;
+
+  await Promise.all([newItem.save(), inv.save()]);
   response.json(newItem);
 });
 
 router.post('/:itemID/sell', checkOwnership, sellItem);
+router.post('/:itemID/buy', buyItem);
 
 export default router;

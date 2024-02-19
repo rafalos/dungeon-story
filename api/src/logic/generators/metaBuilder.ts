@@ -48,6 +48,8 @@ export const generateMetaData = (
     randomItemClass.sellPrice.max
   );
 
+  metaItem.buyPrice = Math.round(metaItem.sellPrice * 1.7);
+
   // for (let i = 0; i <= affixRollAmount; i += 1) {
   //   const randomSecondaryAffix = randomElementFromArray(affixTable.secondary);
   //   metaItem.modifiers.push([

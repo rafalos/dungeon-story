@@ -5,6 +5,7 @@ export interface Item {
   type: ItemType;
   icon: string;
   sellPrice: number;
+  buyPrice: number;
 }
 export interface EquipmentBase extends Item {
   modifiers?: Modifier[];
@@ -77,5 +78,5 @@ export type EquipmentPregenerate = DistributiveOmit<
 export type EquipmentWithMetadata = DistributiveOmit<Equipment, 'type'>;
 export type EquipmentBlueprint = DistributiveOmit<
   EquipmentPregenerate,
-  'modifiers' | 'sellPrice' | 'owner'
+  'modifiers' | 'sellPrice' | 'owner' | 'buyPrice'
 >;
