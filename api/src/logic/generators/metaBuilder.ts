@@ -6,47 +6,58 @@ import {
 import affixTable from '../resources/tables/affix';
 import { EquipmentClassTypes } from '../resources/equipmentClassTypes';
 import { EQUIPMENT_RARITY_CHANCES } from '../resources/tables/loot';
-import { ClassType, EquipmentBase, EquipmentWithMetadata } from '../../types';
+import {
+  ClassType,
+  EquipmentPregenerate,
+  EquipmentWithMetadata,
+} from '../../types';
 
 const generateItemRarity = () => {
   return randomWithProbability(EQUIPMENT_RARITY_CHANCES);
 };
 
 export const generateMetaData = (
-  baseItem: EquipmentBase
+  baseItem: EquipmentPregenerate
 ): EquipmentWithMetadata => {
   const metaItem = { ...baseItem };
+  metaItem.modifiers = metaItem.modifiers ?? [];
 
   const itemRarity = generateItemRarity();
   const randomItemClass = EquipmentClassTypes[itemRarity];
+  const affixRolls = randomItemClass.affixRolls;
 
-  let affixRollAmount = randomInRange(
-    randomItemClass.affixRolls.min,
-    randomItemClass.affixRolls.max
+  if (affixRolls > 0) {
+    let availableAffixes = affixTable.primary;
+
+    for (let i = 0; i <= affixRolls - 1; i++) {
+      const randomAffix = randomElementFromArray(availableAffixes);
+
+      metaItem.modifiers.push([
+        randomAffix.stat,
+        randomInRange(randomAffix.range.min, randomAffix.range.max),
+      ]);
+
+      availableAffixes = availableAffixes.filter(
+        (affix) => affix.name !== randomAffix.name
+      );
+    }
+  }
+
+  metaItem.sellPrice = randomInRange(
+    randomItemClass.sellPrice.min,
+    randomItemClass.sellPrice.max
   );
 
-  if (affixRollAmount > 0) {
-    const randomPrimaryAffix = randomElementFromArray(affixTable.primary);
-
-    metaItem.modifiers.push([
-      randomPrimaryAffix.stat,
-      randomInRange(randomPrimaryAffix.range.min, randomPrimaryAffix.range.max),
-    ]);
-
-    metaItem.name = `${randomPrimaryAffix.name} ${metaItem.name}`;
-    affixRollAmount -= 1;
-  }
-
-  for (let i = 0; i <= affixRollAmount; i += 1) {
-    const randomSecondaryAffix = randomElementFromArray(affixTable.secondary);
-    metaItem.modifiers.push([
-      randomSecondaryAffix.stat,
-      randomInRange(
-        randomSecondaryAffix.range.min,
-        randomSecondaryAffix.range.max
-      ),
-    ]);
-  }
+  // for (let i = 0; i <= affixRollAmount; i += 1) {
+  //   const randomSecondaryAffix = randomElementFromArray(affixTable.secondary);
+  //   metaItem.modifiers.push([
+  //     randomSecondaryAffix.stat,
+  //     randomInRange(
+  //       randomSecondaryAffix.range.min,
+  //       randomSecondaryAffix.range.max
+  //     ),
+  //   ]);
+  // }
 
   return {
     ...metaItem,

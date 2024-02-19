@@ -1,5 +1,4 @@
 import { Schema, Types, model } from 'mongoose';
-import { IEquipment, equipmentSchema } from './Equipment';
 
 interface IShop {
   items: Types.ObjectId[];

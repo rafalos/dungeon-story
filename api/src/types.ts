@@ -1,5 +1,34 @@
-import { Request } from 'express';
-import { IEquipment } from './models/Equipment';
+import { Types } from 'mongoose';
+
+export interface Item {
+  name: string;
+  type: ItemType;
+  icon: string;
+  sellPrice: number;
+}
+export interface EquipmentBase extends Item {
+  modifiers?: Modifier[];
+  type: 'equipment';
+  slot: SlotType;
+  classType: ClassType;
+  owner?: Types.ObjectId | null;
+}
+
+interface Jewelry extends EquipmentBase {
+  descriptor: 'jewelery';
+}
+
+interface Weapon extends EquipmentBase {
+  damage: number;
+  descriptor: 'weapon';
+}
+
+interface Wearable extends EquipmentBase {
+  armor: number;
+  descriptor: 'wearable';
+}
+
+export type Equipment = Weapon | Wearable | Jewelry;
 
 type ItemType = 'equipment' | 'potion' | 'gem';
 export type GemType = 'crystal' | 'jewel';
@@ -14,23 +43,7 @@ export type ExplorationEvent =
   | 'entry'
   | 'ending';
 
-export type Affix =
-  | 'criticalChance'
-  | 'dexterity'
-  | 'vitality'
-  | 'intelligence'
-  | 'dodgeChance'
-  | 'fortune'
-  | 'strength'
-  | 'defense'
-  | 'fortune';
-
-export interface IItem {
-  name: string;
-  type: ItemType;
-  icon: string;
-  sellPrice: number;
-}
+export type Affix = 'vitality' | 'strength' | 'agility';
 
 export interface Story {
   explorationID: string;
@@ -39,7 +52,7 @@ export interface Story {
 
 export type Modifier = [Affix, number];
 
-interface Stackable extends IItem {
+interface Stackable extends Item {
   amount: number;
 }
 
@@ -53,8 +66,16 @@ interface Potion extends Stackable {
 
 export type ExplorationSeed = Array<ExplorationEvent>;
 
-export type EquipmentBase = Omit<
-  IEquipment,
-  'price' | 'sellPrice' | 'type' | 'classType'
+type DistributiveOmit<T, K extends keyof T> = T extends any
+  ? Omit<T, K>
+  : never;
+
+export type EquipmentPregenerate = DistributiveOmit<
+  Equipment,
+  'type' | 'classType'
 >;
-export type EquipmentWithMetadata = Omit<IEquipment, 'type' | 'sellPrice'>;
+export type EquipmentWithMetadata = DistributiveOmit<Equipment, 'type'>;
+export type EquipmentBlueprint = DistributiveOmit<
+  EquipmentPregenerate,
+  'modifiers' | 'sellPrice' | 'owner'
+>;

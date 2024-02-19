@@ -1,14 +1,7 @@
 import { Schema, Types, model } from 'mongoose';
-import { ClassType, IItem, Modifier, SlotType } from '../types';
-export interface IEquipment extends IItem {
-  modifiers: Modifier[];
-  type: 'equipment';
-  slot: SlotType;
-  classType: ClassType;
-  owner?: Types.ObjectId | null;
-}
+import { Equipment } from '../types';
 
-export const equipmentSchema = new Schema<IEquipment>({
+export const equipmentSchema = new Schema<Equipment>({
   icon: String,
   modifiers: [Array],
   name: String,
@@ -16,10 +9,13 @@ export const equipmentSchema = new Schema<IEquipment>({
   type: String,
   slot: String,
   classType: String,
+  armor: Number,
+  damage: Number,
+  descriptor: String,
   owner: {
     type: Types.ObjectId,
     ref: 'User',
   },
 });
 
-export default model<IEquipment>('Equipment', equipmentSchema);
+export default model<Equipment>('Equipment', equipmentSchema);
