@@ -4,7 +4,6 @@ import { ObjectId } from 'mongodb';
 import Shop from '../models/Shop';
 import Equipment from '../models/Equipment';
 import { type Equipment as EquipmentType } from '../types';
-import { mutateStats } from '../handlers/mutateStats';
 
 export const sellItem = async (request: Request, response: Response) => {
   const { user, item } = request;
@@ -117,5 +116,38 @@ export const wearItem = async (request: Request, response: Response) => {
 
   response.status(200).json({
     message: 'Item equipped succesfully',
+  });
+};
+
+export const unwearItem = async (request: Request, response: Response) => {
+  const inventory = await Inventory.findOne({
+    user: request.user._id,
+  });
+
+  if (!inventory)
+    return response.status(403).json({
+      message: 'an authorization error occured',
+    });
+
+  const itemToUnwear = inventory.worn.find(
+    (itemID) => itemID.toString() === request.params.itemID
+  );
+
+  if (!itemToUnwear) {
+    return response.status(403).json({
+      message: 'Error occured while trying to unequip that item',
+    });
+  }
+
+  inventory.worn = inventory.worn.filter(
+    (itemID) => itemID.toString() !== request.params.itemID
+  );
+
+  inventory.equipment.push(itemToUnwear);
+
+  await inventory.save();
+
+  response.status(200).json({
+    message: 'Item unequipped succesfully',
   });
 };

@@ -1,6 +1,11 @@
 import { Router } from 'express';
 import { checkOwnership } from '../middlewares/checkOwnership';
-import { buyItem, sellItem, wearItem } from '../controllers/items.controller';
+import {
+  buyItem,
+  sellItem,
+  unwearItem,
+  wearItem,
+} from '../controllers/items.controller';
 import Equipment from '../models/Equipment';
 import { generateRandomEquipment } from '../logic/generators/equipment';
 import { shopRestock } from '../handlers/shopRestock';
@@ -34,5 +39,6 @@ router.get('/generate', async (request, response) => {
 router.post('/:itemID/sell', checkOwnership, sellItem);
 router.post('/:itemID/buy', buyItem);
 router.post('/:itemID/wear', checkOwnership, wearItem);
+router.post('/:itemID/unwear', unwearItem);
 
 export default router;
