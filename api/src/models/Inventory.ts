@@ -1,11 +1,12 @@
-import { Schema, Types, model } from 'mongoose';
+import mongoose, { Schema, Types, model } from 'mongoose';
 
-interface IInventory {
+interface Inventory {
   user: Types.ObjectId;
   equipment: Types.ObjectId[];
+  worn: Types.ObjectId[];
 }
 
-const inventorySchema = new Schema<IInventory>({
+const inventorySchema = new Schema<Inventory>({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User',
@@ -16,6 +17,12 @@ const inventorySchema = new Schema<IInventory>({
       ref: 'Equipment',
     },
   ],
+  worn: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Equipment',
+    },
+  ],
 });
 
-export default model<IInventory>('Inventory', inventorySchema);
+export default model<Inventory>('Inventory', inventorySchema);

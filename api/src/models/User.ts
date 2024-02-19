@@ -1,26 +1,42 @@
-import { Schema, Types, model } from 'mongoose';
+import { Schema, model } from 'mongoose';
+import { User } from '../types';
 
-export interface IUser {
-  email: string;
-  statPoints: 0;
-  energy: number;
-  gold: number;
-  level: number;
-  experience: number;
-  maxExperience: number;
-  inventory: Types.ObjectId;
-}
-
-const userSchema = new Schema<IUser>({
+const userSchema = new Schema<User>({
   email: {
     type: String,
     required: true,
     unique: true,
   },
+  damage: {
+    type: Number,
+    default: 1,
+  },
+  armor: {
+    type: Number,
+    default: 1,
+  },
+  criticalChance: {
+    type: Number,
+    default: 20,
+  },
   energy: {
     type: Number,
     required: true,
     default: 3,
+  },
+  attributes: {
+    strength: {
+      type: Number,
+      default: 0,
+    },
+    vitality: {
+      type: Number,
+      default: 0,
+    },
+    agility: {
+      type: Number,
+      default: 0,
+    },
   },
   experience: {
     type: Number,
@@ -28,7 +44,7 @@ const userSchema = new Schema<IUser>({
   },
   gold: {
     type: Number,
-    default: 500,
+    default: 10,
   },
   level: {
     type: Number,
@@ -46,4 +62,4 @@ const userSchema = new Schema<IUser>({
   },
 });
 
-export default model<IUser>('User', userSchema);
+export default model<User>('User', userSchema);

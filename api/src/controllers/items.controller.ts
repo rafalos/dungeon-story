@@ -1,8 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
 import Inventory from '../models/Inventory';
 import { ObjectId } from 'mongodb';
-import Equipment from '../models/Equipment';
 import Shop from '../models/Shop';
+import Equipment from '../models/Equipment';
+import { type Equipment as EquipmentType } from '../types';
+import { mutateStats } from '../handlers/mutateStats';
 
 export const sellItem = async (request: Request, response: Response) => {
   const { user, item } = request;
@@ -53,7 +55,10 @@ export const buyItem = async (
     user: request.user._id,
   });
 
-  if (!inventory) return next('No inventory found');
+  if (!inventory)
+    return response.status(403).json({
+      message: 'an authorization error occured',
+    });
 
   inventory.equipment.push(item._id);
 
@@ -76,5 +81,41 @@ export const buyItem = async (
 
   response.json({
     message: 'Item was bought succesfully',
+  });
+};
+
+export const wearItem = async (request: Request, response: Response) => {
+  const inventory = await Inventory.findOne({
+    user: request.user._id,
+  })
+    .populate<{ worn: EquipmentType[] }>('worn')
+    .exec();
+
+  if (!inventory)
+    return response.status(403).json({
+      message: 'an authorization error occured',
+    });
+
+  if (inventory.worn.length > 0) {
+    const isEquippable = !inventory.worn.some(
+      (item) => item.slot === request.item.slot
+    );
+
+    if (!isEquippable) {
+      return response.status(403).json({
+        message: 'Error occured while trying to equip that item',
+      });
+    }
+  }
+
+  inventory.worn.push(request.item._id as unknown as EquipmentType);
+  inventory.equipment = inventory.equipment.filter(
+    (item) => !item._id.equals(request.item._id)
+  );
+
+  await inventory.save();
+
+  response.status(200).json({
+    message: 'Item equipped succesfully',
   });
 };

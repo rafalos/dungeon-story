@@ -80,3 +80,23 @@ export type EquipmentBlueprint = DistributiveOmit<
   EquipmentPregenerate,
   'modifiers' | 'sellPrice' | 'owner' | 'buyPrice'
 >;
+
+type Attributes = {
+  [key in Affix]: number;
+};
+
+export type Operation = 'INC' | 'DEC';
+
+export interface User {
+  email: string;
+  energy: number;
+  gold: number;
+  damage: number;
+  armor: number;
+  level: number;
+  experience: number;
+  criticalChance: number;
+  maxExperience: number;
+  inventory: Types.ObjectId;
+  attributes: Attributes;
+}
