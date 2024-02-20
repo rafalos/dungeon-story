@@ -26,7 +26,7 @@ const Container = ({ children, title, icon: Icon, variant }: Props) => {
   return (
     <div className={`flex w-full flex-col rounded text-xl text-black`}>
       <div
-        className={`flex h-20 items-center justify-between rounded font-bold ${variants[variant]} bg-gradient-to-l from-customBlack from-15% to-transparent to-100% px-12 text-white`}
+        className={`flex h-12 items-center justify-between rounded font-bold ${variants[variant]} bg-gradient-to-l from-customBlack from-5% to-transparent to-100% px-4 text-white`}
       >
         <div>{title}</div>
         {Icon && (

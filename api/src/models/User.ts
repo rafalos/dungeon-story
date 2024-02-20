@@ -62,4 +62,13 @@ const userSchema = new Schema<User>({
   },
 });
 
+userSchema.set('toJSON', {
+  transform: (doc, ret) => {
+    delete ret.__v;
+    delete ret.inventory;
+    ret.id = ret._id;
+    delete ret._id;
+  },
+});
+
 export default model<User>('User', userSchema);

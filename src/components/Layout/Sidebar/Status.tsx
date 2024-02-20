@@ -9,6 +9,7 @@ const Status = () => {
   return (
     <div className="flex flex-col gap-2 rounded-md p-4">
       <div className="text-3xl">Level: {player.level}</div>
+      <div>Gold: {player.gold}</div>
 
       <ResourceBar
         bgColor="bg-customYellow"

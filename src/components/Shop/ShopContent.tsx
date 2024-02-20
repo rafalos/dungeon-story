@@ -8,6 +8,9 @@ function ShopContent(props) {
 
   const { mutate, status } = useMutation({
     mutationFn: buyItem,
+    onError: (e) => {
+      console.log(e.response.data.message);
+    },
     onSuccess: () => {
       queryClient.refetchQueries({});
     },

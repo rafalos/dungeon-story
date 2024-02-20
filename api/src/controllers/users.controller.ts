@@ -32,14 +32,7 @@ export const getUser = async (
 
   user = await User.findOne({
     email: userEmail,
-  })
-    .populate({
-      path: 'inventory',
-      populate: {
-        path: 'equipment',
-      },
-    })
-    .exec();
+  });
 
   if (!user) {
     user = await createNewUser(userEmail);
