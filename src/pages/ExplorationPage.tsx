@@ -10,7 +10,7 @@ import List from '@/components/Exploration/List';
 import SmallLoader from '@/components/UI/SmallLoader';
 import Container from '@/components/UI/Container';
 import { GiDungeonGate } from 'react-icons/gi';
-import { useNotification } from '@/store/notification-context';
+import { useNotification } from '@/providers/NotificationProvider';
 
 function ExplorationPage() {
   const { setNotification } = useNotification();

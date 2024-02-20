@@ -1,4 +1,4 @@
-import { useNotification } from '@/store/notification-context';
+import { useNotification } from '@/providers/NotificationProvider';
 import { useEffect, useState } from 'react';
 
 const timingSeconds = 4;

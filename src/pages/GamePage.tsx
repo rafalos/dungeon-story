@@ -6,11 +6,11 @@ import Loader from '@/components/UI/Loader';
 import { setAuthToken } from '@/lib/axios';
 import Header from '@/components/Layout/Header/Header';
 import Footer from '@/components/Layout/Footer/Footer';
-import { useNotification } from '@/store/notification-context';
 import Notification from '@/components/UI/Notification';
 import { fetchUser } from '@/store/user-slice';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { fetchInventory } from '@/store/player-inventory-slice';
+import { useNotification } from '@/providers/NotificationProvider';
 
 function GamePage() {
   const dispatch = useAppDispatch();

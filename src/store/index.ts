@@ -5,7 +5,6 @@ import playerEquipmentReducer from './player-equipment-slice';
 import playerStatisticsSlice from './player-statistics-slice';
 import shopSlice from './shop-slice';
 import timersSlice from './timers-slice';
-import explorationSlice from './exploration-slice';
 import modalSlice from './modal-slice';
 import userSlice from './user-slice';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';

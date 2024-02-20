@@ -1,6 +1,6 @@
 # Dungeon Story
 
-Client-sided RPG game (roguelike style) created mainly to train my React and Redux skills
+Roguelike RPG game
 
 ## Hosted version
 
@@ -16,10 +16,17 @@ The character progression is built on top of basic RPG progression systems.
 
 ## Technology
 
-- VanillaJS
+The project contains monorepo of server and clientside app. Express server builds and serves react client on root route and exposes api endpoints to be consumed by frontend app.
+
+- Typescript
+- Express.JS
+- MongoDB
 - React
 - Redux
-- OpenAI api
+- React Query
+- Tailwind
+- OpenAI Api
+... and much more :)
 
 ## Features
 
@@ -36,8 +43,7 @@ Implemented:
 
 To be implemented:
 
-- [x] Fix item overlapping stats after equipping
-- [x] Adjust shop refresh time
+- [ ] Tests!
 - [ ] Character attributes formulas
 - [ ] Gameplay rebalance
 - [ ] Past stories (save, read)

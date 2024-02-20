@@ -13,7 +13,7 @@ import GamePage from './pages/GamePage.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Authentication from './components/Authentication';
-import NotificationsProvider from './store/notification-context';
+import NotificationsProvider from './providers/NotificationProvider';
 import Exploration from './components/Exploration/Exploration';
 
 const queryClient = new QueryClient();
