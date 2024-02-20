@@ -8,6 +8,9 @@ import itemsRouter from './items.routes';
 import inventoryRouter from './inventory.routes';
 import { getUserData } from '../middlewares/getUserData';
 import User from '../models/User';
+import { app } from '../app';
+import { notFound } from '../middlewares/404';
+import { errorHandler } from '../middlewares/error';
 
 declare module 'express-serve-static-core' {
   export interface Request {
@@ -23,5 +26,8 @@ router.use('/shop', shopRouter);
 router.use('/stories', storiesRouter);
 router.use('/items', itemsRouter);
 router.use('/inventory', inventoryRouter);
+
+router.use(notFound);
+router.use(errorHandler);
 
 export default router;

@@ -12,8 +12,7 @@ export const app = express();
 
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/game/', express.static(path.join(__dirname, 'public')));
-
 app.use('/api', apiRouter);
-app.use(notFound);
-app.use(errorHandler);
+app.get('*', (req,res) =>{
+  res.sendFile(path.join(__dirname, 'public/index.html'));
+});
