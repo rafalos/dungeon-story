@@ -27,11 +27,9 @@ The project contains monorepo of server and clientside app. Express server build
 ... and much more :)
 
 ## Screenshots
-![Alt text](https://res.cloudinary.com/dxctkhax8/image/upload/v1708472829/Screenshot_from_2024-02-21_00-35-48_t67tyf.png "Optional title")
-
-
-![Alt text](https://res-console.cloudinary.com/dxctkhax8/thumbnails/v1/image/upload/v1708472609/U2NyZWVuc2hvdF9mcm9tXzIwMjQtMDItMjFfMDAtNDEtMTFfYmNrdnR3/as_is "Optional title")
-![Alt text](https://res.cloudinary.com/dxctkhax8/image/upload/v1708472746/Screenshot_from_2024-02-21_00-37-02_i7biz9.png "Optional title")
+![Alt text](https://res.cloudinary.com/dxctkhax8/image/upload/v1708472829/Screenshot_from_2024-02-21_00-35-48_t67tyf.png "Landing Page")
+![Alt text](https://res.cloudinary.com/dxctkhax8/image/upload/v1708472609/Screenshot_from_2024-02-21_00-41-11_bckvtw.png "Exploration generating")
+![Alt text](https://res.cloudinary.com/dxctkhax8/image/upload/v1708472746/Screenshot_from_2024-02-21_00-37-02_i7biz9.png "Inventory")
 
 
 ## Features
