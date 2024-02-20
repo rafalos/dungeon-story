@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import { itemSold } from '../../store/player-inventory-slice';
 import classes from './InventoryEquipment.module.css';
 
-function InventoryConsumables({ inventoryItems, sellMode }) {
+function Consumables({ inventoryItems, sellMode }) {
   const dispatch = useDispatch();
   const potions = inventoryItems.filter(
     (item) => item.type === ITEM_TYPES.POTION
@@ -44,4 +44,4 @@ function InventoryConsumables({ inventoryItems, sellMode }) {
   );
 }
 
-export default InventoryConsumables;
+export default Consumables;

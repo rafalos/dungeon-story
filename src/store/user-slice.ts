@@ -14,10 +14,14 @@ const initialState = {
 
 export const fetchUser = createAsyncThunk<User, void>(
   'users/fetchUser',
-  async () => {
-    const user = await getUser();
+  async (_, { rejectWithValue }) => {
+    try {
+      const user = await getUser();
 
-    return user;
+      return user;
+    } catch (error) {
+      return rejectWithValue('There was an error fetching user');
+    }
   }
 );
 

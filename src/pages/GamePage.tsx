@@ -10,12 +10,11 @@ import { useNotification } from '@/store/notification-context';
 import Notification from '@/components/UI/Notification';
 import { fetchUser } from '@/store/user-slice';
 import { useAppDispatch, useAppSelector } from '@/store';
+import { fetchInventory } from '@/store/player-inventory-slice';
 
 function GamePage() {
   const dispatch = useAppDispatch();
-  const { isLoading: isUserLoading, user } = useAppSelector(
-    (state) => state.user
-  );
+  const { isLoading: isUserLoading } = useAppSelector((state) => state.user);
   const { message } = useNotification();
   const navigate = useNavigate();
   const {
@@ -28,6 +27,7 @@ function GamePage() {
     if (!getAuthToken()) return;
 
     dispatch(fetchUser());
+    dispatch(fetchInventory());
   }, [getAuthToken()]);
 
   useEffect(() => {
@@ -50,11 +50,7 @@ function GamePage() {
       <main className="grid w-full flex-1 grid-cols-[450px_6fr]">
         <Sidebar />
         <div className="flex content-center justify-center rounded-md bg-customBlack">
-          <Outlet
-            context={{
-              user,
-            }}
-          />
+          <Outlet />
         </div>
       </main>
       <Footer />

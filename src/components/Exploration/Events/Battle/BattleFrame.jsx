@@ -13,7 +13,7 @@ import { LOOT_BRACKERS } from '../../../../Logic/Resources/tables/lootTable';
 import { playerInventoryActions } from '../../../../store/player-inventory-slice';
 import { getBasicDamage } from '../../../../utils/formulas';
 import BattleLog from './BattleLog';
-import InventoryConsumables from '../../../Character/InventoryConsumables';
+import Consumables from '../../../Character/Consumables';
 import BattleActions from './BattleActions';
 import { generateLoot } from '../../../../Logic/Generator/loot';
 
@@ -126,7 +126,7 @@ function BattleFrame({
               </div>
             </div>
             <BattleActions onBasicAttack={handleAttack} />
-            <InventoryConsumables inventoryItems={inventory.items} />
+            <Consumables inventoryItems={inventory.items} />
           </div>
         )}
       </div>

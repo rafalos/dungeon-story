@@ -19,4 +19,13 @@ export const equipmentSchema = new Schema<Equipment>({
   },
 });
 
+equipmentSchema.set('toJSON', {
+  transform: (doc, ret) => {
+    delete ret.__v;
+    ret.id = ret._id;
+    delete ret._id;
+    delete ret.owner;
+  },
+});
+
 export default model<Equipment>('Equipment', equipmentSchema);

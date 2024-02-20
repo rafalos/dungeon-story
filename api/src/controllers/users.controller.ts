@@ -22,6 +22,7 @@ export const getUser = async (
   res: Response,
   next: NextFunction
 ) => {
+  console.log('works')
   const userEmail = req.auth?.payload.user_email;
   if (typeof userEmail !== 'string' || !userEmail)
     return res

@@ -25,4 +25,13 @@ const inventorySchema = new Schema<Inventory>({
   ],
 });
 
+inventorySchema.set('toJSON', {
+  transform: (doc, ret) => {
+    delete ret.__v;
+    ret.id = ret._id;
+    delete ret._id;
+    delete ret.user;
+  },
+});
+
 export default model<Inventory>('Inventory', inventorySchema);

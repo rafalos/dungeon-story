@@ -2,7 +2,7 @@ import React from 'react';
 import Card from '../components/UI/Card';
 import ShopTime from '../components/Shop/ShopTime';
 import ShopContent from '../components/Shop/ShopContent';
-import Inventory from '../components/Character/Inventory';
+import Inventory from '../components/Character';
 import { useQuery } from '@tanstack/react-query';
 import { getCurrentShop } from '@/services/shop';
 import Loader from '@/components/UI/Loader';

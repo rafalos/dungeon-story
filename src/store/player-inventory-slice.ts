@@ -1,18 +1,40 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { playerStatusActions } from './player-status-slice';
 import { ITEM_TYPES } from '../utils/contants';
 import { isStackable } from '../utils/constraints';
 import { playerStatisticActions } from './player-statistics-slice';
-const initialItemInstances = [];
+import { Inventory, type Equipment } from '@/types';
+import { getInventory } from '@/services/user';
 
-const initialItems = initialItemInstances.map((item) => {
-  return { ...item };
-});
+interface InventoryState {
+  worn: Equipment[];
+  equipment: Equipment[];
+}
+
+const initialState = {
+  worn: [],
+  equipment: [],
+} as InventoryState;
+
+export const fetchInventory = createAsyncThunk<Inventory, void>(
+  'inventory/fetchInventory',
+  async () => {
+    const inventory = await getInventory();
+
+    return inventory;
+  }
+);
 
 const playerInventorySlice = createSlice({
-  name: 'player-inventory',
-  initialState: {
-    items: initialItems,
+  name: 'inventory',
+  initialState,
+  extraReducers: (builder) => {
+    builder.addCase(fetchInventory.rejected, (state, action) => {
+      console.log(action);
+    });
+    builder.addCase(fetchInventory.fulfilled, (state, action) => {
+      console.log(action);
+    });
   },
   reducers: {
     deductStackable(state, action) {
