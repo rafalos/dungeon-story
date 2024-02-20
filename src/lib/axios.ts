@@ -9,7 +9,7 @@ export const setAuthToken = (newToken: string) => {
 export const getAuthToken = () => token;
 
 const instance = axios.create({
-  baseURL: 'http://localhost:3001/api/',
+  baseURL: '/api/',
 });
 
 instance.interceptors.request.use(
