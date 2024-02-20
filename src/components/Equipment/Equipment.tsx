@@ -11,7 +11,6 @@ function Equipment() {
   const wornItems = useAppSelector((state) => state.inventory.worn);
   const dispatch = useDispatch();
 
-
   const itemClickHandler = (item) => {
     dispatch(unequipItem(item));
   };
@@ -20,7 +19,7 @@ function Equipment() {
     <Container title="Equipment" icon={GiShardSword}>
       <div className={classes['equipment-container']}>
         {wornItems.map((element) => (
-          <Item item={element}/>
+          <Item key={element.id} item={element} />
         ))}
       </div>
     </Container>
