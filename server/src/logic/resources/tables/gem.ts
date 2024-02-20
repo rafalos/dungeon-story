@@ -7,6 +7,7 @@ export const crystal: Gem[] = [
     icon: 'test.png',
     sellPrice: 1000,
     amount: 1,
+    buyPrice: 1500,
   },
   {
     name: 'Green crystal',
@@ -14,6 +15,7 @@ export const crystal: Gem[] = [
     icon: 'test.png',
     sellPrice: 1000,
     amount: 1,
+    buyPrice: 1500,
   },
   {
     name: 'Purple crystal',
@@ -21,6 +23,7 @@ export const crystal: Gem[] = [
     icon: 'test.png',
     sellPrice: 1000,
     amount: 1,
+    buyPrice: 1500,
   },
   {
     name: 'Red crystal',
@@ -28,6 +31,7 @@ export const crystal: Gem[] = [
     icon: 'test.png',
     sellPrice: 1000,
     amount: 1,
+    buyPrice: 1500,
   },
 ];
 
@@ -38,6 +42,7 @@ export const jewel: Gem[] = [
     icon: 'test.png',
     sellPrice: 500,
     amount: 1,
+    buyPrice: 1500,
   },
 
   {
@@ -46,6 +51,7 @@ export const jewel: Gem[] = [
     icon: 'test.png',
     sellPrice: 500,
     amount: 1,
+    buyPrice: 1500,
   },
   {
     name: 'Pink jewel',
@@ -53,6 +59,7 @@ export const jewel: Gem[] = [
     icon: 'test.png',
     sellPrice: 500,
     amount: 1,
+    buyPrice: 1500,
   },
 
   {
@@ -61,6 +68,7 @@ export const jewel: Gem[] = [
     icon: 'test.png',
     sellPrice: 500,
     amount: 1,
+    buyPrice: 1500,
   },
   {
     name: 'Yellow jewel',
@@ -68,5 +76,6 @@ export const jewel: Gem[] = [
     icon: 'test.png',
     sellPrice: 500,
     amount: 1,
+    buyPrice: 1500,
   },
 ];

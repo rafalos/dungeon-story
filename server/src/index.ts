@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import { recreateShop } from './utils/recreateShop';
 import { startCronJobs } from './cron';
 import { shopRestock } from './handlers/shopRestock';
-const mongoUri = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@cluster0.pfzxkba.mongodb.net/dungeon-story-dev`;
+const mongoUri = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@cluster0.pfzxkba.mongodb.net/${process.env.MONGODB_DATABASE}`;
 
 const init = async () => {
   console.log(`Api is starting in ${process.env.NODE_ENV} mode`);
