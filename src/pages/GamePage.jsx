@@ -1,20 +1,21 @@
 import Sidebar from '@/components/Layout/Sidebar';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import { createPortal } from 'react-dom';
-import { useSelector } from 'react-redux';
-import Modal from '@/components/Layout/Modal';
 import { useAuth0 } from '@auth0/auth0-react';
 import Loader from '@/components/UI/Loader';
 import { getAuthToken, setAuthToken } from '@/lib/axios';
-import { useQuery } from '@tanstack/react-query';
-import { getUser } from '@/services/user';
 import Header from '@/components/Layout/Header/Header';
 import Footer from '@/components/Layout/Footer/Footer';
 import { useNotification } from '@/store/notification-context';
 import Notification from '@/components/UI/Notification';
+import { fetchUser } from '@/store/user-slice';
+import { useAppDispatch, useAppSelector } from '@/store';
 
 function GamePage() {
+  const dispatch = useAppDispatch();
+  const { isLoading: isUserLoading, user } = useAppSelector(
+    (state) => state.user
+  );
   const { message } = useNotification();
   const navigate = useNavigate();
   const {
@@ -23,11 +24,11 @@ function GamePage() {
     getAccessTokenSilently,
   } = useAuth0();
 
-  const { data: user, isLoading: isUserLoading } = useQuery({
-    queryKey: ['user'],
-    queryFn: getUser,
-    enabled: !!getAuthToken(),
-  });
+  useEffect(() => {
+    if (!getAuthToken()) return;
+
+    dispatch(fetchUser());
+  }, [getAuthToken()]);
 
   useEffect(() => {
     if (!isAuthLoading && !isAuthenticated) {
@@ -39,7 +40,7 @@ function GamePage() {
     });
   }, [isAuthenticated, isAuthLoading]);
 
-  if (isUserLoading || isAuthLoading) {
+  if (isAuthLoading || isUserLoading) {
     return <Loader />;
   }
 

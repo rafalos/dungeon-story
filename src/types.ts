@@ -1,9 +1,4 @@
-type Seed = string[];
+import { z } from 'zod';
+import { UserSchema } from './schemas';
 
-interface Exploration {
-  active: boolean;
-  currentStage: number;
-  id: string;
-  seed: Seed;
-  name: string;
-}
+export type User = z.infer<typeof UserSchema>;
