@@ -3,7 +3,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import Loader from '@/components/UI/Loader';
-import { getAuthToken, setAuthToken } from '@/lib/axios';
+import { setAuthToken } from '@/lib/axios';
 import Header from '@/components/Layout/Header/Header';
 import Footer from '@/components/Layout/Footer/Footer';
 import { useNotification } from '@/store/notification-context';
@@ -41,7 +41,7 @@ function GamePage() {
   return (
     <div className="flex h-screen flex-col">
       <Header />
-      <main className="grid w-full flex-1 grid-cols-[450px_6fr]">
+      <main className="grid w-full flex-1 grid-cols-[350px_6fr]">
         <Sidebar />
         <div className="flex content-center justify-center rounded-md bg-customBlack">
           <Outlet />

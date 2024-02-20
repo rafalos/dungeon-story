@@ -18,7 +18,6 @@ const store = configureStore({
     statistics: playerStatisticsSlice,
     shop: shopSlice,
     timers: timersSlice,
-    exploration: explorationSlice,
     modal: modalSlice,
     user: userSlice,
   },

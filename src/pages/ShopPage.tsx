@@ -1,4 +1,3 @@
-import React from 'react';
 import Card from '../components/UI/Card';
 import ShopContent from '../components/Shop/ShopContent';
 import Inventory from '../components/Character';
@@ -11,7 +10,7 @@ import { useAppSelector } from '@/store';
 
 function ShopPage() {
   const { equipment } = useAppSelector((state) => state.inventory);
-  const { isError, isLoading, data } = useQuery({
+  const { isLoading, data } = useQuery({
     queryKey: ['shop'],
     queryFn: getCurrentShop,
   });
