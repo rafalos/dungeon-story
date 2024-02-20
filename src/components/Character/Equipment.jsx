@@ -19,7 +19,7 @@ function InventoryEquipment({ equipment, sellMode }) {
   };
 
   return (
-    <Container title="Inventory" variant="red" icon={GiBackpack}>
+    <Container title="Inventory" icon={GiBackpack}>
       {equipment.map((item) => (
         <Item
           key={item._id}

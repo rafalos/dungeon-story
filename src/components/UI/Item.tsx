@@ -11,6 +11,17 @@ type Props = {
 function Item({ item, onItemClicked }: Props) {
   const { id, slot, classType, icon, modifiers } = item;
 
+  let baseAttribute: string | null = null;
+
+  switch (item.descriptor) {
+    case 'weapon':
+      baseAttribute = `Damage: ${item.damage}`;
+      break;
+    case 'wearable':
+      baseAttribute = `Armor: ${item.armor}`;
+      break;
+  }
+
   const clickHandler = (itemID: string) => {
     onItemClicked(itemID);
   };
@@ -35,6 +46,7 @@ function Item({ item, onItemClicked }: Props) {
         >
           <span className="text-lg font-medium">{item.name}</span>
           <ul className="my-2 text-base"></ul>
+          {baseAttribute && baseAttribute}
           {modifiers.map((modifier) => {
             const [attributeName, amount] = modifier;
 

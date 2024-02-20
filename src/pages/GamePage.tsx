@@ -43,7 +43,7 @@ function GamePage() {
       <Header />
       <main className="grid w-full flex-1 grid-cols-[350px_6fr]">
         <Sidebar />
-        <div className="flex content-center justify-center rounded-md bg-customBlack">
+        <div className="flex content-center justify-center rounded-md bg-[#352d2d]">
           <Outlet />
         </div>
       </main>

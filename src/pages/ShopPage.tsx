@@ -25,7 +25,7 @@ function ShopPage() {
         <Loader />
       ) : (
         <Card>
-          <Container title="Merchant" variant="brown" icon={GiShop}>
+          <Container title="Merchant" icon={GiShop}>
             <ShopContent items={data.data.items} />
             {/* <ShopTime /> */}
           </Container>

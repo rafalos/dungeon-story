@@ -1,10 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  /* font-family: 'Cinzel Decorative', cursive; */
   --rarity-rare: rgb(224, 224, 0);
   --rarity-legendary: #d89519;
   --rarity-magic: rgb(58, 58, 235);

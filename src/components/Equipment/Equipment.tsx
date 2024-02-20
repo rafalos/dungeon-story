@@ -17,7 +17,7 @@ function Equipment() {
   };
 
   return (
-    <Container title="Equipment" variant="yellow" icon={GiShardSword}>
+    <Container title="Equipment" icon={GiShardSword}>
       <div className={classes['equipment-container']}>
         {wornItems.map((element) => (
           <Item item={element}/>

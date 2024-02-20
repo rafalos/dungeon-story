@@ -11,7 +11,7 @@ export default {
         lightBrown: '#A78A7F',
         customGrey: '#F1FFE7',
         customWhite: '#EBEFFF',
-        customRed: '#B80C09',
+        customRed: '#5c1616',
         customLightRed: '#E26D5A',
         customYellow: '#FFC07F',
         customBlack: '#1F0909',
