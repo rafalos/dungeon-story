@@ -22,14 +22,6 @@ function GamePage() {
     isAuthenticated,
     getAccessTokenSilently,
   } = useAuth0();
-
-  useEffect(() => {
-    if (!getAuthToken()) return;
-
-    dispatch(fetchUser());
-    dispatch(fetchInventory());
-  }, [getAuthToken()]);
-
   useEffect(() => {
     if (!isAuthLoading && !isAuthenticated) {
       navigate('/');
@@ -37,6 +29,8 @@ function GamePage() {
 
     getAccessTokenSilently().then((token) => {
       setAuthToken(token);
+      dispatch(fetchUser());
+      dispatch(fetchInventory());
     });
   }, [isAuthenticated, isAuthLoading]);
 

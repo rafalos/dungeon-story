@@ -14,7 +14,6 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   (config) => {
-    console.log(getAuthToken())
     config.headers.Authorization = `Bearer ${getAuthToken()}`;
     return config;
   },

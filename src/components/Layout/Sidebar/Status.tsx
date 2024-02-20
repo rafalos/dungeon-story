@@ -2,26 +2,22 @@ import { useSelector } from 'react-redux';
 import ResourceBar from '@/components/UI/ResourceBar';
 import goldIcon from '@/Logic/Resources/Icons/gold.png';
 import Container from '@/components/UI/Container';
+import { useAppSelector } from '@/store';
+import { useUserData } from '@/store/user-slice';
 
 const Status = () => {
-  const player = useSelector((state) => state.status);
-  const { currentHealth, maxHealth } = useSelector((state) => state.statistics);
+  const user = useUserData();
+
   return (
     <div className="flex flex-col gap-2 rounded-md p-4">
-      <div className="text-3xl">Level: {player.level}</div>
-      <div>Gold: {player.gold}</div>
+      <div className="text-3xl">Level: {user.level}</div>
+      <div>Gold: {user.gold}</div>
 
       <ResourceBar
         bgColor="bg-customYellow"
         label="Experience"
-        currentResource={player.experience}
-        maxResource={player.maxExperience}
-      />
-      <ResourceBar
-        bgColor="bg-customRed"
-        label="Health"
-        currentResource={currentHealth}
-        maxResource={maxHealth}
+        currentResource={user.experience}
+        maxResource={user.maxExperience}
       />
     </div>
   );

@@ -33,7 +33,7 @@ const playerInventorySlice = createSlice({
       console.log(action);
     });
     builder.addCase(fetchInventory.fulfilled, (state, action) => {
-      console.log(action);
+      return action.payload;
     });
   },
   reducers: {

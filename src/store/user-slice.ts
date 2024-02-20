@@ -1,6 +1,7 @@
 import { getUser } from '@/services/user';
 import { User } from '@/types';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { useAppSelector } from '.';
 
 type UserState = {
   user: User | null;
@@ -9,7 +10,7 @@ type UserState = {
 
 const initialState = {
   user: null,
-  isLoading: false,
+  isLoading: true,
 } as UserState;
 
 export const fetchUser = createAsyncThunk<User, void>(
@@ -45,5 +46,14 @@ const userSlice = createSlice({
     });
   },
 });
+
+export const useUserData = () => {
+  const { user, isLoading } = useAppSelector((state) => state.user);
+
+  if (!user && !isLoading) {
+    throw new Error('There was a problem fetching user data');
+  }
+  return user;
+};
 
 export default userSlice.reducer;

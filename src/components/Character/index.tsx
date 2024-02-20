@@ -6,7 +6,7 @@ function Inventory({ items, sellMode }) {
 
   return (
     <div className="inventory-details">
-      <Equipment inventoryItems={equipment} sellMode={sellMode} />
+      <Equipment equipment={equipment} sellMode={sellMode} />
       {/* <InventoryConsumables inventoryItems={items} sellMode={sellMode} /> */}
       {/* <InventoryGems inventoryItems={items} sellMode={sellMode} /> */}
     </div>

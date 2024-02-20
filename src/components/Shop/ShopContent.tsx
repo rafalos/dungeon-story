@@ -2,8 +2,9 @@ import { buyItem } from '@/services/shop';
 import Item from '../UI/Item';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import Loader from '../UI/Loader';
+import { Equipment } from '@/types';
 
-function ShopContent(props) {
+function ShopContent(props: { items: Equipment[] }) {
   const queryClient = useQueryClient();
 
   const { mutate, status } = useMutation({
@@ -24,10 +25,10 @@ function ShopContent(props) {
     <Item
       slot={shopElement.slot}
       stackable={false}
-      key={shopElement._id}
-      id={shopElement._id}
+      key={shopElement.id}
+      id={shopElement.id}
       item={shopElement}
-      price={shopElement.price}
+      price={shopElement.buyPrice}
       onItemClicked={itemBoughtHandler}
     />
   ));

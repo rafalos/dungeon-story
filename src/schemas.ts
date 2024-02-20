@@ -55,6 +55,7 @@ export const UserSchema = z.object({
   energy: z.number(),
   experience: z.number(),
   level: z.number(),
+  gold: z.number(),
   maxExperience: z.number(),
   armor: z.number(),
   damage: z.number(),
