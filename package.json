@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "formatCode": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json}\"",
     "lint": "eslint --ext=.jsx,.js,.tsx,.ts  .",
-    "deploy": ""
+    "deploy": "cd ./server && npm run deploy"
   },
   "dependencies": {
     "@auth0/auth0-react": "^2.2.3",
