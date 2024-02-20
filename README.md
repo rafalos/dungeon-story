@@ -1,12 +1,10 @@
 # Dungeon Story
 
-Roguelike RPG game
+Roguelike RPG game with story generator driven by OpenAI Api
 
 ## Hosted version
 
-https://shimmering-horse-fc11d5.netlify.app/
-
-Hosted version contains exposed test API key just for showcase purposes. To run the project properly on your machine use your own OpenAI api key.
+https://dungeon-story.fly.dev/
 
 ## About
 
@@ -44,6 +42,7 @@ Implemented:
 To be implemented:
 
 - [ ] Tests!
+- [ ] Mobile adjustments
 - [ ] Character attributes formulas
 - [ ] Gameplay rebalance
 - [ ] Past stories (save, read)
@@ -54,14 +53,27 @@ To be implemented:
 
 ## Running project locally
 
-To run project locally just clone the repo and create config.js file in src/utils witn your OpenAI api key as follows:
+To run project locally just clone the repo and ask the creator (me) for environment variables otherwise you wouldn't be able to access external services.
+If you have set .env file properly and placed it in /server directory then
 
-```
-export const GPT_API_KEY = "YOUR_API_KEY"
-```
-
-Then just run
+Start react client dev server:
 
 ```
 npm run dev
+
+```
+
+cd into the ./server and start api server
+
+```
+cd server && npm run dev
+
+```
+## Building for production
+The build process will get into the UI directory, build static version of react frontend, place it into the public folder of the server which wiil be served on express root route
+
+
+```
+cd server && npm run build && npm start
+
 ```
