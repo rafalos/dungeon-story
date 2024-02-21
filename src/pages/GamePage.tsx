@@ -10,12 +10,10 @@ import Notification from '@/components/UI/Notification';
 import { fetchUser } from '@/store/user-slice';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { fetchInventory } from '@/store/player-inventory-slice';
-import { useNotification } from '@/providers/NotificationProvider';
 
 function GamePage() {
   const dispatch = useAppDispatch();
   const { isLoading: isUserLoading } = useAppSelector((state) => state.user);
-  const { message } = useNotification();
   const navigate = useNavigate();
   const {
     isLoading: isAuthLoading,
@@ -48,7 +46,7 @@ function GamePage() {
         </div>
       </main>
       <Footer />
-      {message && <Notification />}
+      {<Notification />}
     </div>
   );
 }

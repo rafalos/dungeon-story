@@ -1,8 +1,15 @@
 import { ReactNode, createContext, useContext, useState } from 'react';
 
+type NotificationType = 'success' | 'error';
+
 type NotificationContextType = {
-  message: string | null;
-  setNotification: (message: string | null) => void;
+  message: string;
+  notify: (
+    message: string,
+    notificationType?: NotificationType,
+    timeout?: number
+  ) => void;
+  type: NotificationType;
 };
 
 type NotificationsProviderProps = {
@@ -24,22 +31,45 @@ export const useNotification = () => {
 };
 
 const NotificationsProvider = ({ children }: NotificationsProviderProps) => {
-  const [message, setMessage] = useState<string | null>(null);
+  const [message, setMessage] = useState<string>('');
+  const [type, setType] = useState<NotificationType>('success');
 
-  const setNotification = (notificationMessage: string | null) => {
+  const notify = (
+    notificationMessage: string,
+    notificationType: NotificationType = 'error',
+    timeout: number = 5
+  ) => {
     setMessage(notificationMessage);
+    setType(notificationType);
+
+    setTimeout(() => {
+      setMessage('');
+    }, timeout * 1000);
   };
 
   return (
     <NotificationContext.Provider
       value={{
         message,
-        setNotification,
+        type,
+        notify,
       }}
     >
       {children}
     </NotificationContext.Provider>
   );
+};
+
+export const useNotify = () => {
+  const { notify } = useNotification();
+
+  return notify;
+};
+
+export const useNotificationData = () => {
+  const { message, type } = useNotification();
+
+  return { message, type };
 };
 
 export default NotificationsProvider;

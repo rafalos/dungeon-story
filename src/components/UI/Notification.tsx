@@ -1,36 +1,39 @@
-import { useNotification } from '@/providers/NotificationProvider';
-import { useEffect, useState } from 'react';
-
-const timingSeconds = 4;
+import { useNotificationData } from '@/providers/NotificationProvider';
+import { twMerge } from 'tailwind-merge';
+import { MdErrorOutline } from 'react-icons/md';
+import { IoCheckmarkDoneCircleOutline } from 'react-icons/io5';
 
 const Notification = () => {
-  const { message, setNotification } = useNotification();
-  const [count, setCount] = useState(timingSeconds * 1000);
+  const { message, type } = useNotificationData();
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCount((prevCount) => prevCount - 5);
-    }, 5);
+  if (!message) return null;
 
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setNotification(null);
-    }, timingSeconds * 1000);
-  }, []);
+  const classes =
+    type === 'error'
+      ? 'text-red-700 border-red-700'
+      : 'text-green-700 border-green-700';
 
   return (
-    <div className="text-md animate-moveAppear absolute right-0 z-50 m-4 flex h-32 w-64 flex-col items-center justify-around rounded-md border bg-customWhite text-customBlack">
-      <div className="w-full p-4">{message}</div>
-      <progress
-        className="h-2 w-full"
-        max={timingSeconds * 1000}
-        value={count}
-      ></progress>
+    <div
+      className={twMerge(
+        `absolute right-0 z-50 m-4 flex h-32 w-72 animate-moveAppear flex-col items-center justify-around rounded-lg border-2 bg-customWhite p-4 text-lg font-bold text-customBlack`,
+        classes
+      )}
+    >
+      <span className="flex items-center justify-center gap-2 text-2xl">
+        {type === 'error' ? (
+          <>
+            <MdErrorOutline />
+            Failure
+          </>
+        ) : (
+          <>
+            <IoCheckmarkDoneCircleOutline />
+            Success
+          </>
+        )}
+      </span>
+      <div className="w-full">{message}</div>
     </div>
   );
 };

@@ -6,6 +6,8 @@ import { sellItem } from '@/services/shop';
 import { Equipment } from '@/types';
 import { useAppDispatch } from '@/store';
 import { wearItem } from '@/services/inventory';
+import { useNotify } from '@/providers/NotificationProvider';
+import { AxiosError } from 'axios';
 
 type Props = {
   equipment: Equipment[];
@@ -14,13 +16,16 @@ type Props = {
 
 function InventoryEquipment({ equipment, sellMode }: Props) {
   const dispatch = useAppDispatch();
+  const notify = useNotify();
 
   const itemSoldHandler = async (item: Equipment) => {
     try {
       await sellItem(item.id);
       dispatch(itemSold(item));
     } catch (error) {
-      console.log(error);
+      if (error instanceof AxiosError) {
+        notify(error.response?.data.message, 'error');
+      }
     }
   };
 
@@ -29,7 +34,9 @@ function InventoryEquipment({ equipment, sellMode }: Props) {
       await wearItem(item.id);
       dispatch(equippedItem(item));
     } catch (error) {
-      console.log(error);
+      if (error instanceof AxiosError) {
+        notify(error.response?.data.message, 'error');
+      }
     }
   };
 
