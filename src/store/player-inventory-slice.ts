@@ -46,7 +46,7 @@ const playerInventorySlice = createSlice({
       const itemIndex = state.equipment.findIndex(
         (item) => item.id === payload
       );
-      if (itemIndex > 0) {
+      if (itemIndex > -1) {
         state.equipment.splice(itemIndex, 1);
       }
     },
