@@ -5,7 +5,7 @@ import { type Equipment } from '@/types';
 
 type Props = {
   item: Equipment;
-  onItemClicked: (itemID: string) => void;
+  onItemClicked: (item: Equipment) => void;
 };
 
 function Item({ item, onItemClicked }: Props) {
@@ -22,8 +22,8 @@ function Item({ item, onItemClicked }: Props) {
       break;
   }
 
-  const clickHandler = (itemID: string) => {
-    onItemClicked(itemID);
+  const clickHandler = (item: Equipment) => {
+    onItemClicked(item);
   };
 
   return (
@@ -31,7 +31,7 @@ function Item({ item, onItemClicked }: Props) {
       <div
         key={id}
         data-tooltip-id={id}
-        onClick={() => clickHandler(id)}
+        onClick={() => clickHandler(item)}
         className={`rounded-md ${classes['inventory-item']} ${
           equipmentClasses[`equipment-item--${slot}`]
         } ${classes[`inventory-item--${classType}`]}

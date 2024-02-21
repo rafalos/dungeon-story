@@ -3,22 +3,30 @@ import Item from '../UI/Item';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import Loader from '../UI/Loader';
 import { Equipment } from '@/types';
+import { useAppDispatch } from '@/store';
+import { EquipmentSchema } from '@/schemas';
+import { itemBought } from '@/store/player-inventory-slice';
 
 function ShopContent(props: { items: Equipment[] }) {
   const queryClient = useQueryClient();
+  const dispatch = useAppDispatch();
 
   const { mutate, status } = useMutation({
     mutationFn: buyItem,
     onError: (e) => {
       console.log(e.response.data.message);
     },
-    onSuccess: () => {
+    onSuccess: ({ data }) => {
+      const { item } = data;
+      const parsedItem = EquipmentSchema.parse(item);
+
+      dispatch(itemBought(parsedItem));
       queryClient.refetchQueries({});
     },
   });
 
-  const itemBoughtHandler = async (id: string) => {
-    mutate(id);
+  const itemBoughtHandler = async (item: Equipment) => {
+    mutate(item.id);
   };
 
   const shopElements = props.items.map((shopElement) => (

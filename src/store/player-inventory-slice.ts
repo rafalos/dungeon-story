@@ -1,10 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 import { playerStatusActions } from './player-status-slice';
 import { ITEM_TYPES } from '../utils/contants';
 import { isStackable } from '../utils/constraints';
 import { playerStatisticActions } from './player-statistics-slice';
-import { Inventory, type Equipment } from '@/types';
+import { Inventory, type Equipment, AppThunk } from '@/types';
 import { getInventory } from '@/services/user';
+import { deductGold } from './user-slice';
 
 interface InventoryState {
   worn: Equipment[];
@@ -37,6 +39,9 @@ const playerInventorySlice = createSlice({
     });
   },
   reducers: {
+    addInventoryItem(state, action: PayloadAction<Equipment>) {
+      state.equipment.push(action.payload);
+    },
     deductStackable(state, action) {
       const existingItem = state.items.find(
         (item) => item.id === action.payload.id
@@ -49,7 +54,6 @@ const playerInventorySlice = createSlice({
         state.items.splice(index, 1);
       }
     },
-    addStackable(state, action) {},
     removeItem(state, action) {
       const itemIndex = state.items.findIndex(
         (item) => item.id === action.payload.id
@@ -78,6 +82,9 @@ const playerInventorySlice = createSlice({
   },
 });
 
+export default playerInventorySlice.reducer;
+export const playerInventoryActions = playerInventorySlice.actions;
+
 export const potionUsed = (item) => {
   return (dispatch) => {
     dispatch(
@@ -90,6 +97,15 @@ export const potionUsed = (item) => {
         amount: 50,
       })
     );
+  };
+};
+
+export const itemBought = (item: Equipment): AppThunk => {
+  const { buyPrice } = item;
+
+  return (dispatch) => {
+    dispatch(playerInventoryActions.addInventoryItem(item));
+    dispatch(deductGold(buyPrice))
   };
 };
 
@@ -120,6 +136,3 @@ export const itemSold = (item) => {
     );
   };
 };
-
-export default playerInventorySlice.reducer;
-export const playerInventoryActions = playerInventorySlice.actions;

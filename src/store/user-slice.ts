@@ -1,6 +1,7 @@
 import { getUser } from '@/services/user';
 import { User } from '@/types';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 import { useAppSelector } from '.';
 
 type UserState = {
@@ -29,7 +30,13 @@ export const fetchUser = createAsyncThunk<User, void>(
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    deductGold(state, action: PayloadAction<number>) {
+      if (state.user) {
+        state.user.gold -= action.payload;
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchUser.fulfilled, (state, action) => {
       state.user = action.payload;
@@ -57,3 +64,4 @@ export const useUserData = () => {
 };
 
 export default userSlice.reducer;
+export const { deductGold } = userSlice.actions;

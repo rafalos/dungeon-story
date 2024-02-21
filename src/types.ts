@@ -1,11 +1,14 @@
 import { z } from 'zod';
 import { EquipmentSchema, InventorySchema, UserSchema } from './schemas';
+import { Types } from 'mongoose';
+import { ThunkAction } from '@reduxjs/toolkit';
+import { RootState } from './store';
+import { UnknownAction } from 'redux';
 
 export type User = z.infer<typeof UserSchema>;
 export type Equipment = z.infer<typeof EquipmentSchema>;
 export type Inventory = z.infer<typeof InventorySchema>;
 
-import { Types } from 'mongoose';
 export interface Item {
   name: string;
   type: ItemType;
@@ -68,3 +71,10 @@ export type EquipmentPregenerate = DistributiveOmit<
 export type EquipmentWithMetadata = DistributiveOmit<Equipment, 'type'>;
 
 export type Operation = 'INC' | 'DEC';
+
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  UnknownAction
+>;

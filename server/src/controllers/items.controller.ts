@@ -80,6 +80,7 @@ export const buyItem = async (
 
   response.json({
     message: 'Item was bought succesfully',
+    item,
   });
 };
 
