@@ -4,6 +4,7 @@ import { GiBlackKnightHelm } from 'react-icons/gi';
 import { GiDungeonGate } from 'react-icons/gi';
 import { GiShop } from 'react-icons/gi';
 import { IoLogOutOutline } from 'react-icons/io5';
+import { GiBookshelf } from 'react-icons/gi';
 
 function Navigation() {
   const { logout } = useAuth0();
@@ -18,6 +19,11 @@ function Navigation() {
       label: 'Shop',
       to: 'shop',
       icon: GiShop,
+    },
+    {
+      label: 'Stories',
+      to: 'stories',
+      icon: GiBookshelf,
     },
   ];
 

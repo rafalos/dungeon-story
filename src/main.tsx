@@ -15,6 +15,8 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Authentication from './components/Authentication';
 import NotificationsProvider from './providers/NotificationProvider';
 import Exploration from './components/Exploration/Exploration';
+import StoriesPage from './pages/StoriesPage';
+import StoryPage from './pages/StoryPage';
 
 const queryClient = new QueryClient();
 
@@ -59,6 +61,14 @@ const router = createBrowserRouter([
       {
         path: 'exploration',
         element: <ExplorationPage />,
+      },
+      {
+        path: 'stories',
+        element: <StoriesPage />,
+      },
+      {
+        path: 'stories/:id',
+        element: <StoryPage />,
       },
       {
         path: 'exploration/:id',

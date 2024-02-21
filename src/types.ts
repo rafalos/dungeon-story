@@ -1,5 +1,11 @@
 import { z } from 'zod';
-import { EquipmentSchema, InventorySchema, UserSchema } from './schemas';
+import {
+  EquipmentSchema,
+  InventorySchema,
+  StoriesSchema,
+  StorySchema,
+  UserSchema,
+} from './schemas';
 import { Types } from 'mongoose';
 import { ThunkAction } from '@reduxjs/toolkit';
 import { RootState } from './store';
@@ -8,6 +14,8 @@ import { UnknownAction } from 'redux';
 export type User = z.infer<typeof UserSchema>;
 export type Equipment = z.infer<typeof EquipmentSchema>;
 export type Inventory = z.infer<typeof InventorySchema>;
+export type Stories = z.infer<typeof StoriesSchema>;
+export type Story = z.infer<typeof StorySchema>;
 
 export interface Item {
   name: string;
@@ -38,11 +46,6 @@ export type ExplorationEvent =
   | 'ending';
 
 export type Affix = 'vitality' | 'strength' | 'agility';
-
-export interface Story {
-  explorationID: string;
-  chapters: string[];
-}
 
 export type Modifier = [Affix, number];
 

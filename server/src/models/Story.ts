@@ -28,4 +28,15 @@ export const storySchema = new Schema<IStory>(
   }
 );
 
+storySchema.set('toJSON', {
+  transform: (doc, ret) => {
+    delete ret.__v;
+    ret.id = ret._id;
+    delete ret._id;
+    delete ret.exploration;
+    delete ret.messages;
+    delete ret.updatedAt;
+  },
+});
+
 export default model<IStory>('Story', storySchema);

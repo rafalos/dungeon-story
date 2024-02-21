@@ -6,8 +6,6 @@ type Props = {
 };
 
 const List = ({ explorations }: Props) => {
-  console.log(explorations);
-
   if (!explorations.length) {
     return <h2>No explorations found. Generate new one!</h2>;
   }

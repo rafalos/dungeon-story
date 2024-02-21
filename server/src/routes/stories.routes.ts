@@ -1,8 +1,9 @@
 import express from 'express';
-import { getStories } from '../controllers/story.controller';
+import { getStories, getStory } from '../controllers/story.controller';
 
 const router = express.Router();
 
 router.get('/', getStories);
+router.get('/:id', getStory);
 
 export default router;
