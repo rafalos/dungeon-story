@@ -1,12 +1,11 @@
 import Item from '../UI/Item';
-import { useDispatch } from 'react-redux';
-import { equipItem } from '../../store/player-equipment-slice';
-import { itemSold } from '../../store/player-inventory-slice';
+import { equippedItem, itemSold } from '../../store/player-inventory-slice';
 import Container from '../UI/Container';
 import { GiBackpack } from 'react-icons/gi';
 import { sellItem } from '@/services/shop';
 import { Equipment } from '@/types';
 import { useAppDispatch } from '@/store';
+import { wearItem } from '@/services/inventory';
 
 type Props = {
   equipment: Equipment[];
@@ -25,10 +24,13 @@ function InventoryEquipment({ equipment, sellMode }: Props) {
     }
   };
 
-  const itemEquippedHandler = (item) => {
-    if (currentEquipment[item.equipmentSlot]) return;
-
-    dispatch(equipItem(item));
+  const itemEquippedHandler = async (item: Equipment) => {
+    try {
+      await wearItem(item.id);
+      dispatch(equippedItem(item));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

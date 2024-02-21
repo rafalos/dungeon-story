@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { generateLoot } from '../../../../Logic/Generator/loot';
 import { LOOT_BRACKERS } from '../../../../Logic/Resources/tables/lootTable';
 import { useDispatch } from 'react-redux';
-import { playerInventoryActions } from '../../../../store/player-inventory-slice';
+import { addMultipleItems } from '../../../../store/player-inventory-slice';
 import Item from '../../../UI/Item';
 import Button from '@/components/UI/Button';
 
@@ -15,7 +15,7 @@ function Treasure({ onEventFinished }) {
     const randomLoot = generateLoot(LOOT_BRACKERS.MONSTER);
     setFoundItems(randomLoot);
     dispatch(
-      playerInventoryActions.addMultipleItems({
+      addMultipleItems({
         items: randomLoot,
       })
     );

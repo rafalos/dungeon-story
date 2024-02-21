@@ -50,6 +50,15 @@ const playerInventorySlice = createSlice({
         state.equipment.splice(itemIndex, 1);
       }
     },
+    addWornItem(state, { payload }: PayloadAction<Equipment>) {
+      state.worn.push(payload);
+    },
+    removeWornItem(state, { payload }: PayloadAction<string>) {
+      const itemIndex = state.worn.findIndex((item) => item.id === payload);
+      if (itemIndex > -1) {
+        state.worn.splice(itemIndex, 1);
+      }
+    },
     deductStackable(state, action) {
       const existingItem = state.items.find(
         (item) => item.id === action.payload.id
@@ -85,28 +94,21 @@ const playerInventorySlice = createSlice({
 });
 
 export default playerInventorySlice.reducer;
-export const playerInventoryActions = playerInventorySlice.actions;
-
-export const potionUsed = (item) => {
-  return (dispatch) => {
-    dispatch(
-      playerInventoryActions.deductStackable({
-        id: item.id,
-      })
-    );
-    dispatch(
-      playerStatisticActions.restoreHealth({
-        amount: 50,
-      })
-    );
-  };
-};
+export const {
+  addInventoryItem,
+  removeInventoryItem,
+  addWornItem,
+  removeWornItem,
+  addMultipleItems,
+  addSingleItem,
+  deductStackable,
+} = playerInventorySlice.actions;
 
 export const itemBought = (item: Equipment): AppThunk => {
   const { buyPrice } = item;
 
   return (dispatch) => {
-    dispatch(playerInventoryActions.addInventoryItem(item));
+    dispatch(addInventoryItem(item));
     dispatch(deductGold(buyPrice));
   };
 };
@@ -116,6 +118,20 @@ export const itemSold = (item: Equipment): AppThunk => {
 
   return (dispatch) => {
     dispatch(addGold(sellPrice));
-    dispatch(playerInventoryActions.removeInventoryItem(id));
+    dispatch(removeInventoryItem(id));
+  };
+};
+
+export const equippedItem = (item: Equipment): AppThunk => {
+  return (dispatch) => {
+    dispatch(addWornItem(item));
+    dispatch(removeInventoryItem(item.id));
+  };
+};
+
+export const unequippedItem = (item: Equipment): AppThunk => {
+  return (dispatch) => {
+    dispatch(removeWornItem(item.id));
+    dispatch(addInventoryItem(item));
   };
 };

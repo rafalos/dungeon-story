@@ -1,6 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { playerStatisticActions } from './player-statistics-slice';
-import { playerInventoryActions } from './player-inventory-slice';
 import { EQUIPMENT } from '../utils/contants';
 
 const initialEquipment = {
@@ -25,65 +23,6 @@ const playerEquipmentSlice = createSlice({
     },
   },
 });
-
-export const equipItem = (item) => {
-  let metadata = [];
-  for (const metadataEntry in item.metadata) {
-    metadata.push([metadataEntry, item.metadata[metadataEntry]]);
-  }
-
-  return (dispatch) => {
-    dispatch(
-      playerEquipmentActions.wearItem({
-        item,
-      })
-    );
-
-    dispatch(
-      playerStatisticActions.changeStatistic({
-        statistics: metadata,
-      })
-    );
-
-    dispatch(
-      playerInventoryActions.removeItem({
-        id: item.id,
-      })
-    );
-  };
-};
-
-export const unequipItem = (item) => {
-  let metadata = [];
-  for (const metadataEntry in item.metadata) {
-    metadata.push([metadataEntry, item.metadata[metadataEntry]]);
-  }
-
-  const negativeMetadata = metadata.map((metadataEntry) => [
-    metadataEntry[0],
-    -Math.abs(metadataEntry[1]),
-  ]);
-
-  return (dispatch) => {
-    dispatch(
-      playerEquipmentActions.unwearItem({
-        equipmentSlot: item.equipmentSlot,
-      })
-    );
-
-    dispatch(
-      playerStatisticActions.changeStatistic({
-        statistics: negativeMetadata,
-      })
-    );
-
-    dispatch(
-      playerInventoryActions.addSingleItem({
-        item,
-      })
-    );
-  };
-};
 
 export default playerEquipmentSlice.reducer;
 export const playerEquipmentActions = playerEquipmentSlice.actions;

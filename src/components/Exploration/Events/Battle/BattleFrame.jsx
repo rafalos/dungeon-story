@@ -10,7 +10,7 @@ import { playerStatusActions } from '../../../../store/player-status-slice.js';
 import { randomInRange } from '../../../../utils/random';
 import BattleSummary from './BattleSummary';
 import { LOOT_BRACKERS } from '../../../../Logic/Resources/tables/lootTable';
-import { playerInventoryActions } from '../../../../store/player-inventory-slice';
+import { addMultipleItems } from '../../../../store/player-inventory-slice';
 import { getBasicDamage } from '../../../../utils/formulas';
 import BattleLog from './BattleLog';
 import Consumables from '../../../Character/Consumables';
@@ -66,7 +66,7 @@ function BattleFrame({
         })
       );
       dispatch(
-        playerInventoryActions.addMultipleItems({
+        addMultipleItems({
           items: itemsFound,
         })
       );

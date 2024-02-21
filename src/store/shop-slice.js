@@ -4,7 +4,7 @@ import { timersActions } from './timers-slice';
 import { playerStatusActions } from './player-status-slice';
 import { TIMERS } from '../utils/contants';
 import { randomInRange } from '../utils/random';
-import { playerInventoryActions } from './player-inventory-slice';
+import { addSingleItem } from './player-inventory-slice';
 
 const generateRandomItems = () => {
   const randomItems = [
@@ -71,7 +71,7 @@ export const buyItem = (item, price) => {
       })
     );
     dispatch(
-      playerInventoryActions.addSingleItem({
+      addSingleItem({
         item: { ...item },
       })
     );

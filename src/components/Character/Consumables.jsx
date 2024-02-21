@@ -1,10 +1,6 @@
 import React from 'react';
 import { ITEM_TYPES } from '../../utils/contants';
 import Item from '../UI/Item';
-import {
-  playerInventoryActions,
-  potionUsed,
-} from '../../store/player-inventory-slice';
 import { useDispatch } from 'react-redux';
 import { itemSold } from '../../store/player-inventory-slice';
 import classes from './InventoryEquipment.module.css';
@@ -20,7 +16,7 @@ function Consumables({ inventoryItems, sellMode }) {
   };
 
   const itemClickHandler = (item) => {
-    dispatch(potionUsed(item));
+    // dispatch(potionUsed(item));
   };
 
   return (

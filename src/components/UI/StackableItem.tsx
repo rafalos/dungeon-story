@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import classes from './Item.module.css';
 import equipmentClasses from '../Equipment/Equipment.module.css';
 import { useDispatch } from 'react-redux';
-import { playerInventoryActions } from '../../store/player-inventory-slice';
+import { deductStackable } from '../../store/player-inventory-slice';
 import { Tooltip } from 'react-tooltip';
 
 function StackableItem({ item }) {
@@ -10,7 +10,7 @@ function StackableItem({ item }) {
 
   const consumeItemHandler = () => {
     dispatch(
-      playerInventoryActions.deductStackable({
+      deductStackable({
         itemID: item.id,
       })
     );
