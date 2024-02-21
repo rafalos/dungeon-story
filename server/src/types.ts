@@ -61,10 +61,6 @@ export interface Gem extends Stackable {
   type: 'gem';
 }
 
-interface Potion extends Stackable {
-  type: 'potion';
-}
-
 export type ExplorationSeed = Array<ExplorationEvent>;
 
 type DistributiveOmit<T, K extends keyof T> = T extends any

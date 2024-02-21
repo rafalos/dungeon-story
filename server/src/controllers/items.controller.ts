@@ -4,6 +4,27 @@ import { ObjectId } from 'mongodb';
 import Shop from '../models/Shop';
 import Equipment from '../models/Equipment';
 import { type Equipment as EquipmentType } from '../types';
+import { mutateStats } from '../handlers/mutateStats';
+
+const getBase = (item: InstanceType<typeof Equipment>) => {
+  let base;
+  switch (item.descriptor) {
+    case 'weapon':
+      base = {
+        damage: item.damage,
+      };
+      break;
+    case 'wearable':
+      base = {
+        armor: item.armor,
+      };
+      break;
+    default:
+      base = undefined;
+  }
+
+  return base;
+};
 
 export const sellItem = async (request: Request, response: Response) => {
   const { user, item } = request;
@@ -113,6 +134,10 @@ export const wearItem = async (request: Request, response: Response) => {
     (item) => !item._id.equals(request.item._id)
   );
 
+  const base = getBase(request.item);
+
+  await mutateStats('INC', request.user, base, request.item.modifiers);
+
   await inventory.save();
 
   response.status(200).json({
@@ -145,6 +170,10 @@ export const unwearItem = async (request: Request, response: Response) => {
   );
 
   inventory.equipment.push(itemToUnwear);
+
+  const base = getBase(request.item);
+
+  await mutateStats('DEC', request.user, base, request.item.modifiers);
 
   await inventory.save();
 

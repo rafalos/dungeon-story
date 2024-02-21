@@ -10,6 +10,7 @@ import Equipment from '../models/Equipment';
 import { generateRandomEquipment } from '../logic/generators/equipment';
 import { shopRestock } from '../handlers/shopRestock';
 import Inventory from '../models/Inventory';
+import { getItemData } from '../middlewares/getItemData';
 
 declare module 'express-serve-static-core' {
   export interface Request {
@@ -39,6 +40,6 @@ router.get('/generate', async (request, response) => {
 router.post('/:itemID/sell', checkOwnership, sellItem);
 router.post('/:itemID/buy', buyItem);
 router.post('/:itemID/wear', checkOwnership, wearItem);
-router.post('/:itemID/unwear', unwearItem);
+router.post('/:itemID/unwear', getItemData, unwearItem);
 
 export default router;
