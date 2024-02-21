@@ -70,3 +70,11 @@ export const useUserData = () => {
 
 export default userSlice.reducer;
 export const { deductGold, addGold } = userSlice.actions;
+
+export const useUserStatistics = () => {
+  const { user } = useAppSelector((state) => state.user);
+  if (!user) throw new Error('There was an error getting user data');
+
+  const { armor, attributes, criticalChance, damage } = user;
+  return { armor, attributes, criticalChance, damage };
+};

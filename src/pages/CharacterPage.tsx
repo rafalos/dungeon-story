@@ -1,6 +1,6 @@
 import Card from '../components/UI/Card';
 import Inventory from '@/components/Character';
-import Equipment from '@/components/Equipment/Equipment';
+import Equipment from '@/components/Equipment';
 
 function CharacterPage() {
   return (
