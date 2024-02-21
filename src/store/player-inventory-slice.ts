@@ -4,9 +4,15 @@ import { playerStatusActions } from './player-status-slice';
 import { ITEM_TYPES } from '../utils/contants';
 import { isStackable } from '../utils/constraints';
 import { playerStatisticActions } from './player-statistics-slice';
-import { Inventory, type Equipment, AppThunk } from '@/types';
+import { Inventory, type Equipment, AppThunk, Modifier } from '@/types';
 import { getInventory } from '@/services/user';
-import { addGold, deductGold } from './user-slice';
+import {
+  addGold,
+  deductGold,
+  increaseArmor,
+  increaseAttributes,
+  increaseDamage,
+} from './user-slice';
 
 interface InventoryState {
   worn: Equipment[];
@@ -126,6 +132,32 @@ export const equippedItem = (item: Equipment): AppThunk => {
   return (dispatch) => {
     dispatch(addWornItem(item));
     dispatch(removeInventoryItem(item.id));
+
+    switch (item.descriptor) {
+      case 'weapon':
+        dispatch(
+          increaseDamage({
+            operation: 'INC',
+            value: item.damage,
+          })
+        );
+        break;
+      case 'wearable':
+        dispatch(
+          increaseArmor({
+            operation: 'INC',
+            value: item.armor,
+          })
+        );
+        break;
+    }
+
+    dispatch(
+      increaseAttributes({
+        operation: 'INC',
+        modifiers: item.modifiers as Modifier[],
+      })
+    );
   };
 };
 
@@ -133,5 +165,31 @@ export const unequippedItem = (item: Equipment): AppThunk => {
   return (dispatch) => {
     dispatch(removeWornItem(item.id));
     dispatch(addInventoryItem(item));
+
+    switch (item.descriptor) {
+      case 'weapon':
+        dispatch(
+          increaseDamage({
+            operation: 'DEC',
+            value: item.damage,
+          })
+        );
+        break;
+      case 'wearable':
+        dispatch(
+          increaseArmor({
+            operation: 'DEC',
+            value: item.armor,
+          })
+        );
+        break;
+    }
+
+    dispatch(
+      increaseAttributes({
+        operation: 'DEC',
+        modifiers: item.modifiers as Modifier[],
+      })
+    );
   };
 };

@@ -1,5 +1,5 @@
 import { getUser } from '@/services/user';
-import { User } from '@/types';
+import { Modifier, Operation, User } from '@/types';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { useAppSelector } from '.';
@@ -31,6 +31,52 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
+    increaseDamage(
+      state,
+      {
+        payload,
+      }: PayloadAction<{
+        operation: Operation;
+        value: number;
+      }>
+    ) {
+      if (state.user) {
+        state.user.damage +=
+          payload.operation === 'INC' ? payload.value : -payload.value;
+      }
+    },
+    increaseArmor(
+      state,
+      {
+        payload,
+      }: PayloadAction<{
+        operation: Operation;
+        value: number;
+      }>
+    ) {
+      if (state.user) {
+        state.user.armor +=
+          payload.operation === 'INC' ? payload.value : -payload.value;
+      }
+    },
+    increaseAttributes(
+      state,
+      {
+        payload,
+      }: PayloadAction<{
+        operation: Operation;
+        modifiers: Modifier[];
+      }>
+    ) {
+      if (state.user) {
+        payload.modifiers.forEach((modifier) => {
+          const [attribute, value] = modifier;
+
+          state.user!.attributes[attribute] +=
+            payload.operation === 'INC' ? value : -value;
+        });
+      }
+    },
     deductGold(state, action: PayloadAction<number>) {
       if (state.user) {
         state.user.gold -= action.payload;
@@ -69,7 +115,13 @@ export const useUserData = () => {
 };
 
 export default userSlice.reducer;
-export const { deductGold, addGold } = userSlice.actions;
+export const {
+  deductGold,
+  addGold,
+  increaseArmor,
+  increaseDamage,
+  increaseAttributes,
+} = userSlice.actions;
 
 export const useUserStatistics = () => {
   const { user } = useAppSelector((state) => state.user);
