@@ -1,7 +1,11 @@
 import { useAppSelector } from '@/store';
 import Equipment from './Equipment';
 
-function Inventory({ items, sellMode }) {
+type Props = {
+  sellMode?: boolean;
+};
+
+function Inventory({ sellMode }: Props) {
   const { equipment } = useAppSelector((state) => state.inventory);
 
   return (

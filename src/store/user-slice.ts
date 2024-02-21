@@ -36,6 +36,11 @@ const userSlice = createSlice({
         state.user.gold -= action.payload;
       }
     },
+    addGold(state, action: PayloadAction<number>) {
+      if (state.user) {
+        state.user.gold += action.payload;
+      }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchUser.fulfilled, (state, action) => {
@@ -64,4 +69,4 @@ export const useUserData = () => {
 };
 
 export default userSlice.reducer;
-export const { deductGold } = userSlice.actions;
+export const { deductGold, addGold } = userSlice.actions;

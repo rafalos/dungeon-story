@@ -6,10 +6,8 @@ import { getCurrentShop } from '@/services/shop';
 import Loader from '@/components/UI/Loader';
 import Container from '@/components/UI/Container';
 import { GiShop } from 'react-icons/gi';
-import { useAppSelector } from '@/store';
 
 function ShopPage() {
-  const { equipment } = useAppSelector((state) => state.inventory);
   const { isLoading, data } = useQuery({
     queryKey: ['shop'],
     queryFn: getCurrentShop,
@@ -29,7 +27,7 @@ function ShopPage() {
             <ShopContent items={data.data.items} />
             {/* <ShopTime /> */}
           </Container>
-          <Inventory items={equipment} sellMode={true} />
+          <Inventory sellMode={true} />
         </Card>
       )}
     </>

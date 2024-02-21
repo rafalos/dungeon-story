@@ -4,12 +4,25 @@ import { equipItem } from '../../store/player-equipment-slice';
 import { itemSold } from '../../store/player-inventory-slice';
 import Container from '../UI/Container';
 import { GiBackpack } from 'react-icons/gi';
+import { sellItem } from '@/services/shop';
+import { Equipment } from '@/types';
+import { useAppDispatch } from '@/store';
 
-function InventoryEquipment({ equipment, sellMode }) {
-  const dispatch = useDispatch();
+type Props = {
+  equipment: Equipment[];
+  sellMode: boolean;
+};
 
-  const itemSoldHandler = (item) => {
-    dispatch(itemSold(item));
+function InventoryEquipment({ equipment, sellMode }: Props) {
+  const dispatch = useAppDispatch();
+
+  const itemSoldHandler = async (item: Equipment) => {
+    try {
+      await sellItem(item.id);
+      dispatch(itemSold(item));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const itemEquippedHandler = (item) => {
@@ -22,9 +35,8 @@ function InventoryEquipment({ equipment, sellMode }) {
     <Container title="Inventory" icon={GiBackpack}>
       {equipment.map((item) => (
         <Item
-          key={item._id}
+          key={item.id}
           item={item}
-          equipable={true}
           onItemClicked={
             sellMode
               ? () => itemSoldHandler(item)

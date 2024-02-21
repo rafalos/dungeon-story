@@ -6,7 +6,7 @@ import { isStackable } from '../utils/constraints';
 import { playerStatisticActions } from './player-statistics-slice';
 import { Inventory, type Equipment, AppThunk } from '@/types';
 import { getInventory } from '@/services/user';
-import { deductGold } from './user-slice';
+import { addGold, deductGold } from './user-slice';
 
 interface InventoryState {
   worn: Equipment[];
@@ -39,8 +39,16 @@ const playerInventorySlice = createSlice({
     });
   },
   reducers: {
-    addInventoryItem(state, action: PayloadAction<Equipment>) {
-      state.equipment.push(action.payload);
+    addInventoryItem(state, { payload }: PayloadAction<Equipment>) {
+      state.equipment.push(payload);
+    },
+    removeInventoryItem(state, { payload }: PayloadAction<string>) {
+      const itemIndex = state.equipment.findIndex(
+        (item) => item.id === payload
+      );
+      if (itemIndex > 0) {
+        state.equipment.splice(itemIndex, 1);
+      }
     },
     deductStackable(state, action) {
       const existingItem = state.items.find(
@@ -53,12 +61,6 @@ const playerInventorySlice = createSlice({
         const index = state.items.indexOf(existingItem);
         state.items.splice(index, 1);
       }
-    },
-    removeItem(state, action) {
-      const itemIndex = state.items.findIndex(
-        (item) => item.id === action.payload.id
-      );
-      state.items.splice(itemIndex, 1);
     },
     addSingleItem(state, action) {
       state.items.push(action.payload.item);
@@ -105,34 +107,15 @@ export const itemBought = (item: Equipment): AppThunk => {
 
   return (dispatch) => {
     dispatch(playerInventoryActions.addInventoryItem(item));
-    dispatch(deductGold(buyPrice))
+    dispatch(deductGold(buyPrice));
   };
 };
 
-export const itemSold = (item) => {
-  const { sellPrice } = item;
+export const itemSold = (item: Equipment): AppThunk => {
+  const { id, sellPrice } = item;
+
   return (dispatch) => {
-    switch (item.type) {
-      case ITEM_TYPES.GEM:
-      case ITEM_TYPES.POTION:
-        dispatch(
-          playerInventoryActions.deductStackable({
-            id: item.id,
-          })
-        );
-        break;
-      case ITEM_TYPES.EQUIPMENT:
-        dispatch(
-          playerInventoryActions.removeItem({
-            id: item.id,
-          })
-        );
-        break;
-    }
-    dispatch(
-      playerStatusActions.addGold({
-        amount: sellPrice,
-      })
-    );
+    dispatch(addGold(sellPrice));
+    dispatch(playerInventoryActions.removeInventoryItem(id));
   };
 };
