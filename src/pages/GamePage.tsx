@@ -39,8 +39,8 @@ function GamePage() {
   return (
     <div className="flex h-screen overflow-auto">
       {<Notification />}
-      {/* <Header /> */}
-      <main className="h-full w-full">
+      <Header />
+      <main className="h-full w-full mt-[60px]">
         <Sidebar />
         <Outlet />
       </main>

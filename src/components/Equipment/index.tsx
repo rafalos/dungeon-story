@@ -29,7 +29,7 @@ function Equipment() {
       <h2>Equipment</h2>
       <div className='flex'>
         <Worn wornItems={wornItems} onItemClicked={itemClickHandler} />
-        <Statistics {...stats} />
+        {/* <Statistics {...stats} /> */}
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ const Container = ({ children, title, icon: Icon }: Props) => {
       className={`flex h-[calc(100%-3.5rem)] w-full flex-col overflow-hidden text-xl`}
     >
       <div
-        className={`flex h-16 items-center justify-center gap-4 bg-customRed/80 font-bold text-customWhite`}
+        className={`flex h-8 items-center justify-center gap-4 bg-customRed p font-bold text-customWhite`}
       >
         {Icon && (
           <div className="text-3xl">
