@@ -18,19 +18,12 @@ function ShopPage() {
   }
 
   return (
-    <>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <Card>
-          <Container title="Merchant" icon={GiShop}>
-            <ShopContent items={data.data.items} />
-            {/* <ShopTime /> */}
-          </Container>
-          <Inventory sellMode={true} />
-        </Card>
-      )}
-    </>
+    <Container title="Merchant">
+      {isLoading ? <Loader /> : <Inventory sellMode={true} />}
+
+      <ShopContent items={data.data.items} />
+      {/* <ShopTime /> */}
+    </Container>
   );
 }
 

@@ -20,10 +20,12 @@ const StoriesPage = () => {
           <Link
             to={story.id}
             key={story.id}
-            className="flex justify-between bg-slate-50/10 p-4 text-customWhite hover:cursor-pointer hover:bg-slate-50/20"
+            className="flex gap-4 bg-slate-50/10 p-2 text-customWhite hover:cursor-pointer hover:bg-slate-50/20"
           >
-            <span>{story.createdAt.toLocaleString('pl')}</span>{' '}
-            <span>{story.location}</span>
+            <span className="flex w-20 justify-center text-sm">
+              {story.createdAt.toLocaleDateString('pl')}
+            </span>{' '}
+            <span className="flex-1 text-sm">{story.location}</span>
           </Link>
         ))}
       </div>

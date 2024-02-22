@@ -8,7 +8,7 @@ type Props = {
 function TimelineItem({ isActive, event }: Props) {
   return (
     <div
-      className={`flex h-24 w-24 items-center justify-center bg-customBlack ${
+      className={`flex items-center justify-center bg-customBlack p-2 ${
         isActive ? 'border-2 border-customYellow' : ''
       }`}
     >

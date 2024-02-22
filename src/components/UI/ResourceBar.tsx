@@ -1,8 +1,8 @@
 type Props = {
   currentResource: number;
   maxResource: number;
-  label: string;
-  bgColor: 'bg-customRed' | 'bg-customYellow';
+  label?: string;
+  bgColor: 'bg-red-700' | 'bg-customYellow';
   className?: string;
 };
 
@@ -12,8 +12,8 @@ function ResourceBar({ currentResource, maxResource, label, bgColor }: Props) {
   return (
     <>
       {label && `${label}:`}
-      <div className="relative h-8 w-full border-2 border-solid border-black bg-gray-300">
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-lg text-gray-900">{`${factor.toFixed(
+      <div className="relative h-6 w-full border-none bg-gray-300">
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-lg font-bold text-gray-900">{`${factor.toFixed(
           1
         )}%`}</div>
         <div

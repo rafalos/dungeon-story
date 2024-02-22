@@ -2,6 +2,9 @@
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
+    container: {
+      center: true,
+    },
     extend: {
       backgroundImage: {
         hero: "url('/bg.png')",
@@ -13,8 +16,8 @@ export default {
         customWhite: '#EBEFFF',
         customRed: '#5c1616',
         customLightRed: '#E26D5A',
-        customYellow: '#FFC07F',
-        customBlack: '#1F0909',
+        customYellow: '#f0cc2c',
+        customBlack: '#0e0e0f',
         backgroundBlack: '#170707',
         customGreen: '#A4C2A5',
         landingBg: '#1D160C',
@@ -22,6 +25,7 @@ export default {
         landingCaramel: '#7A4500',
       },
       fontFamily: {
+        openSans: ['Open Sans'],
         poppins: ['Poppins'],
       },
       animation: {

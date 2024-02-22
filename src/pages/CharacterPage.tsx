@@ -1,15 +1,14 @@
-import Card from '../components/UI/Card';
 import Inventory from '@/components/Character';
 import Equipment from '@/components/Equipment';
+import Container from '@/components/UI/Container';
+import { GiBlackKnightHelm } from 'react-icons/gi';
 
 function CharacterPage() {
   return (
-    <Card>
-      <div className="flex w-full justify-around gap-4">
-        <Inventory />
-        <Equipment />
-      </div>
-    </Card>
+    <Container title="Character" icon={GiBlackKnightHelm}>
+      <Equipment />
+      <Inventory />
+    </Container>
   );
 }
 

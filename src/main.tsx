@@ -11,7 +11,6 @@ import ShopPage from './pages/ShopPage';
 import ExplorationPage from './pages/ExplorationPage';
 import GamePage from './pages/GamePage.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Authentication from './components/Authentication';
 import NotificationsProvider from './providers/NotificationProvider';
 import Exploration from './components/Exploration/Exploration';
@@ -26,7 +25,6 @@ const GameProviders = ({ children }: { children: React.ReactNode }) => {
       <NotificationsProvider>
         <QueryClientProvider client={queryClient}>
           <StoreProvider store={store}>{children}</StoreProvider>
-          <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </NotificationsProvider>
     </Authentication>

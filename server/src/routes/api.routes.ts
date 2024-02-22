@@ -8,7 +8,6 @@ import itemsRouter from './items.routes';
 import inventoryRouter from './inventory.routes';
 import { getUserData } from '../middlewares/getUserData';
 import User from '../models/User';
-import { app } from '../app';
 import { notFound } from '../middlewares/404';
 import { errorHandler } from '../middlewares/error';
 

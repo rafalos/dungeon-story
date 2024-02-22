@@ -50,7 +50,12 @@ function ShopContent(props: { items: Equipment[] }) {
     return <Loader />;
   }
 
-  return <div>{shopElements}</div>;
+  return (
+    <div className="flex flex-col items-center text-customWhite">
+      <h2>Merchant</h2>
+      <div>{shopElements}</div>
+    </div>
+  );
 }
 
 export default ShopContent;

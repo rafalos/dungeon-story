@@ -1,10 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,300');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --rarity-rare: rgb(240, 204, 44);
+  --rarity-rare: #f0cc2c;
   --rarity-legendary: #d89519;
   --rarity-magic: rgb(78, 78, 230);
   --rarity-common: #e0e0e0;
@@ -18,7 +19,8 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  @apply bg-landingBg;
+  background: rgb(14,14,15);
+  background: linear-gradient(153deg, rgba(14,14,15,1) 0%, rgba(14,14,15,1) 79%, rgba(92,22,22,1) 100%);
   font-family: 'Poppins';
 }
 

@@ -79,16 +79,16 @@ function ExplorationEvent({
   };
 
   return (
-    <div className="flex w-[1000px] flex-col items-center gap-8">
+    <div className="flex flex-col items-center gap-8">
       {eventInProgress && (
         <div className=" flex flex-col gap-4 text-lg">{currentEvent()}</div>
       )}
       {!eventInProgress && (
-        <div className='flex w-full flex-col bg-transparent'>
+        <div className="flex w-full flex-col bg-transparent">
           <div className=" p-4 text-2xl font-thin italic">
             <Typer delay={20} text={currentStory} />
           </div>
-          <div className='w-full flex justify-center'>
+          <div className="flex w-full justify-center">
             {!explorationFinished && (
               <Button onClick={progressEventHandler}>
                 Continue exploration

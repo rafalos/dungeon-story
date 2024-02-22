@@ -35,28 +35,23 @@ function ExplorationPage() {
   });
 
   return (
-    <Card>
+    <>
       {isLoading ? (
         <SmallLoader />
       ) : (
-        <Container
-          title="Current explorations"
-          variant="green"
-          icon={GiDungeonGate}
-        >
-          <>
-            <Button onClick={() => mutate()}>
-              {status === 'pending' ? (
-                <SmallLoader />
-              ) : (
-                'Search for a new exploration'
-              )}
-            </Button>
-          </>
+        <Container title="Current explorations" icon={GiDungeonGate}>
+          <Button onClick={() => mutate()}>
+            {status === 'pending' ? (
+              <SmallLoader />
+            ) : (
+              'New exploration'
+            )}
+          </Button>
+
           <List explorations={explorations} />
         </Container>
       )}
-    </Card>
+    </>
   );
 }
 

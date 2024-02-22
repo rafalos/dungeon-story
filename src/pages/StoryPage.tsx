@@ -17,11 +17,11 @@ const StoryPage = () => {
 
   return (
     <div className="p-4 text-customWhite">
-      <h2 className="text-2xl flex justify-between">
+      <h2 className="flex flex-col items-center font-bold">
         <span>{story.createdAt.toLocaleDateString()}</span>
-        <span>{story.location}</span>
+        <span className="text-center">{story.location}</span>
       </h2>
-      <div className="w-[900px] p-4 text-justify font-poppins italic">
+      <div className="p-8 italic">
         {story.chapters.map((chapter) => (
           <>
             <p>{chapter}</p>

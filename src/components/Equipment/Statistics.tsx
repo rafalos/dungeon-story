@@ -13,10 +13,10 @@ type Props = {
 
 const Statistics = ({ damage, armor, attributes, criticalChance }: Props) => {
   return (
-    <div className="text-customWhite">
-      <h2 className="text-2lx">Damage: {damage}</h2>
-      <h2 className="text-2lx">Armor: {armor}</h2>
-      <h2 className="text-2lx">Critical chance: {criticalChance}%</h2>
+    <div className="text-customWhite text-sm">
+      <h2>Damage: {damage}</h2>
+      <h2>Armor: {armor}</h2>
+      <h2>Critical chance: {criticalChance}%</h2>
       <h2>Strength: {attributes.strength}</h2>
       <h2>Agility: {attributes.agility}</h2>
       <h2>Vitality: {attributes.vitality}</h2>

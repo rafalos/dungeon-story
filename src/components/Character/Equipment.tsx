@@ -41,7 +41,7 @@ function InventoryEquipment({ equipment, sellMode }: Props) {
   };
 
   return (
-    <Container title="Inventory" icon={GiBackpack}>
+    <div className='flex flex-wrap'>
       {equipment.map((item) => (
         <Item
           key={item.id}
@@ -53,7 +53,7 @@ function InventoryEquipment({ equipment, sellMode }: Props) {
           }
         />
       ))}
-    </Container>
+    </div>
   );
 }
 

@@ -37,16 +37,13 @@ function GamePage() {
   }
 
   return (
-    <div className="flex h-screen flex-col">
-      <Header />
-      <main className="grid w-full flex-1 grid-cols-[350px_6fr]">
-        <Sidebar />
-        <div className="flex content-center justify-center rounded-md bg-[#352d2d]">
-          <Outlet />
-        </div>
-      </main>
-      <Footer />
+    <div className="flex h-screen overflow-auto">
       {<Notification />}
+      {/* <Header /> */}
+      <main className="h-full w-full">
+        <Sidebar />
+        <Outlet />
+      </main>
     </div>
   );
 }

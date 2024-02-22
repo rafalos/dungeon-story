@@ -28,37 +28,39 @@ function Navigation() {
   ];
 
   return (
-    <div className="flex h-full flex-col justify-between text-customWhite">
-      <nav className="flex flex-col">
+    <div className="fixed bottom-0 w-full bg-customBlack text-3xl text-customWhite h-14">
+      <nav className="flex items-center justify-between">
         {navLinks.map(({ label, to, icon: Icon }) => (
           <NavLink
             key={to}
             className={({ isActive }) =>
               [
-                'flex items-center gap-2 p-4 text-xl font-medium transition-colors hover:bg-customWhite hover:bg-opacity-5',
-                isActive ? 'bg-customWhite bg-opacity-10' : undefined,
+                'w-full flex justify-center tracking-wide transition-colors hover:bg-customRed/80 p-4',
+                isActive ? 'bg-customRed/60' : undefined,
               ].join(' ')
             }
             to={to}
           >
-            <Icon />
-            {label}
+            <span>
+              <Icon />
+            </span>
+            <span className="hidden">{label.toUpperCase()}</span>
           </NavLink>
         ))}
+        <li
+          className="w-full flex justify-center tracking-wide transition-colors hover:bg-customRed/40 p-4"
+          onClick={() =>
+            logout({
+              logoutParams: {
+                returnTo: window.location.origin,
+              },
+            })
+          }
+        >
+          <IoLogOutOutline />
+          <span className="hidden">Logout</span>
+        </li>
       </nav>
-      <li
-        className="flex items-center gap-2 p-4 text-2xl font-medium transition-colors hover:bg-customWhite hover:bg-opacity-5"
-        onClick={() =>
-          logout({
-            logoutParams: {
-              returnTo: window.location.origin,
-            },
-          })
-        }
-      >
-        <IoLogOutOutline />
-        Logout
-      </li>
     </div>
   );
 }

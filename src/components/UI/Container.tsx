@@ -1,13 +1,6 @@
 import React, { ReactNode } from 'react';
 import { IconType } from 'react-icons';
 
-type Variants = {
-  brown: string;
-  red: string;
-  yellow: string;
-  green: string;
-};
-
 type Props = {
   children: ReactNode;
   title: string;
@@ -16,9 +9,11 @@ type Props = {
 
 const Container = ({ children, title, icon: Icon }: Props) => {
   return (
-    <div className={`flex w-[700px] flex-col rounded text-xl text-black`}>
+    <div
+      className={`flex h-[calc(100%-3.5rem)] w-full flex-col overflow-hidden text-xl`}
+    >
       <div
-        className={`flex h-14 items-center gap-2 rounded bg-customRed bg-gradient-to-l from-customBlack from-5% to-transparent to-100% px-4 font-bold text-white`}
+        className={`flex h-16 items-center justify-center gap-4 bg-customRed/80 font-bold text-customWhite`}
       >
         {Icon && (
           <div className="text-3xl">
@@ -27,7 +22,9 @@ const Container = ({ children, title, icon: Icon }: Props) => {
         )}
         <div>{title}</div>
       </div>
-      <div className={`flex-1 flex-wrap bg-customBlack bg-opacity-30 p-4`}>
+      <div
+        className={`h-full overflow-auto bg-customBlack bg-slate-400/10 bg-opacity-30`}
+      >
         {children}
       </div>
     </div>

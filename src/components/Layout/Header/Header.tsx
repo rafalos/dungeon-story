@@ -1,12 +1,7 @@
-import React from 'react';
-
-type Props = {};
-
-const Header = (props: Props) => {
+const Header = () => {
   return (
-    <header className="flex h-20 items-center justify-between border-b border-customWhite border-opacity-10 p-4 text-lg font-bold text-customWhite">
+    <header className="flex h-20 items-center  bg-gray-600/20 p-4 text-lg font-bold text-customWhite">
       <div>Dungeon Story</div>
-      <div>Alpha Version</div>
     </header>
   );
 };

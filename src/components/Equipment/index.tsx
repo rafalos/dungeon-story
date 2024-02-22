@@ -25,12 +25,13 @@ function Equipment() {
   };
 
   return (
-    <Container title="Equipment" icon={GiShardSword}>
-      <div className="flex">
+    <div className="m-4 flex flex-col items-center gap-4 bg-customBlack/30 p-2 text-customWhite">
+      <h2>Equipment</h2>
+      <div className='flex'>
         <Worn wornItems={wornItems} onItemClicked={itemClickHandler} />
         <Statistics {...stats} />
       </div>
-    </Container>
+    </div>
   );
 }
 
