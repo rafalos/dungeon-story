@@ -1,12 +1,12 @@
-import { useSelector } from 'react-redux';
 import ResourceBar from '@/components/UI/ResourceBar';
-import goldIcon from '@/Logic/Resources/Icons/gold.png';
-import Container from '@/components/UI/Container';
-import { useAppSelector } from '@/store';
+import SmallLoader from '@/components/UI/SmallLoader';
+
 import { useUserData } from '@/store/user-slice';
 
 const Status = () => {
-  const user = useUserData();
+  const { isLoading, user } = useUserData();
+
+  if (isLoading) return <SmallLoader />;
 
   return (
     <div className="flex flex-col gap-2 rounded-md p-4">

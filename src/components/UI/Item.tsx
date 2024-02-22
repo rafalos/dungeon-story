@@ -15,10 +15,10 @@ function Item({ item, onItemClicked }: Props) {
 
   switch (item.descriptor) {
     case 'weapon':
-      baseAttribute = `Damage: ${item.damage}`;
+      baseAttribute = `damage: ${item.damage}`;
       break;
     case 'wearable':
-      baseAttribute = `Armor: ${item.armor}`;
+      baseAttribute = `armor: ${item.armor}`;
       break;
   }
 
@@ -32,7 +32,7 @@ function Item({ item, onItemClicked }: Props) {
         key={id}
         data-tooltip-id={id}
         onClick={() => clickHandler(item)}
-        className={`rounded-md ${classes['inventory-item']} ${
+        className={`shadow-md ${classes['inventory-item']} ${
           equipmentClasses[`equipment-item--${slot}`]
         } ${classes[`inventory-item--${classType}`]}
     ${`equipment-item--${slot}`}`}
@@ -42,21 +42,35 @@ function Item({ item, onItemClicked }: Props) {
 
         <Tooltip
           id={id}
-          className={`z-50 flex flex-col items-center justify-center border-4`}
+          className={`${classes.tooltip} z-50 flex flex-col border ${
+            classes[`tooltip--${classType}`]
+          }`}
+          noArrow
+          offset={5}
+          style={{
+            padding: '24px',
+          }}
         >
-          <span className="text-lg font-medium">{item.name}</span>
-          <ul className="my-2 text-base"></ul>
-          {baseAttribute && baseAttribute}
-          {modifiers.map((modifier) => {
-            const [attributeName, amount] = modifier;
+          <div
+            className={`flex flex-col ${classes[`tooltip-desc--${classType}`]}`}
+          >
+            <span className="text-2xl font-bold">{item.name}</span>
+            <span className="border-b border-dotted py-2 text-sm italic">
+              {classType} {slot}
+            </span>
+          </div>
+          <ul className="text-md my-2">
+            <li>{baseAttribute && baseAttribute}</li>
+            {modifiers.map((modifier) => {
+              const [attributeName, amount] = modifier;
 
-            return (
-              <li key={`${attributeName}${amount}`}>
-                {attributeName}: {amount}
-              </li>
-            );
-          })}
-          <div>{classType}</div>
+              return (
+                <li key={`${attributeName}${amount}`}>
+                  {attributeName}: {amount}
+                </li>
+              );
+            })}
+          </ul>
         </Tooltip>
       </div>
     </>

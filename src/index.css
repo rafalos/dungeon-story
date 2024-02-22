@@ -4,9 +4,9 @@
 @tailwind utilities;
 
 :root {
-  --rarity-rare: rgb(224, 224, 0);
+  --rarity-rare: rgb(240, 204, 44);
   --rarity-legendary: #d89519;
-  --rarity-magic: rgb(58, 58, 235);
+  --rarity-magic: rgb(78, 78, 230);
   --rarity-common: #e0e0e0;
 }
 
@@ -19,6 +19,7 @@ body {
   padding: 0;
   height: 100vh;
   @apply bg-landingBg;
+  font-family: 'Poppins';
 }
 
 .App {

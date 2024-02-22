@@ -108,10 +108,7 @@ const userSlice = createSlice({
 export const useUserData = () => {
   const { user, isLoading } = useAppSelector((state) => state.user);
 
-  if (!user && !isLoading) {
-    throw new Error('There was a problem fetching user data');
-  }
-  return user;
+  return { user, isLoading };
 };
 
 export default userSlice.reducer;

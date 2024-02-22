@@ -3,6 +3,7 @@ type Props = {
   maxResource: number;
   label: string;
   bgColor: 'bg-customRed' | 'bg-customYellow';
+  className?: string;
 };
 
 function ResourceBar({ currentResource, maxResource, label, bgColor }: Props) {
@@ -18,7 +19,7 @@ function ResourceBar({ currentResource, maxResource, label, bgColor }: Props) {
         <div
           className={`h-full py-1 transition-all ${bgColor}`}
           style={{
-            width: `${factor}%`,
+            width: `50%`,
           }}
         ></div>
       </div>
