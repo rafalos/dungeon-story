@@ -6,6 +6,7 @@ import { getCurrentShop } from '@/services/shop';
 import Loader from '@/components/UI/Loader';
 import Container from '@/components/UI/Container';
 import { GiShop } from 'react-icons/gi';
+import SmallLoader from '@/components/UI/SmallLoader';
 
 function ShopPage() {
   const { isLoading, data } = useQuery({
@@ -13,8 +14,8 @@ function ShopPage() {
     queryFn: getCurrentShop,
   });
 
-  if (!isLoading && !data) {
-    return <h1>failed to fetch shop</h1>;
+  if (isLoading) {
+    return <SmallLoader />;
   }
 
   return (
