@@ -20,7 +20,7 @@ const Container = ({ children, title, icon: Icon }: Props) => {
             <Icon />
           </div>
         )} */}
-        <div>{title}</div>
+        <div>- {title} -</div>
       </div>
       <div className={`h-full overflow-auto`}>{children}</div>
     </div>

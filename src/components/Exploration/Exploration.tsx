@@ -85,34 +85,32 @@ function Exploration() {
 
   return (
     <Card>
-      <div>
-        {exploration.currentStage <= exploration.seed.length - 1 ? (
-          <>
-            <ExplorationTimeline
-              name={exploration.name}
-              seed={exploration.seed}
-              currentPosition={exploration.currentStage}
-            />
-            <ExplorationEvent
-              fetchNextStory={refetchStory}
-              eventCount={exploration.seed.length}
-              onEventProgress={explorationProgressHandler}
-              onPlayerDeath={playerDeadHandler}
-              eventString={exploration.seed[exploration.currentStage]}
-              currentPosition={exploration.currentStage}
-              onItemFound={itemFoundHandler}
-              onExperienceGained={experienceGainedHandler}
-              currentStory={chapter.message}
-            />
-          </>
-        ) : (
-          <ExplorationSummary
-            ending={chapter.message}
-            totalExperienceGained={experienceGained}
-            totalItemsFound={itemsFound}
+      {exploration.currentStage <= exploration.seed.length - 1 ? (
+        <>
+          <ExplorationTimeline
+            name={exploration.name}
+            seed={exploration.seed}
+            currentPosition={exploration.currentStage}
           />
-        )}
-      </div>
+          <ExplorationEvent
+            fetchNextStory={refetchStory}
+            eventCount={exploration.seed.length}
+            onEventProgress={explorationProgressHandler}
+            onPlayerDeath={playerDeadHandler}
+            eventString={exploration.seed[exploration.currentStage]}
+            currentPosition={exploration.currentStage}
+            onItemFound={itemFoundHandler}
+            onExperienceGained={experienceGainedHandler}
+            currentStory={chapter.message}
+          />
+        </>
+      ) : (
+        <ExplorationSummary
+          ending={chapter.message}
+          totalExperienceGained={experienceGained}
+          totalItemsFound={itemsFound}
+        />
+      )}
     </Card>
   );
 }

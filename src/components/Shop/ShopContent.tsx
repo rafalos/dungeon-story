@@ -8,6 +8,7 @@ import { EquipmentSchema } from '@/schemas';
 import { itemBought } from '@/store/player-inventory-slice';
 import { AxiosError } from 'axios';
 import { useNotify } from '@/providers/NotificationProvider';
+import Card from '../UI/Card';
 
 function ShopContent(props: { items: Equipment[] }) {
   const queryClient = useQueryClient();
@@ -51,10 +52,9 @@ function ShopContent(props: { items: Equipment[] }) {
   }
 
   return (
-    <div className="flex flex-col items-center text-customWhite">
-      <h2>Merchant</h2>
+    <Card title="Merchant">
       <div>{shopElements}</div>
-    </div>
+    </Card>
   );
 }
 

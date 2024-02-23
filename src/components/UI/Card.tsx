@@ -1,17 +1,14 @@
-import React from 'react';
-import classes from './Card.module.css';
+import React, { ComponentProps } from 'react';
 
 type Props = {
-  style?: React.CSSProperties;
   children: React.ReactNode;
-};
+  title: string;
+} & ComponentProps<'div'>;
 
-function Card({ children, style }: Props) {
+function Card({ children, title }: Props) {
   return (
-    <div
-      className="flex w-[100%] justify-around gap-6 p-16 text-white"
-      style={style}
-    >
+    <div className="mx-4 my-2 flex flex-col items-center gap-4 rounded bg-customBlack/20 p-2 text-customWhite">
+      <h2>{title}</h2>
       {children}
     </div>
   );

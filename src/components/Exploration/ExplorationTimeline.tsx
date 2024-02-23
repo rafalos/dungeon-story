@@ -10,7 +10,7 @@ type Props = {
 
 function ExplorationTimeline({ currentPosition, seed, name }: Props) {
   return (
-    <div className="flex flex-col items-center justify-center gap-8 rounded-md bg-landingBg p-4">
+    <div className="flex flex-col items-center justify-center gap-8 rounded-md bg-customBlack p-4">
       <h1 className="text-2xl">{name}</h1>
 
       <div className="flex gap-4">

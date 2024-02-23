@@ -5,7 +5,6 @@ import { useAuth0 } from '@auth0/auth0-react';
 import Loader from '@/components/UI/Loader';
 import { setAuthToken } from '@/lib/axios';
 import Header from '@/components/Layout/Header/Header';
-import Footer from '@/components/Layout/Footer/Footer';
 import Notification from '@/components/UI/Notification';
 import { fetchUser } from '@/store/user-slice';
 import { useAppDispatch, useAppSelector } from '@/store';
@@ -40,7 +39,7 @@ function GamePage() {
     <div className="flex h-screen overflow-auto">
       {<Notification />}
       <Header />
-      <main className="h-full w-full mt-[60px]">
+      <main className="mt-[60px] h-full w-full">
         <Sidebar />
         <Outlet />
       </main>

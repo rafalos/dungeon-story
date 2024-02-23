@@ -1,6 +1,4 @@
 import { useDispatch } from 'react-redux';
-import Container from '../UI/Container';
-import { GiShardSword } from 'react-icons/gi';
 import { useAppSelector } from '@/store';
 import type { Equipment as EquipmentType } from '@/types';
 import { unwearItem } from '@/services/inventory';
@@ -8,30 +6,33 @@ import { unequippedItem } from '@/store/player-inventory-slice';
 import Worn from './Worn';
 import Statistics from './Statistics';
 import { useUserStatistics } from '@/store/user-slice';
+import Card from '../UI/Card';
+import { useState } from 'react';
+import Button from '../UI/Button';
 
 function Equipment() {
   const wornItems = useAppSelector((state) => state.inventory.worn);
   const stats = useUserStatistics();
-  const dispatch = useDispatch();
+  const [active, setActive] = useState('equipment');
 
-  const itemClickHandler = async (item: EquipmentType) => {
-    try {
-      await unwearItem(item.id);
-
-      dispatch(unequippedItem(item));
-    } catch (error) {
-      console.log(error);
-    }
+  const handleChangeTab = (tab: string) => {
+    setActive(tab);
   };
 
   return (
-    <div className="m-4 flex flex-col items-center gap-4 bg-customBlack/30 p-2 text-customWhite">
-      <h2>Equipment</h2>
-      <div className='flex'>
-        <Worn wornItems={wornItems} onItemClicked={itemClickHandler} />
-        {/* <Statistics {...stats} /> */}
+    <Card title="Equipment">
+      <div className="flex gap-2">
+        <Button onClick={() => handleChangeTab('worn')}>Worn items</Button>
+        <Button onClick={() => handleChangeTab('statistics')}>
+          Statistics
+        </Button>
       </div>
-    </div>
+      {active === 'worn' ? (
+        <Worn wornItems={wornItems} />
+      ) : (
+        <Statistics {...stats} />
+      )}
+    </Card>
   );
 }
 

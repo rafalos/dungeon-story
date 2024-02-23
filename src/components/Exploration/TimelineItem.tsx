@@ -1,4 +1,4 @@
-import React from 'react';
+import { GiMantrap } from 'react-icons/gi';
 
 type Props = {
   isActive?: boolean;
@@ -6,13 +6,19 @@ type Props = {
 };
 
 function TimelineItem({ isActive, event }: Props) {
+  const icons: {
+    [key in typeof event]: JSX.Element;
+  } = {
+    trap: <GiMantrap />,
+  };
+
   return (
     <div
       className={`flex items-center justify-center bg-customBlack p-2 ${
-        isActive ? 'border-2 border-customYellow' : ''
+        isActive ? 'border border-customYellow' : ''
       }`}
     >
-      {event}
+      <span className="text-2xl">{icons[event]}</span>
     </div>
   );
 }
