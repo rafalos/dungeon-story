@@ -28,14 +28,14 @@ function Navigation() {
   ];
 
   return (
-    <div className="fixed bottom-0 z-50 h-14 w-full bg-customBlack text-3xl text-customWhite">
-      <nav className="flex items-center justify-between">
+    <div className="fixed bottom-0 z-50 h-14 w-full text-3xl text-customWhite md:static md:text-lg">
+      <nav className="flex items-center justify-between bg-customBlack md:flex-col">
         {navLinks.map(({ label, to, icon: Icon }) => (
           <NavLink
             key={to}
             className={({ isActive }) =>
               [
-                'flex w-full justify-center p-4 tracking-wide transition-colors hover:bg-customRed/80',
+                'flex w-full justify-center p-4 tracking-wide transition-colors hover:bg-customRed/80 md:justify-start md:gap-4 md:p-8',
                 isActive ? 'bg-customRed' : undefined,
               ].join(' ')
             }
@@ -44,7 +44,7 @@ function Navigation() {
             <span>
               <Icon />
             </span>
-            <span className="hidden">{label.toUpperCase()}</span>
+            <span className="hidden md:block">{label.toUpperCase()}</span>
           </NavLink>
         ))}
         <li
