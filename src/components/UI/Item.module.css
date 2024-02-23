@@ -1,11 +1,10 @@
 .inventory-item {
   display: inline-block;
   position: relative;
-  padding: 32px 32px;
   background-repeat: no-repeat;
   background-position: center;
   background-color: #000000;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   cursor: pointer;
   margin: 5px;
 }

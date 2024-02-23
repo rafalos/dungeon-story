@@ -9,7 +9,7 @@ const buttonVariants = cva(['flex', 'justify-center', 'items-center'], {
   variants: {
     variant: {
       game: [
-        'bg-red-900 hover:bg-red-800 h-10 rounded px-8 transition text-customWhite',
+        'bg-customRed h-10 rounded px-4 transition text-customWhite',
       ],
       landing: [
         'h-8',

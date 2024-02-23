@@ -32,7 +32,7 @@ function Item({ item, onItemClicked }: Props) {
         key={id}
         data-tooltip-id={id}
         onClick={() => clickHandler(item)}
-        className={`shadow-md ${classes['inventory-item']} ${
+        className={`p-6 shadow-md ${classes['inventory-item']} ${
           equipmentClasses[`equipment-item--${slot}`]
         } ${classes[`inventory-item--${classType}`]}
     ${`equipment-item--${slot}`}`}
@@ -42,7 +42,7 @@ function Item({ item, onItemClicked }: Props) {
 
         <Tooltip
           id={id}
-          className={`${classes.tooltip} z-50 flex flex-col border ${
+          className={`${classes.tooltip} flex flex-col border ${
             classes[`tooltip--${classType}`]
           }`}
           noArrow

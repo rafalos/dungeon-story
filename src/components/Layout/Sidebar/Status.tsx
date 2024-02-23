@@ -9,13 +9,13 @@ const Status = () => {
   if (isLoading) return <SmallLoader />;
 
   return (
-    <div className="flex items-center justify-center ">
-      <div className="flex h-8 w-12 items-center justify-center bg-customRed text-3xl font-bold">
+    <div className="flex items-center justify-center gap-1">
+      <div className="size-8 flex items-center justify-center  ring-[0.8px] ring-customRed font-sans">
         {user.level}
       </div>
-      <div className="text-md flex w-full flex-col text-customYellow">
+      <div className="text-md flex flex-1 flex-col text-customYellow h-8">
         <ResourceBar
-          bgColor="bg-red-700"
+          bgColor="bg-customRed"
           currentResource={user.experience}
           maxResource={user.maxExperience}
         />

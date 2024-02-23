@@ -28,15 +28,15 @@ function Navigation() {
   ];
 
   return (
-    <div className="fixed bottom-0 w-full bg-customBlack text-3xl text-customWhite h-14">
+    <div className="fixed bottom-0 z-50 h-14 w-full bg-customBlack text-3xl text-customWhite">
       <nav className="flex items-center justify-between">
         {navLinks.map(({ label, to, icon: Icon }) => (
           <NavLink
             key={to}
             className={({ isActive }) =>
               [
-                'w-full flex justify-center tracking-wide transition-colors hover:bg-customRed/80 p-4',
-                isActive ? 'bg-customRed/60' : undefined,
+                'flex w-full justify-center p-4 tracking-wide transition-colors hover:bg-customRed/80',
+                isActive ? 'bg-customRed' : undefined,
               ].join(' ')
             }
             to={to}
@@ -48,7 +48,7 @@ function Navigation() {
           </NavLink>
         ))}
         <li
-          className="w-full flex justify-center tracking-wide transition-colors hover:bg-customRed/40 p-4"
+          className="flex w-full justify-center p-4 tracking-wide transition-colors hover:bg-customRed/40"
           onClick={() =>
             logout({
               logoutParams: {
