@@ -8,9 +8,8 @@ type Props = React.ComponentPropsWithoutRef<'button'> &
 const buttonVariants = cva(['flex', 'justify-center', 'items-center'], {
   variants: {
     variant: {
-      game: [
-        'bg-customRed h-10 rounded px-4 transition text-customWhite',
-      ],
+      tab: ['bg-customRed h-4 p-3 transition text-customWhite text-sm'],
+      game: ['bg-customRed h-10 rounded px-4 transition text-customWhite'],
       landing: [
         'h-8',
         'w-24',

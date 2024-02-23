@@ -6,18 +6,18 @@ type Props = {
   className?: string;
 };
 
-function ResourceBar({ currentResource, maxResource, label, bgColor }: Props) {
+function ResourceBar({ currentResource, maxResource, bgColor }: Props) {
   const factor = (currentResource / maxResource) * 100;
 
   return (
-    <div className="relative h-3 w-full border-none bg-gray-300">
-      {/* <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-lg font-bold text-gray-900">{`${factor.toFixed(
-          1
-        )}%`}</div> */}
+    <div className="relative h-4 w-full border-none bg-customWhite">
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-sm font-bold text-customBlack">{`${factor.toFixed(
+        0
+      )}%`}</div>
       <div
-        className={`h-full py-1 transition-all ${bgColor}`}
+        className={`h-full py-2 transition-all ${bgColor}`}
         style={{
-          width: `50%`,
+          width: `${factor}%`,
         }}
       ></div>
     </div>

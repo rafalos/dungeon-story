@@ -49,6 +49,7 @@ function Item({ item, onItemClicked }: Props) {
           offset={5}
           style={{
             padding: '24px',
+            zIndex: '999'
           }}
         >
           <div

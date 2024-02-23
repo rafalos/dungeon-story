@@ -6,6 +6,7 @@
   background-color: #000000;
   border: 2px solid transparent;
   cursor: pointer;
+  border-radius: 4px;
   margin: 5px;
 }
 

@@ -11,10 +11,10 @@ const Status = () => {
 
   return (
     <div className="flex items-center justify-center gap-1">
-      <div className="size-8 flex items-center justify-center  font-sans ring-[0.8px] ring-customRed">
+      <div className="size-9 flex items-center justify-center bg-customRed font-sans">
         {user.level}
       </div>
-      <div className="text-md flex h-8 flex-1 flex-col text-customYellow">
+      <div className="text-md flex h-9 flex-1 flex-col text-customYellow">
         <ResourceBar
           bgColor="bg-customRed"
           currentResource={user.experience}
@@ -22,7 +22,7 @@ const Status = () => {
         />
         <div className="flex items-center justify-between">
           <span className="flex">
-            {[...Array(user?.energy)].map((element, index) => (
+            {[...Array(user?.energy)].map((_, index) => (
               <SiPowerautomate key={index} />
             ))}
           </span>

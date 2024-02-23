@@ -19,7 +19,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  @apply bg-customGrey;
+  @apply bg-customLightGrey;
   font-family: 'Poppins';
 }
 

@@ -41,14 +41,10 @@ function ExplorationPage() {
       ) : (
         <Container title="Current explorations" icon={GiDungeonGate}>
           <Button onClick={() => mutate()}>
-            {status === 'pending' ? (
-              <SmallLoader />
-            ) : (
-              'New exploration'
-            )}
+            {status === 'pending' ? <SmallLoader /> : 'New exploration'}
           </Button>
 
-          <List explorations={explorations} />
+          {explorations && <List explorations={explorations} />}
         </Container>
       )}
     </>

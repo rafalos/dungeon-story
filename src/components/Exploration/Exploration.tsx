@@ -17,6 +17,7 @@ import { useParams } from 'react-router-dom';
 import SmallLoader from '../UI/SmallLoader';
 import Card from '../UI/Card';
 import Loader from '../UI/Loader';
+import Container from '../UI/Container';
 
 function Exploration() {
   const queryClient = useQueryClient();
@@ -84,7 +85,7 @@ function Exploration() {
   if (!exploration || !chapter) return 'Something went wrong';
 
   return (
-    <Card>
+    <Container title={exploration.name}>
       {exploration.currentStage <= exploration.seed.length - 1 ? (
         <>
           <ExplorationTimeline
@@ -111,7 +112,7 @@ function Exploration() {
           totalItemsFound={itemsFound}
         />
       )}
-    </Card>
+    </Container>
   );
 }
 

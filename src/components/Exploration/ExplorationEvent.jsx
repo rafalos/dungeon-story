@@ -8,6 +8,7 @@ import { EVENTS } from '../../utils/contants';
 import Loader from '../UI/Loader';
 import Button from '../UI/Button';
 import Typer from '../UI/Typer';
+import Card from '../UI/Card';
 
 function ExplorationEvent({
   fetchNextStory,
@@ -79,13 +80,13 @@ function ExplorationEvent({
   };
 
   return (
-    <div className="flex flex-col items-center gap-8">
+    <Card>
       {eventInProgress && (
         <div className=" flex flex-col gap-4 text-lg">{currentEvent()}</div>
       )}
       {!eventInProgress && (
         <div className="flex w-full flex-col bg-transparent">
-          <div className=" p-4 font-thin italic">
+          <div className=" p-4 font-openSans italic">
             <Typer delay={20} text={currentStory} />
           </div>
           <div className="flex w-full justify-center">
@@ -100,7 +101,7 @@ function ExplorationEvent({
           </div>
         </div>
       )}
-    </div>
+    </Card>
   );
 }
 

@@ -29,6 +29,7 @@ const StoryPage = () => {
           </>
         ))}
       </div>
+      <div className="text-right">Unknown wanderer</div>
     </div>
   );
 };

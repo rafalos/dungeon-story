@@ -12,6 +12,7 @@ export default {
       },
       colors: {
         lightBrown: '#A78A7F',
+        customLightGrey: '#404348',
         customGrey: '#2B2D42',
         customWhite: '#FFFBFC',
         customRed: '#a90000',

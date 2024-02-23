@@ -1,8 +1,5 @@
-import { useDispatch } from 'react-redux';
 import { useAppSelector } from '@/store';
-import type { Equipment as EquipmentType } from '@/types';
-import { unwearItem } from '@/services/inventory';
-import { unequippedItem } from '@/store/player-inventory-slice';
+
 import Worn from './Worn';
 import Statistics from './Statistics';
 import { useUserStatistics } from '@/store/user-slice';
@@ -21,9 +18,11 @@ function Equipment() {
 
   return (
     <Card title="Equipment">
-      <div className="flex gap-2">
-        <Button onClick={() => handleChangeTab('worn')}>Worn items</Button>
-        <Button onClick={() => handleChangeTab('statistics')}>
+      <div className="flex divide-x divide-customBlack">
+        <Button onClick={() => handleChangeTab('worn')} variant={'tab'}>
+          Worn items
+        </Button>
+        <Button onClick={() => handleChangeTab('statistics')} variant={'tab'}>
           Statistics
         </Button>
       </div>
