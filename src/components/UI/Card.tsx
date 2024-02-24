@@ -7,7 +7,7 @@ type Props = {
 
 function Card({ children, title }: Props) {
   return (
-    <div className="mx-4 my-2 flex flex-col items-center gap-4 rounded bg-customWhite/10 p-2 text-customWhite">
+    <div className="mx-4 my-2 flex flex-col items-center gap-4 rounded-lg bg-customWhite/5 p-2 text-customWhite">
       <h2>{title}</h2>
       {children}
     </div>

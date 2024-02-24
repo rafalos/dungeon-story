@@ -11,7 +11,7 @@ const Status = () => {
 
   return (
     <div className="flex items-center justify-center gap-1">
-      <div className="size-9 flex items-center justify-center bg-customRed font-sans">
+      <div className="size-9 flex items-center justify-center font-sans bg-customRed">
         {user.level}
       </div>
       <div className="text-md flex h-9 flex-1 flex-col text-customYellow">

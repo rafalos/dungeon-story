@@ -6,31 +6,28 @@ import { useUserStatistics } from '@/store/user-slice';
 import Card from '../UI/Card';
 import { useState } from 'react';
 import Button from '../UI/Button';
+import Tabbed from '../UI/Tabbed';
 
 function Equipment() {
   const wornItems = useAppSelector((state) => state.inventory.worn);
   const stats = useUserStatistics();
-  const [active, setActive] = useState('equipment');
-
-  const handleChangeTab = (tab: string) => {
-    setActive(tab);
-  };
 
   return (
     <Card title="Equipment">
       <div className="flex divide-x divide-customBlack">
-        <Button onClick={() => handleChangeTab('worn')} variant={'tab'}>
-          Worn items
-        </Button>
-        <Button onClick={() => handleChangeTab('statistics')} variant={'tab'}>
-          Statistics
-        </Button>
+        <Tabbed
+          elements={[
+            {
+              component: <Worn wornItems={wornItems} />,
+              title: 'Worn',
+            },
+            {
+              component: <Statistics {...stats} />,
+              title: 'Statistics',
+            },
+          ]}
+        />
       </div>
-      {active === 'worn' ? (
-        <Worn wornItems={wornItems} />
-      ) : (
-        <Statistics {...stats} />
-      )}
     </Card>
   );
 }
