@@ -9,6 +9,7 @@ import { itemBought } from '@/store/player-inventory-slice';
 import { AxiosError } from 'axios';
 import { useNotify } from '@/providers/NotificationProvider';
 import Card from '../UI/Card';
+import { GiTwoCoins } from 'react-icons/gi';
 
 function ShopContent(props: { items: Equipment[] }) {
   const queryClient = useQueryClient();
@@ -36,15 +37,22 @@ function ShopContent(props: { items: Equipment[] }) {
   };
 
   const shopElements = props.items.map((shopElement) => (
-    <Item
-      slot={shopElement.slot}
-      stackable={false}
+    <div
       key={shopElement.id}
-      id={shopElement.id}
-      item={shopElement}
-      price={shopElement.buyPrice}
-      onItemClicked={itemBoughtHandler}
-    />
+      className="flex flex-col items-center justify-center"
+    >
+      <Item
+        slot={shopElement.slot}
+        stackable={false}
+        id={shopElement.id}
+        item={shopElement}
+        price={shopElement.buyPrice}
+        onItemClicked={itemBoughtHandler}
+      />
+      <span className="flex gap-1 text-sm text-customYellow">
+        <GiTwoCoins /> {shopElement.buyPrice}
+      </span>
+    </div>
   ));
 
   if (status === 'pending') {
@@ -53,7 +61,7 @@ function ShopContent(props: { items: Equipment[] }) {
 
   return (
     <Card title="Merchant">
-      <div>{shopElements}</div>
+      <div className="flex">{shopElements}</div>
     </Card>
   );
 }
