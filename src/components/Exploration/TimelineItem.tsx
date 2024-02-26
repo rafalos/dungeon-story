@@ -16,11 +16,13 @@ function TimelineItem({ isActive, event }: Props) {
 
   return (
     <div
-      className={`m-4 flex size-12 items-center justify-center bg-customBlack p-6 ${
-        isActive ? 'border-2 border-customYellow' : ''
+      className={`m-4 flex size-12 md:size-24 items-center justify-center bg-customBlack p-6 ${
+        isActive ? 'border-2 border-customRed' : ''
       }`}
     >
-      <span className="text-2xl font-bold">{icons[event]}</span>
+      <span className="text-2xl md:text-4xl font-bold text-customWhite">
+        {icons[event]}
+      </span>
     </div>
   );
 }

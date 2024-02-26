@@ -17,7 +17,7 @@ export default {
         customWhite: '#FFFBFC',
         customRed: '#a90000',
         customLightRed: '#E26D5A',
-        customYellow: '#FCD757',
+        customYellow: '#EDD382',
         customBlue: '#FF9F1C',
         customBlack: '#000103',
         backgroundBlack: '#170707',

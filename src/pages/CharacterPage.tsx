@@ -5,7 +5,7 @@ import Container from '@/components/UI/Container';
 function CharacterPage() {
   return (
     <Container title="Character">
-      <div className="flex flex-col md:flex-row">
+      <div className="flex flex-col lg:flex-row">
         <Equipment />
         <Inventory />
       </div>

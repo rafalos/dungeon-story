@@ -4,6 +4,7 @@ import Item from '../UI/Item';
 import Button from '../UI/Button';
 import { Link } from 'react-router-dom';
 import Typer from '../UI/Typer';
+import Card from '../UI/Card';
 
 function ExplorationSummary({
   ending,
@@ -15,9 +16,9 @@ function ExplorationSummary({
     <Item key={item.id} item={item} />
   ));
   return (
-    <div className={classes['summary-wrapper']}>
+    <Card className={classes['summary-wrapper']}>
       <div className='italic'>
-      <Typer text={ending} delay={100}/>
+      <Typer text={ending} delay={20}/>
 
       </div>
       <div className="flex-column-container">
@@ -28,7 +29,7 @@ function ExplorationSummary({
       <Link to="..">
         <Button>Leave exploration</Button>
       </Link>
-    </div>
+    </Card>
   );
 }
 

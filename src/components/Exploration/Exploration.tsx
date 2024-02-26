@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ExplorationTimeline from './ExplorationTimeline';
 import ExplorationEvent from './ExplorationEvent';
 import ExplorationSummary from './ExplorationSummary';
-import { DEFAULT_STRINGS } from '../../utils/contants';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { playerStatisticActions } from '../../store/player-statistics-slice';
-import { explorationActions } from '../../store/exploration-slice';
-import Button from '../UI/Button';
+
 import {
   getCurrentChapter,
   getExploration,
@@ -14,10 +12,9 @@ import {
 } from '@/services/exploration';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-import SmallLoader from '../UI/SmallLoader';
-import Card from '../UI/Card';
 import Loader from '../UI/Loader';
 import Container from '../UI/Container';
+import SmallLoader from '../UI/SmallLoader';
 
 function Exploration() {
   const queryClient = useQueryClient();
@@ -80,9 +77,11 @@ function Exploration() {
     });
   };
 
-  if (isLoading || chapterLoading || isFetching) return <Loader />;
+  if (isLoading || chapterLoading || isFetching) return <SmallLoader />;
   if (error) return 'An error has occurred: ' + error.message;
   if (!exploration || !chapter) return 'Something went wrong';
+
+  console.log(exploration)
 
   return (
     <Container title={exploration.name}>
@@ -92,6 +91,8 @@ function Exploration() {
             name={exploration.name}
             seed={exploration.seed}
             currentPosition={exploration.currentStage}
+            currentHealth={exploration.currentHealth}
+            maxHealth={exploration.maxHealth}
           />
           <ExplorationEvent
             fetchNextStory={refetchStory}
