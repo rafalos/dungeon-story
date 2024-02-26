@@ -2,7 +2,7 @@
   display: grid;
   grid-template-rows: repeat(3, 50px);
   grid-template-columns: repeat(3, 50px);
-  grid-gap: 0.5rem;
+  grid-gap: 1rem;
   grid-template-areas:
     '. head .'
     'weapon torso .'

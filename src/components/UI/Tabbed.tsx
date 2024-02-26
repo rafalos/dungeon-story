@@ -22,7 +22,7 @@ const Tabbed = ({ elements }: Props) => {
     .component;
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex w-full flex-col items-center justify-center">
       <div className="my-2 flex divide-x divide-customBlack shadow-sm">
         {tabNames.map((tabName, index) => (
           <Button
