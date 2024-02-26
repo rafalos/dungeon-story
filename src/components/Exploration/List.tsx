@@ -11,7 +11,7 @@ const List = ({ explorations }: Props) => {
   }
 
   return (
-    <div className="flex flex-col justify-center gap-4 overflow-auto">
+    <div className="flex flex-col justify-center gap-4 overflow-auto p-4">
       {explorations.map((exploration) => (
         <Entry
           key={exploration.id}

@@ -39,7 +39,7 @@ function GamePage() {
     <div className="h-screen overflow-auto">
       {<Notification />}
       <Header />
-      <main className="mx-auto mt-[60px] grid h-full w-full max-w-[1920px] justify-items-start md:grid-cols-[auto,_1fr]">
+      <main className="mx-auto mt-[60px] grid h-full md:h-[calc(100%-60px)] w-full justify-items-start md:mt-0 md:grid-cols-[auto,_1fr]">
         <Sidebar />
         <Outlet />
       </main>

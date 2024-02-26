@@ -1,11 +1,9 @@
-import Card from '../components/UI/Card';
 import ShopContent from '../components/Shop/ShopContent';
 import Inventory from '../components/Character';
 import { useQuery } from '@tanstack/react-query';
 import { getCurrentShop } from '@/services/shop';
 import Loader from '@/components/UI/Loader';
 import Container from '@/components/UI/Container';
-import { GiShop } from 'react-icons/gi';
 import SmallLoader from '@/components/UI/SmallLoader';
 
 function ShopPage() {
@@ -20,9 +18,12 @@ function ShopPage() {
 
   return (
     <Container title="Merchant">
-      {isLoading ? <Loader /> : <Inventory sellMode={true} />}
+      <div className="flex flex-col justify-center md:flex-row ">
+        {isLoading ? <Loader /> : <Inventory sellMode={true} />}
 
-      <ShopContent items={data.data.items} />
+        <ShopContent items={data.data.items} />
+      </div>
+
       {/* <ShopTime /> */}
     </Container>
   );

@@ -5,6 +5,7 @@ import { GiDungeonGate } from 'react-icons/gi';
 import { GiShop } from 'react-icons/gi';
 import { IoLogOutOutline } from 'react-icons/io5';
 import { GiBookshelf } from 'react-icons/gi';
+import Status from './Status';
 
 function Navigation() {
   const { logout } = useAuth0();
@@ -28,14 +29,17 @@ function Navigation() {
   ];
 
   return (
-    <div className="fixed bottom-0 z-50 h-14 w-full text-3xl text-customWhite md:static md:text-lg">
-      <nav className="flex items-center justify-between bg-customBlack md:flex-col">
+    <div className="fixed bottom-0 z-50 flex h-12 w-full flex-col gap-4 bg-customBlack text-2xl text-customWhite md:static md:h-full md:w-[250px] md:text-lg">
+      <div className="hidden md:block md:p-4">
+        <Status />
+      </div>
+      <nav className="flex items-center justify-between md:flex-col">
         {navLinks.map(({ label, to, icon: Icon }) => (
           <NavLink
             key={to}
             className={({ isActive }) =>
               [
-                'flex w-full justify-center p-4 tracking-wide transition-colors hover:bg-customRed/80 md:justify-start md:gap-4 md:p-8',
+                'flex w-full justify-center p-4 tracking-wide transition-colors hover:bg-customRed/80 md:justify-start md:gap-4',
                 isActive ? 'bg-customRed' : undefined,
               ].join(' ')
             }
@@ -47,20 +51,11 @@ function Navigation() {
             <span className="hidden md:block">{label.toUpperCase()}</span>
           </NavLink>
         ))}
-        <li
-          className="flex w-full justify-center p-4 tracking-wide transition-colors hover:bg-customRed/40"
-          onClick={() =>
-            logout({
-              logoutParams: {
-                returnTo: window.location.origin,
-              },
-            })
-          }
-        >
-          <IoLogOutOutline />
-          <span className="hidden">Logout</span>
-        </li>
       </nav>
+      {/* <div className="flex items-center justify-center">
+        <IoLogOutOutline />
+        <span className="hidden">Logout</span>
+      </div> */}
     </div>
   );
 }

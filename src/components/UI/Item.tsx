@@ -32,7 +32,7 @@ function Item({ item, onItemClicked }: Props) {
         key={id}
         data-tooltip-id={id}
         onClick={() => clickHandler(item)}
-        className={`p-6 shadow-md ${classes['inventory-item']} ${
+        className={`p-6 md:p-7 shadow-md ${classes['inventory-item']} ${
           equipmentClasses[`equipment-item--${slot}`]
         } ${classes[`inventory-item--${classType}`]}
     ${`equipment-item--${slot}`}`}

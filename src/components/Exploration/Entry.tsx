@@ -11,7 +11,7 @@ type Props = {
 const Entry = ({ id, name }: Props) => {
   return (
     <div className="flex items-center justify-between px-4 text-customWhite">
-      <p className="">{name}</p>
+      <p className="text-sm md:text-lg">{name}</p>
       <Link to={`${id}`}>
         <Button variant="game">
           <GiCrossedSwords />

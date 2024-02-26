@@ -4,22 +4,16 @@ import { IconType } from 'react-icons';
 type Props = {
   children: ReactNode;
   title: string;
-  icon?: IconType;
 };
 
-const Container = ({ children, title, icon: Icon }: Props) => {
+const Container = ({ children, title }: Props) => {
   return (
     <div
-      className={`flex h-[calc(100%-3.5rem)] w-full flex-col overflow-hidden text-xl`}
+      className={`flex h-[calc(100%-3.5rem)] w-full flex-col overflow-hidden text-xl md:text-3xl`}
     >
       <div
-        className={`p flex h-8 items-center justify-center my-4 font-bold text-customWhite`}
+        className={`my-4 flex h-8 items-center justify-center font-bold text-customWhite`}
       >
-        {/* {Icon && (
-          <div className="text-3xl">
-            <Icon />
-          </div>
-        )} */}
         <div>- {title} -</div>
       </div>
       <div className={`h-full overflow-auto`}>{children}</div>
