@@ -4,7 +4,9 @@ import Exploration from '../models/Exploration';
 import { generateNextChapter, initializeStory } from '../utils/generateChapter';
 import User from '../models/User';
 import { ExplorationEvent } from '../types';
-import Story, { IStory } from '../models/Story';
+import Story from '../models/Story';
+import { handleEvent } from '../handlers/handleEvent';
+import { getHealth } from '../logic/resources/formulas';
 
 export const getCurrentChapter = async (
   req: Request<{
@@ -63,13 +65,13 @@ export const getCurrentChapter = async (
 };
 
 export const movePosition = async (
-  req: Request<{
+  request: Request<{
     id: string;
   }>,
-  res: Response,
+  response: Response,
   next: NextFunction
 ) => {
-  const explorationID = req.params.id;
+  const explorationID = request.params.id;
 
   const exploration = await Exploration.findById(explorationID);
 
@@ -77,23 +79,22 @@ export const movePosition = async (
 
   exploration.currentStage++;
 
-  await exploration.save();
+  handleEvent(request.user, exploration);
 
-  res.json(exploration);
+  console.log(exploration)
+  response.json(exploration);
 };
 
 export const generateExploration = async (
-  _: Request,
+  request: Request,
   response: Response,
   next: NextFunction
 ) => {
-  const currentUser = await User.findOne({});
-  if (!currentUser) return next('Character not found');
-
+  const currentUser = request.user;
   const explorations = await Exploration.find({
     $and: [
       {
-        userID: currentUser._id,
+        userID: request.user._id,
       },
       { active: true },
     ],
@@ -119,6 +120,10 @@ export const generateExploration = async (
   exploration.story = story._id;
   exploration.name = story.location;
 
+  const maxHealth = getHealth(currentUser.attributes.vitality);
+
+  exploration.currentHealth = maxHealth;
+  exploration.maxHealth = maxHealth;
   await exploration.save();
 
   currentUser.energy -= 1;

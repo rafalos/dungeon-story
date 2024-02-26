@@ -31,15 +31,14 @@ interface Wearable extends EquipmentBase {
 
 export type Equipment = Weapon | Wearable | Jewelry;
 
+export type ExplorationPrimitives = 'battle' | 'trap' | 'treasure' | 'well';
+
 type ItemType = 'equipment' | 'potion' | 'gem';
 export type GemType = 'crystal' | 'jewel';
 export type SlotType = 'head' | 'torso' | 'legs' | 'boots' | 'ring' | 'weapon';
 export type ClassType = 'common' | 'magic' | 'rare' | 'legendary';
 export type ExplorationEvent =
-  | 'battle'
-  | 'trap'
-  | 'treasure'
-  | 'well'
+  | ExplorationPrimitives
   | 'death'
   | 'entry'
   | 'ending';

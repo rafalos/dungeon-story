@@ -1,8 +1,10 @@
-import mongoose, { Schema, Types, model } from 'mongoose';
-import { ExplorationSeed } from '../types';
+import { Schema, Types, model } from 'mongoose';
+import { ExplorationPrimitives } from '../types';
 
 export interface IExploration {
-  seed: ExplorationSeed;
+  maxHealth: number;
+  currentHealth: number;
+  seed: ExplorationPrimitives[];
   currentStage: number;
   userID: Types.ObjectId;
   story: Types.ObjectId;
@@ -17,6 +19,8 @@ export const explorationSchema = new Schema<IExploration>(
       type: Boolean,
       default: true,
     },
+    maxHealth: Number,
+    currentHealth: Number,
     seed: [],
     userID: {
       type: Schema.Types.ObjectId,

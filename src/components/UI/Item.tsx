@@ -32,7 +32,7 @@ function Item({ item, onItemClicked }: Props) {
         key={id}
         data-tooltip-id={id}
         onClick={() => clickHandler(item)}
-        className={`p-6 md:p-7 shadow-md ${classes['inventory-item']} ${
+        className={`p-6 shadow-md md:p-7 ${classes['inventory-item']} ${
           equipmentClasses[`equipment-item--${slot}`]
         } ${classes[`inventory-item--${classType}`]}
     ${`equipment-item--${slot}`}`}
@@ -49,18 +49,18 @@ function Item({ item, onItemClicked }: Props) {
           offset={5}
           style={{
             padding: '24px',
-            zIndex: '999'
+            zIndex: '999',
           }}
         >
           <div
             className={`flex flex-col ${classes[`tooltip-desc--${classType}`]}`}
           >
-            <span className="text-2xl font-bold">{item.name}</span>
+            <span className="text-xl font-bold">{item.name}</span>
             <span className="border-b border-dotted py-2 text-sm italic">
               {classType} {slot}
             </span>
           </div>
-          <ul className="text-md my-2">
+          <ul className="my-2 text-lg">
             <li>{baseAttribute && baseAttribute}</li>
             {modifiers.map((modifier) => {
               const [attributeName, amount] = modifier;
