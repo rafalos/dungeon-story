@@ -16,7 +16,7 @@ const Container = ({ children, title }: Props) => {
       >
         <div>- {title} -</div>
       </div>
-      <div className={`h-full overflow-auto`}>{children}</div>
+      <div className={`h-full`}>{children}</div>
     </div>
   );
 };

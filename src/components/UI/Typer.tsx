@@ -34,7 +34,7 @@ const Typer = ({ text, delay, startDelay }: Props) => {
     };
   }, [currentText, currentIndex, started]);
 
-  return <div className="flex w-full justify-start">{currentText}</div>;
+  return <div>{currentText}</div>;
 };
 
 export default Typer;

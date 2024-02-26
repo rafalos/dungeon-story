@@ -82,11 +82,11 @@ function ExplorationEvent({
   return (
     <Card>
       {eventInProgress && (
-        <div className=" flex flex-col gap-4 text-lg">{currentEvent()}</div>
+        <div className="flex flex-col gap-4 text-lg">{currentEvent()}</div>
       )}
       {!eventInProgress && (
-        <div className="flex w-full flex-col bg-transparent">
-          <div className=" p-4 font-openSans text-sm italic md:text-lg">
+        <>
+          <div className="p-4 font-openSans text-sm italic md:text-lg">
             <Typer delay={20} text={currentStory} />
           </div>
           <div className="flex w-full justify-center">
@@ -99,7 +99,7 @@ function ExplorationEvent({
               <Button onClick={finishedExplorationHandler}>Leave</Button>
             )}
           </div>
-        </div>
+        </>
       )}
     </Card>
   );

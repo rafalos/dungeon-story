@@ -1,5 +1,3 @@
-import Card from '../components/UI/Card';
-import classes from './ExplorationPage.module.css';
 import Button from '@/components/UI/Button';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import {
@@ -9,7 +7,6 @@ import {
 import List from '@/components/Exploration/List';
 import SmallLoader from '@/components/UI/SmallLoader';
 import Container from '@/components/UI/Container';
-import { GiDungeonGate } from 'react-icons/gi';
 import { useNotification } from '@/providers/NotificationProvider';
 
 function ExplorationPage() {
@@ -39,7 +36,7 @@ function ExplorationPage() {
       {isLoading ? (
         <SmallLoader />
       ) : (
-        <Container title="Current explorations" icon={GiDungeonGate}>
+        <Container title="Current explorations">
           <Button onClick={() => mutate()}>
             {status === 'pending' ? <SmallLoader /> : 'New exploration'}
           </Button>
