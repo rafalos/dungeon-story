@@ -86,7 +86,7 @@ function ExplorationEvent({
       )}
       {!eventInProgress && (
         <>
-          <div className="p-4 font-openSans text-sm italic md:text-lg">
+          <div className="p-2 font-openSans text-sm italic md:p-4 md:text-lg">
             <Typer delay={20} text={currentStory} />
           </div>
           <div className="flex w-full justify-center">

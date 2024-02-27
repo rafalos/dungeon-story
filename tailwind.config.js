@@ -15,7 +15,7 @@ export default {
         customLightGrey: '#404348',
         customGrey: '#2B2D42',
         customWhite: '#DAD2D8',
-        customRed: '#DA344D',
+        customRed: '#a90000',
         customCaramel: '#7A4500',
         customLightRed: '#E26D5A',
         customYellow: '#F5BB00',

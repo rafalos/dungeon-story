@@ -13,7 +13,7 @@ const Container = ({ children, title }: Props) => {
       <div
         className={`my-4 flex h-8 items-center justify-center font-bold text-customWhite`}
       >
-        <div>- {title} -</div>
+        <div>{title}</div>
       </div>
       <div className={`h-full`}>{children}</div>
     </div>

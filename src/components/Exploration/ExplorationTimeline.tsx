@@ -1,4 +1,3 @@
-import { useAppSelector } from '@/store';
 import ResourceBar from '../UI/ResourceBar';
 import TimelineItem from './TimelineItem';
 
@@ -17,8 +16,8 @@ function ExplorationTimeline({
   maxHealth,
 }: Props) {
   return (
-    <div className="flex flex-col items-center justify-center  rounded-md bg-customBlack py-4">
-      <div className="flex">
+    <div className="flex flex-col items-center justify-center rounded-md bg-customBlack">
+      <div className="flex flex-wrap p-4">
         {seed.map((eventId, index) => (
           <TimelineItem
             key={eventId}

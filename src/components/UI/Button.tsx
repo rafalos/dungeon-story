@@ -12,7 +12,7 @@ const buttonVariants = cva(['flex', 'justify-center', 'items-center'], {
         'bg-customCaramel/80 h-4 p-3 transition text-customWhite text-sm md:text-lg md:p-4',
       ],
       game: [
-        'bg-customCaramel h-10 rounded px-4 transition text-customWhite text-lg',
+        'bg-customCaramel h-10 rounded px-4 transition text-customWhite text-sm md:text-lg',
       ],
       landing: [
         'h-8',
