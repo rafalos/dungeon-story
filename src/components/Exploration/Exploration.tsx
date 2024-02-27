@@ -12,7 +12,6 @@ import {
 } from '@/services/exploration';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-import Loader from '../UI/Loader';
 import Container from '../UI/Container';
 import SmallLoader from '../UI/SmallLoader';
 
@@ -36,17 +35,20 @@ function Exploration() {
     data: chapter,
     isLoading: chapterLoading,
     isFetching,
-    error: chapterError,
     refetch: refetchStory,
   } = useQuery({
     queryKey: ['currentStory', id],
     queryFn: () => getCurrentChapter(id),
     enabled: !!exploration,
+    refetchOnWindowFocus: false,
   });
 
   const { mutateAsync: move } = useMutation({
     mutationKey: ['movePosition', id],
     mutationFn: movePosition,
+    onSuccess: (response) => {
+      console.log(response);
+    },
     onSettled: () => {
       queryClient.refetchQueries({
         predicate: (query) => query.queryKey[0] === 'exploration',
@@ -81,7 +83,7 @@ function Exploration() {
   if (error) return 'An error has occurred: ' + error.message;
   if (!exploration || !chapter) return 'Something went wrong';
 
-  console.log(exploration)
+  console.log(exploration);
 
   return (
     <Container title={exploration.name}>

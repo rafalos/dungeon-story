@@ -1,5 +1,6 @@
 import { GiMantrap } from 'react-icons/gi';
 import { GiWaterfall } from 'react-icons/gi';
+import { GiChest } from 'react-icons/gi';
 
 type Props = {
   isActive?: boolean;
@@ -12,6 +13,7 @@ function TimelineItem({ isActive, event }: Props) {
   } = {
     trap: <GiMantrap />,
     well: <GiWaterfall />,
+    treasure: <GiChest />,
   };
 
   return (

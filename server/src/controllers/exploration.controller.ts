@@ -2,7 +2,6 @@ import { NextFunction, Request, Response } from 'express';
 import { generateSeed } from '../logic/generators/seed';
 import Exploration from '../models/Exploration';
 import { generateNextChapter, initializeStory } from '../utils/generateChapter';
-import User from '../models/User';
 import { ExplorationEvent } from '../types';
 import Story from '../models/Story';
 import { handleEvent } from '../handlers/handleEvent';
@@ -79,10 +78,18 @@ export const movePosition = async (
 
   exploration.currentStage++;
 
-  handleEvent(request.user, exploration);
+  const { experienceGained, healthDiff, itemsFound } = await handleEvent(
+    request.user,
+    exploration
+  );
 
-  console.log(exploration);
-  response.json(exploration);
+  console.log(experienceGained, healthDiff, itemsFound)
+
+  response.json({
+    experienceGained,
+    healthDiff,
+    itemsFound,
+  });
 };
 
 export const generateExploration = async (

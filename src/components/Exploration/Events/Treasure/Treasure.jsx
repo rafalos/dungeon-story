@@ -7,19 +7,9 @@ import Item from '../../../UI/Item';
 import Button from '@/components/UI/Button';
 
 function Treasure({ onEventFinished }) {
-  const [collected, setCollected] = useState(false);
-  const [foundItems, setFoundItems] = useState([]);
+  const [collected, setCollected] = useState(true);
 
-  const dispatch = useDispatch();
   const chestOpenedHandler = () => {
-    const randomLoot = generateLoot(LOOT_BRACKERS.MONSTER);
-    setFoundItems(randomLoot);
-    dispatch(
-      addMultipleItems({
-        items: randomLoot,
-      })
-    );
-
     setCollected(true);
   };
 
@@ -28,11 +18,11 @@ function Treasure({ onEventFinished }) {
       {collected ? (
         <div className="flex-column-container">
           You have found items:
-          <div>
+          {/* <div>
             {foundItems.map((item) => (
               <Item key={item.id} item={item} />
             ))}
-          </div>
+          </div> */}
           <Button onClick={onEventFinished}>Continue exploration</Button>
         </div>
       ) : (
