@@ -17,7 +17,7 @@ function TimelineItem({ isActive, event }: Props) {
   return (
     <div
       className={`m-4 flex size-12 md:size-24 items-center justify-center bg-customBlack p-6 ${
-        isActive ? 'border-2 border-customRed' : ''
+        isActive ? 'border-2 border-customCaramel' : ''
       }`}
     >
       <span className="text-2xl md:text-4xl font-bold text-customWhite">

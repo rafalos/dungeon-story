@@ -81,7 +81,7 @@ export const movePosition = async (
 
   handleEvent(request.user, exploration);
 
-  console.log(exploration)
+  console.log(exploration);
   response.json(exploration);
 };
 
@@ -150,19 +150,11 @@ export const getExploration = async (
   response.json(exploration);
 };
 
-export const getExplorations = async (
-  _: Request,
-  response: Response,
-  next: NextFunction
-) => {
-  const currentUser = await User.findOne({});
-
-  if (!currentUser) return next('Character not found');
-
+export const getExplorations = async (request: Request, response: Response) => {
   const explorations = await Exploration.find({
     $and: [
       {
-        userID: currentUser._id,
+        userID: request.user._id,
       },
       { active: true },
     ],

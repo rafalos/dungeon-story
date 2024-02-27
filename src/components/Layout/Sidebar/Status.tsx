@@ -11,12 +11,12 @@ const Status = () => {
 
   return (
     <div className="flex items-center justify-center gap-1">
-      <div className="flex size-9 items-center justify-center bg-customRed font-sans md:size-14">
+      <div className="flex size-9 items-center justify-center rounded-l-lg bg-customWhite font-sans text-customBlack md:size-14 md:text-3xl">
         {user.level}
       </div>
       <div className="text-md flex h-9 flex-1 flex-col text-customYellow md:h-14 md:justify-between md:text-xl">
         <ResourceBar
-          bgColor="bg-customRed"
+          bgColor="bg-customYellow"
           currentResource={user.experience}
           maxResource={user.maxExperience}
         />

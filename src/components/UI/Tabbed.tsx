@@ -28,7 +28,7 @@ const Tabbed = ({ elements }: Props) => {
           <Button
             className={`${index === 0 ? 'rounded-l-full' : null} ${
               index === tabNames.length - 1 ? 'rounded-r-full' : null
-            } ${active === tabName ? 'bg-customRed' : null}`}
+            } ${active === tabName ? 'bg-customCaramel' : null}`}
             onClick={() => handleChangeTab(tabName)}
             key={tabName}
             variant={'tab'}

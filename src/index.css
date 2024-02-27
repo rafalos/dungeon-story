@@ -19,7 +19,8 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  background: rgb(48, 0, 0);
+  @apply bg-customBlack;
+  /* background: rgb(48, 0, 0);
   background: linear-gradient(
     357deg,
     rgba(48, 0, 0, 1) 0%,
@@ -28,20 +29,8 @@ body {
     rgba(0, 1, 3, 1) 59%,
     rgba(31, 31, 31, 1) 100%,
     rgba(32, 0, 0, 1) 100%
-  );
+  ); */
   font-family: 'Poppins';
-}
-
-@media (min-width: 768px) {
-  body {
-    background: rgb(0, 1, 3);
-    background: linear-gradient(
-      265deg,
-      rgba(0, 1, 3, 1) 0%,
-      rgba(55, 6, 6, 1) 0%,
-      rgba(0, 1, 3, 1) 100%
-    );
-  }
 }
 
 .App {
