@@ -1,9 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { playerStatusActions } from './player-status-slice';
-import { ITEM_TYPES } from '../utils/contants';
-import { isStackable } from '../utils/constraints';
-import { playerStatisticActions } from './player-statistics-slice';
 import { Inventory, type Equipment, AppThunk, Modifier } from '@/types';
 import { getInventory } from '@/services/user';
 import {
@@ -45,6 +41,9 @@ const playerInventorySlice = createSlice({
     });
   },
   reducers: {
+    addInventoryItems(state, { payload }: PayloadAction<Equipment[]>) {
+      state.equipment.push(...payload);
+    },
     addInventoryItem(state, { payload }: PayloadAction<Equipment>) {
       state.equipment.push(payload);
     },
@@ -65,37 +64,6 @@ const playerInventorySlice = createSlice({
         state.worn.splice(itemIndex, 1);
       }
     },
-    deductStackable(state, action) {
-      const existingItem = state.items.find(
-        (item) => item.id === action.payload.id
-      );
-
-      if (existingItem.amount > 1) {
-        existingItem.amount--;
-      } else {
-        const index = state.items.indexOf(existingItem);
-        state.items.splice(index, 1);
-      }
-    },
-    addSingleItem(state, action) {
-      state.items.push(action.payload.item);
-    },
-    addMultipleItems(state, action) {
-      for (const item of action.payload.items) {
-        if (isStackable(item)) {
-          const existingItem = state.items.findIndex(
-            (playerItem) => playerItem.id === item.id
-          );
-          if (existingItem == -1) {
-            state.items.push(item);
-          } else {
-            state.items[existingItem].amount += 1;
-          }
-        } else {
-          state.items.push(item);
-        }
-      }
-    },
   },
 });
 
@@ -105,9 +73,6 @@ export const {
   removeInventoryItem,
   addWornItem,
   removeWornItem,
-  addMultipleItems,
-  addSingleItem,
-  deductStackable,
 } = playerInventorySlice.actions;
 
 export const itemBought = (item: Equipment): AppThunk => {

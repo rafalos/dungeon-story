@@ -89,7 +89,6 @@ export const handleEvent = async (
   }
 
   await Promise.all([exploration.save(), user.save()]);
-  console.log(exploration);
 
   return {
     itemsFound,

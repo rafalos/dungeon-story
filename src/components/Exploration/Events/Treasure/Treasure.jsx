@@ -1,9 +1,4 @@
 import React, { useState } from 'react';
-import { generateLoot } from '../../../../Logic/Generator/loot';
-import { LOOT_BRACKERS } from '../../../../Logic/Resources/tables/lootTable';
-import { useDispatch } from 'react-redux';
-import { addMultipleItems } from '../../../../store/player-inventory-slice';
-import Item from '../../../UI/Item';
 import Button from '@/components/UI/Button';
 
 function Treasure({ onEventFinished }) {

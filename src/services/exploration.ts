@@ -1,3 +1,4 @@
+import { MoveStateSchema } from '@/schemas';
 import axios from '../lib/axios';
 
 export const getExplorations = async (): Promise<Exploration[]> => {
@@ -27,5 +28,5 @@ export const getCurrentChapter = async (explorationID: string) => {
 export const movePosition = async (explorationID: string) => {
   const response = await axios.post(`/exploration/${explorationID}/move`);
 
-  return response.data;
+  return MoveStateSchema.parse(response.data);
 };

@@ -28,14 +28,15 @@ function ExplorationEvent({
     let cEvent = null;
     switch (eventString) {
       case EVENTS.BATTLE:
-        cEvent = (
-          <Battle
-            onEventFinished={endEventHandler}
-            onPlayerDeath={onPlayerDeath}
-            onItemFound={onItemFound}
-            onExperienceGained={onExperienceGained}
-          />
-        );
+        // cEvent = (
+        //   <Battle
+        //     onEventFinished={endEventHandler}
+        //     onPlayerDeath={onPlayerDeath}
+        //     onItemFound={onItemFound}
+        //     onExperienceGained={onExperienceGained}
+        //   />
+        // );
+        cEvent = null;
         break;
       case EVENTS.TRAP:
         cEvent = (

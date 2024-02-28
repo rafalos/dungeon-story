@@ -47,7 +47,7 @@ function Exploration() {
     mutationKey: ['movePosition', id],
     mutationFn: movePosition,
     onSuccess: (response) => {
-      console.log(response);
+      console.log(response)
     },
     onSettled: () => {
       queryClient.refetchQueries({

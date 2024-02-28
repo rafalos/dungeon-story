@@ -44,6 +44,11 @@ export const EquipmentSchema = z.discriminatedUnion('descriptor', [
     .merge(EquipmentPreSchema),
 ]);
 
+export const MoveStateSchema = z.object({
+  experienceGained: z.number(),
+  itemsFound: z.array(EquipmentSchema),
+});
+
 export const StorySchema = z.object({
   chapters: z.array(z.string()),
   published: z.boolean(),

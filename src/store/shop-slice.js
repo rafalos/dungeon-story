@@ -4,7 +4,6 @@ import { timersActions } from './timers-slice';
 import { playerStatusActions } from './player-status-slice';
 import { TIMERS } from '../utils/contants';
 import { randomInRange } from '../utils/random';
-import { addSingleItem } from './player-inventory-slice';
 
 const generateRandomItems = () => {
   const randomItems = [
@@ -68,11 +67,6 @@ export const buyItem = (item, price) => {
     dispatch(
       shopActions.removeItem({
         itemID: item.id,
-      })
-    );
-    dispatch(
-      addSingleItem({
-        item: { ...item },
       })
     );
   };
