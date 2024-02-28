@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Button from '@/components/UI/Button';
 
-function Treasure({ onEventFinished }) {
+type Props = {
+  onEventFinished: () => void;
+};
+
+function Treasure({ onEventFinished }: Props) {
   const [collected, setCollected] = useState(true);
 
   const chestOpenedHandler = () => {

@@ -4,8 +4,6 @@ import Worn from './Worn';
 import Statistics from './Statistics';
 import { useUserStatistics } from '@/store/user-slice';
 import Card from '../UI/Card';
-import { useState } from 'react';
-import Button from '../UI/Button';
 import Tabbed from '../UI/Tabbed';
 
 function Equipment() {

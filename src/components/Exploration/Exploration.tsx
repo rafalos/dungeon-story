@@ -14,6 +14,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import Container from '../UI/Container';
 import SmallLoader from '../UI/SmallLoader';
+import { Equipment } from '@/types';
 
 function Exploration() {
   const queryClient = useQueryClient();
@@ -47,7 +48,7 @@ function Exploration() {
     mutationKey: ['movePosition', id],
     mutationFn: movePosition,
     onSuccess: (response) => {
-      console.log(response)
+      console.log(response);
     },
     onSettled: () => {
       queryClient.refetchQueries({
@@ -57,10 +58,10 @@ function Exploration() {
   });
 
   const [experienceGained, setExperienceGained] = useState(0);
-  const [itemsFound, setItemsFound] = useState([]);
+  const [itemsFound, setItemsFound] = useState<Equipment[]>([]);
   const dispatch = useDispatch();
 
-  const experienceGainedHandler = (amount) => {
+  const experienceGainedHandler = (amount: number) => {
     setExperienceGained((prevState) => (prevState += amount));
   };
 
@@ -72,7 +73,7 @@ function Exploration() {
     dispatch(playerStatisticActions.restoreFullHealth());
   };
 
-  const itemFoundHandler = (items) => {
+  const itemFoundHandler = (items: Equipment[]) => {
     setItemsFound((prevState) => {
       const newItems = prevState.concat(items);
       return newItems;

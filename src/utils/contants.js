@@ -56,22 +56,3 @@ export const EVENTS = {
   WELL: 'well',
   TREASURE: 'treasure',
 };
-
-export const DEFAULT_STRINGS = {
-  DEAD: 'You barely get out of the dungeon alive',
-};
-
-export const GPT_STRINGS = {
-  EXPLORATIONS: {
-    ENTRY:
-      'Give me very short max 300 characters dark fantasy solo roguelike entry dungeon text',
-    BATTLE:
-      'Give me very short max 300 characters continuation of the story after defeating a monster',
-    TRAP: 'Give me very short max 300 characters continuation of the story after getting out of the trap',
-    WELL: 'Give me very short max 300 characters continuation of the story after player drunk from mysterious magic well',
-    TREASURE:
-      'Give me very short max 300 characters contination of the story after player found mysterious chest full of treasure',
-    ENDING:
-      'Give me very short max 300 characters story ending afer leaving the dungeon',
-  },
-};

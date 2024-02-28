@@ -4,7 +4,12 @@ import { playerStatusActions } from '../../../../store/player-status-slice';
 import { playerStatisticActions } from '../../../../store/player-statistics-slice';
 import Button from '@/components/UI/Button';
 
-function Well({ onEventFinished }) {
+type Props = {
+  onEventFinished: () => void;
+  onExperienceGained: (amount: number) => void;
+};
+
+function Well({ onEventFinished }: Props) {
   const { maxExperience } = useSelector((state) => state.status);
   const dispatch = useDispatch();
   const [drunkFromWell, setDrunkFromWell] = useState(false);
@@ -14,7 +19,6 @@ function Well({ onEventFinished }) {
         experience: maxExperience,
       })
     );
-    dispatch(playerStatisticActions.restoreFullHealth());
     setDrunkFromWell(true);
   };
 

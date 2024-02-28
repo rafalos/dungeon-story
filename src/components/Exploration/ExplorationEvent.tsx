@@ -1,14 +1,26 @@
-import React, { useState } from 'react';
-import Battle from './Events/Battle/Battle';
+import { useState } from 'react';
 import Trap from './Events/Trap/Trap';
 import Treasure from './Events/Treasure/Treasure';
-import classes from './ExplorationEvent.module.css';
 import Well from './Events/Well/Well';
 import { EVENTS } from '../../utils/contants';
-import Loader from '../UI/Loader';
 import Button from '../UI/Button';
 import Typer from '../UI/Typer';
 import Card from '../UI/Card';
+import { Equipment } from '@/types';
+import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
+
+type Props = {
+  fetchNextStory: (
+    options?: RefetchOptions | undefined
+  ) => Promise<QueryObserverResult<unknown, Error>>;
+  eventString: string;
+  eventCount: number;
+  currentPosition: number;
+  onEventProgress: () => void;
+  currentStory: string;
+  onItemFound: (items: Equipment[]) => void;
+  onExperienceGained: (amount: number) => void;
+};
 
 function ExplorationEvent({
   fetchNextStory,
@@ -17,10 +29,8 @@ function ExplorationEvent({
   currentPosition,
   onEventProgress,
   currentStory,
-  onItemFound,
   onExperienceGained,
-  onPlayerDeath,
-}) {
+}: Props) {
   const [eventInProgress, setEventInProgress] = useState(false);
   const explorationFinished = currentPosition === eventCount - 1;
 
@@ -39,12 +49,7 @@ function ExplorationEvent({
         cEvent = null;
         break;
       case EVENTS.TRAP:
-        cEvent = (
-          <Trap
-            onEventFinished={endEventHandler}
-            onPlayerDeath={onPlayerDeath}
-          />
-        );
+        cEvent = <Trap onEventFinished={endEventHandler} />;
         break;
       case EVENTS.WELL:
         cEvent = (

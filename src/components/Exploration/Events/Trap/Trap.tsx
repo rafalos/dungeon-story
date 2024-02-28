@@ -4,7 +4,11 @@ import { playerStatisticActions } from '../../../../store/player-statistics-slic
 import { randomInRange } from '../../../../utils/random';
 import Button from '@/components/UI/Button';
 
-function Trap({ onEventFinished }) {
+type Props = {
+  onEventFinished: () => void;
+};
+
+function Trap({ onEventFinished }: Props) {
   const dispatch = useDispatch();
 
   useEffect(() => {

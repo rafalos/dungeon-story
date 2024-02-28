@@ -11,7 +11,7 @@ type Props = {
 
 const Worn = ({ wornItems }: Props) => {
   const dispatch = useAppDispatch();
-  const handleUnwear = async (item: EquipmentType) => {
+  const handleUnwear = async (item: Equipment) => {
     try {
       await unwearItem(item.id);
 
