@@ -2,9 +2,6 @@ import { useState } from 'react';
 import ExplorationTimeline from './ExplorationTimeline';
 import ExplorationEvent from './ExplorationEvent';
 import ExplorationSummary from './ExplorationSummary';
-import { useDispatch } from 'react-redux';
-import { playerStatisticActions } from '../../store/player-statistics-slice';
-
 import {
   getCurrentChapter,
   getExploration,
@@ -59,7 +56,6 @@ function Exploration() {
 
   const [experienceGained, setExperienceGained] = useState(0);
   const [itemsFound, setItemsFound] = useState<Equipment[]>([]);
-  const dispatch = useDispatch();
 
   const experienceGainedHandler = (amount: number) => {
     setExperienceGained((prevState) => (prevState += amount));
@@ -67,10 +63,6 @@ function Exploration() {
 
   const explorationProgressHandler = async () => {
     await move(id);
-  };
-
-  const playerDeadHandler = () => {
-    dispatch(playerStatisticActions.restoreFullHealth());
   };
 
   const itemFoundHandler = (items: Equipment[]) => {
@@ -101,7 +93,6 @@ function Exploration() {
             fetchNextStory={refetchStory}
             eventCount={exploration.seed.length}
             onEventProgress={explorationProgressHandler}
-            onPlayerDeath={playerDeadHandler}
             eventString={exploration.seed[exploration.currentStage]}
             currentPosition={exploration.currentStage}
             onItemFound={itemFoundHandler}

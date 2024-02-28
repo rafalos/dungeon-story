@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { playerStatusActions } from '../../../../store/player-status-slice';
-import { playerStatisticActions } from '../../../../store/player-statistics-slice';
 import Button from '@/components/UI/Button';
 
 type Props = {

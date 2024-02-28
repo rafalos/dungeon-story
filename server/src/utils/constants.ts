@@ -51,16 +51,17 @@ export const EVENTS = {
   TREASURE: 'treasure',
 };
 
-export const GENERATE_NAME_STRING = 'Give me random dark game location name';
+export const GENERATE_NAME_STRING =
+  'Give me random fantasy roguelike game location name';
 
 export const EXPLORATION_STRINGS = {
   ENTRY:
-    'You are the warrior entering dark dungeon #LOCATION. Write introduction text max 500 characters',
-  BATTLE: 'Continue your story defeating a monster writing max 500 characters',
+    'You are the brave entering dark dungeon #LOCATION. You are writing your own journal. Write your introduction to the story after entering the location max 400 characters',
+  BATTLE: 'Continue your story defeating a monster writing max 400 characters',
   TRAP: 'Continue your story after getting out of a trap writing max 500 characters',
-  WELL: 'Give me very short max 500 characters continuation of the story after player drunk from mysterious magic well',
+  WELL: 'Continue your story after drinking from a mysterious magic well that restores health points and provides experience max 400 characters',
   TREASURE:
-    'Give me very short max 500 characters continuation of the story after player found mysterious chest full of treasure',
+    'Continue your story after finding a chest full of treasure max 400 characters',
   ENDING:
     'Write max 500 characters ending of your story after successfully leaving the location',
   DEATH:
