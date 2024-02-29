@@ -11,12 +11,13 @@ const List = ({ explorations }: Props) => {
   }
 
   return (
-    <div className="flex flex-col justify-center gap-4 overflow-auto p-4">
+    <div className="flex w-full flex-wrap justify-center gap-12 overflow-auto p-4">
       {explorations.map((exploration) => (
         <Entry
           key={exploration.id}
           id={exploration.id}
           name={exploration.name}
+          image={exploration.image}
         />
       ))}
     </div>

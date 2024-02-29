@@ -2,6 +2,7 @@ import classes from './Item.module.css';
 import equipmentClasses from '../Equipment/Equipment.module.css';
 import { Tooltip } from 'react-tooltip';
 import { type Equipment } from '@/types';
+import { motion } from 'framer-motion';
 
 type Props = {
   item: Equipment;
@@ -28,7 +29,10 @@ function Item({ item, onItemClicked }: Props) {
 
   return (
     <>
-      <div
+      <motion.div
+        animate={{
+          y: 10,
+        }}
         key={id}
         data-tooltip-id={id}
         onClick={() => clickHandler(item)}
@@ -73,7 +77,7 @@ function Item({ item, onItemClicked }: Props) {
             })}
           </ul>
         </Tooltip>
-      </div>
+      </motion.div>
     </>
   );
 }

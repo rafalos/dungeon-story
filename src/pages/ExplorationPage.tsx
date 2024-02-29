@@ -7,10 +7,10 @@ import {
 import List from '@/components/Exploration/List';
 import SmallLoader from '@/components/UI/SmallLoader';
 import Container from '@/components/UI/Container';
-import { useNotification } from '@/providers/NotificationProvider';
+import { useNotification, useNotify } from '@/providers/NotificationProvider';
 
 function ExplorationPage() {
-  const { setNotification } = useNotification();
+  const notify = useNotify();
   const queryClient = useQueryClient();
 
   const { mutate, status, error } = useMutation({
@@ -21,8 +21,7 @@ function ExplorationPage() {
       });
     },
     onError: (error) => {
-      console.log(error);
-      setNotification(error.response.data);
+      notify(error.response.data);
     },
   });
 

@@ -10,6 +10,7 @@ export interface IExploration {
   story: Types.ObjectId;
   active: boolean;
   name: string;
+  image: string;
 }
 
 export const explorationSchema = new Schema<IExploration>(
@@ -30,6 +31,7 @@ export const explorationSchema = new Schema<IExploration>(
       type: Number,
       default: -1,
     },
+    image: String,
     story: {
       type: Schema.Types.ObjectId,
       ref: 'Story',

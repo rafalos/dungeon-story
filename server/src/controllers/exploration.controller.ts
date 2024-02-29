@@ -6,6 +6,7 @@ import { ExplorationEvent } from '../types';
 import Story from '../models/Story';
 import { handleEvent } from '../handlers/handleEvent';
 import { getHealth } from '../logic/resources/formulas';
+import { getPhoto } from '../utils/generatePhoto';
 
 export const getCurrentChapter = async (
   req: Request<{
@@ -126,11 +127,15 @@ export const generateExploration = async (
 
   exploration.currentHealth = maxHealth;
   exploration.maxHealth = maxHealth;
-  await exploration.save();
 
   currentUser.energy -= 1;
   currentUser.save();
 
+  const image = (await getPhoto(story.location)).data[0].url as string;
+
+  exploration.image = image;
+
+  await exploration.save();
   response.json({
     message: `Exploration ${story.location} has been generated`,
   });

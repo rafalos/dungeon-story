@@ -37,7 +37,7 @@ function ShopContent(props: { items: Equipment[] }) {
   const shopElements = props.items.map((shopElement) => (
     <div
       key={shopElement.id}
-      className="flex flex-col items-center justify-center"
+      className="flex flex-col items-center justify-center gap-2"
     >
       <Item
         slot={shopElement.slot}

@@ -20,7 +20,7 @@ export default {
         customLightRed: '#E26D5A',
         customYellow: '#F5BB00',
         customBlue: '#FF9F1C',
-        customBlack: '#07090F',
+        customBlack: '#221D23',
         backgroundBlack: '#170707',
         customGreen: '#9FD356',
         landingBg: '#1D160C',
