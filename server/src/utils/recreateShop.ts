@@ -1,3 +1,4 @@
+import { shopRestock } from '../handlers/shopRestock';
 import Shop from '../models/Shop';
 
 export const recreateShop = async () => {
@@ -9,10 +10,11 @@ export const recreateShop = async () => {
 
   const newShop = new Shop({
     items: [],
-    nextRefresh: null,
   });
 
   await newShop.save();
+
+  await shopRestock()
 
   console.log('Shop table created succesfully');
 };

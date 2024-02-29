@@ -58,6 +58,10 @@ export const StorySchema = z.object({
 });
 
 export const StoriesSchema = z.array(StorySchema);
+export const ShopSchema = z.object({
+  id: z.string(),
+  items: z.array(EquipmentSchema),
+});
 
 export const InventorySchema = z.object({
   equipment: z.array(EquipmentSchema),

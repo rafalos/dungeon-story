@@ -9,6 +9,7 @@ import {
   increaseAttributes,
   increaseDamage,
 } from './user-slice';
+import { removeItem } from './shop-slice';
 
 interface InventoryState {
   worn: Equipment[];
@@ -81,6 +82,7 @@ export const itemBought = (item: Equipment): AppThunk => {
   return (dispatch) => {
     dispatch(addInventoryItem(item));
     dispatch(deductGold(buyPrice));
+    dispatch(removeItem(item.id));
   };
 };
 

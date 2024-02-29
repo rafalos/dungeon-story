@@ -12,7 +12,6 @@ import Card from '../UI/Card';
 import { GiTwoCoins } from 'react-icons/gi';
 
 function ShopContent(props: { items: Equipment[] }) {
-  const queryClient = useQueryClient();
   const dispatch = useAppDispatch();
   const notify = useNotify();
 
@@ -28,7 +27,6 @@ function ShopContent(props: { items: Equipment[] }) {
       const parsedItem = EquipmentSchema.parse(item);
 
       dispatch(itemBought(parsedItem));
-      queryClient.refetchQueries({});
     },
   });
 

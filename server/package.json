@@ -16,6 +16,7 @@
     "mongoose": "^8.0.0",
     "node-cron": "^3.0.2",
     "openai": "^4.24.7",
+    "socket.io": "^4.7.4",
     "uuid": "^9.0.1"
   },
   "name": "dungeon-story-api",

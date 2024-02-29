@@ -6,6 +6,7 @@ export const startCronJobs = () => {
   console.log('Starting cron scheduler');
 
   cron.schedule('*/5 * * * *', async () => {
+    console.log('shop run');
     await shopRestock();
   });
 

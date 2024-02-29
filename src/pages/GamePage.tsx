@@ -9,9 +9,14 @@ import Notification from '@/components/UI/Notification';
 import { fetchUser } from '@/store/user-slice';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { fetchInventory } from '@/store/player-inventory-slice';
+import { socket } from '@/lib/socket';
+import { Equipment } from '@/types';
+import { useNotify } from '@/providers/NotificationProvider';
+import { fetchShop, setItems } from '@/store/shop-slice';
 
 function GamePage() {
   const dispatch = useAppDispatch();
+  const notify = useNotify();
   const { isLoading: isUserLoading } = useAppSelector((state) => state.user);
   const navigate = useNavigate();
   const {
@@ -19,6 +24,7 @@ function GamePage() {
     isAuthenticated,
     getAccessTokenSilently,
   } = useAuth0();
+
   useEffect(() => {
     if (!isAuthLoading && !isAuthenticated) {
       navigate('/');
@@ -28,8 +34,26 @@ function GamePage() {
       setAuthToken(token);
       dispatch(fetchUser());
       dispatch(fetchInventory());
+      dispatch(fetchShop());
     });
   }, [isAuthenticated, isAuthLoading]);
+
+  useEffect(() => {
+    socket.connect();
+
+    socket.on('shopRestored', (items: Equipment[]) => {
+      notify(
+        `The shop was restocked with ${items.length} new items!`,
+        'success'
+      );
+
+      dispatch(setItems(items));
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
 
   if (isAuthLoading || isUserLoading) {
     return <Loader />;
@@ -39,7 +63,7 @@ function GamePage() {
     <div className="h-screen overflow-auto">
       {<Notification />}
       <Header />
-      <main className="mx-auto mt-[60px] grid h-full md:h-[calc(100%-60px)] w-full justify-items-start md:mt-0 md:grid-cols-[auto,_1fr] max-w-[1920px]">
+      <main className="mx-auto mt-[60px] grid h-full w-full max-w-[1920px] justify-items-start md:mt-0 md:h-[calc(100%-60px)] md:grid-cols-[auto,_1fr]">
         <Sidebar />
         <Outlet />
       </main>

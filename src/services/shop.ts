@@ -1,7 +1,10 @@
 import axios from '@/lib/axios';
+import { ShopSchema } from '@/schemas';
 
 export const getCurrentShop = async () => {
-  return axios.get('/shop');
+  const response = await axios.get('/shop');
+
+  return ShopSchema.parse(response.data);
 };
 
 export const buyItem = (id: string) => {
