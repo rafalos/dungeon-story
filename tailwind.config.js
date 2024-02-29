@@ -22,7 +22,7 @@ export default {
         customBlue: '#FF9F1C',
         customBlack: '#07090F',
         backgroundBlack: '#170707',
-        customGreen: '#A4C2A5',
+        customGreen: '#9FD356',
         landingBg: '#1D160C',
         landingWhite: '#FFF8F0',
         landingCaramel: '#7A4500',

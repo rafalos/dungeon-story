@@ -1,40 +1,35 @@
-import { useNotificationData } from '@/providers/NotificationProvider';
-import { twMerge } from 'tailwind-merge';
+import {
+  useNotificationData,
+  useNotify,
+} from '@/providers/NotificationProvider';
 import { MdErrorOutline } from 'react-icons/md';
-import { IoCheckmarkDoneCircleOutline } from 'react-icons/io5';
+import { IoCheckmarkCircle } from 'react-icons/io5';
+import { motion } from 'framer-motion';
 
 const Notification = () => {
   const { message, type } = useNotificationData();
 
+  const notify = useNotify();
+
   if (!message) return null;
 
-  const classes =
-    type === 'error'
-      ? 'text-red-700 border-red-700'
-      : 'text-green-700 border-green-700';
+  const handleHide = () => {
+    notify('');
+  };
 
   return (
-    <div
-      className={twMerge(
-        `absolute right-0 z-50 m-4 flex h-32 w-72 animate-moveAppear flex-col items-center justify-around rounded-lg border-2 bg-customWhite p-4 text-lg font-bold text-customBlack`,
-        classes
-      )}
+    <motion.div
+      animate={{
+        y: 5,
+      }}
+      onClick={handleHide}
+      className={`absolute right-0 z-50 m-4 flex h-20 max-w-72 cursor-pointer items-center gap-4 rounded-md bg-gradient-to-r from-customCaramel to-customBlack/60 p-4 font-bold text-customWhite`}
     >
-      <span className="flex items-center justify-center gap-2 text-2xl">
-        {type === 'error' ? (
-          <>
-            <MdErrorOutline />
-            Failure
-          </>
-        ) : (
-          <>
-            <IoCheckmarkDoneCircleOutline />
-            Success
-          </>
-        )}
+      <span className="flex items-center gap-2 text-2xl">
+        {type === 'error' ? <MdErrorOutline /> : <IoCheckmarkCircle />}
       </span>
       <div className="w-full">{message}</div>
-    </div>
+    </motion.div>
   );
 };
 
