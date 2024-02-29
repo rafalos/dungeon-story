@@ -1,3 +1,6 @@
 import { io } from 'socket.io-client';
 
-export const socket = io(undefined);
+const URL =
+  import.meta.env.MODE === 'development' ? 'http://localhost:3001' : undefined;
+
+export const socket = io(URL as string);
