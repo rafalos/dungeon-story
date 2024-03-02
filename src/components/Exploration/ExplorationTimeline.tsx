@@ -7,9 +7,12 @@ type Props = {
   name: string;
   currentHealth: number;
   maxHealth: number;
+  image: string;
 };
 
 function ExplorationTimeline({
+  name,
+  image,
   currentPosition,
   seed,
   currentHealth,
@@ -17,6 +20,7 @@ function ExplorationTimeline({
 }: Props) {
   return (
     <div className="flex flex-col items-center justify-center rounded-md bg-customBlack">
+      <img src={image} alt={`${name} exploration`} />
       <div className="flex flex-wrap p-4">
         {seed.map((eventId, index) => (
           <TimelineItem

@@ -83,6 +83,7 @@ function Exploration() {
       {exploration.currentStage <= exploration.seed.length - 1 ? (
         <>
           <ExplorationTimeline
+            image={exploration.image}
             name={exploration.name}
             seed={exploration.seed}
             currentPosition={exploration.currentStage}

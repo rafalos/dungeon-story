@@ -36,11 +36,13 @@ function ExplorationPage() {
         <SmallLoader />
       ) : (
         <Container title="Current explorations">
-          <Button onClick={() => mutate()}>
-            {status === 'pending' ? <SmallLoader /> : 'New exploration'}
-          </Button>
+          <div className='flex flex-col items-center'>
+            <Button onClick={() => mutate()}>
+              {status === 'pending' ? <SmallLoader /> : 'New exploration'}
+            </Button>
 
-          {explorations && <List explorations={explorations} />}
+            {explorations && <List explorations={explorations} />}
+          </div>
         </Container>
       )}
     </>

@@ -7,6 +7,7 @@ import Story from '../models/Story';
 import { handleEvent } from '../handlers/handleEvent';
 import { getHealth } from '../logic/resources/formulas';
 import { getPhoto } from '../utils/generatePhoto';
+import { uploadByUrl } from '../lib/cloudinary';
 
 export const getCurrentChapter = async (
   req: Request<{
@@ -133,7 +134,9 @@ export const generateExploration = async (
 
   const image = (await getPhoto(story.location)).data[0].url as string;
 
-  exploration.image = image;
+  const imageURL = await uploadByUrl(image);
+
+  exploration.image = imageURL;
 
   await exploration.save();
   response.json({

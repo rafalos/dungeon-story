@@ -6,6 +6,12 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+export const uploadByUrl = async (imageURL: string) => {
+  const response = await cloudinary.uploader.upload(imageURL);
+
+  return response.url;
+};
+
 export const getIconPath = async (resource: string) => {
   try {
     const result = await cloudinary.api.resources({

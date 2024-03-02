@@ -10,15 +10,14 @@ type Props = {
 };
 
 const Entry = ({ id, name, image }: Props) => {
-
   return (
-    <div className="relative flex h-52 size-52 flex-col items-center justify-between gap-4 text-center text-customWhite">
+    <div
+      style={{ backgroundImage: `url(${image})` }}
+      className={`relative flex size-48 flex-col justify-between gap-4 bg-contain bg-no-repeat text-center text-customWhite md:size-80`}
+    >
       <p className="z-20 bg-black/70 p-2 text-sm md:text-lg">{name}</p>
-      <img src={image} alt="" className="absolute size-52" />
       <Link to={`${id}`} className="z-20">
-        <Button variant="game">
-          <GiCrossedSwords />
-        </Button>
+        <Button variant="game">Explore</Button>
       </Link>
     </div>
   );
