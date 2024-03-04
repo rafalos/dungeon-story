@@ -1,6 +1,6 @@
 import { buyItem } from '@/services/shop';
 import Item from '../UI/Item';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import Loader from '../UI/Loader';
 import { Equipment } from '@/types';
 import { useAppDispatch } from '@/store';
@@ -42,14 +42,7 @@ function ShopContent({ items, refreshTime }: Props) {
       key={shopElement.id}
       className="flex flex-col items-center justify-center gap-2"
     >
-      <Item
-        slot={shopElement.slot}
-        stackable={false}
-        id={shopElement.id}
-        item={shopElement}
-        price={shopElement.buyPrice}
-        onItemClicked={itemBoughtHandler}
-      />
+      <Item item={shopElement} onItemClicked={itemBoughtHandler} />
       <span className="flex gap-1 text-sm text-customYellow">
         <GiTwoCoins /> {shopElement.buyPrice}
       </span>

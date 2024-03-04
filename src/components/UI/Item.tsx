@@ -23,8 +23,8 @@ function Item({ item, onItemClicked }: Props) {
       break;
   }
 
-  const clickHandler = (item: Equipment) => {
-    onItemClicked(item);
+  const clickHandler = (clickedItem: Equipment) => {
+    onItemClicked(clickedItem);
   };
 
   return (
