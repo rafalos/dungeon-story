@@ -61,6 +61,7 @@ export const StoriesSchema = z.array(StorySchema);
 export const ShopSchema = z.object({
   id: z.string(),
   items: z.array(EquipmentSchema),
+  nextRefresh: z.string(),
 });
 
 export const InventorySchema = z.object({

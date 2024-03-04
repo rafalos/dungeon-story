@@ -12,7 +12,7 @@ import { fetchInventory } from '@/store/player-inventory-slice';
 import { socket } from '@/lib/socket';
 import { Equipment } from '@/types';
 import { useNotify } from '@/providers/NotificationProvider';
-import { fetchShop, setItems } from '@/store/shop-slice';
+import { fetchShop, setItems, setRefreshTime } from '@/store/shop-slice';
 
 function GamePage() {
   const dispatch = useAppDispatch();
@@ -41,14 +41,18 @@ function GamePage() {
   useEffect(() => {
     socket.connect();
 
-    socket.on('shopRestored', (items: Equipment[]) => {
-      notify(
-        `The shop was restocked with ${items.length} new items!`,
-        'success'
-      );
+    socket.on(
+      'shopRestored',
+      ({ items, nextRun }: { items: Equipment[]; nextRun: string }) => {
+        notify(
+          `The shop was restocked with ${items.length} new items!`,
+          'success'
+        );
 
-      dispatch(setItems(items));
-    });
+        dispatch(setRefreshTime(nextRun));
+        dispatch(setItems(items));
+      }
+    );
 
     return () => {
       socket.disconnect();

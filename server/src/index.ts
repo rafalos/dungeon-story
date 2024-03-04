@@ -5,6 +5,8 @@ import { startCronJobs } from './cron';
 const mongoUri = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@cluster0.pfzxkba.mongodb.net/${process.env.MONGODB_DATABASE}`;
 import { createServer } from 'http';
 import { Server } from 'socket.io';
+import { shopRestock } from './handlers/shopRestock';
+import restoreEnergy from './handlers/restoreEnergy';
 
 const init = async () => {
   const HTTPserver = createServer(app);
@@ -21,6 +23,9 @@ const init = async () => {
   await recreateShop();
 
   startCronJobs();
+
+  await shopRestock();
+  await restoreEnergy();
   HTTPserver.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`);
   });

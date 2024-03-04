@@ -10,8 +10,11 @@ import { AxiosError } from 'axios';
 import { useNotify } from '@/providers/NotificationProvider';
 import Card from '../UI/Card';
 import { GiTwoCoins } from 'react-icons/gi';
+import Countdown from '../UI/Countdown';
 
-function ShopContent(props: { items: Equipment[] }) {
+type Props = { items: Equipment[]; refreshTime: string };
+
+function ShopContent({ items, refreshTime }: Props) {
   const dispatch = useAppDispatch();
   const notify = useNotify();
 
@@ -34,7 +37,7 @@ function ShopContent(props: { items: Equipment[] }) {
     mutate(item.id);
   };
 
-  const shopElements = props.items.map((shopElement) => (
+  const shopElements = items.map((shopElement) => (
     <div
       key={shopElement.id}
       className="flex flex-col items-center justify-center gap-2"
@@ -59,6 +62,9 @@ function ShopContent(props: { items: Equipment[] }) {
 
   return (
     <Card title="Merchant">
+      <div className="flex gap-2">
+        Time to restock: <Countdown till={refreshTime} />
+      </div>
       <div className="flex">{shopElements}</div>
     </Card>
   );

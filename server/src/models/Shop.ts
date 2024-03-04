@@ -2,6 +2,7 @@ import { Schema, Types, model } from 'mongoose';
 
 interface IShop {
   items: Types.ObjectId[];
+  nextRefresh: string;
 }
 
 const shopSchema = new Schema<IShop>({
@@ -11,6 +12,7 @@ const shopSchema = new Schema<IShop>({
       ref: 'Equipment',
     },
   ],
+  nextRefresh: Date,
 });
 
 shopSchema.set('toJSON', {
