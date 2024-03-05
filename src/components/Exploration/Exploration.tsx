@@ -12,10 +12,13 @@ import { useParams } from 'react-router-dom';
 import Container from '../UI/Container';
 import SmallLoader from '../UI/SmallLoader';
 import { Equipment, MoveState } from '@/types';
+import { useAppDispatch } from '@/store';
+import { gainExperience } from '@/store/user-slice';
 
 function Exploration() {
   const queryClient = useQueryClient();
   const [result, setResult] = useState<MoveState | null>(null);
+  const dispatch = useAppDispatch();
 
   const { id = '' } = useParams<{
     id: string;
@@ -45,8 +48,10 @@ function Exploration() {
   const { mutateAsync: move } = useMutation({
     mutationKey: ['movePosition', id],
     mutationFn: movePosition,
-    onSuccess: (response) => {
-      setResult(response);
+    onSuccess: (eventResult) => {
+      setResult(eventResult);
+
+      dispatch(gainExperience(eventResult.experienceGained));
     },
     onSettled: () => {
       queryClient.refetchQueries({

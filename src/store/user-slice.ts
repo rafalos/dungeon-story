@@ -1,5 +1,5 @@
 import { getUser } from '@/services/user';
-import { Modifier, Operation, User } from '@/types';
+import { AppThunk, Modifier, Operation, User } from '@/types';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { useAppSelector } from '.';
@@ -31,6 +31,21 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
+    setExperience(state, action: PayloadAction<number>) {
+      if (state.user) {
+        state.user.experience = action.payload;
+      }
+    },
+    increaseExperience(state, action: PayloadAction<number>) {
+      if (state.user) {
+        state.user.experience += action.payload;
+      }
+    },
+    increaseLevel(state) {
+      if (state.user) {
+        state.user.level++;
+      }
+    },
     increaseDamage(
       state,
       {
@@ -113,11 +128,14 @@ export const useUserData = () => {
 
 export default userSlice.reducer;
 export const {
+  increaseExperience,
+  increaseLevel,
   deductGold,
   addGold,
   increaseArmor,
   increaseDamage,
   increaseAttributes,
+  setExperience,
 } = userSlice.actions;
 
 export const useUserStatistics = () => {
@@ -126,4 +144,22 @@ export const useUserStatistics = () => {
 
   const { armor, attributes, criticalChance, damage } = user;
   return { armor, attributes, criticalChance, damage };
+};
+
+export const gainExperience = (amount: number): AppThunk => {
+  return (dispatch, getState) => {
+    const currentExperience = getState().user.user?.experience;
+    const maxExperience = getState().user.user?.maxExperience;
+
+    if (!currentExperience || !maxExperience) return;
+
+    if (currentExperience + amount >= maxExperience) {
+      dispatch(increaseLevel());
+      const diff = currentExperience + amount - maxExperience;
+      amount = 0 + diff;
+      dispatch(setExperience(amount));
+    } else {
+      dispatch(increaseExperience(amount));
+    }
+  };
 };

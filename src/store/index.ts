@@ -2,7 +2,6 @@ import { configureStore } from '@reduxjs/toolkit';
 import playerStatusReducer from './player-status-slice';
 import playerInventoryReducer from './player-inventory-slice';
 import shopSlice from './shop-slice';
-import timersSlice from './timers-slice';
 import modalSlice from './modal-slice';
 import userSlice from './user-slice';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
@@ -12,7 +11,6 @@ const store = configureStore({
     status: playerStatusReducer,
     inventory: playerInventoryReducer,
     shop: shopSlice,
-    timers: timersSlice,
     modal: modalSlice,
     user: userSlice,
   },
