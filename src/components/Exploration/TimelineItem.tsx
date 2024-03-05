@@ -1,13 +1,15 @@
 import { GiMantrap } from 'react-icons/gi';
 import { GiWaterfall } from 'react-icons/gi';
 import { GiChest } from 'react-icons/gi';
+import { MdQuestionMark } from 'react-icons/md';
 
 type Props = {
   isActive?: boolean;
   event: string;
+  itemKnown: boolean;
 };
 
-function TimelineItem({ isActive, event }: Props) {
+function TimelineItem({ isActive, event, itemKnown }: Props) {
   const icons: {
     [key in typeof event]: JSX.Element;
   } = {
@@ -19,11 +21,11 @@ function TimelineItem({ isActive, event }: Props) {
   return (
     <div
       className={`flex size-12 items-center justify-center bg-customBlack p-6 md:size-24 ${
-        isActive ? 'border-customCaramel border-2' : ''
+        isActive ? 'border-2 border-customCaramel' : ''
       }`}
     >
       <span className="text-3xl font-bold text-customWhite md:text-4xl">
-        {icons[event]}
+        {itemKnown ? icons[event] : <MdQuestionMark />}
       </span>
     </div>
   );

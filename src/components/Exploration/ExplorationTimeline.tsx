@@ -24,6 +24,7 @@ function ExplorationTimeline({
       <div className="flex flex-wrap p-4">
         {seed.map((eventId, index) => (
           <TimelineItem
+            itemKnown={currentPosition >= index}
             key={index}
             isActive={index === currentPosition}
             event={eventId}
