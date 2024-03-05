@@ -20,7 +20,7 @@ function TimelineItem({ isActive, event, itemKnown }: Props) {
 
   return (
     <div
-      className={`flex size-12 items-center justify-center bg-customBlack p-6 md:size-24 ${
+      className={`flex size-12 items-center justify-center rounded-md bg-black p-6 md:size-24 ${
         isActive ? 'border-2 border-customCaramel' : ''
       }`}
     >

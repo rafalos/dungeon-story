@@ -31,7 +31,7 @@ function Item({ item, onItemClicked }: Props) {
     <>
       <motion.div
         animate={{
-          y: 10,
+          y: 5,
         }}
         key={id}
         data-tooltip-id={id}

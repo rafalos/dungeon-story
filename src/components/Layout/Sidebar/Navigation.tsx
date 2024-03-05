@@ -29,7 +29,7 @@ function Navigation() {
   ];
 
   return (
-    <div className="fixed bottom-0 z-50 flex h-12 w-full flex-col gap-4 bg-customBlack text-2xl text-customWhite md:static md:h-full md:w-[300px] md:border-r md:border-r-customCaramel/30 md:text-lg">
+    <div className="fixed bottom-0 z-50 flex h-12 w-full flex-col gap-4 bg-customBlack text-2xl text-customWhite md:static md:h-full md:w-[300px] md:border-r md:border-r-customCaramel/10 md:text-lg">
       <div className="hidden md:block md:p-4">
         <Status />
       </div>

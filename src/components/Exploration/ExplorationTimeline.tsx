@@ -1,9 +1,10 @@
+import { ExplorationEvent } from '@/types';
 import ResourceBar from '../UI/ResourceBar';
 import TimelineItem from './TimelineItem';
 
 type Props = {
   currentPosition: number;
-  seed: Seed;
+  seed: ExplorationEvent[];
   name: string;
   currentHealth: number;
   maxHealth: number;
@@ -21,7 +22,14 @@ function ExplorationTimeline({
   return (
     <div className="flex flex-col items-center justify-center rounded-md bg-customBlack">
       <img src={image} alt={`${name} exploration`} />
-      <div className="flex flex-wrap p-4">
+      <div className="w-[50%]">
+        <ResourceBar
+          currentResource={currentHealth}
+          maxResource={maxHealth}
+          bgColor="bg-customRed"
+        />
+      </div>
+      <div className="flex flex-wrap gap-2 p-4">
         {seed.map((eventId, index) => (
           <TimelineItem
             itemKnown={currentPosition >= index}
@@ -30,13 +38,6 @@ function ExplorationTimeline({
             event={eventId}
           />
         ))}
-      </div>
-      <div className="w-[50%]">
-        <ResourceBar
-          currentResource={currentHealth}
-          maxResource={maxHealth}
-          bgColor="bg-customRed"
-        />
       </div>
     </div>
   );
