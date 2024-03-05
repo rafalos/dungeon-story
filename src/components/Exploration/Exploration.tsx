@@ -11,10 +11,11 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import Container from '../UI/Container';
 import SmallLoader from '../UI/SmallLoader';
-import { Equipment } from '@/types';
+import { Equipment, MoveState } from '@/types';
 
 function Exploration() {
   const queryClient = useQueryClient();
+  const [result, setResult] = useState<MoveState | null>(null);
 
   const { id = '' } = useParams<{
     id: string;
@@ -45,7 +46,7 @@ function Exploration() {
     mutationKey: ['movePosition', id],
     mutationFn: movePosition,
     onSuccess: (response) => {
-      console.log(response);
+      setResult(response);
     },
     onSettled: () => {
       queryClient.refetchQueries({
@@ -76,8 +77,6 @@ function Exploration() {
   if (error) return 'An error has occurred: ' + error.message;
   if (!exploration || !chapter) return 'Something went wrong';
 
-  console.log(exploration);
-
   return (
     <Container title={exploration.name}>
       {exploration.currentStage <= exploration.seed.length - 1 ? (
@@ -91,6 +90,7 @@ function Exploration() {
             maxHealth={exploration.maxHealth}
           />
           <ExplorationEvent
+            result={result}
             fetchNextStory={refetchStory}
             eventCount={exploration.seed.length}
             onEventProgress={explorationProgressHandler}

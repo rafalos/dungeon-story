@@ -27,15 +27,15 @@ const userSchema = new Schema<User>({
   attributes: {
     strength: {
       type: Number,
-      default: 0,
+      default: 1,
     },
     vitality: {
       type: Number,
-      default: 0,
+      default: 1,
     },
     agility: {
       type: Number,
-      default: 0,
+      default: 1,
     },
   },
   experience: {

@@ -45,6 +45,7 @@ export const EquipmentSchema = z.discriminatedUnion('descriptor', [
 ]);
 
 export const MoveStateSchema = z.object({
+  healthDiff: z.number(),
   experienceGained: z.number(),
   itemsFound: z.array(EquipmentSchema),
 });

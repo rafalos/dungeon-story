@@ -6,7 +6,7 @@ import { EVENTS } from '../../utils/contants';
 import Button from '../UI/Button';
 import Typer from '../UI/Typer';
 import Card from '../UI/Card';
-import { Equipment } from '@/types';
+import { Equipment, MoveState } from '@/types';
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
 
 type Props = {
@@ -20,6 +20,7 @@ type Props = {
   currentStory: string;
   onItemFound: (items: Equipment[]) => void;
   onExperienceGained: (amount: number) => void;
+  result: MoveState;
 };
 
 function ExplorationEvent({
@@ -30,45 +31,10 @@ function ExplorationEvent({
   onEventProgress,
   currentStory,
   onExperienceGained,
+  result,
 }: Props) {
   const [eventInProgress, setEventInProgress] = useState(false);
   const explorationFinished = currentPosition === eventCount - 1;
-
-  const currentEvent = () => {
-    let cEvent = null;
-    switch (eventString) {
-      case EVENTS.BATTLE:
-        // cEvent = (
-        //   <Battle
-        //     onEventFinished={endEventHandler}
-        //     onPlayerDeath={onPlayerDeath}
-        //     onItemFound={onItemFound}
-        //     onExperienceGained={onExperienceGained}
-        //   />
-        // );
-        cEvent = null;
-        break;
-      case EVENTS.TRAP:
-        cEvent = <Trap onEventFinished={endEventHandler} />;
-        break;
-      case EVENTS.WELL:
-        cEvent = (
-          <Well
-            onExperienceGained={onExperienceGained}
-            onEventFinished={endEventHandler}
-          />
-        );
-        break;
-      case EVENTS.TREASURE:
-        cEvent = (
-          <Treasure
-            onExperienceGained={onExperienceGained}
-            onEventFinished={endEventHandler}
-          />
-        );
-    }
-    return cEvent;
-  };
 
   const progressEventHandler = async () => {
     await onEventProgress();
@@ -85,10 +51,48 @@ function ExplorationEvent({
     await fetchNextStory();
   };
 
+  const currentEvent = (eventResult: MoveState) => {
+    let cEvent = null;
+    switch (eventString) {
+      case EVENTS.BATTLE:
+        // cEvent = (
+        //   <Battle
+        //     onEventFinished={endEventHandler}
+        //     onPlayerDeath={onPlayerDeath}
+        //     onItemFound={onItemFound}
+        //     onExperienceGained={onExperienceGained}
+        //   />
+        // );
+        cEvent = null;
+        break;
+      case EVENTS.TRAP:
+        cEvent = (
+          <Trap onEventFinished={endEventHandler} result={eventResult} />
+        );
+        break;
+      case EVENTS.WELL:
+        cEvent = (
+          <Well
+            result={eventResult}
+            onExperienceGained={onExperienceGained}
+            onEventFinished={endEventHandler}
+          />
+        );
+        break;
+      case EVENTS.TREASURE:
+        cEvent = (
+          <Treasure result={eventResult} onEventFinished={endEventHandler} />
+        );
+    }
+    return cEvent;
+  };
+
   return (
     <Card>
       {eventInProgress && (
-        <div className="flex flex-col gap-4 text-lg">{currentEvent()}</div>
+        <div className="flex flex-col gap-4 text-lg">
+          {currentEvent(result)}
+        </div>
       )}
       {!eventInProgress && (
         <>

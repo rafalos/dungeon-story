@@ -7,13 +7,13 @@ import {
 import List from '@/components/Exploration/List';
 import SmallLoader from '@/components/UI/SmallLoader';
 import Container from '@/components/UI/Container';
-import { useNotification, useNotify } from '@/providers/NotificationProvider';
+import { useNotify } from '@/providers/NotificationProvider';
 
 function ExplorationPage() {
   const notify = useNotify();
   const queryClient = useQueryClient();
 
-  const { mutate, status, error } = useMutation({
+  const { mutate, status } = useMutation({
     mutationFn: generateNewExploration,
     onSuccess: () => {
       queryClient.refetchQueries({

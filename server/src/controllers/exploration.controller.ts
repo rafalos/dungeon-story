@@ -83,8 +83,8 @@ export const movePosition = async (
   const result = await handleEvent(request.user, exploration);
 
   response.json({
-    experienceGained: result?.experienceGained,
     healthDiff: result?.healthDiff,
+    experienceGained: result?.experienceGained,
     itemsFound: result?.itemsFound,
   });
 };

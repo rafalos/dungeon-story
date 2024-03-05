@@ -9,7 +9,7 @@ import Inventory from '../models/Inventory';
 
 const handleTrap = (maxHealth: number) => {
   return {
-    currentHealth: (maxHealth / 100) * 10,
+    hpLoss: -(maxHealth / 100) * 10,
   };
 };
 const handleBattle = () => {};
@@ -22,12 +22,21 @@ const handleTreasure = async (userID: Types.ObjectId) => {
 
   await Equipment.insertMany(equipment);
 
-  return equipment;
-};
-const handleWell = (maxHealth: number, maxExperience: number) => {
   return {
-    currentHealth: maxHealth,
-    currentExperience: maxExperience - 1,
+    itemGain: equipment,
+  };
+};
+const handleWell = (
+  maxExperience: number,
+  currentHealth: number,
+  maxHealth: number
+) => {
+  const newHealth = maxHealth;
+  const hpGain = newHealth - currentHealth;
+
+  return {
+    expGain: 25,
+    hpGain,
   };
 };
 
@@ -35,26 +44,24 @@ export const handleEvent = async (
   user: InstanceType<typeof User>,
   exploration: HydratedDocument<IExploration>
 ) => {
-  let experienceGained = 0;
-  const itemsFound: HydratedDocument<EquipmentType>[] = [];
-  let healthDiff = 0;
-
   const { seed, currentStage } = exploration;
+  let experienceGained = 0;
+  let healthDiff = 0;
+  const itemsFound: HydratedDocument<EquipmentType>[] = [];
 
   switch (seed[currentStage]) {
     case 'battle':
       handleBattle();
       break;
     case 'trap': {
-      const { currentHealth } = handleTrap(exploration.maxHealth);
+      const { hpLoss } = handleTrap(exploration.maxHealth);
 
-      exploration.currentHealth -= currentHealth;
-      healthDiff = -currentHealth;
+      healthDiff += hpLoss;
       break;
     }
     case 'treasure': {
-      const foundEquipment = await handleTreasure(user._id);
-      const itemIDs = foundEquipment.map((item) => item._id);
+      const { itemGain } = await handleTreasure(user._id);
+      const itemIDs = itemGain.map((item) => item._id);
 
       const inventory = await Inventory.findOne({
         user: user._id,
@@ -63,24 +70,22 @@ export const handleEvent = async (
       if (!inventory) return;
 
       inventory.equipment.push(...itemIDs);
-      itemsFound.push(...foundEquipment);
+      itemsFound.push(...itemGain);
 
       await inventory.save();
       break;
     }
     case 'well':
       {
-        const { currentExperience, currentHealth } = handleWell(
-          exploration.maxHealth,
-          user.maxExperience
+        const { expGain, hpGain } = handleWell(
+          user.maxExperience,
+          exploration.currentHealth,
+          exploration.maxHealth
         );
 
-        user.experience = currentExperience;
-        exploration.currentHealth = currentHealth;
-        experienceGained = user.experience;
-        healthDiff = exploration.currentHealth;
+        healthDiff = hpGain;
+        experienceGained = expGain;
       }
-
       break;
   }
 
@@ -88,11 +93,19 @@ export const handleEvent = async (
     exploration.currentStage = 666;
   }
 
+  exploration.currentHealth += healthDiff;
+  user.experience += experienceGained;
+
+  if (user.experience >= user.maxExperience) {
+    user.level += 1;
+    user.experience = user.experience - user.maxExperience;
+  }
+
   await Promise.all([exploration.save(), user.save()]);
 
   return {
+    healthDiff,
     itemsFound,
     experienceGained,
-    healthDiff,
   };
 };

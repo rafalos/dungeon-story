@@ -1,35 +1,24 @@
-import { useState } from 'react';
 import Button from '@/components/UI/Button';
+import { MoveState } from '@/types';
+import Item from '@/components/UI/Item';
 
 type Props = {
   onEventFinished: () => void;
+  result: MoveState;
 };
 
-function Treasure({ onEventFinished }: Props) {
-  const [collected, setCollected] = useState(true);
-
-  const chestOpenedHandler = () => {
-    setCollected(true);
-  };
-
+function Treasure({ onEventFinished, result }: Props) {
   return (
     <div>
-      {collected ? (
-        <div className="flex-column-container">
-          You have found items:
-          {/* <div>
-            {foundItems.map((item) => (
-              <Item key={item.id} item={item} />
-            ))}
-          </div> */}
-          <Button onClick={onEventFinished}>Continue exploration</Button>
+      <div className="flex-column-container">
+        You have found items:
+        <div>
+          {result.itemsFound.map((item) => (
+            <Item key={item.id} item={item} />
+          ))}
         </div>
-      ) : (
-        <div className="flex-column-container">
-          You found a treasure chest!
-          <Button onClick={chestOpenedHandler}>Open</Button>
-        </div>
-      )}
+        <Button onClick={onEventFinished}>Continue exploration</Button>
+      </div>
     </div>
   );
 }
