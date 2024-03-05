@@ -1,4 +1,3 @@
-import classes from './ExplorationSummary.module.css';
 import Item from '../UI/Item';
 import Button from '../UI/Button';
 import { Link } from 'react-router-dom';
@@ -18,21 +17,21 @@ function ExplorationSummary({
   totalItemsFound,
 }: Props) {
   const foundItems = totalItemsFound.map((item) => (
-    <Item key={item.id} item={item} />
+    <Item key={item.id} item={item} onItemClicked={() => null} />
   ));
   return (
-    <Card className={classes['summary-wrapper']}>
-      <div className="italic">
+    <Card>
+      <div className="text-lg italic">
         <Typer text={ending} delay={20} />
       </div>
-      <div className="flex-column-container">
+      <div className="flex flex-col items-center">
         During your expedition you have gained {totalExperienceGained} total
         experience and found:
-        <div>{totalItemsFound.length > 0 ? foundItems : 'No items'}</div>
+        <span>{totalItemsFound.length > 0 ? foundItems : 'No items'}</span>
+        <Link to="..">
+          <Button>Leave exploration</Button>
+        </Link>
       </div>
-      <Link to="..">
-        <Button>Leave exploration</Button>
-      </Link>
     </Card>
   );
 }

@@ -6,7 +6,7 @@ import Loader from '@/components/UI/Loader';
 import { setAuthToken } from '@/lib/axios';
 import Header from '@/components/Layout/Header/Header';
 import Notification from '@/components/UI/Notification';
-import { fetchUser } from '@/store/user-slice';
+import { fetchUser, restoreEnergy } from '@/store/user-slice';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { fetchInventory } from '@/store/player-inventory-slice';
 import { socket } from '@/lib/socket';
@@ -53,6 +53,11 @@ function GamePage() {
         dispatch(setItems(items));
       }
     );
+
+    socket.on('energyRestored', () => {
+      notify(`Energy has been restored`, 'success');
+      dispatch(restoreEnergy());
+    });
 
     return () => {
       socket.disconnect();

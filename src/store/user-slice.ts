@@ -31,6 +31,16 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
+    restoreEnergy(state) {
+      if (state.user) {
+        state.user.energy = 3;
+      }
+    },
+    deductEnergy(state) {
+      if (state.user) {
+        state.user.energy -= 1;
+      }
+    },
     setExperience(state, action: PayloadAction<number>) {
       if (state.user) {
         state.user.experience = action.payload;
@@ -109,7 +119,7 @@ const userSlice = createSlice({
       state.isLoading = false;
     });
 
-    builder.addCase(fetchUser.pending, (state, action) => {
+    builder.addCase(fetchUser.pending, (state) => {
       state.isLoading = true;
     });
 
@@ -136,6 +146,8 @@ export const {
   increaseDamage,
   increaseAttributes,
   setExperience,
+  deductEnergy,
+  restoreEnergy,
 } = userSlice.actions;
 
 export const useUserStatistics = () => {
