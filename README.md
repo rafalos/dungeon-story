@@ -28,8 +28,10 @@ The project contains monorepo of server and clientside app. Express server build
 
 ## Screenshots
 ![Alt text](https://res.cloudinary.com/dxctkhax8/image/upload/v1708472829/Screenshot_from_2024-02-21_00-35-48_t67tyf.png "Landing Page")
-![Alt text](https://res.cloudinary.com/dxctkhax8/image/upload/v1708472609/Screenshot_from_2024-02-21_00-41-11_bckvtw.png "Exploration generating")
-![Alt text](https://res.cloudinary.com/dxctkhax8/image/upload/v1708472746/Screenshot_from_2024-02-21_00-37-02_i7biz9.png "Inventory")
+![Alt text](https://res.cloudinary.com/dxctkhax8/image/upload/v1709731316/Screenshot_from_2024-03-06_14-20-28_nxv8vq.png "Exploration generating")
+![Alt text](https://res.cloudinary.com/dxctkhax8/image/upload/v1709731449/Screenshot_from_2024-03-06_14-21-19_pc226q.png "In exploration")
+![Alt text](https://res.cloudinary.com/dxctkhax8/image/upload/v1709731480/Screenshot_from_2024-03-06_14-20-58_dlieyo.png "Example story")
+![Alt text](https://res.cloudinary.com/dxctkhax8/image/upload/v1709731503/Screenshot_from_2024-03-06_14-20-46_olk6to.png "Ingame store")
 
 
 ## Features
