@@ -6,6 +6,11 @@ Roguelike RPG game with story generator driven by OpenAI Api
 
 https://dungeon-story.fly.dev/
 
+For testing purposes if you do not want to create your own account use:
+
+login: test@test.com
+password: Testing123
+
 ## About
 
 Core dungeon exploration is built on top of chatGPT to generate random story every time you complete a dungeon. By using AI as a story generator i was able to provide unique experience every time you enter a dungeon exploration. For every dungeon entry the random sequence of events is generated. OpenAI adds the next part of the story to each of the event from the sequence. 
