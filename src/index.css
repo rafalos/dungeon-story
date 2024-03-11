@@ -5,10 +5,10 @@
 @tailwind utilities;
 
 :root {
-  --rarity-rare: #f0cc2c;
+  --rarity-rare: #F5BB00;
   --rarity-legendary: #d89519;
-  --rarity-magic: rgb(126, 126, 238);
-  --rarity-common: #e0e0e0;
+  --rarity-magic: #3772FF;
+  --rarity-common: #F5F1ED;
 }
 
 html {
@@ -20,16 +20,6 @@ body {
   padding: 0;
   height: 100vh;
   @apply bg-customBlack;
-  /* background: rgb(48, 0, 0);
-  background: linear-gradient(
-    357deg,
-    rgba(48, 0, 0, 1) 0%,
-    rgba(0, 1, 3, 1) 0%,
-    rgba(55, 6, 6, 1) 0%,
-    rgba(0, 1, 3, 1) 59%,
-    rgba(31, 31, 31, 1) 100%,
-    rgba(32, 0, 0, 1) 100%
-  ); */
   font-family: 'Poppins';
 }
 

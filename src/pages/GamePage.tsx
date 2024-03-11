@@ -14,6 +14,15 @@ import { Equipment } from '@/types';
 import { useNotify } from '@/providers/NotificationProvider';
 import { fetchShop, setItems, setRefreshTime } from '@/store/shop-slice';
 
+const Artifacts = () => {
+  return (
+    <>
+      <div className="absolute bottom-0 right-0 z-0 size-1/2 rounded-full bg-customYellow/5 blur-[15rem]"></div>
+      <div className="right-15 absolute top-0 z-0 size-1/2 rounded-full bg-customRed/10 blur-[15rem]"></div>
+    </>
+  );
+};
+
 function GamePage() {
   const dispatch = useAppDispatch();
   const notify = useNotify();
@@ -70,9 +79,10 @@ function GamePage() {
 
   return (
     <div className="h-screen overflow-auto">
-      {<Notification />}
+      <Artifacts />
+      <Notification />
       <Header />
-      <main className="mx-auto mt-[60px] grid h-full w-full max-w-[1920px] justify-items-start md:mt-0 md:h-[calc(100%-60px)] md:grid-cols-[auto,_1fr]">
+      <main className="mx-auto mt-[60px] grid h-full w-full justify-items-start md:mt-0 md:h-[calc(100%-60px)] md:grid-cols-[auto,_1fr]">
         <Sidebar />
         <Outlet />
       </main>

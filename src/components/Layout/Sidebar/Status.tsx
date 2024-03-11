@@ -3,9 +3,11 @@ import SmallLoader from '@/components/UI/SmallLoader';
 import { SiPowerautomate } from 'react-icons/si';
 import { useUserData } from '@/store/user-slice';
 import { GiTwoCoins } from 'react-icons/gi';
+import { useUIGetters } from '@/store/UITriggersContext';
 
 const Status = () => {
   const { isLoading, user } = useUserData();
+  const { energyBounce } = useUIGetters();
 
   if (isLoading) return <SmallLoader />;
 
@@ -22,9 +24,18 @@ const Status = () => {
         />
         <div className="flex items-center justify-between">
           <span className="flex">
-            {[...Array(user?.energy)].map((_, index) => (
-              <SiPowerautomate key={index} />
-            ))}
+            {[...Array(user?.energy)].map((_, index) => {
+              const classN =
+                index + 1 === user.energy && energyBounce
+                  ? 'animate-bounce'
+                  : '';
+
+              return (
+                <span key={index} className={classN}>
+                  <SiPowerautomate />
+                </span>
+              );
+            })}
           </span>
           <span className="flex items-center gap-2">
             <GiTwoCoins />

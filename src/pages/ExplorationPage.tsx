@@ -10,11 +10,13 @@ import Container from '@/components/UI/Container';
 import { useNotify } from '@/providers/NotificationProvider';
 import { useAppDispatch } from '@/store';
 import { deductEnergy } from '@/store/user-slice';
+import { useUISetters } from '@/store/UITriggersContext';
 
 function ExplorationPage() {
   const notify = useNotify();
   const queryClient = useQueryClient();
   const dispatch = useAppDispatch();
+  const { setEnergyBounce } = useUISetters();
 
   const { mutate, status } = useMutation({
     mutationFn: generateNewExploration,
@@ -42,7 +44,11 @@ function ExplorationPage() {
       ) : (
         <Container title="Current explorations">
           <div className="flex flex-col items-center">
-            <Button onClick={() => mutate()}>
+            <Button
+              onClick={() => mutate()}
+              onMouseEnter={() => setEnergyBounce(true)}
+              onMouseLeave={() => setEnergyBounce(false)}
+            >
               {status === 'pending' ? <SmallLoader /> : 'New exploration'}
             </Button>
 
