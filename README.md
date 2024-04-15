@@ -7,9 +7,10 @@ Roguelike RPG game with story generator driven by OpenAI Api
 https://dungeon-story.fly.dev/
 
 For testing purposes if you do not want to create your own account use:
-
+```
 login: test@test.com
 password: Testing123
+```
 
 ## About
 
