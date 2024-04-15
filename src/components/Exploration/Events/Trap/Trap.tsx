@@ -8,10 +8,12 @@ type Props = {
 
 function Trap({ onEventFinished, result }: Props) {
   return (
-    <>
-      You have fallen into a trap. and you have lost {result.healthDiff} Health!
-      <Button onClick={onEventFinished}>Done</Button>
-    </>
+    <div className="flex flex-col items-center gap-8">
+      <p className="text-2xl">
+        I have fallen into a trap. and you have lost {result.healthDiff} Health!
+      </p>
+      <Button onClick={onEventFinished}>Continue</Button>
+    </div>
   );
 }
 

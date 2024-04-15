@@ -15,10 +15,12 @@ const Entry = ({ id, name, image }: Props) => {
       style={{ backgroundImage: `url(${image})` }}
       className={`relative flex size-48 flex-col justify-between gap-4 bg-contain bg-no-repeat text-center text-customWhite md:size-80`}
     >
-      <p className="z-20 bg-black/70 p-2 text-sm md:text-lg">{name}</p>
-      <Link to={`${id}`} className="z-20">
-        <Button variant="game">Explore</Button>
-      </Link>
+      <p className="z-20 bg-black p-2 text-sm md:text-lg">{name}</p>
+      <div className="flex justify-center bg-black p-2">
+        <Link to={`${id}`} className="z-20">
+          <Button variant="game">Explore</Button>
+        </Link>
+      </div>
     </div>
   );
 };

@@ -9,16 +9,14 @@ type Props = {
 
 function Treasure({ onEventFinished, result }: Props) {
   return (
-    <div>
-      <div className="flex-column-container">
-        You have found items:
-        <div>
-          {result.itemsFound.map((item) => (
-            <Item key={item.id} item={item} />
-          ))}
-        </div>
-        <Button onClick={onEventFinished}>Continue exploration</Button>
+    <div className="flex flex-col items-center gap-8">
+      <p className="text-2xl">I have found items:</p>
+      <div>
+        {result.itemsFound.map((item) => (
+          <Item key={item.id} item={item} />
+        ))}
       </div>
+      <Button onClick={onEventFinished}>Continue exploration</Button>
     </div>
   );
 }
