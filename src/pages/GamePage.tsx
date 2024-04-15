@@ -13,6 +13,8 @@ import { socket } from '@/lib/socket';
 import { Equipment } from '@/types';
 import { useNotify } from '@/providers/NotificationProvider';
 import { fetchShop, setItems, setRefreshTime } from '@/store/shop-slice';
+import Modal from '@/components/Layout/Modal';
+import { display } from '@/store/modal-slice';
 
 const Artifacts = () => {
   return (
@@ -27,6 +29,7 @@ function GamePage() {
   const dispatch = useAppDispatch();
   const notify = useNotify();
   const { isLoading: isUserLoading } = useAppSelector((state) => state.user);
+  const { isOpen } = useAppSelector((state) => state.modal);
   const navigate = useNavigate();
   const {
     isLoading: isAuthLoading,
@@ -68,6 +71,15 @@ function GamePage() {
       dispatch(restoreEnergy());
     });
 
+    socket.on('leveledUp', () => {
+      dispatch(
+        display({
+          content: 'Congratulations. You have gained a level!',
+          title: 'LEVEL UP',
+        })
+      );
+    });
+
     return () => {
       socket.disconnect();
     };
@@ -82,6 +94,7 @@ function GamePage() {
       <Artifacts />
       <Notification />
       <Header />
+      {isOpen && <Modal />}
       <main className="mx-auto mt-[60px] grid h-full w-full justify-items-start md:mt-0 md:h-[calc(100%-60px)] md:grid-cols-[auto,_1fr]">
         <Sidebar />
         <Outlet />

@@ -1,10 +1,10 @@
 import { ClassType, GemType } from '../../../types';
 
 export const EQUIPMENT_RARITY_CHANCES: [ClassType, number][] = [
-  ['common', 60],
-  ['magic', 25],
-  ['rare', 12],
-  ['legendary', 3],
+  ['common', 80],
+  ['magic', 10],
+  ['rare', 9],
+  ['legendary', 1],
 ];
 
 export const GEM_RARITY_CHANCES: [GemType, number][] = [

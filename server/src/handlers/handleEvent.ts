@@ -6,13 +6,17 @@ import { generateRandomEquipment } from '../logic/generators/equipment';
 import Equipment from '../models/Equipment';
 import { Equipment as EquipmentType } from '../types';
 import Inventory from '../models/Inventory';
+import { handleBattle } from './handleBattle';
+import { Server } from 'socket.io';
+import { DefaultEventsMap } from 'socket.io/dist/typed-events';
+import { app } from '../app';
 
 const handleTrap = (maxHealth: number) => {
   return {
     hpLoss: -(maxHealth / 100) * 10,
   };
 };
-const handleBattle = () => {};
+
 const handleTreasure = async (userID: Types.ObjectId) => {
   const rolls = randomInRange(1, 3);
 
@@ -48,6 +52,12 @@ export const handleEvent = async (
   let experienceGained = 0;
   let healthDiff = 0;
   const itemsFound: HydratedDocument<EquipmentType>[] = [];
+  const io: Server<
+    DefaultEventsMap,
+    DefaultEventsMap,
+    DefaultEventsMap,
+    unknown
+  > = app.get('io');
 
   switch (seed[currentStage]) {
     case 'battle':
@@ -99,6 +109,7 @@ export const handleEvent = async (
   if (user.experience >= user.maxExperience) {
     user.level += 1;
     user.experience = user.experience - user.maxExperience;
+    io.emit('leveledUp');
   }
 
   await Promise.all([exploration.save(), user.save()]);

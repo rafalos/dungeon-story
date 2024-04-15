@@ -17,7 +17,7 @@ const StoryPage = () => {
 
   return (
     <div className="p-4 text-customWhite">
-      <h2 className="flex flex-col items-center font-bold">
+      <h2 className="flex flex-col items-center font-bold text-3xl">
         <span>{story.createdAt.toLocaleDateString()}</span>
         <span className="text-center">{story.location}</span>
       </h2>

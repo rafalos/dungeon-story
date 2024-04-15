@@ -1,30 +1,46 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import classes from './Modal.module.css';
-import Card from '../UI/Card';
-import { modalActions } from '@/store/modal-slice';
+import { close } from '@/store/modal-slice';
 import Button from '../UI/Button';
+import { motion } from 'framer-motion';
+import { useAppDispatch, useAppSelector } from '@/store';
+
+const Backdrop = ({ onClick }: { onClick: () => void }) => {
+  return (
+    <div
+      onClick={onClick}
+      className="absolute inset-0 z-[999] h-full w-full bg-black/80"
+    ></div>
+  );
+};
 
 function Modal() {
-  const dispatch = useDispatch();
-  const { description, title } = useSelector((state) => state.modal);
+  const dispatch = useAppDispatch();
+  const { content, title } = useAppSelector((state) => state.modal);
 
   const modalCloseHandler = () => {
-    dispatch(modalActions.closeModal());
+    dispatch(close());
   };
 
   return (
-    <div className={classes.backdrop} onClick={modalCloseHandler}>
-      <div className={classes.content}>
-        <Card>
-          <div className={classes.inner}>
-            <header className={classes.header}>{title}</header>
-            <div>{description}</div>
-            <Button onClick={modalCloseHandler}>Close</Button>
-          </div>
-        </Card>
-      </div>
-    </div>
+    <>
+      <Backdrop onClick={modalCloseHandler} />
+      <motion.div
+        initial={{
+          x: '-50%',
+        }}
+        animate={{
+          y: '50%',
+        }}
+        className="absolute left-[50%] z-[1000] flex h-1/2 w-1/2 flex-col 
+      justify-between gap-2 rounded-lg bg-black bg-hero bg-cover bg-no-repeat p-4 text-white"
+      >
+        <div className="absolute left-[20%] flex h-full flex-col items-center justify-center gap-8">
+          <h2 className="text-3xl font-bold">{title}</h2>
+          <p className='text-center'>{content}</p>
+          <Button onClick={modalCloseHandler}>Close</Button>
+        </div>
+      </motion.div>
+    </>
   );
 }
 

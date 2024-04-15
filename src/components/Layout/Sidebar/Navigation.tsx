@@ -6,9 +6,12 @@ import { GiShop } from 'react-icons/gi';
 import { IoLogOutOutline } from 'react-icons/io5';
 import { GiBookshelf } from 'react-icons/gi';
 import Status from './Status';
+import { useAppDispatch, useAppSelector } from '@/store';
+import { display } from '@/store/modal-slice';
 
 function Navigation() {
   const { logout } = useAuth0();
+  const dispatch = useAppDispatch();
   const navLinks = [
     {
       label: 'Character',
@@ -39,13 +42,13 @@ function Navigation() {
             key={to}
             className={({ isActive }) =>
               [
-                'flex w-full items-center justify-center p-4 tracking-wide transition-colors hover:bg-customCaramel md:justify-start md:gap-4',
+                'flex w-full items-center justify-center p-4 font-bold tracking-wider transition-colors hover:bg-customCaramel md:justify-start md:gap-4',
                 isActive ? 'bg-customCaramel' : undefined,
               ].join(' ')
             }
             to={to}
           >
-            <span className="md:text-2xl">
+            <span className="md:text-3xl">
               <Icon />
             </span>
             <span className="hidden md:block">{label.toUpperCase()}</span>
