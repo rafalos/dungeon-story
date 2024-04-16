@@ -6,7 +6,7 @@ import Hero from '@/components/Landing/Sections/Hero';
 import Footer from '@/components/Landing/Footer';
 
 const LandingPage = () => (
-  <div className="flex w-full justify-center bg-landingBg font-poppins">
+  <div className="flex w-full justify-center bg-landingBg">
     <div className="flex w-full flex-col">
       <Navbar />
       <main className="flex-1">
