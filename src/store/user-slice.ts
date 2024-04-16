@@ -160,10 +160,12 @@ export const useUserStatistics = () => {
 
 export const gainExperience = (amount: number): AppThunk => {
   return (dispatch, getState) => {
-    const currentExperience = getState().user.user?.experience;
-    const maxExperience = getState().user.user?.maxExperience;
+    const { user } = getState();
 
-    if (!currentExperience || !maxExperience) return;
+    if (!user.user) return;
+
+    const currentExperience = user.user.experience;
+    const maxExperience = user.user.maxExperience;
 
     if (currentExperience + amount >= maxExperience) {
       dispatch(increaseLevel());
