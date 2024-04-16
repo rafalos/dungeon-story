@@ -10,7 +10,7 @@ import Container from '@/components/UI/Container';
 import { useNotify } from '@/providers/NotificationProvider';
 import { useAppDispatch } from '@/store';
 import { deductEnergy } from '@/store/user-slice';
-import { useUISetters } from '@/store/UITriggersContext';
+import { useUISetters } from '@/providers/UITriggersProvider';
 
 function ExplorationPage() {
   const notify = useNotify();

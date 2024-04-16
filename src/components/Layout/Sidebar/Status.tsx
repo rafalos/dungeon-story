@@ -3,7 +3,7 @@ import SmallLoader from '@/components/UI/SmallLoader';
 import { SiPowerautomate } from 'react-icons/si';
 import { useUserData } from '@/store/user-slice';
 import { GiTwoCoins } from 'react-icons/gi';
-import { useUIGetters } from '@/store/UITriggersContext';
+import { useUIGetters } from '@/providers/UITriggersContext';
 
 const Status = () => {
   const { isLoading, user } = useUserData();

@@ -16,7 +16,7 @@ import NotificationsProvider from './providers/NotificationProvider';
 import Exploration from './components/Exploration/Exploration';
 import StoriesPage from './pages/StoriesPage';
 import StoryPage from './pages/StoryPage';
-import UITriggersProvider from './store/UITriggersContext';
+import UITriggersProvider from './providers/UITriggersContext';
 
 const queryClient = new QueryClient();
 
