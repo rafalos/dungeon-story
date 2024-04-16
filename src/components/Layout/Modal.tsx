@@ -31,12 +31,12 @@ function Modal() {
         animate={{
           y: '50%',
         }}
-        className="absolute left-[50%] z-[1000] flex h-1/2 w-1/2 flex-col 
-      justify-between gap-2 rounded-lg bg-black bg-hero bg-cover bg-no-repeat p-4 text-white"
+        className="absolute left-[50%] z-[1000] flex h-1/2 w-[80%] flex-col justify-between 
+      gap-2 rounded-lg bg-black bg-hero bg-cover bg-no-repeat p-4 text-white md:w-[1/2]"
       >
-        <div className="absolute left-[20%] flex h-full flex-col items-center justify-center gap-8">
+        <div className="left-[20%] flex h-full flex-col items-center justify-center gap-8 md:absolute">
           <h2 className="text-3xl font-bold">{title}</h2>
-          <p className='text-center'>{content}</p>
+          <p className="text-center">{content}</p>
           <Button onClick={modalCloseHandler}>Close</Button>
         </div>
       </motion.div>
