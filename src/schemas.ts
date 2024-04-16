@@ -51,6 +51,7 @@ export const LogItemSchema = z.object({
 });
 
 export const LogSchema = z.object({
+  monsterSpritesheet: z.string(),
   monsterName: z.string(),
   winner: z.string(),
   log: z.array(LogItemSchema),

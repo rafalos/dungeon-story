@@ -16,6 +16,7 @@ const Sprite = ({ spriteCount, spriteSize, spritesheetURL }: Props) => {
           background: `url(${spritesheetURL}) ${currentPosition}px 0`,
           width: `${spriteSize}px`,
           height: `${spriteSize}px`,
+          transform: 'scale(4)'
         }}
       ></div>
     </div>

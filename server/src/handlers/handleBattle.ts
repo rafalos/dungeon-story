@@ -1,7 +1,7 @@
 import { calculateHit, getHealth } from '../logic/resources/formulas';
 import { monsters } from '../logic/resources/monsters';
 import { Attributes } from '../types';
-import { getMonsterName } from '../utils/getMonsterName';
+import { randomElementFromArray } from '../utils/random';
 
 interface LogEvent {
   dealt: number;
@@ -20,10 +20,10 @@ export const handleBattle = async (
   playerAttributes: Attributes,
   location: string
 ) => {
+  const startingHealth = playerHealth;
   const log: LogEvent[] = [];
   const monster: Monster = {
-    ...monsters[0],
-    name: (await getMonsterName(location)) as string,
+    ...randomElementFromArray(monsters),
   };
   let winner;
   let expGain = monster.experienceYield;
@@ -72,6 +72,8 @@ export const handleBattle = async (
 
   return {
     monsterName: monster.name,
+    monsterSpritesheet: monster.spritesheet,
+    hpLoss: -(startingHealth - playerHealth),
     winner,
     expGain,
     log,

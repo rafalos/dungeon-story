@@ -9,7 +9,7 @@ type Props = {
 function BattleLog({ log }: Props) {
   return (
     <ul>
-      {log.map(({ dealt, monsterHealth, playerHealth, taken }, index) => (
+      {log.map(({ dealt, monsterHealth, playerHealth }, index) => (
         <li key={dealt + playerHealth + monsterHealth}>
           {index % 2 == 0 ? 'Player' : 'Monster'} hits for {dealt}
         </li>
