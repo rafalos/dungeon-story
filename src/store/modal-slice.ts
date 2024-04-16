@@ -7,7 +7,7 @@ type ModalState = {
 };
 
 const initialState = {
-  isOpen: true,
+  isOpen: false,
   title: '',
   content: '',
 } as ModalState;
