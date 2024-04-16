@@ -105,12 +105,10 @@ export const generateExploration = async (
   });
 
   if (explorations.length >= +process.env.ACTIVE_EXPLORATION_LIMIT!)
-    return next('User has reached exploration limit');
+    return next('Reached exploration limit');
 
   if (currentUser.energy <= 0)
-    return next(
-      `${currentUser._id.toString()} has not enough energy to start exploration`
-    );
+    return next(`You do not have enough energy to start exploration`);
 
   const newSeed = generateSeed();
 

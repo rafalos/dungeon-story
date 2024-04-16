@@ -95,7 +95,7 @@ function GamePage() {
       <Notification />
       <Header />
       {isOpen && <Modal />}
-      <main className="mx-auto mt-[60px] grid h-full w-full justify-items-start md:mt-0 md:h-[calc(100%-60px)] md:grid-cols-[auto,_1fr]">
+      <main className="mx-auto mt-[60px] grid w-full justify-items-start md:mt-0 h-[calc(100%-60px)] md:grid-cols-[auto,_1fr]">
         <Sidebar />
         <Outlet />
       </main>

@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from '../UI/Button';
 import { Link } from 'react-router-dom';
-import { GiCrossedSwords } from 'react-icons/gi';
 
 type Props = {
   name: string;

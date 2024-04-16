@@ -49,6 +49,7 @@ function Exploration() {
     mutationKey: ['movePosition', id],
     mutationFn: movePosition,
     onSuccess: (eventResult) => {
+      console.log(eventResult)
       setResult(eventResult);
 
       dispatch(gainExperience(eventResult.experienceGained));

@@ -10,7 +10,7 @@ type Props = {
 function Well({ onEventFinished, result }: Props) {
   return (
     <div className="flex flex-col items-center gap-8">
-      <p className="text-2xl">
+      <p className="md:text-2xl">
         I feel refreshed and gained knowledge after I drunk from well
       </p>
       <ul>

@@ -26,9 +26,9 @@ const Tabbed = ({ elements }: Props) => {
       <div className="my-2 flex divide-x divide-customBlack shadow-sm">
         {tabNames.map((tabName, index) => (
           <Button
-            className={`${index === 0 ? 'rounded-l-full' : null} ${
-              index === tabNames.length - 1 ? 'rounded-r-full' : null
-            } ${active === tabName ? 'bg-customCaramel' : null}`}
+            className={`${index === 0 ? 'rounded-l-lg' : null} ${
+              index === tabNames.length - 1 ? 'rounded-r-lg' : null
+            } ${active === tabName ? 'bg-customRed/80' : null}`}
             onClick={() => handleChangeTab(tabName)}
             key={tabName}
             variant={'tab'}

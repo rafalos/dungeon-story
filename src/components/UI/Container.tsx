@@ -8,14 +8,12 @@ type Props = {
 const Container = ({ children, title }: Props) => {
   return (
     <div
-      className={`flex h-[calc(100%-3.5rem)] md:h-full w-full flex-col text-xl md:p-12 md:text-3xl`}
+      className={`flex h-[calc(100%-3.5rem)] w-full flex-col text-xl md:h-full md:p-12 md:text-3xl`}
     >
-      <div
-        className={`my-4 flex h-8 items-center justify-center font-bold text-customWhite`}
-      >
-        <div>{title}</div>
-      </div>
-      <div className={`h-full`}>{children}</div>
+      <h2 className="my-2 flex h-8 items-center justify-center font-bold text-customWhite">
+        {title}
+      </h2>
+      <div className={`h-full pb-16 md:pb-0`}>{children}</div>
     </div>
   );
 };

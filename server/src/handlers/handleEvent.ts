@@ -82,6 +82,7 @@ export const handleEvent = async (
       inventory.equipment.push(...itemIDs);
       itemsFound.push(...itemGain);
 
+      console.log(itemsFound);
       await inventory.save();
       break;
     }

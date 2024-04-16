@@ -21,7 +21,7 @@ function ExplorationSummary({
   ));
   return (
     <Card>
-      <div className="mb-4 text-2xl italic">
+      <div className="mb-4 italic md:text-2xl">
         <Typer text={ending} delay={20} />
       </div>
       <div className="flex flex-col items-center gap-8">
@@ -29,7 +29,7 @@ function ExplorationSummary({
           During your expedition you have gained {totalExperienceGained} total
           experience.
         </p>
-        <span>Found: {totalItemsFound.length > 0 ? foundItems : 'No items'}</span>
+        <p>Found: {totalItemsFound.length > 0 ? foundItems : 'No items'}</p>
         <Link to="..">
           <Button>Leave exploration</Button>
         </Link>

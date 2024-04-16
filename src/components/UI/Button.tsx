@@ -9,7 +9,7 @@ const buttonVariants = cva(['flex', 'justify-center', 'items-center'], {
   variants: {
     variant: {
       tab: [
-        'bg-customRed/80 h-4 p-3 transition text-customWhite text-sm md:text-lg md:p-4',
+        'bg-customRed h-8 p-4 transition text-customWhite text-sm md:text-lg md:p-4 font-bold',
       ],
       game: [
         'bg-customRed h-10 rounded px-8 transition text-customWhite text-sm md:text-lg font-bold',

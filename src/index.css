@@ -20,7 +20,6 @@ body {
   height: 100vh;
   @apply bg-customBlack;
   font-family: 'Didact Gothic';
-  font-size: 24px;
 }
 
 .App {
