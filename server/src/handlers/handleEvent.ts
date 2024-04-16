@@ -48,8 +48,9 @@ export const handleEvent = async (
   user: InstanceType<typeof User>,
   exploration: HydratedDocument<IExploration>
 ) => {
-  const { seed, currentStage } = exploration;
+  const { seed, currentStage, currentHealth } = exploration;
   let experienceGained = 0;
+  let battleLog;
   let healthDiff = 0;
   const itemsFound: HydratedDocument<EquipmentType>[] = [];
   const io: Server<
@@ -60,9 +61,23 @@ export const handleEvent = async (
   > = app.get('io');
 
   switch (seed[currentStage]) {
-    case 'battle':
-      handleBattle();
+    case 'battle': {
+      const { expGain, log, winner, monsterName } = await handleBattle(
+        user.damage,
+        user.armor,
+        currentHealth,
+        user.attributes,
+        exploration.name
+      );
+
+      experienceGained = expGain;
+      battleLog = {
+        monsterName,
+        log,
+        winner,
+      };
       break;
+    }
     case 'trap': {
       const { hpLoss } = handleTrap(exploration.maxHealth);
 
@@ -82,7 +97,6 @@ export const handleEvent = async (
       inventory.equipment.push(...itemIDs);
       itemsFound.push(...itemGain);
 
-      console.log(itemsFound);
       await inventory.save();
       break;
     }
@@ -119,5 +133,6 @@ export const handleEvent = async (
     healthDiff,
     itemsFound,
     experienceGained,
+    battleLog,
   };
 };

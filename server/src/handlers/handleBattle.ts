@@ -1,63 +1,79 @@
 import { calculateHit, getHealth } from '../logic/resources/formulas';
 import { monsters } from '../logic/resources/monsters';
+import { Attributes } from '../types';
+import { getMonsterName } from '../utils/getMonsterName';
 
-export const handleBattle = () => {
-  const log: string[] = [];
-  const monster = {
+interface LogEvent {
+  dealt: number;
+  playerHealth: number;
+  monsterHealth: number;
+}
+
+type Monster = (typeof monsters)[number] & {
+  name: string;
+};
+
+export const handleBattle = async (
+  playerDamage: number,
+  playerArmor: number,
+  playerHealth: number,
+  playerAttributes: Attributes,
+  location: string
+) => {
+  const log: LogEvent[] = [];
+  const monster: Monster = {
     ...monsters[0],
+    name: (await getMonsterName(location)) as string,
   };
   let winner;
+  let expGain = monster.experienceYield;
 
-  const player = {
-    damage: 8,
-    armor: 3,
-    strength: 4,
-    vitality: 2,
-  };
-
-  console.log(monster);
-
-  let playerHealth = getHealth(player.vitality);
   let monsterHealth = getHealth(monster.vitality);
 
-  console.log(
-    `Player health ${playerHealth}`,
-    `Monster health ${monsterHealth}`
-  );
-
-  while (playerHealth > 0 || monsterHealth > 0) {
+  while (playerHealth >= 0 && monsterHealth >= 0) {
     const playerHit = calculateHit(
-      player.damage,
-      player.strength,
+      playerDamage,
+      playerAttributes.strength,
       monster.armor
     );
-    log.push(`Player hits monster for ${playerHit}`);
 
     monsterHealth -= playerHit;
 
+    log.push({
+      dealt: playerHit,
+      playerHealth,
+      monsterHealth,
+    });
+
     if (monsterHealth <= 0) {
       winner = 'player';
+      break;
     }
 
     const monsterHit = calculateHit(
       monster.damage,
       monster.strength,
-      player.armor
+      playerArmor
     );
-
-    console.log(monsterHit);
 
     playerHealth -= monsterHit;
 
     if (playerHealth <= 0) {
       winner = 'monster';
+      expGain = 0;
     }
 
-    log.push(`Monster hits player for ${monsterHit}`);
+    log.push({
+      dealt: monsterHit,
+      playerHealth,
+      monsterHealth,
+    });
   }
 
-  console.log(log);
-  return winner;
+  return {
+    monsterName: monster.name,
+    winner,
+    expGain,
+    log,
+  };
 };
-
-console.log(handleBattle());

@@ -1,8 +1,8 @@
 import { ExplorationEvent } from '../../../types';
 
 export const EVENT_PROBABILITY: [ExplorationEvent, number][] = [
-  // ['battle', 60],
-  ['trap', 20],
-  ['treasure', 20],
-  ['well', 40],
+  ['battle', 85],
+  ['trap', 5],
+  ['treasure', 5],
+  ['well', 5],
 ];

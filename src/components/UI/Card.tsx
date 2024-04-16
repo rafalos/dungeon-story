@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 type Props = {
   children: React.ReactNode;
-  title: string;
+  title?: string;
 } & ComponentProps<'div'>;
 
 function Card({ children, title }: Props) {

@@ -1,4 +1,4 @@
-import { GiMantrap } from 'react-icons/gi';
+import { GiCrossedSwords, GiMantrap } from 'react-icons/gi';
 import { GiWaterfall } from 'react-icons/gi';
 import { GiChest } from 'react-icons/gi';
 import { MdQuestionMark } from 'react-icons/md';
@@ -16,6 +16,7 @@ function TimelineItem({ isActive, event, itemKnown }: Props) {
     trap: <GiMantrap />,
     well: <GiWaterfall />,
     treasure: <GiChest />,
+    battle: <GiCrossedSwords />
   };
 
   return (

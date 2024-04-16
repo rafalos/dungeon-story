@@ -86,6 +86,7 @@ export const movePosition = async (
     healthDiff: result?.healthDiff,
     experienceGained: result?.experienceGained,
     itemsFound: result?.itemsFound,
+    battleLog: result?.battleLog,
   });
 };
 

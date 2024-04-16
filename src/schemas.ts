@@ -44,10 +44,23 @@ export const EquipmentSchema = z.discriminatedUnion('descriptor', [
     .merge(EquipmentPreSchema),
 ]);
 
+export const LogItemSchema = z.object({
+  dealt: z.number(),
+  playerHealth: z.number(),
+  monsterHealth: z.number(),
+});
+
+export const LogSchema = z.object({
+  monsterName: z.string(),
+  winner: z.string(),
+  log: z.array(LogItemSchema),
+});
+
 export const MoveStateSchema = z.object({
   healthDiff: z.number(),
   experienceGained: z.number(),
   itemsFound: z.array(EquipmentSchema),
+  battleLog: LogSchema.optional(),
 });
 
 export const StorySchema = z.object({

@@ -2,6 +2,8 @@ import { z } from 'zod';
 import {
   EquipmentSchema,
   InventorySchema,
+  LogItemSchema,
+  LogSchema,
   MoveStateSchema,
   StoriesSchema,
   StorySchema,
@@ -18,6 +20,7 @@ export type Inventory = z.infer<typeof InventorySchema>;
 export type Stories = z.infer<typeof StoriesSchema>;
 export type Story = z.infer<typeof StorySchema>;
 export type MoveState = z.infer<typeof MoveStateSchema>;
+export type LogItem = z.infer<typeof LogItemSchema>;
 
 export interface Item {
   name: string;

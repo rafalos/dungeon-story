@@ -76,7 +76,7 @@ export type EquipmentBlueprint = DistributiveOmit<
   'modifiers' | 'sellPrice' | 'owner' | 'buyPrice'
 >;
 
-type Attributes = {
+export type Attributes = {
   [key in Affix]: number;
 };
 

@@ -8,6 +8,7 @@ import Typer from '../UI/Typer';
 import Card from '../UI/Card';
 import { Equipment, MoveState } from '@/types';
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
+import Battle from './Events/Battle/Battle';
 
 type Props = {
   fetchNextStory: (
@@ -55,15 +56,13 @@ function ExplorationEvent({
     let cEvent = null;
     switch (eventString) {
       case EVENTS.BATTLE:
-        // cEvent = (
-        //   <Battle
-        //     onEventFinished={endEventHandler}
-        //     onPlayerDeath={onPlayerDeath}
-        //     onItemFound={onItemFound}
-        //     onExperienceGained={onExperienceGained}
-        //   />
-        // );
-        cEvent = null;
+        cEvent = (
+          <Battle
+            onEventFinished={endEventHandler}
+            onExperienceGained={onExperienceGained}
+            result={eventResult}
+          />
+        );
         break;
       case EVENTS.TRAP:
         cEvent = (

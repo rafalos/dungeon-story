@@ -6,5 +6,6 @@ export const monsters = [
     armor: 2,
     strength: 1,
     vitality: 2,
+    experienceYield: 31,
   },
 ];

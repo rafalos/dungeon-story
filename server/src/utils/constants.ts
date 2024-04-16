@@ -53,6 +53,8 @@ export const EVENTS = {
 
 export const GENERATE_NAME_STRING =
   'Give me random fantasy roguelike game location name';
+export const GENERATE_MONSTERNAME_STRING =
+  'Give me random fantasy roguelike monster name found in #LOCATION';
 
 export const EXPLORATION_STRINGS = {
   ENTRY:

@@ -11,7 +11,6 @@ import { randomInRange } from '../../../../utils/random';
 import BattleSummary from './BattleSummary';
 import { LOOT_BRACKERS } from '../../../../Logic/Resources/tables/lootTable';
 import { getBasicDamage } from '../../../../utils/formulas';
-import BattleLog from './BattleLog';
 import Consumables from '../../../Character/Consumables';
 import BattleActions from './BattleActions';
 import { generateLoot } from '../../../../Logic/Generator/loot';
