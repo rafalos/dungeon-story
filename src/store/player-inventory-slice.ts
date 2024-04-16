@@ -70,6 +70,7 @@ const playerInventorySlice = createSlice({
 
 export default playerInventorySlice.reducer;
 export const {
+  addInventoryItems,
   addInventoryItem,
   removeInventoryItem,
   addWornItem,

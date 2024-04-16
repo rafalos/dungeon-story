@@ -14,6 +14,7 @@ import SmallLoader from '../UI/SmallLoader';
 import { Equipment, MoveState } from '@/types';
 import { useAppDispatch } from '@/store';
 import { gainExperience } from '@/store/user-slice';
+import { addInventoryItems } from '@/store/player-inventory-slice';
 
 function Exploration() {
   const queryClient = useQueryClient();
@@ -49,10 +50,10 @@ function Exploration() {
     mutationKey: ['movePosition', id],
     mutationFn: movePosition,
     onSuccess: (eventResult) => {
-      console.log(eventResult)
       setResult(eventResult);
 
       dispatch(gainExperience(eventResult.experienceGained));
+      dispatch(addInventoryItems(eventResult.itemsFound));
     },
     onSettled: () => {
       queryClient.refetchQueries({
