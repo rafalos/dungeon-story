@@ -12,14 +12,15 @@ function BattleLog({ log, onDamageTaken }: Props) {
 
   useEffect(() => {
     const updateCurrentLog = async () => {
+      console.log(log)
       for (const [index, value] of log.entries()) {
         const item = await waitForSecondsAndResolve(1, value);
         let logEntry = '';
         if (index % 2 == 0) {
           logEntry = 'Player';
+          onDamageTaken('enemy', value.dealt);
         } else {
           logEntry = 'Monster';
-          onDamageTaken('enemy', value.dealt);
         }
         logEntry += ` performs an attack for ${item.dealt} health points`;
 
