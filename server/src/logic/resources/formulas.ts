@@ -1,4 +1,4 @@
-import { randomInRange } from '../../utils/random';
+import { randomInRange, unflooredRandomInRange } from '../../utils/random';
 
 export const getHealth = (vitality: number) => {
   return vitality * 10;
@@ -9,9 +9,9 @@ export const calculateHit = (
   strengthAmount: number,
   opponentsArmor: number
 ) => {
-  const hitAmount = randomInRange(0, damage + strengthAmount / 2);
+  const hitAmount = unflooredRandomInRange(0, damage + strengthAmount / 2);
 
-  return Math.abs(hitAmount - opponentsArmor / 2);
+  const finalHit = +(hitAmount - opponentsArmor / 2).toFixed(2);
+
+  return finalHit < 0 ? 0 : finalHit;
 };
-
-calculateHit(8, 4, 4);

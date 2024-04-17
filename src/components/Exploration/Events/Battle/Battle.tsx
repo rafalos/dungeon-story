@@ -3,6 +3,7 @@ import Button from '@/components/UI/Button';
 import { EntityType, MoveState } from '@/types';
 import BattleLog from './BattleLog';
 import BattleEntityPanel from './BattleEntityPanel';
+import { useAppSelector } from '@/store';
 
 type Props = {
   onEventFinished: () => void;
@@ -11,14 +12,21 @@ type Props = {
 };
 
 const Battle = ({ onEventFinished, result }: Props) => {
-  if (!result.battleLog) return <div>loading</div>;
-  const [currentHealth, setCurrentHealth] = useState(
+  const { user } = useAppSelector((state) => state.user);
+  if (!result.battleLog || !user) return <div>loading</div>;
+  const [enemyCurrentHealth, setEnemyCurrentHealth] = useState(
     result.battleLog.enemy.health
+  );
+
+  const [playerCurrentHealth, setPlayerCurrentHealth] = useState(
+    result.battleLog.startingHealth
   );
 
   const onDamageTaken = (entityType: EntityType, damageAmount: number) => {
     if (entityType === 'enemy') {
-      setCurrentHealth((prevHealth) => prevHealth - damageAmount);
+      setEnemyCurrentHealth((prevHealth) => prevHealth - damageAmount);
+    } else {
+      setPlayerCurrentHealth((prevHealth) => prevHealth - damageAmount);
     }
   };
 
@@ -36,9 +44,18 @@ const Battle = ({ onEventFinished, result }: Props) => {
       <div className="flex items-center gap-4">
         <BattleEntityPanel
           {...result.battleLog.enemy}
-          currentHealth={currentHealth}
+          currentHealth={enemyCurrentHealth}
         />
         <BattleLog log={result.battleLog.log} onDamageTaken={onDamageTaken} />
+        <BattleEntityPanel
+          armor={user.armor}
+          damage={user.damage}
+          health={result.battleLog.startingHealth}
+          name="Player"
+          strength={user.attributes.strength}
+          vitality={user.attributes.vitality}
+          currentHealth={playerCurrentHealth}
+        />
       </div>
       <Button onClick={onEventFinished}>Continue</Button>
     </div>

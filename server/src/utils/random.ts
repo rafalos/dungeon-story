@@ -1,6 +1,12 @@
 export const randomInRange = (min: number, max: number) =>
   Math.floor(Math.random() * (max - min) + min);
 
+export const unflooredRandomInRange = (min: number, max: number) => {
+  const rnd = Math.random() * (max - min) + min;
+
+  return +rnd.toFixed(2);
+};
+
 export const randomElementFromArray = <T>(arr: T[]) =>
   arr[Math.floor(Math.random() * arr.length)];
 

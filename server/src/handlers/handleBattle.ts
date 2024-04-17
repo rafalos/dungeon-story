@@ -9,14 +9,13 @@ interface LogEvent {
   monsterHealth: number;
 }
 
-type Monster = (typeof monsters)[number]
+type Monster = (typeof monsters)[number];
 
 export const handleBattle = async (
   playerDamage: number,
   playerArmor: number,
   playerHealth: number,
-  playerAttributes: Attributes,
-  location: string
+  playerAttributes: Attributes
 ) => {
   const startingHealth = playerHealth;
   const log: LogEvent[] = [];
@@ -69,11 +68,14 @@ export const handleBattle = async (
     });
   }
 
+  console.log(monster);
+
   return {
     enemy: {
       ...monster,
       health: maxHealth,
     },
+    startingHealth,
     hpLoss: -(startingHealth - playerHealth),
     winner,
     expGain,

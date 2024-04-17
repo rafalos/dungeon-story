@@ -62,13 +62,13 @@ export const handleEvent = async (
 
   switch (seed[currentStage]) {
     case 'battle': {
-      const { expGain, log, winner, hpLoss, enemy } = await handleBattle(
-        user.damage,
-        user.armor,
-        currentHealth,
-        user.attributes,
-        exploration.name
-      );
+      const { expGain, log, winner, hpLoss, enemy, startingHealth } =
+        await handleBattle(
+          user.damage,
+          user.armor,
+          currentHealth,
+          user.attributes
+        );
 
       experienceGained = expGain;
       healthDiff += hpLoss;
@@ -76,6 +76,7 @@ export const handleEvent = async (
         enemy,
         log,
         winner,
+        startingHealth,
       };
       break;
     }
@@ -115,12 +116,12 @@ export const handleEvent = async (
       break;
   }
 
+  exploration.currentHealth += healthDiff;
+  user.experience += experienceGained;
+
   if (exploration.currentHealth <= 0) {
     exploration.currentStage = 666;
   }
-
-  exploration.currentHealth += healthDiff;
-  user.experience += experienceGained;
 
   if (user.experience >= user.maxExperience) {
     user.level += 1;
