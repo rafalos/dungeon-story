@@ -50,9 +50,19 @@ export const LogItemSchema = z.object({
   monsterHealth: z.number(),
 });
 
+export const EntitySchema = z.object({
+  health: z.number(),
+  name: z.string(),
+  spritesheet: z.string(),
+  damage: z.number(),
+  armor: z.number(),
+  strength: z.number(),
+  vitality: z.number(),
+  experienceYield: z.number(),
+});
+
 export const LogSchema = z.object({
-  monsterSpritesheet: z.string(),
-  monsterName: z.string(),
+  enemy: EntitySchema,
   winner: z.string(),
   log: z.array(LogItemSchema),
 });

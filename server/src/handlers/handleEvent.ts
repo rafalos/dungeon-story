@@ -62,20 +62,18 @@ export const handleEvent = async (
 
   switch (seed[currentStage]) {
     case 'battle': {
-      const { expGain, log, winner, monsterName, monsterSpritesheet, hpLoss } =
-        await handleBattle(
-          user.damage,
-          user.armor,
-          currentHealth,
-          user.attributes,
-          exploration.name
-        );
+      const { expGain, log, winner, hpLoss, enemy } = await handleBattle(
+        user.damage,
+        user.armor,
+        currentHealth,
+        user.attributes,
+        exploration.name
+      );
 
       experienceGained = expGain;
       healthDiff += hpLoss;
       battleLog = {
-        monsterSpritesheet,
-        monsterName,
+        enemy,
         log,
         winner,
       };

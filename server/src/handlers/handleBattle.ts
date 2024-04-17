@@ -9,9 +9,7 @@ interface LogEvent {
   monsterHealth: number;
 }
 
-type Monster = (typeof monsters)[number] & {
-  name: string;
-};
+type Monster = (typeof monsters)[number]
 
 export const handleBattle = async (
   playerDamage: number,
@@ -29,6 +27,7 @@ export const handleBattle = async (
   let expGain = monster.experienceYield;
 
   let monsterHealth = getHealth(monster.vitality);
+  const maxHealth = monsterHealth;
 
   while (playerHealth >= 0 && monsterHealth >= 0) {
     const playerHit = calculateHit(
@@ -71,8 +70,10 @@ export const handleBattle = async (
   }
 
   return {
-    monsterName: monster.name,
-    monsterSpritesheet: monster.spritesheet,
+    enemy: {
+      ...monster,
+      health: maxHealth,
+    },
     hpLoss: -(startingHealth - playerHealth),
     winner,
     expGain,

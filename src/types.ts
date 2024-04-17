@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import {
+  EntitySchema,
   EquipmentSchema,
   InventorySchema,
   LogItemSchema,
@@ -21,7 +22,9 @@ export type Stories = z.infer<typeof StoriesSchema>;
 export type Story = z.infer<typeof StorySchema>;
 export type MoveState = z.infer<typeof MoveStateSchema>;
 export type LogItem = z.infer<typeof LogItemSchema>;
+export type Entity = z.infer<typeof EntitySchema>;
 
+export type EntityType = 'player' | 'enemy';
 export interface Item {
   name: string;
   type: ItemType;

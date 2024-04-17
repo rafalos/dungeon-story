@@ -11,6 +11,7 @@ import { useNotify } from '@/providers/NotificationProvider';
 import { useAppDispatch } from '@/store';
 import { deductEnergy } from '@/store/user-slice';
 import { useUISetters } from '@/providers/UITriggersProvider';
+import BattleLog from '@/components/Exploration/Events/Battle/BattleLog';
 
 function ExplorationPage() {
   const notify = useNotify();
@@ -51,7 +52,6 @@ function ExplorationPage() {
             >
               {status === 'pending' ? <SmallLoader /> : 'New exploration'}
             </Button>
-
             {explorations && <List explorations={explorations} />}
           </div>
         </Container>
