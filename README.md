@@ -4,7 +4,7 @@ Roguelike RPG game with story generator driven by OpenAI Api
 
 ## Hosted version
 
-https://dungeon-story.fly.dev/
+https://dungeon-story.onrender.com/
 
 For testing purposes if you do not want to create your own account use:
 ```
