@@ -15,6 +15,8 @@ const Authentication = ({ children }: Props) => {
         scope: 'openid profile email',
         audience: 'https://dungeon-story.com/api',
       }}
+      cacheLocation="localstorage"
+      useRefreshTokens={true}
     >
       {children}
     </Auth0Provider>
