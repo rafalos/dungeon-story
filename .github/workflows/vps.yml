@@ -12,7 +12,7 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
             cd apps/dungeon-story/
-            docker-compose pull
-            docker-compose up-d --remove-orphans
-            docker-compose ps
+            docker compose pull
+            docker compose up-d --remove-orphans
+            docker compose ps
             docker images | grep ds-
