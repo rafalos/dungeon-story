@@ -2,7 +2,6 @@ name: deploy to VPS
 on: workflow_dispatch
 jobs:
   deploy:
-    needs: build_and_push
     runs-on: ubuntu-latest
     steps:
       - name: SSH deploy to VPS
