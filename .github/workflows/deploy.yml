@@ -22,8 +22,11 @@ jobs:
 
       - name: Build Client image
         run: |
-          docker build -t ${{ secrets.DOCKER_LOGIN }}/ds-client:latest \
-                       -t ${{ secrets.DOCKER_LOGIN }}/ds-client:sha-${{ github.sha }} .
+          docker build \
+            --build-arg VITE_AUDIENCE=${{ secrets.VITE_AUDIENCE }} \
+            --build-arg VITE_REDIRECT_URL=${{ secrets.VITE_REDIRECT_URL }} \
+            -t ${{ secrets.DOCKER_LOGIN }}/ds-client:latest \
+            -t ${{ secrets.DOCKER_LOGIN }}/ds-client:sha-${{ github.sha }} .
 
       - name: Push API image
         run: |
