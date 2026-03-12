@@ -1,0 +1,21 @@
+name: deploy
+on: workflow_dispatch
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout repo'
+        uses: actions/checkout@v4
+      - name: 'Login to DockerHub registry'
+        uses: docker/login-action@v3
+        with: 
+          username: ${{secrets.DOCKER_LOGIN}}
+          password: ${{secrets.DOCKER_PASSWORD}}
+      - name: 'Build API image'
+        run: docker build -t ${{secrets.DOCKER_LOGIN}}/ds-api:latest ./server
+      - name: 'Build Client image'
+        run: docker build -t ${{secrets.DOCKER_LOGIN}}/ds-client:latest .
+      - name: 'Push API image'
+        run: docker push ${{ secrets.DOCKER_LOGIN }}/ds-api:latest
+      - name: 'Push Client image'
+        run: docker push ${{ secrets.DOCKER_LOGIN }}/ds-client:latest
