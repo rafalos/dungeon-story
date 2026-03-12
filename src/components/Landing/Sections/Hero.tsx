@@ -12,7 +12,7 @@ const Hero = () => {
       />
       <img
         src="/jewel-part2.png"
-        className="absolute top-[60px]  z-40 w-28 origin-top animate-float2"
+        className="absolute top-[60px] z-40 w-28 origin-top animate-float2"
         alt=""
       />
       <div className="flex flex-col items-center gap-12 p-14 md:absolute md:left-[10%]">

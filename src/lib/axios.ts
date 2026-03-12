@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 let token: string;
+const baseURL = '/api';
 
 export const setAuthToken = (newToken: string) => {
   token = newToken;
@@ -9,7 +10,7 @@ export const setAuthToken = (newToken: string) => {
 export const getAuthToken = () => token;
 
 const instance = axios.create({
-  baseURL: '/api/',
+  baseURL,
 });
 
 instance.interceptors.request.use(
