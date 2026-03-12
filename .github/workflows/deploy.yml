@@ -1,5 +1,8 @@
 name: deploy to VPS
-on: workflow_dispatch
+on:
+  push:
+    branches:
+      - master
 jobs:
   build_and_push:
     runs-on: ubuntu-latest
