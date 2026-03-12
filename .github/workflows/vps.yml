@@ -11,8 +11,9 @@ jobs:
           username: ${{ secrets.VPS_LOGIN }}
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
+            echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_LOGIN}" --password-stdin
             cd apps/dungeon-story/
             docker compose pull
-            docker compose up-d --remove-orphans
+            docker compose up -d --remove-orphans
             docker compose ps
             docker images | grep ds-
