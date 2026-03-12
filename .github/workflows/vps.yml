@@ -6,13 +6,13 @@ jobs:
     steps:
       - name: SSH deploy to VPS
         uses: appleboy/ssh-action@v1
+        env:
+          DOCKER_LOGIN: ${{ secrets.DOCKER_LOGIN }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_LOGIN }}
           key: ${{ secrets.VPS_SSH_KEY }}
-          env:
-            DOCKER_LOGIN: ${{ secrets.DOCKER_LOGIN }}
-            DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
           script: |
             echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_LOGIN" --password-stdin
             cd apps/dungeon-story/
