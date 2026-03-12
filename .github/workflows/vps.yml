@@ -10,4 +10,9 @@ jobs:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_LOGIN }}
           key: ${{ secrets.VPS_SSH_KEY }}
-          script: echo "test"
+          script: |
+            cd apps/dungeon-story/
+            docker-compose pull
+            docker-compose up-d --remove-orphans
+            docker-compose ps
+            docker images | grep ds-
