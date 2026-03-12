@@ -19,15 +19,4 @@ jobs:
         run: docker push ${{ secrets.DOCKER_LOGIN }}/ds-api:latest
       - name: 'Push Client image'
         run: docker push ${{ secrets.DOCKER_LOGIN }}/ds-client:latest
-        
-  deploy:
-    needs: build_and_push
-    runs-on: ubuntu-latest
-    steps:
-      - name: SSH deploy to VPS
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_LOGIN }}
-          key: ${{ secrets.VPS_SSH_KEY }}
-          script: whoami
+      
