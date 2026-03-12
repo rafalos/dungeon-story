@@ -11,9 +11,9 @@ const Authentication = ({ children }: Props) => {
       domain="dev-4rfnuvnatksv3pik.eu.auth0.com"
       clientId="DqNQFBpog3Tt1buZZAkPdKAdFZZwym7g"
       authorizationParams={{
-        redirect_uri: `${window.location.origin}/game`,
+        redirect_uri: import.meta.env.VITE_REDIRECT_URL,
         scope: 'openid profile email',
-        audience: 'https://dungeon-story.com/api',
+        audience: import.meta.env.VITE_AUDIENCE,
       }}
       cacheLocation="localstorage"
       useRefreshTokens={true}

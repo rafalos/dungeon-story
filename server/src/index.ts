@@ -2,7 +2,6 @@ import { app } from './app';
 import mongoose from 'mongoose';
 import { recreateShop } from './utils/recreateShop';
 import { startCronJobs } from './cron';
-const mongoUri = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@cluster0.pfzxkba.mongodb.net/${process.env.MONGODB_DATABASE}`;
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import { shopRestock } from './handlers/shopRestock';
@@ -18,7 +17,13 @@ const init = async () => {
   app.set('io', ioServer);
   console.log(`Api is starting in ${process.env.NODE_ENV} mode`);
 
-  await mongoose.connect(mongoUri);
+  try {
+    await mongoose.connect(process.env.MONGODB!)
+
+  } catch(error) {
+    console.log(error)
+  } 
+
   console.log('Connected to the database succesfully');
   await recreateShop();
 
