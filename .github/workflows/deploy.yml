@@ -15,22 +15,22 @@ jobs:
       - name: Build API image
         run: |
           docker build -t ${{ secrets.DOCKER_LOGIN }}/ds-api:latest \
-                       -t ${{ secrets.DOCKER_LOGIN }}/ds-api:sha-${{ github.sha::7 }} ./server
+                       -t ${{ secrets.DOCKER_LOGIN }}/ds-api:sha-${{ github.sha }} ./server
 
       - name: Build Client image
         run: |
           docker build -t ${{ secrets.DOCKER_LOGIN }}/ds-client:latest \
-                       -t ${{ secrets.DOCKER_LOGIN }}/ds-client:sha-${{ github.sha::7 }} .
+                       -t ${{ secrets.DOCKER_LOGIN }}/ds-client:sha-${{ github.sha }} .
 
       - name: Push API image
         run: |
           docker push ${{ secrets.DOCKER_LOGIN }}/ds-api:latest
-          docker push ${{ secrets.DOCKER_LOGIN }}/ds-api:sha-${{ github.sha::7 }}
+          docker push ${{ secrets.DOCKER_LOGIN }}/ds-api:sha-${{ github.sha }}
 
       - name: Push Client image
         run: |
           docker push ${{ secrets.DOCKER_LOGIN }}/ds-client:latest
-          docker push ${{ secrets.DOCKER_LOGIN }}/ds-client:sha-${{ github.sha::7 }}
+          docker push ${{ secrets.DOCKER_LOGIN }}/ds-client:sha-${{ github.sha }}
         
   deploy:
     needs: build_and_push
