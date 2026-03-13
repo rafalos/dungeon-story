@@ -1,26 +1,9 @@
 import axios from 'axios';
 
-let token: string;
-const baseURL = '/api';
-
-export const setAuthToken = (newToken: string) => {
-  token = newToken;
-};
-
-export const getAuthToken = () => token;
+const BASE_URL = '/api';
 
 const instance = axios.create({
-  baseURL,
+  baseURL: BASE_URL,
 });
-
-instance.interceptors.request.use(
-  (config) => {
-    config.headers.Authorization = `Bearer ${getAuthToken()}`;
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
 
 export default instance;

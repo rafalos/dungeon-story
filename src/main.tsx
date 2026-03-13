@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
 import './index.css';
 import 'react-tooltip/dist/react-tooltip.css';
 import store from './store';
@@ -11,18 +10,20 @@ import ShopPage from './pages/ShopPage';
 import ExplorationPage from './pages/ExplorationPage';
 import GamePage from './pages/GamePage.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import Authentication from './components/Authentication';
+import Authentication from './providers/Authentication';
 import NotificationsProvider from './providers/NotificationProvider';
 import Exploration from './components/Exploration/Exploration';
 import StoriesPage from './pages/StoriesPage';
 import StoryPage from './pages/StoryPage';
 import UITriggersProvider from './providers/UITriggersProvider';
+import LandingPage from './pages/LandingPage';
+import { AuthenticatedWrapper } from './providers/AuthenticatedWrapper';
 
 const queryClient = new QueryClient();
 
 const GameProviders = ({ children }: { children: React.ReactNode }) => {
   return (
-    <Authentication>
+    <AuthenticatedWrapper>
       <NotificationsProvider>
         <QueryClientProvider client={queryClient}>
           <UITriggersProvider>
@@ -30,18 +31,14 @@ const GameProviders = ({ children }: { children: React.ReactNode }) => {
           </UITriggersProvider>
         </QueryClientProvider>
       </NotificationsProvider>
-    </Authentication>
+    </AuthenticatedWrapper>
   );
 };
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: (
-      <Authentication>
-        <App />
-      </Authentication>
-    ),
+    element: <LandingPage />,
   },
   {
     path: '/game',
@@ -80,5 +77,7 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <RouterProvider router={router} />
+  <Authentication>
+    <RouterProvider router={router} />
+  </Authentication>
 );

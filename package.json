@@ -12,12 +12,12 @@
     "deploy": "cd ./server && npm run deploy"
   },
   "dependencies": {
-    "@auth0/auth0-react": "^2.2.3",
+    "@auth0/auth0-react": "^2.15.0",
     "@reduxjs/toolkit": "^1.9.3",
     "@tanstack/react-query": "^5.8.4",
     "@tanstack/react-query-devtools": "^5.8.4",
     "@vitejs/plugin-react": "^3.1.0",
-    "axios": "^1.6.0",
+    "axios": "^1.13.6",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "framer-motion": "^11.0.8",
