@@ -1,4 +1,4 @@
-import { Schema, Types, model } from 'mongoose';
+import { HydratedDocument, Schema, Types, model } from 'mongoose';
 import { Equipment } from '../types';
 
 export const equipmentSchema = new Schema<Equipment>({
@@ -27,5 +27,7 @@ equipmentSchema.set('toJSON', {
     delete ret.owner;
   },
 });
+
+export type EquipmentDocument = HydratedDocument<Equipment>;
 
 export default model<Equipment>('Equipment', equipmentSchema);

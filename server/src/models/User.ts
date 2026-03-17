@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import { HydratedDocument, Schema, model } from 'mongoose';
 import { User } from '../types';
 
 const userSchema = new Schema<User>({
@@ -70,5 +70,7 @@ userSchema.set('toJSON', {
     delete ret._id;
   },
 });
+
+export type UserDocument = HydratedDocument<User>
 
 export default model<User>('User', userSchema);

@@ -1,4 +1,4 @@
-import { Schema, Types, model } from 'mongoose';
+import { HydratedDocument, Schema, Types, model } from 'mongoose';
 import { ChatCompletionMessageParam } from 'openai/resources/chat/completions';
 
 export interface IStory {
@@ -38,5 +38,7 @@ storySchema.set('toJSON', {
     delete ret.updatedAt;
   },
 });
+
+export type StoryDocument = HydratedDocument<IStory>
 
 export default model<IStory>('Story', storySchema);

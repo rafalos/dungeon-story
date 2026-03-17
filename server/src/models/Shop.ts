@@ -1,4 +1,4 @@
-import { Schema, Types, model } from 'mongoose';
+import { HydratedDocument, Schema, Types, model } from 'mongoose';
 
 interface IShop {
   id?: Types.ObjectId;
@@ -21,5 +21,7 @@ shopSchema.set('toJSON', {
     ret.id = ret._id;
   },
 });
+
+export type ShopDocument = HydratedDocument<IShop>
 
 export default model<IShop>('Shop', shopSchema);
