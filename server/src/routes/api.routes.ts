@@ -7,15 +7,10 @@ import storiesRouter from './stories.routes';
 import itemsRouter from './items.routes';
 import inventoryRouter from './inventory.routes';
 import { getUserData } from '../middlewares/getUserData';
-import User from '../models/User';
 import { notFound } from '../middlewares/404';
 import { errorHandler } from '../middlewares/error';
 
-declare module 'express-serve-static-core' {
-  export interface Request {
-    user: InstanceType<typeof User>;
-  }
-}
+
 const router = Router();
 router.use(verifyToken);
 router.use(getUserData as RequestHandler);

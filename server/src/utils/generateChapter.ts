@@ -1,9 +1,10 @@
 import { Types } from 'mongoose';
-import { ExplorationEvent, ExplorationSeed } from '../types';
+import { ExplorationEvent } from '../types';
 import Story from '../models/Story';
 import openAi from '../lib/openAiApi';
 import { composeMessage } from './gpt';
-import { EXPLORATION_STRINGS, GENERATE_NAME_STRING } from './constants';
+import { EXPLORATION_STRINGS } from './constants';
+import { generateLocation } from './generateLocation';
 
 export const generateNextChapter = async (
   storyID: Types.ObjectId,
@@ -40,22 +41,12 @@ export const generateNextChapter = async (
   return message.content;
 };
 
-const getLocationName = async () => {
-  const gptResponse = await openAi.chat.completions.create({
-    messages: [composeMessage('system', GENERATE_NAME_STRING)],
-    model: 'gpt-3.5-turbo',
-  });
-
-  return gptResponse.choices[0].message.content;
-};
-
 export const initializeStory = async (explorationID: Types.ObjectId) => {
   const story = new Story({
     exploration: explorationID,
   });
 
-  story.location = (await getLocationName()) ?? 'Mysterious forest';
-
+  story.location = await generateLocation()
   await story.save();
 
   return story;
