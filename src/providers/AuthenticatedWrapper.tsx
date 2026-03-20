@@ -12,35 +12,50 @@ export const AuthenticatedWrapper = ({ children }: Props) => {
     isLoading: isAuthLoading,
     isAuthenticated,
     getAccessTokenSilently,
+    loginWithRedirect,
   } = useAuth0();
-  const [loading, setLoading] = useState(true);
   const interceptorId = useRef<number | null>(null);
+  const [loadingInterceptor, setLoadingInterceptor] = useState(true);
+
+  const userNotAuthorized = !isAuthLoading && !isAuthenticated;
 
   useEffect(() => {
-    if (!isAuthenticated) return;
+    const init = async () => {
+      if (isAuthLoading) return;
 
-    interceptorId.current = apiInstance.interceptors.request.use(
-      async (config) => {
-        const token = await getAccessTokenSilently();
-
-        config.headers.set('Authorization', `Bearer ${token}`);
-
-        return config;
+      if (!isAuthenticated) {
+        return setLoadingInterceptor(false);
       }
-    );
 
-    setLoading(false);
+      try {
+        await getAccessTokenSilently();
+        interceptorId.current = apiInstance.interceptors.request.use(
+          async (config) => {
+            const token = await getAccessTokenSilently();
+            config.headers.set('Authorization', `Bearer ${token}`);
+
+            return config;
+          }
+        );
+      } catch (error) {
+        await loginWithRedirect();
+      }
+
+      setLoadingInterceptor(false);
+    };
+
+    init();
 
     return () => {
-      if (interceptorId.current) {
+      if (interceptorId.current !== null) {
         apiInstance.interceptors.request.eject(interceptorId.current);
       }
     };
-  }, [isAuthenticated, getAccessTokenSilently]);
+  }, [isAuthenticated, getAccessTokenSilently, isAuthLoading]);
 
-  if (isAuthLoading || loading) return null;
+  if (loadingInterceptor || isAuthLoading) return null;
 
-  if (!isAuthLoading && !isAuthenticated) return <Navigate to="/" />;
+  if (userNotAuthorized) return <Navigate to="/" />;
 
   return children;
 };
