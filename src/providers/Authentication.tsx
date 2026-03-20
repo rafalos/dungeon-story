@@ -12,7 +12,7 @@ const Authentication = ({ children }: Props) => {
       clientId="DqNQFBpog3Tt1buZZAkPdKAdFZZwym7g"
       authorizationParams={{
         redirect_uri: import.meta.env.VITE_REDIRECT_URL,
-        scope: 'openid profile email',
+        scope: 'openid profile email offline_access',
         audience: import.meta.env.VITE_AUDIENCE,
       }}
       cacheLocation="localstorage"

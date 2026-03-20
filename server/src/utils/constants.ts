@@ -52,13 +52,13 @@ export const EVENTS = {
 };
 
 export const GENERATE_NAME_STRING =
-  'Give me random fantasy roguelike game location name';
+  'Give me a random fantasy roguelike game location name. Return only the name, no quotes, no explanations.';
 export const GENERATE_MONSTERNAME_STRING =
   'Give me random fantasy roguelike monster name found in #LOCATION';
 
 export const EXPLORATION_STRINGS = {
   ENTRY:
-    'You are the brave entering dark dungeon #LOCATION. You are writing your own journal. Write your introduction to the story after entering the location max 400 characters',
+    'You are a heroic adventurer entering the mysterious dungeon #LOCATION. Write a vivid, immersive 1-2 sentence journal entry in first person about your first steps inside. Use suspense and fantasy details. Max 400 characters.',
   BATTLE: 'Continue your story defeating a monster writing max 400 characters',
   TRAP: 'Continue your story after getting out of a trap writing max 500 characters',
   WELL: 'Continue your story after drinking from a mysterious magic well that restores health points and provides experience max 400 characters',

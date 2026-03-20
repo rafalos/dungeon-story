@@ -1,4 +1,4 @@
-import { Schema, Types, model } from 'mongoose';
+import { HydratedDocument, Schema, Types, model } from 'mongoose';
 import { ExplorationPrimitives } from '../types';
 
 export interface IExploration {
@@ -49,5 +49,7 @@ export const explorationSchema = new Schema<IExploration>(
     },
   }
 );
+
+export type ExplorationDocument = HydratedDocument<IExploration>
 
 export default model<IExploration>('Exploration', explorationSchema);

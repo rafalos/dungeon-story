@@ -12,12 +12,6 @@ import { shopRestock } from '../handlers/shopRestock';
 import Inventory from '../models/Inventory';
 import { getItemData } from '../middlewares/getItemData';
 
-declare module 'express-serve-static-core' {
-  export interface Request {
-    item: InstanceType<typeof Equipment>;
-  }
-}
-
 const router = Router();
 
 router.get('/generate', async (request, response) => {

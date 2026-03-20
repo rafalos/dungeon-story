@@ -1,4 +1,4 @@
-import mongoose, { Schema, Types, model } from 'mongoose';
+import { HydratedDocument, Schema, Types, model } from 'mongoose';
 
 interface Inventory {
   user: Types.ObjectId;
@@ -33,5 +33,7 @@ inventorySchema.set('toJSON', {
     delete ret.user;
   },
 });
+
+export type InventoryDocument = HydratedDocument<Inventory>
 
 export default model<Inventory>('Inventory', inventorySchema);
