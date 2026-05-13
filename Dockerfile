@@ -29,7 +29,10 @@ ENV VITE_AUDIENCE=$VITE_AUDIENCE
 ENV VITE_REDIRECT_URL=$VITE_REDIRECT_URL
 RUN npm run build
 
-FROM nginx:alpine AS production
-COPY --from=builder /app/dist /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+FROM node:alpine AS production
+
+RUN npm install -g serve
+
+COPY --from=builder /app/dist ./dist
+EXPOSE 3000
+CMD ["serve", "-s", "dist", "-l", "3000"]
