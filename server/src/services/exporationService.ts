@@ -1,22 +1,22 @@
-import { HydratedDocument, Types } from 'mongoose';
+import { Types } from 'mongoose';
 import { generateSeed } from '../logic/generators/seed';
-import Exploration from '../models/Exploration';
-import { generateNextChapter, initializeStory } from '../utils/generateChapter';
+import { generateNextChapter } from '../utils/generateChapter';
 import { getHealth } from '../logic/resources/formulas';
 import { AppError } from '../errors/AppError';
-import { ExplorationEvent, type User as UserType } from '../types';
+import { ExplorationEvent } from '../types';
 import { handleEvent } from '../handlers/handleEvent';
-import Story from '../models/Story';
+import { explorationRepository } from '../repositories/expoloration.repository';
+import { storyRepository } from '../repositories/story.repository';
+import { UserDocument } from '../models/User';
+import * as storyService from '../services/storyService';
 
 export const getState = async (explorationID: string) => {
-  const exploration = await Exploration.findById(explorationID);
+  const exploration = await explorationRepository.getById(explorationID);
 
   if (!exploration) throw new AppError('Exploration was not found', 404);
   if (!exploration.active) throw new AppError('Exploration has ended');
 
-  const currentStory = await Story.findOne({
-    exploration: exploration._id,
-  });
+  const currentStory = await storyRepository.getForExploration(explorationID);
 
   if (!currentStory) throw new AppError('Story was not found', 404);
 
@@ -48,33 +48,32 @@ export const getState = async (explorationID: string) => {
 
   const nextChapter = await generateNextChapter(exploration.story, event);
 
-  await exploration.save();
+  await explorationRepository.save(exploration);
 
   return nextChapter;
 };
 
-export const generate = async (user: HydratedDocument<UserType>) => {
+export const generate = async (user: UserDocument) => {
   if (!user) throw new AppError('User was not found');
 
   if (user.energy <= 0)
     throw new Error(`You do not have enough energy to start exploration`);
 
-  const explorationCount = await Exploration.countDocuments({
-    userID: user._id,
-    active: true,
-  });
+  const explorationCount = await explorationRepository.countActiveForUser(
+    user._id.toString()
+  );
 
   if (explorationCount >= +process.env.ACTIVE_EXPLORATION_LIMIT!)
     throw new Error('Reached exploration limit');
 
   const newSeed = generateSeed();
 
-  const exploration = new Exploration({
+  const exploration = explorationRepository.create({
     userID: user._id,
     seed: newSeed,
   });
 
-  const story = await initializeStory(exploration._id);
+  const story = await storyService.initialize(exploration._id);
 
   exploration.story = story._id;
   exploration.name = story.location;
@@ -87,19 +86,16 @@ export const generate = async (user: HydratedDocument<UserType>) => {
   user.energy -= 1;
   await user.save();
 
-  await exploration.save();
+  await explorationRepository.save(exploration);
 
   return exploration;
 };
 
-export const advance = async (
-  explorationID: string,
-  user: HydratedDocument<UserType>
-) => {
-  const exploration = await Exploration.findOne({
-    userID: user._id.toString(),
-    _id: explorationID,
-  });
+export const advance = async (explorationID: string, user: UserDocument) => {
+  const exploration = await explorationRepository.getByIdForUser(
+    explorationID,
+    user._id.toString()
+  );
 
   if (!exploration)
     throw new AppError('There was an error finding exploration', 404);
@@ -112,10 +108,9 @@ export const advance = async (
 };
 
 export const getAll = async (userID: Types.ObjectId) => {
-  const explorations = await Exploration.find({
-    userID,
-    active: true,
-  });
+  const explorations = await explorationRepository.getAllActiveForUser(
+    userID.toString()
+  );
 
   return explorations;
 };

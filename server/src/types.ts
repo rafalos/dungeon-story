@@ -60,7 +60,7 @@ export interface Gem extends Stackable {
   type: 'gem';
 }
 
-export type ExplorationSeed = Array<ExplorationEvent>;
+export type ExplorationSeed = Array<ExplorationPrimitives>;
 
 type DistributiveOmit<T, K extends keyof T> = T extends any
   ? Omit<T, K>

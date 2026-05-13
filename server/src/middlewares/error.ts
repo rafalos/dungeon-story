@@ -8,5 +8,7 @@ export const errorHandler = (
 ) => {
   console.log('from error handler')
   console.log(err);
-  res.status(500).send(err);
+  res.status(500).json({
+    message: 'test'
+  });
 };

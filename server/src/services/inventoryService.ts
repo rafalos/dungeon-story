@@ -1,7 +1,7 @@
 import { AppError } from '../errors/AppError';
-import Inventory from '../models/Inventory';
+import Inventory, { InventoryDocument } from '../models/Inventory';
 
-export const getItems = async (userID: string) => {
+export const getInventory = async (userID: string) => {
   const inventory = await Inventory.findOne({
     user: userID,
   }).populate('equipment worn');
@@ -9,4 +9,13 @@ export const getItems = async (userID: string) => {
   if (!inventory) throw new AppError('Inventory was not found', 404);
 
   return inventory;
+};
+
+export const removeEntity = async (
+  inventory: InventoryDocument,
+  itemID: string
+) => {
+  inventory.equipment = inventory.equipment.filter(
+    ({ _id }) => _id.toString() !== itemID
+  );
 };
