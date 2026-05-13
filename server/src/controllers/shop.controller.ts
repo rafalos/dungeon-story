@@ -1,9 +1,8 @@
 import { Request, Response } from 'express';
-import Shop from '../models/Shop';
-
+import * as shopService from '../services/shopService';
 
 export const getShop = async (_: Request, response: Response) => {
-  const currentShop = await Shop.findOne({}).populate('items').exec();
+  const shop = await shopService.getCurrent();
 
-  response.json(currentShop);
+  response.json(shop);
 };

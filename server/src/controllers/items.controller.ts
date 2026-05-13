@@ -5,6 +5,7 @@ import Shop from '../models/Shop';
 import Equipment from '../models/Equipment';
 import { type Equipment as EquipmentType } from '../types';
 import { mutateStats } from '../handlers/mutateStats';
+import * as itemService from '../services/itemService'
 
 const getBase = (item: InstanceType<typeof Equipment>) => {
   let base;
@@ -29,23 +30,7 @@ const getBase = (item: InstanceType<typeof Equipment>) => {
 export const sellItem = async (request: Request, response: Response) => {
   const { user, item } = request;
 
-  const inventory = await Inventory.findById(user.inventory);
-
-  if (!inventory)
-    return response.status(403).json({
-      message: 'an authorization error occured',
-    });
-
-  const newEquipment = inventory.equipment.filter(
-    (itemID) => !itemID.equals(item._id)
-  );
-
-  inventory.equipment = newEquipment;
-
-  user.gold += item.sellPrice;
-  item.owner = null;
-
-  await Promise.all([user.save(), item.save(), inventory.save()]);
+  await itemService.sellItem(user, item)
 
   response.status(200).json({
     message: 'Item sold succesfully',
@@ -106,78 +91,80 @@ export const buyItem = async (
 };
 
 export const wearItem = async (request: Request, response: Response) => {
-  const inventory = await Inventory.findOne({
-    user: request.user._id,
-  })
-    .populate<{ worn: EquipmentType[] }>('worn')
-    .exec();
+//   if(!request.item) throw new Error('err')
 
-  if (!inventory)
-    return response.status(403).json({
-      message: 'an authorization error occured',
-    });
+//   const inventory = await Inventory.findOne({
+//     user: request.user._id,
+//   })
+//     .populate<{ worn: EquipmentType[] }>('worn')
+//     .exec();
 
-  if (inventory.worn.length > 0) {
-    const isEquippable = !inventory.worn.some(
-      (item) => item.slot === request.item.slot
-    );
+//   if (!inventory)
+//     return response.status(403).json({
+//       message: 'an authorization error occured',
+//     });
 
-    if (!isEquippable) {
-      return response.status(403).json({
-        message: 'Error occured while trying to equip that item',
-      });
-    }
-  }
+//   if (inventory.worn.length > 0) {
+//     const isEquippable = !inventory.worn.some(
+//       (item) => item.slot === request.item.slot
+//     );
 
-  inventory.worn.push(request.item._id as unknown as EquipmentType);
-  inventory.equipment = inventory.equipment.filter(
-    (item) => !item._id.equals(request.item._id)
-  );
+//     if (!isEquippable) {
+//       return response.status(403).json({
+//         message: 'Error occured while trying to equip that item',
+//       });
+//     }
+//   }
 
-  const base = getBase(request.item);
+//   inventory.worn.push(request.item._id as unknown as EquipmentType);
+//   inventory.equipment = inventory.equipment.filter(
+//     (item) => !item._id.equals(request.item._id)
+//   );
 
-  await mutateStats('INC', request.user, base, request.item.modifiers);
+//   const base = getBase(request.item);
 
-  await inventory.save();
+//   await mutateStats('INC', request.user, base, request.item.modifiers);
 
-  response.status(200).json({
-    message: 'Item equipped succesfully',
-  });
+//   await inventory.save();
+
+//   response.status(200).json({
+//     message: 'Item equipped succesfully',
+//   });
 };
 
 export const unwearItem = async (request: Request, response: Response) => {
-  const inventory = await Inventory.findOne({
-    user: request.user._id,
-  });
+//   const inventory = await Inventory.findOne({
+//     user: request.user._id,
+//   });
 
-  if (!inventory)
-    return response.status(403).json({
-      message: 'an authorization error occured',
-    });
+//   if (!inventory)
+//     return response.status(403).json({
+//       message: 'an authorization error occured',
+//     });
 
-  const itemToUnwear = inventory.worn.find(
-    (itemID) => itemID.toString() === request.params.itemID
-  );
+//   const itemToUnwear = inventory.worn.find(
+//     (itemID) => itemID.toString() === request.params.itemID
+//   );
 
-  if (!itemToUnwear) {
-    return response.status(403).json({
-      message: 'Error occured while trying to unequip that item',
-    });
-  }
+//   if (!itemToUnwear) {
+//     return response.status(403).json({
+//       message: 'Error occured while trying to unequip that item',
+//     });
+//   }
 
-  inventory.worn = inventory.worn.filter(
-    (itemID) => itemID.toString() !== request.params.itemID
-  );
+//   inventory.worn = inventory.worn.filter(
+//     (itemID) => itemID.toString() !== request.params.itemID
+//   );
 
-  inventory.equipment.push(itemToUnwear);
+//   inventory.equipment.push(itemToUnwear);
 
-  const base = getBase(request.item);
+//   const base = getBase(request.item);
 
-  await mutateStats('DEC', request.user, base, request.item.modifiers);
+//   await mutateStats('DEC', request.user, base, request.item.modifiers);
 
-  await inventory.save();
+//   await inventory.save();
 
-  response.status(200).json({
-    message: 'Item unequipped succesfully',
-  });
+//   response.status(200).json({
+//     message: 'Item unequipped succesfully',
+//   });
 };

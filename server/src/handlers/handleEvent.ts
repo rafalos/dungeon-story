@@ -1,10 +1,9 @@
 import { HydratedDocument, Types } from 'mongoose';
 import { IExploration } from '../models/Exploration';
-import User from '../models/User';
 import { randomInRange } from '../utils/random';
 import { generateRandomEquipment } from '../logic/generators/equipment';
 import Equipment from '../models/Equipment';
-import { Equipment as EquipmentType } from '../types';
+import { Equipment as EquipmentType, User } from '../types';
 import Inventory from '../models/Inventory';
 import { handleBattle } from './handleBattle';
 import { Server } from 'socket.io';
@@ -45,7 +44,7 @@ const handleWell = (
 };
 
 export const handleEvent = async (
-  user: InstanceType<typeof User>,
+  user: HydratedDocument<User>,
   exploration: HydratedDocument<IExploration>
 ) => {
   const { seed, currentStage, currentHealth } = exploration;

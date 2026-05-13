@@ -1,22 +1,14 @@
 import { Request, Response } from 'express';
-import Story from '../models/Story';
+import * as StoryService from '../services/storyService';
 
 export const getStories = async (_: Request, response: Response) => {
-  const stories = await Story.find();
+  const stories = await StoryService.getAll();
 
   response.json(stories);
 };
 
 export const getStory = async (request: Request, response: Response) => {
-  const { id } = request.params;
-
-  const story = await Story.findById(id);
-
-  if (!story) {
-    response.status(404).json({
-      message: 'Story was not found',
-    });
-  }
+  const story = await StoryService.getById(request.params.id);
 
   response.json(story);
 };

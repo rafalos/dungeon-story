@@ -10,7 +10,7 @@ export const generateRandomEquipment = (
   const base: EquipmentPregenerate = JSON.parse(
     JSON.stringify(randomElementFromArray(equipmentSlotTypes))
   );
-
+  
   const finalItem = { ...generateMetaData(base) };
 
   return {

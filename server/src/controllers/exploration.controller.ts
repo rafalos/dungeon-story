@@ -1,6 +1,6 @@
-import { NextFunction, Request, Response } from 'express';
-import Exploration from '../models/Exploration';
+import { type NextFunction, Request, Response } from 'express';
 import * as ExplorationService from '../services/exporationService';
+import { explorationRepository } from '../repositories/expoloration.repository';
 
 export const getCurrentState = async (
   request: Request<{
@@ -51,7 +51,7 @@ export const getExploration = async (
 ) => {
   const { id } = request.params;
 
-  const exploration = await Exploration.findById(id);
+  const exploration = await explorationRepository.getById(id);
 
   if (!exploration) return next('Exploration not found');
 
