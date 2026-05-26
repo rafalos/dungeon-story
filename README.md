@@ -6,7 +6,7 @@ Roguelike RPG game with story generator driven by OpenAI Api
 
 (Could take a while to wakeup due to free plan)
 
-https://dungeon-story.onrender.com/
+https://dungeonstory.duckdns.org/
 
 For testing purposes if you do not want to create your own account use:
 ```
